@@ -18,6 +18,8 @@
 		3BEDDC7116B6C4C200255853 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEDDC7016B6C4C100255853 /* Default-568h@2x.png */; };
 		3BEDDC7416B6C4C200255853 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BEDDC7316B6C4C200255853 /* ViewController.m */; };
 		3BEDDC7716B6C4C200255853 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BEDDC7516B6C4C200255853 /* ViewController.xib */; };
+		3BEDDC9016B6D1F900255853 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BEDDC8E16B6D1F900255853 /* SearchViewController.m */; };
+		3BEDDC9116B6D1F900255853 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BEDDC8F16B6D1F900255853 /* SearchViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +39,9 @@
 		3BEDDC7216B6C4C200255853 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		3BEDDC7316B6C4C200255853 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		3BEDDC7616B6C4C200255853 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		3BEDDC8D16B6D1F900255853 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		3BEDDC8E16B6D1F900255853 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		3BEDDC8F16B6D1F900255853 /* SearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +93,9 @@
 				3BEDDC7216B6C4C200255853 /* ViewController.h */,
 				3BEDDC7316B6C4C200255853 /* ViewController.m */,
 				3BEDDC7516B6C4C200255853 /* ViewController.xib */,
+				3BEDDC8D16B6D1F900255853 /* SearchViewController.h */,
+				3BEDDC8E16B6D1F900255853 /* SearchViewController.m */,
+				3BEDDC8F16B6D1F900255853 /* SearchViewController.xib */,
 				3BEDDC6116B6C4C100255853 /* Supporting Files */,
 			);
 			path = "Grinnell-DB-iOS";
@@ -163,6 +171,7 @@
 				3BEDDC6F16B6C4C100255853 /* Default@2x.png in Resources */,
 				3BEDDC7116B6C4C200255853 /* Default-568h@2x.png in Resources */,
 				3BEDDC7716B6C4C200255853 /* ViewController.xib in Resources */,
+				3BEDDC9116B6D1F900255853 /* SearchViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +185,7 @@
 				3BEDDC6716B6C4C100255853 /* main.m in Sources */,
 				3BEDDC6B16B6C4C100255853 /* AppDelegate.m in Sources */,
 				3BEDDC7416B6C4C200255853 /* ViewController.m in Sources */,
+				3BEDDC9016B6D1F900255853 /* SearchViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
