@@ -1,0 +1,304 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3BEDDC5B16B6C4C100255853 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BEDDC5A16B6C4C100255853 /* UIKit.framework */; };
+		3BEDDC5D16B6C4C100255853 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BEDDC5C16B6C4C100255853 /* Foundation.framework */; };
+		3BEDDC5F16B6C4C100255853 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BEDDC5E16B6C4C100255853 /* CoreGraphics.framework */; };
+		3BEDDC6516B6C4C100255853 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3BEDDC6316B6C4C100255853 /* InfoPlist.strings */; };
+		3BEDDC6716B6C4C100255853 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BEDDC6616B6C4C100255853 /* main.m */; };
+		3BEDDC6B16B6C4C100255853 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BEDDC6A16B6C4C100255853 /* AppDelegate.m */; };
+		3BEDDC6D16B6C4C100255853 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEDDC6C16B6C4C100255853 /* Default.png */; };
+		3BEDDC6F16B6C4C100255853 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEDDC6E16B6C4C100255853 /* Default@2x.png */; };
+		3BEDDC7116B6C4C200255853 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEDDC7016B6C4C100255853 /* Default-568h@2x.png */; };
+		3BEDDC7416B6C4C200255853 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BEDDC7316B6C4C200255853 /* ViewController.m */; };
+		3BEDDC7716B6C4C200255853 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BEDDC7516B6C4C200255853 /* ViewController.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3BEDDC5616B6C4C100255853 /* Grinnell-DB-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Grinnell-DB-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BEDDC5A16B6C4C100255853 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3BEDDC5C16B6C4C100255853 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3BEDDC5E16B6C4C100255853 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3BEDDC6216B6C4C100255853 /* Grinnell-DB-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Grinnell-DB-iOS-Info.plist"; sourceTree = "<group>"; };
+		3BEDDC6416B6C4C100255853 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3BEDDC6616B6C4C100255853 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3BEDDC6816B6C4C100255853 /* Grinnell-DB-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grinnell-DB-iOS-Prefix.pch"; sourceTree = "<group>"; };
+		3BEDDC6916B6C4C100255853 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		3BEDDC6A16B6C4C100255853 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		3BEDDC6C16B6C4C100255853 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		3BEDDC6E16B6C4C100255853 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		3BEDDC7016B6C4C100255853 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		3BEDDC7216B6C4C200255853 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		3BEDDC7316B6C4C200255853 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		3BEDDC7616B6C4C200255853 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3BEDDC5316B6C4C100255853 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BEDDC5B16B6C4C100255853 /* UIKit.framework in Frameworks */,
+				3BEDDC5D16B6C4C100255853 /* Foundation.framework in Frameworks */,
+				3BEDDC5F16B6C4C100255853 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3BEDDC4B16B6C4C100255853 = {
+			isa = PBXGroup;
+			children = (
+				3BEDDC6016B6C4C100255853 /* Grinnell-DB-iOS */,
+				3BEDDC5916B6C4C100255853 /* Frameworks */,
+				3BEDDC5716B6C4C100255853 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3BEDDC5716B6C4C100255853 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3BEDDC5616B6C4C100255853 /* Grinnell-DB-iOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3BEDDC5916B6C4C100255853 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3BEDDC5A16B6C4C100255853 /* UIKit.framework */,
+				3BEDDC5C16B6C4C100255853 /* Foundation.framework */,
+				3BEDDC5E16B6C4C100255853 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3BEDDC6016B6C4C100255853 /* Grinnell-DB-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				3BEDDC6916B6C4C100255853 /* AppDelegate.h */,
+				3BEDDC6A16B6C4C100255853 /* AppDelegate.m */,
+				3BEDDC7216B6C4C200255853 /* ViewController.h */,
+				3BEDDC7316B6C4C200255853 /* ViewController.m */,
+				3BEDDC7516B6C4C200255853 /* ViewController.xib */,
+				3BEDDC6116B6C4C100255853 /* Supporting Files */,
+			);
+			path = "Grinnell-DB-iOS";
+			sourceTree = "<group>";
+		};
+		3BEDDC6116B6C4C100255853 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3BEDDC6216B6C4C100255853 /* Grinnell-DB-iOS-Info.plist */,
+				3BEDDC6316B6C4C100255853 /* InfoPlist.strings */,
+				3BEDDC6616B6C4C100255853 /* main.m */,
+				3BEDDC6816B6C4C100255853 /* Grinnell-DB-iOS-Prefix.pch */,
+				3BEDDC6C16B6C4C100255853 /* Default.png */,
+				3BEDDC6E16B6C4C100255853 /* Default@2x.png */,
+				3BEDDC7016B6C4C100255853 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3BEDDC5516B6C4C100255853 /* Grinnell-DB-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3BEDDC7D16B6C4C200255853 /* Build configuration list for PBXNativeTarget "Grinnell-DB-iOS" */;
+			buildPhases = (
+				3BEDDC5216B6C4C100255853 /* Sources */,
+				3BEDDC5316B6C4C100255853 /* Frameworks */,
+				3BEDDC5416B6C4C100255853 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Grinnell-DB-iOS";
+			productName = "Grinnell-DB-iOS";
+			productReference = 3BEDDC5616B6C4C100255853 /* Grinnell-DB-iOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3BEDDC4D16B6C4C100255853 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Grinnell AppDev";
+			};
+			buildConfigurationList = 3BEDDC5016B6C4C100255853 /* Build configuration list for PBXProject "Grinnell-DB-iOS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3BEDDC4B16B6C4C100255853;
+			productRefGroup = 3BEDDC5716B6C4C100255853 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3BEDDC5516B6C4C100255853 /* Grinnell-DB-iOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3BEDDC5416B6C4C100255853 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BEDDC6516B6C4C100255853 /* InfoPlist.strings in Resources */,
+				3BEDDC6D16B6C4C100255853 /* Default.png in Resources */,
+				3BEDDC6F16B6C4C100255853 /* Default@2x.png in Resources */,
+				3BEDDC7116B6C4C200255853 /* Default-568h@2x.png in Resources */,
+				3BEDDC7716B6C4C200255853 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3BEDDC5216B6C4C100255853 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3BEDDC6716B6C4C100255853 /* main.m in Sources */,
+				3BEDDC6B16B6C4C100255853 /* AppDelegate.m in Sources */,
+				3BEDDC7416B6C4C200255853 /* ViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3BEDDC6316B6C4C100255853 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3BEDDC6416B6C4C100255853 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3BEDDC7516B6C4C200255853 /* ViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3BEDDC7616B6C4C200255853 /* en */,
+			);
+			name = ViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3BEDDC7B16B6C4C200255853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3BEDDC7C16B6C4C200255853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3BEDDC7E16B6C4C200255853 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Grinnell-DB-iOS/Grinnell-DB-iOS-Prefix.pch";
+				INFOPLIST_FILE = "Grinnell-DB-iOS/Grinnell-DB-iOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3BEDDC7F16B6C4C200255853 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Grinnell-DB-iOS/Grinnell-DB-iOS-Prefix.pch";
+				INFOPLIST_FILE = "Grinnell-DB-iOS/Grinnell-DB-iOS-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3BEDDC5016B6C4C100255853 /* Build configuration list for PBXProject "Grinnell-DB-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BEDDC7B16B6C4C200255853 /* Debug */,
+				3BEDDC7C16B6C4C200255853 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3BEDDC7D16B6C4C200255853 /* Build configuration list for PBXNativeTarget "Grinnell-DB-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BEDDC7E16B6C4C200255853 /* Debug */,
+				3BEDDC7F16B6C4C200255853 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3BEDDC4D16B6C4C100255853 /* Project object */;
+}
