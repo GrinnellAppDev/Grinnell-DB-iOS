@@ -10,11 +10,10 @@
 
 @interface ViewController : UIViewController
 
+- (void)registerForKeyboardNotifications;
 
 @property (nonatomic, strong) NSMutableArray *majorsArray;
-
 @property (nonatomic, weak) IBOutlet UITextView *activeView;
-
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, weak) IBOutlet UIToolbar *doneBar;
 @property (nonatomic, weak) IBOutlet UIPickerView *thePicker;

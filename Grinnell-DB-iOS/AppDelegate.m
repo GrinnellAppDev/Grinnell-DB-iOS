@@ -11,6 +11,7 @@
 #import "SearchViewController.h"
 
 @implementation AppDelegate
+@synthesize window, searchViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
