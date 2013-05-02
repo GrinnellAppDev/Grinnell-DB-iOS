@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3BEBFBB8173301A200B46F44 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEBFBB7173301A200B46F44 /* Icon.png */; };
+		3BEBFBBA173301A900B46F44 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEBFBB9173301A900B46F44 /* Icon@2x.png */; };
+		3BEBFBBC173301B600B46F44 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEBFBBB173301B600B46F44 /* Icon-72.png */; };
+		3BEBFBBE173301BB00B46F44 /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEBFBBD173301BB00B46F44 /* Icon-144.png */; };
+		3BEBFBC4173301EE00B46F44 /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEBFBBF173301EE00B46F44 /* Icon-Small-50.png */; };
+		3BEBFBC5173301EE00B46F44 /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEBFBC0173301EE00B46F44 /* Icon-Small.png */; };
+		3BEBFBC6173301EE00B46F44 /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEBFBC1173301EE00B46F44 /* Icon-Small@2x.png */; };
+		3BEBFBC7173301EE00B46F44 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEBFBC2173301EE00B46F44 /* iTunesArtwork.png */; };
+		3BEBFBC8173301EE00B46F44 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BEBFBC3173301EE00B46F44 /* iTunesArtwork@2x.png */; };
 		3BEDDC5B16B6C4C100255853 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BEDDC5A16B6C4C100255853 /* UIKit.framework */; };
 		3BEDDC5D16B6C4C100255853 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BEDDC5C16B6C4C100255853 /* Foundation.framework */; };
 		3BEDDC5F16B6C4C100255853 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BEDDC5E16B6C4C100255853 /* CoreGraphics.framework */; };
@@ -23,6 +32,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3BEBFBB7173301A200B46F44 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
+		3BEBFBB9173301A900B46F44 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
+		3BEBFBBB173301B600B46F44 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-72.png"; path = "../Icon-72.png"; sourceTree = "<group>"; };
+		3BEBFBBD173301BB00B46F44 /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-144.png"; path = "../Icon-144.png"; sourceTree = "<group>"; };
+		3BEBFBBF173301EE00B46F44 /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		3BEBFBC0173301EE00B46F44 /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		3BEBFBC1173301EE00B46F44 /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		3BEBFBC2173301EE00B46F44 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		3BEBFBC3173301EE00B46F44 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		3BEDDC5616B6C4C100255853 /* Grinnell-DB-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Grinnell-DB-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BEDDC5A16B6C4C100255853 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3BEDDC5C16B6C4C100255853 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -58,6 +76,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3BEBFBB61733013700B46F44 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				3BEBFBBD173301BB00B46F44 /* Icon-144.png */,
+				3BEBFBBB173301B600B46F44 /* Icon-72.png */,
+				3BEBFBB9173301A900B46F44 /* Icon@2x.png */,
+				3BEBFBB7173301A200B46F44 /* Icon.png */,
+				3BEBFBBF173301EE00B46F44 /* Icon-Small-50.png */,
+				3BEBFBC0173301EE00B46F44 /* Icon-Small.png */,
+				3BEBFBC1173301EE00B46F44 /* Icon-Small@2x.png */,
+				3BEBFBC2173301EE00B46F44 /* iTunesArtwork.png */,
+				3BEBFBC3173301EE00B46F44 /* iTunesArtwork@2x.png */,
+			);
+			name = Icons;
+			sourceTree = "<group>";
+		};
 		3BEDDC4B16B6C4C100255853 = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +130,7 @@
 				3BEDDC8D16B6D1F900255853 /* SearchViewController.h */,
 				3BEDDC8E16B6D1F900255853 /* SearchViewController.m */,
 				3BEDDC8F16B6D1F900255853 /* SearchViewController.xib */,
+				3BEBFBB61733013700B46F44 /* Icons */,
 				3BEDDC6116B6C4C100255853 /* Supporting Files */,
 			);
 			path = "Grinnell-DB-iOS";
@@ -172,6 +207,15 @@
 				3BEDDC7116B6C4C200255853 /* Default-568h@2x.png in Resources */,
 				3BEDDC7716B6C4C200255853 /* ViewController.xib in Resources */,
 				3BEDDC9116B6D1F900255853 /* SearchViewController.xib in Resources */,
+				3BEBFBB8173301A200B46F44 /* Icon.png in Resources */,
+				3BEBFBBA173301A900B46F44 /* Icon@2x.png in Resources */,
+				3BEBFBBC173301B600B46F44 /* Icon-72.png in Resources */,
+				3BEBFBBE173301BB00B46F44 /* Icon-144.png in Resources */,
+				3BEBFBC4173301EE00B46F44 /* Icon-Small-50.png in Resources */,
+				3BEBFBC5173301EE00B46F44 /* Icon-Small.png in Resources */,
+				3BEBFBC6173301EE00B46F44 /* Icon-Small@2x.png in Resources */,
+				3BEBFBC7173301EE00B46F44 /* iTunesArtwork.png in Resources */,
+				3BEBFBC8173301EE00B46F44 /* iTunesArtwork@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

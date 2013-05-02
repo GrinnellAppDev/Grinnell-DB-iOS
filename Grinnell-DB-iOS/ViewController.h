@@ -16,7 +16,7 @@
 @property (nonatomic, weak) IBOutlet UITextView *activeView;
 @property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, weak) IBOutlet UIToolbar *doneBar;
-@property (nonatomic, weak) IBOutlet UIPickerView *thePicker;
+@property (nonatomic, strong) IBOutlet UIPickerView *thePicker;
 @property (nonatomic, weak) IBOutlet UITextField *lastNameField;
 @property (nonatomic, weak) IBOutlet UITextField *firstNameField;
 @property (nonatomic, weak) IBOutlet UITextField *usernameField;
