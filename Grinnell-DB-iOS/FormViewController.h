@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  FormViewController.h
 //  Grinnell-DB-iOS
 //
 //  Created by Colin Tremblay on 1/28/13.
@@ -7,16 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BSKeyboardControls.h"
 
-@interface ViewController : UIViewController
+@interface FormViewController : UITableViewController <UITextFieldDelegate, UITextViewDelegate, BSKeyboardControlsDelegate>
 
-- (void)registerForKeyboardNotifications;
+- (void)search;
 
 @property (nonatomic, strong) NSMutableArray *majorsArray;
-@property (nonatomic, weak) IBOutlet UITextView *activeView;
-@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
-@property (nonatomic, weak) IBOutlet UIToolbar *doneBar;
-@property (nonatomic, strong) IBOutlet UIPickerView *thePicker;
+//@property (nonatomic, strong) IBOutlet UIPickerView *thePicker;
 @property (nonatomic, weak) IBOutlet UITextField *lastNameField;
 @property (nonatomic, weak) IBOutlet UITextField *firstNameField;
 @property (nonatomic, weak) IBOutlet UITextField *usernameField;
@@ -31,4 +29,6 @@
 @property (nonatomic, weak) IBOutlet UITextField *facStaffField;
 @property (nonatomic, weak) IBOutlet UIButton *searchButton;
 @property (nonatomic, weak) IBOutlet UIButton *resetButton;
+@property (nonatomic, strong) BSKeyboardControls *keyboardControls;
+
 @end

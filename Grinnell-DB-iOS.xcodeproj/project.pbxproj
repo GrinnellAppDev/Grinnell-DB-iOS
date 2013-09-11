@@ -18,8 +18,17 @@
 		36363CDD17E11EAC00B01E34 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36363CDC17E11EAC00B01E34 /* Default-568h@2x.png */; };
 		36363CE017E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36363CDE17E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard */; };
 		36363CE317E11EAC00B01E34 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36363CE117E11EAC00B01E34 /* MainStoryboard_iPad.storyboard */; };
-		36363CE617E11EAC00B01E34 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36363CE517E11EAC00B01E34 /* ViewController.m */; };
+		36363CE617E11EAC00B01E34 /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36363CE517E11EAC00B01E34 /* FormViewController.m */; };
 		36363CEE17E11F6D00B01E34 /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 36363CED17E11F2000B01E34 /* BSKeyboardControls.m */; };
+		3BFC8F7E17E12C9F003832DF /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7517E12C9E003832DF /* Icon-72.png */; };
+		3BFC8F7F17E12C9F003832DF /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7617E12C9E003832DF /* Icon-144.png */; };
+		3BFC8F8017E12C9F003832DF /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7717E12C9F003832DF /* Icon-Small-50.png */; };
+		3BFC8F8117E12C9F003832DF /* Icon-Small.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7817E12C9F003832DF /* Icon-Small.png */; };
+		3BFC8F8217E12C9F003832DF /* Icon-Small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7917E12C9F003832DF /* Icon-Small@2x.png */; };
+		3BFC8F8317E12C9F003832DF /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7A17E12C9F003832DF /* Icon.png */; };
+		3BFC8F8417E12C9F003832DF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7B17E12C9F003832DF /* Icon@2x.png */; };
+		3BFC8F8517E12C9F003832DF /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7C17E12C9F003832DF /* iTunesArtwork.png */; };
+		3BFC8F8617E12C9F003832DF /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7D17E12C9F003832DF /* iTunesArtwork@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,10 +47,19 @@
 		36363CDC17E11EAC00B01E34 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		36363CDF17E11EAC00B01E34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		36363CE217E11EAC00B01E34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		36363CE417E11EAC00B01E34 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		36363CE517E11EAC00B01E34 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		36363CE417E11EAC00B01E34 /* FormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormViewController.h; sourceTree = "<group>"; };
+		36363CE517E11EAC00B01E34 /* FormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FormViewController.m; sourceTree = "<group>"; };
 		36363CEC17E11F2000B01E34 /* BSKeyboardControls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSKeyboardControls.h; sourceTree = "<group>"; };
 		36363CED17E11F2000B01E34 /* BSKeyboardControls.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSKeyboardControls.m; sourceTree = "<group>"; };
+		3BFC8F7517E12C9E003832DF /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
+		3BFC8F7617E12C9E003832DF /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-144.png"; sourceTree = "<group>"; };
+		3BFC8F7717E12C9F003832DF /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
+		3BFC8F7817E12C9F003832DF /* Icon-Small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small.png"; sourceTree = "<group>"; };
+		3BFC8F7917E12C9F003832DF /* Icon-Small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small@2x.png"; sourceTree = "<group>"; };
+		3BFC8F7A17E12C9F003832DF /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		3BFC8F7B17E12C9F003832DF /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		3BFC8F7C17E12C9F003832DF /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		3BFC8F7D17E12C9F003832DF /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,12 +108,13 @@
 			children = (
 				36363CD517E11EAC00B01E34 /* AppDelegate.h */,
 				36363CD617E11EAC00B01E34 /* AppDelegate.m */,
-				36363CEC17E11F2000B01E34 /* BSKeyboardControls.h */,
-				36363CED17E11F2000B01E34 /* BSKeyboardControls.m */,
 				36363CDE17E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard */,
 				36363CE117E11EAC00B01E34 /* MainStoryboard_iPad.storyboard */,
-				36363CE417E11EAC00B01E34 /* ViewController.h */,
-				36363CE517E11EAC00B01E34 /* ViewController.m */,
+				36363CE417E11EAC00B01E34 /* FormViewController.h */,
+				36363CE517E11EAC00B01E34 /* FormViewController.m */,
+				36363CEC17E11F2000B01E34 /* BSKeyboardControls.h */,
+				36363CED17E11F2000B01E34 /* BSKeyboardControls.m */,
+				3BFC8F8717E12CA6003832DF /* Icons */,
 				36363CCD17E11EAC00B01E34 /* Supporting Files */,
 			);
 			path = "Grinnell-DB-iOS";
@@ -113,6 +132,22 @@
 				36363CDC17E11EAC00B01E34 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3BFC8F8717E12CA6003832DF /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				3BFC8F7517E12C9E003832DF /* Icon-72.png */,
+				3BFC8F7617E12C9E003832DF /* Icon-144.png */,
+				3BFC8F7717E12C9F003832DF /* Icon-Small-50.png */,
+				3BFC8F7817E12C9F003832DF /* Icon-Small.png */,
+				3BFC8F7917E12C9F003832DF /* Icon-Small@2x.png */,
+				3BFC8F7A17E12C9F003832DF /* Icon.png */,
+				3BFC8F7B17E12C9F003832DF /* Icon@2x.png */,
+				3BFC8F7C17E12C9F003832DF /* iTunesArtwork.png */,
+				3BFC8F7D17E12C9F003832DF /* iTunesArtwork@2x.png */,
+			);
+			name = Icons;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -172,6 +207,15 @@
 				36363CDD17E11EAC00B01E34 /* Default-568h@2x.png in Resources */,
 				36363CE017E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard in Resources */,
 				36363CE317E11EAC00B01E34 /* MainStoryboard_iPad.storyboard in Resources */,
+				3BFC8F7E17E12C9F003832DF /* Icon-72.png in Resources */,
+				3BFC8F7F17E12C9F003832DF /* Icon-144.png in Resources */,
+				3BFC8F8017E12C9F003832DF /* Icon-Small-50.png in Resources */,
+				3BFC8F8117E12C9F003832DF /* Icon-Small.png in Resources */,
+				3BFC8F8217E12C9F003832DF /* Icon-Small@2x.png in Resources */,
+				3BFC8F8317E12C9F003832DF /* Icon.png in Resources */,
+				3BFC8F8417E12C9F003832DF /* Icon@2x.png in Resources */,
+				3BFC8F8517E12C9F003832DF /* iTunesArtwork.png in Resources */,
+				3BFC8F8617E12C9F003832DF /* iTunesArtwork@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,7 +229,7 @@
 				36363CD317E11EAC00B01E34 /* main.m in Sources */,
 				36363CEE17E11F6D00B01E34 /* BSKeyboardControls.m in Sources */,
 				36363CD717E11EAC00B01E34 /* AppDelegate.m in Sources */,
-				36363CE617E11EAC00B01E34 /* ViewController.m in Sources */,
+				36363CE617E11EAC00B01E34 /* FormViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -312,6 +356,7 @@
 				36363CEB17E11EAC00B01E34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
