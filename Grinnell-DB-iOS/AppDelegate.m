@@ -2,33 +2,20 @@
 //  AppDelegate.m
 //  Grinnell-DB-iOS
 //
-//  Created by Colin Tremblay on 1/28/13.
-//  Copyright (c) 2013 Grinnell AppDev. All rights reserved.
+//  Created by AppDev on 9/11/13.
+//  Copyright (c) 2013 AppDev. All rights reserved.
 //
 
 #import "AppDelegate.h"
 
-#import "SearchViewController.h"
-
 @implementation AppDelegate
-@synthesize window, searchViewController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        self.searchViewController = [[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil];
-    }
-    // Commenting out iPad specific xib loading for now
-    /*else {
-        self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil];
-    }*/
-    self.window.rootViewController = self.searchViewController;
-    [self.window makeKeyAndVisible];
     return YES;
 }
-
+							
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
