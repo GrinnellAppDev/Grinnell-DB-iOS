@@ -18,16 +18,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // Set up clear button in top left corner
+    UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clear:)];
+    [self.navigationItem setLeftBarButtonItem:clear animated:YES];
+    
+    // Set up Picker view
 	self.majorsArray = [[NSMutableArray alloc] initWithArray:[NSArray arrayWithObjects: @"Computer Science", @"Math", @"Physics", nil]];
     /*self.majorField.inputView = self.thePicker;
     self.thePicker.hidden = YES;
     self.thePicker.showsSelectionIndicator = YES;*/
     
-    NSArray *fields = @[firstNameField, lastNameField, usernameField, classField, phoneField, campusAddressField, majorField, concentrationField, hiatusField, homeAddressField, facStaffField, sgaField];
     
+    // Set up previous/next/done buttons
+    fields = [[NSMutableArray alloc] initWithObjects:firstNameField, lastNameField, usernameField, classField, phoneField, campusAddressField, majorField, concentrationField, hiatusField, homeAddressField, facStaffField, sgaField, nil];
     [self setKeyboardControls:[[BSKeyboardControls alloc] initWithFields:fields]];
     [self.keyboardControls setDelegate:self];
-    
 }
 
 - (void)keyboardControlsDonePressed:(BSKeyboardControls *)keyControls {
@@ -85,6 +91,13 @@
 
 - (void)search {
     [self performSegueWithIdentifier:@"1001" sender:self];
+}
+
+- (void)clear:(id)sender{
+    for (int i=0; i < fields.count; i++){
+        UITextField *field = [fields objectAtIndex:i];
+        field.text = @"";
+    }
 }
 
 @end

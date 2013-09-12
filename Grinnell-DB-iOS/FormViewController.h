@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "BSKeyboardControls.h"
 
-@interface FormViewController : UITableViewController <UITextFieldDelegate, UITextViewDelegate, BSKeyboardControlsDelegate>
+@interface FormViewController : UITableViewController <UITextFieldDelegate, UITextViewDelegate, BSKeyboardControlsDelegate> {
+    NSMutableArray *fields;
+}
 
 - (void)search;
+- (void)clear:(id)sender;
 
 @property (nonatomic, strong) NSMutableArray *majorsArray;
 //@property (nonatomic, strong) IBOutlet UIPickerView *thePicker;

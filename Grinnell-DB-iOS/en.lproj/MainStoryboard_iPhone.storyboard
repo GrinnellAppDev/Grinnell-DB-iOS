@@ -264,14 +264,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Dse-8w-y7S">
-                        <barButtonItem key="leftBarButtonItem" title="Clear" id="DV4-zE-k0V"/>
                         <barButtonItem key="rightBarButtonItem" title="Search" id="SVs-h5-7wH">
                             <connections>
                                 <segue destination="5Ca-p4-Ff0" kind="push" identifier="1001" id="hpT-IS-Q6P"/>
                             </connections>
                         </barButtonItem>
                         <connections>
-                            <outlet property="leftBarButtonItem" destination="DV4-zE-k0V" id="qwk-wG-5Cc"/>
                             <outlet property="rightBarButtonItem" destination="SVs-h5-7wH" id="ZrA-pE-PIx"/>
                         </connections>
                     </navigationItem>
