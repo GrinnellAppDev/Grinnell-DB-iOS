@@ -7,6 +7,8 @@
 //
 
 #import "ResultsViewController.h"
+#import "ProfileViewController.h"
+#import "Person.h"
 
 @interface ResultsViewController ()
 
@@ -73,16 +75,22 @@
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    // Navigation logic may go here. Create and push another view controller.
-    /*
-     <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
-     // ...
-     // Pass the selected object to the new view controller.
-     [self.navigationController pushViewController:detailViewController animated:YES];
-     */
+    [self performSegueWithIdentifier:@"PushToProfile" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PushToProfile"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        ProfileViewController *destViewController = segue.destinationViewController;
+        
+        Person *person1 = [[Person alloc] init];
+        person1.name = @"Colin Tremblay";
+        person1.attributes = [[NSMutableArray alloc] initWithObjects:@"Major", @"Class", @"Username", @"Box Number", @"Campus Phone", @"Campus Address", @"Home Address", nil];
+        person1.attributeVals = [[NSMutableArray alloc] initWithObjects:@"Computer Science", @"2014", @"username", @"4650", @"425-495-6425", @"1120 Broad St", @"11610 NE 97th LN, Kirkland, WA, 98033", nil];
+        NSMutableArray *people = [[NSMutableArray alloc] initWithObjects:person1, nil];
+        
+        destViewController.selectedPerson = [people objectAtIndex:indexPath.row];
+    }
 }
 
 @end

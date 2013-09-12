@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
-        <!--Form View Controller-->
+        <!--Form View Controller - Search-->
         <scene sceneID="99Y-2p-EO4">
             <objects>
                 <tableViewController id="A0q-X5-9fm" customClass="FormViewController" sceneMemberID="viewController">
@@ -263,7 +263,7 @@
                             <outlet property="delegate" destination="A0q-X5-9fm" id="swY-oU-TF6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Dse-8w-y7S">
+                    <navigationItem key="navigationItem" title="Search" id="Dse-8w-y7S">
                         <barButtonItem key="rightBarButtonItem" title="Search" id="SVs-h5-7wH">
                             <connections>
                                 <segue destination="5Ca-p4-Ff0" kind="push" identifier="1001" id="hpT-IS-Q6P"/>
@@ -292,7 +292,7 @@
             </objects>
             <point key="canvasLocation" x="389" y="-15"/>
         </scene>
-        <!--Results View Controller-->
+        <!--Results View Controller - Results-->
         <scene sceneID="VS4-og-NYs">
             <objects>
                 <tableViewController id="5Ca-p4-Ff0" customClass="ResultsViewController" sceneMemberID="viewController">
@@ -305,11 +305,37 @@
                             <outlet property="delegate" destination="5Ca-p4-Ff0" id="j15-2l-KmU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="L2K-ub-fao"/>
+                    <navigationItem key="navigationItem" title="Results" id="L2K-ub-fao">
+                        <barButtonItem key="backBarButtonItem" title="Search" id="jFA-FZ-bDL"/>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="RYJ-ZD-jtS" kind="push" identifier="PushToProfile" id="oPo-I7-HVS"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="83t-pW-BNw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="806" y="-15"/>
+            <point key="canvasLocation" x="820" y="-15"/>
+        </scene>
+        <!--Profile View Controller - Profile-->
+        <scene sceneID="CgZ-vM-Ja0">
+            <objects>
+                <tableViewController id="RYJ-ZD-jtS" customClass="ProfileViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="4kx-mB-DD7">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="RYJ-ZD-jtS" id="sJ5-XQ-qNH"/>
+                            <outlet property="delegate" destination="RYJ-ZD-jtS" id="16Z-Tl-IJI"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Profile" id="lKU-VQ-IrX">
+                        <barButtonItem key="backBarButtonItem" title="Results" id="NVa-J6-iwD"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rwr-vR-L4r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1229" y="-15"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="E4t-JU-a5z">
@@ -349,6 +375,9 @@
                 <relationship kind="outlet" name="sgaField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="usernameField" candidateClass="UITextField"/>
             </relationships>
+        </class>
+        <class className="ProfileViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileViewController.h"/>
         </class>
         <class className="ResultsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ResultsViewController.h"/>
