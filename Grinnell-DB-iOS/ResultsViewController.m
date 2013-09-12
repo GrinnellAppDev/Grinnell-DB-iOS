@@ -62,11 +62,11 @@
     UILabel *major = (UILabel *)[cell viewWithTag:1005];
     UILabel *class = (UILabel *)[cell viewWithTag:1006];
     
-    name.text = @"Tremblay, Colin";
+    name.text = @"Last, First";
     status.text = @"Student";
-    username.text = @"tremblay14";
-    major.text = @"Computer Science/ General Science";
-    class.text = @"2014";
+    username.text = @"usernameYY";
+    major.text = @"Major1/ Major2";
+    class.text = @"YEAR";
     
     return cell;
 }
