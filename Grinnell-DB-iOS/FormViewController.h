@@ -30,8 +30,6 @@
 @property (nonatomic, weak) IBOutlet UITextField *hiatusField;
 @property (nonatomic, weak) IBOutlet UITextField *classField;
 @property (nonatomic, weak) IBOutlet UITextField *facStaffField;
-@property (nonatomic, weak) IBOutlet UIButton *searchButton;
-@property (nonatomic, weak) IBOutlet UIButton *resetButton;
 @property (nonatomic, strong) BSKeyboardControls *keyboardControls;
 
 @end
