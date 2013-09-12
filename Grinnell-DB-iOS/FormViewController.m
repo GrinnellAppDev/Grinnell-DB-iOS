@@ -16,10 +16,9 @@
 @implementation FormViewController
 @synthesize lastNameField, firstNameField, usernameField, phoneField, campusAddressField, homeAddressField, majorField, concentrationField, sgaField, hiatusField, classField, facStaffField, searchButton, resetButton, majorsArray, keyboardControls;
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
-	self.majorsArray = [[NSMutableArray alloc] initWithArray:[NSArray arrayWithObjects: @"Copmuter Science", @"Math", nil]];
+	self.majorsArray = [[NSMutableArray alloc] initWithArray:[NSArray arrayWithObjects: @"Computer Science", @"Math", @"Physics", nil]];
     /*self.majorField.inputView = self.thePicker;
     self.thePicker.hidden = YES;
     self.thePicker.showsSelectionIndicator = YES;*/
@@ -31,29 +30,30 @@
     
 }
 
-- (void)keyboardControlsDonePressed:(BSKeyboardControls *)keyControls
-{
+- (void)keyboardControlsDonePressed:(BSKeyboardControls *)keyControls {
     [keyControls.activeField resignFirstResponder];
 }
 
-- (void)keyboardControls:(BSKeyboardControls *)keyControls selectedField:(UIView *)field inDirection:(BSKeyboardControlsDirection)direction
-{
+- (void)keyboardControls:(BSKeyboardControls *)keyControls selectedField:(UIView *)field inDirection:(BSKeyboardControlsDirection)direction {
     UIView *view = keyControls.activeField.superview.superview;
     [self.tableView scrollRectToVisible:view.frame animated:YES];
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
     [keyboardControls setActiveField:textField];
 }
 
-- (void)textViewDidBeginEditing:(UITextView *)textView
-{
+- (void)textViewDidBeginEditing:(UITextView *)textView {
     [keyboardControls setActiveField:textView];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    [self search];
+    return YES;
+}
+
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
@@ -84,7 +84,7 @@
 }*/
 
 - (void)search {
-    //SearchViewController *searchView = [[SearchViewController alloc] initWithNibName:@"SearchViewController" bundle:nil];
-    //[self.navigationController pushViewController:searchView animated:YES];
+    [self performSegueWithIdentifier:@"1001" sender:self];
 }
+
 @end
