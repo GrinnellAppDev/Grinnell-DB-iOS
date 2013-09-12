@@ -8,6 +8,7 @@
 
 #import "FormViewController.h"
 #import "BSKeyboardControls.h"
+#import "ResultsViewController.h"
 
 @interface FormViewController ()
 
@@ -90,7 +91,7 @@
 }*/
 
 - (void)search {
-    [self performSegueWithIdentifier:@"1001" sender:self];
+    [self performSegueWithIdentifier:@"searchSegue" sender:self];
 }
 
 - (void)clear:(id)sender{
@@ -99,5 +100,21 @@
         field.text = @"";
     }
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"searchSegue"]) {
+        
+        ResultsViewController *destViewController = segue.destinationViewController;
+     
+        NSMutableArray *searchDetails = [[NSMutableArray alloc] init];
+        for (int i=0; i < fields.count; i++){
+            UITextField *field = [fields objectAtIndex:i];
+            [searchDetails addObject:field.text];
+        }
+        
+        destViewController.searchDetails = searchDetails;
+    }
+}
+
 
 @end

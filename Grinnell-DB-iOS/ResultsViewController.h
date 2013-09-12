@@ -11,5 +11,6 @@
 @interface ResultsViewController : UITableViewController
 
 @property (nonatomic, strong) NSString *cellIdentifier;
+@property (nonatomic, strong) NSMutableArray *searchDetails;
 
 @end

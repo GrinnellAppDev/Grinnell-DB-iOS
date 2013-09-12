@@ -266,7 +266,7 @@
                     <navigationItem key="navigationItem" title="Search" id="Dse-8w-y7S">
                         <barButtonItem key="rightBarButtonItem" title="Search" id="SVs-h5-7wH">
                             <connections>
-                                <segue destination="5Ca-p4-Ff0" kind="push" identifier="1001" id="hpT-IS-Q6P"/>
+                                <segue destination="5Ca-p4-Ff0" kind="push" identifier="searchSegue" id="hpT-IS-Q6P"/>
                             </connections>
                         </barButtonItem>
                         <connections>
@@ -356,33 +356,6 @@
             <point key="canvasLocation" x="-23" y="-15"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="FormViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FormViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="campusAddressField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="classField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="concentrationField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="facStaffField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="firstNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="hiatusField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="homeAddressField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="lastNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="majorField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="phoneField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="resetButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="searchButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="sgaField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ProfileViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProfileViewController.h"/>
-        </class>
-        <class className="ResultsViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ResultsViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

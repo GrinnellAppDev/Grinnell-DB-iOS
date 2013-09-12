@@ -123,10 +123,9 @@
 		36363CCC17E11EAC00B01E34 /* Grinnell-DB-iOS */ = {
 			isa = PBXGroup;
 			children = (
+				3B55415917E27A03008B4F40 /* Helper Classes */,
 				36363CD517E11EAC00B01E34 /* AppDelegate.h */,
 				36363CD617E11EAC00B01E34 /* AppDelegate.m */,
-				3B55414F17E26B62008B4F40 /* Person.h */,
-				3B55415017E26B62008B4F40 /* Person.m */,
 				36363CDE17E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard */,
 				36363CE117E11EAC00B01E34 /* MainStoryboard_iPad.storyboard */,
 				36363CE417E11EAC00B01E34 /* FormViewController.h */,
@@ -137,8 +136,6 @@
 				3B55414C17E267AE008B4F40 /* ProfileViewController.h */,
 				3B55414D17E267AE008B4F40 /* ProfileViewController.m */,
 				3B55415717E27453008B4F40 /* ProfileCell.xib */,
-				36363CEC17E11F2000B01E34 /* BSKeyboardControls.h */,
-				36363CED17E11F2000B01E34 /* BSKeyboardControls.m */,
 				3BFC8F8717E12CA6003832DF /* Icons */,
 				36363CCD17E11EAC00B01E34 /* Supporting Files */,
 			);
@@ -157,6 +154,17 @@
 				36363CDC17E11EAC00B01E34 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3B55415917E27A03008B4F40 /* Helper Classes */ = {
+			isa = PBXGroup;
+			children = (
+				3B55414F17E26B62008B4F40 /* Person.h */,
+				3B55415017E26B62008B4F40 /* Person.m */,
+				36363CEC17E11F2000B01E34 /* BSKeyboardControls.h */,
+				36363CED17E11F2000B01E34 /* BSKeyboardControls.m */,
+			);
+			name = "Helper Classes";
 			sourceTree = "<group>";
 		};
 		3BFC8F8717E12CA6003832DF /* Icons */ = {
