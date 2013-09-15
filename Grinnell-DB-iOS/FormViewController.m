@@ -15,7 +15,7 @@
 @end
 
 @implementation FormViewController
-@synthesize lastNameField, firstNameField, usernameField, phoneField, campusAddressField, homeAddressField, majorField, concentrationField, sgaField, hiatusField, classField, facStaffField, majorsArray, keyboardControls, textFieldIdentifier, myPickerView;
+@synthesize lastNameField, firstNameField, usernameField, phoneField, campusAddressField, homeAddressField, majorField, concentrationField, sgaField, hiatusField, classField, facStaffField, keyboardControls, textFieldIdentifier, myPickerView, concentrationArray, sgaArray, facStaffArray, hiatusArray, classArray, majorsArray;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,7 +32,78 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     textFieldIdentifier = 0;
-	self.majorsArray = [[NSMutableArray alloc] initWithArray:[NSArray arrayWithObjects: @"Computer Science", @"Math", @"Physics", nil]];
+    self.majorsArray = [[NSMutableArray alloc] init];
+    self.concentrationArray = [[NSMutableArray alloc] init];
+	self.sgaArray = [[NSMutableArray alloc] init];
+	self.hiatusArray = [[NSMutableArray alloc] init];
+	self.facStaffArray = [[NSMutableArray alloc] init];
+    self.classArray = [[NSMutableArray alloc] init];
+    
+    @try{
+        NSString *post =[[NSString alloc] initWithFormat:@""];
+        
+        NSURL *url=[NSURL URLWithString:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp"];
+        
+        NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+        
+        NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+        
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:url];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+        [request setValue:@"application/html" forHTTPHeaderField:@"Accept"];
+        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPBody:postData];
+        
+        NSError *error = [[NSError alloc] init];
+        NSHTTPURLResponse *response = nil;
+        NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        //NSLog(@"Response code: %d", [response statusCode]);
+        if([response statusCode] >= 200 && [response statusCode] < 300){
+            NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
+            // NSLog(@"Response ==> %@", responseData);
+            
+            
+            NSRange startRange = [responseData rangeOfString:@"<select name=\"Department\">"];
+            NSRange endRange = [responseData rangeOfString:@"Student Major"];
+            [self parseHTML:startRange :endRange :facStaffArray :responseData];
+            
+            startRange = [responseData rangeOfString:@"<select name=\"Major\">"];
+            endRange = [responseData rangeOfString:@"Concentration"];
+            [self parseHTML:startRange :endRange :majorsArray :responseData];
+            
+            startRange = [responseData rangeOfString:@"<select name=\"conc\">"];
+            endRange = [responseData rangeOfString:@"SGA"];
+            [self parseHTML:startRange :endRange :concentrationArray :responseData];
+            
+            startRange = [responseData rangeOfString:@"<select name=\"sga\">"];
+            endRange = [responseData rangeOfString:@"Hiatus"];
+            [self parseHTML:startRange :endRange :sgaArray :responseData];
+            
+            startRange = [responseData rangeOfString:@"<select name=\"hiatus\">"];
+            endRange = [responseData rangeOfString:@"Student Class"];
+            [self parseHTML:startRange :endRange :hiatusArray :responseData];
+            
+            startRange = [responseData rangeOfString:@"<select name=\"Gyear\">"];
+            endRange = [responseData rangeOfString:@"</form>"];
+            [self parseHTML:startRange :endRange :classArray :responseData];
+        
+        }
+    }
+    @catch(NSException * e){
+        NSLog(@"Exception: %@", e);
+        //[self alertStatus:@"Login Failed." :@"Login Failed!"];
+    }
+    
+    
+    
+    
+    
+    
+	
+    
     myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 200, 320, 200)];
     myPickerView.delegate = self;
     myPickerView.showsSelectionIndicator = YES;
@@ -46,6 +117,33 @@
     self.facStaffField.inputView = myPickerView;
     
     [super viewWillAppear:animated];
+}
+
+- (void)parseHTML:(NSRange)startRange :(NSRange)endRange :(NSMutableArray *)array :(NSString *)responseData{
+    startRange.location = startRange.location + startRange.length;
+    startRange.length = endRange.location - startRange.location;
+    NSString *deptString = [responseData substringWithRange:startRange];
+    
+    startRange = [deptString rangeOfString:@"option value="];
+    while (NSNotFound != startRange.location){
+        endRange = [deptString rangeOfString:@">"];
+        endRange.length = endRange.location - (startRange.location + startRange.length) - 2;
+        endRange.location = startRange.location + startRange.length + 1;
+        NSString *tempString = [deptString substringWithRange:endRange];
+        
+        if (![tempString isEqualToString:@"\" selecte"] && ![tempString isEqualToString:@"Any"])
+            [array addObject:tempString];
+        
+        NSRange replaceRange = [deptString rangeOfString:@"</option>"];
+        if (replaceRange.location != NSNotFound) {
+            replaceRange.length = replaceRange.location + replaceRange.length;
+            replaceRange.location = 0;
+            deptString = [deptString stringByReplacingCharactersInRange:replaceRange withString:@""];
+        }
+        
+        startRange = [deptString rangeOfString:@"option value="];
+        
+    }
 }
 
 - (void)keyboardControlsDonePressed:(BSKeyboardControls *)keyControls {
@@ -86,22 +184,22 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     switch (textFieldIdentifier) {
         case 2001:
-            return [self.majorsArray objectAtIndex:row];
+            return [self.classArray objectAtIndex:row];
             break;
         case 2002:
             return [self.majorsArray objectAtIndex:row];
             break;
         case 2003:
-            return [self.majorsArray objectAtIndex:row];
+            return [self.concentrationArray objectAtIndex:row];
             break;
         case 2004:
-            return [self.majorsArray objectAtIndex:row];
+            return [self.hiatusArray objectAtIndex:row];
             break;
         case 2005:
-            return [self.majorsArray objectAtIndex:row];
+            return [self.facStaffArray objectAtIndex:row];
             break;
         case 2006:
-            return [self.majorsArray objectAtIndex:row];
+            return [self.sgaArray objectAtIndex:row];
             break;
         default:
             return @"";
@@ -115,25 +213,24 @@
 
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    NSLog(@"%d", textFieldIdentifier);
     switch (textFieldIdentifier) {
         case 2001:
-            return self.majorsArray.count;
+            return self.classArray.count;
             break;
         case 2002:
             return self.majorsArray.count;
             break;
         case 2003:
-            return self.majorsArray.count;
+            return self.concentrationArray.count;
             break;
         case 2004:
-            return self.majorsArray.count;
+            return self.hiatusArray.count;
             break;
         case 2005:
-            return self.majorsArray.count;
+            return self.facStaffArray.count;
             break;
         case 2006:
-            return self.majorsArray.count;
+            return self.sgaArray.count;
             break;
         default:
             return 0;
@@ -144,22 +241,22 @@
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     switch (textFieldIdentifier) {
         case 2001:
-            self.classField.text = [self.majorsArray objectAtIndex:row];
+            self.classField.text = [self.classArray objectAtIndex:row];
             break;
         case 2002:
             self.majorField.text = [self.majorsArray objectAtIndex:row];
             break;
         case 2003:
-            self.concentrationField.text = [self.majorsArray objectAtIndex:row];
+            self.concentrationField.text = [self.concentrationArray objectAtIndex:row];
             break;
         case 2004:
-           self.hiatusField.text = [self.majorsArray objectAtIndex:row];
+            self.hiatusField.text = [self.hiatusArray objectAtIndex:row];
             break;
         case 2005:
-            self.facStaffField.text = [self.majorsArray objectAtIndex:row];
+            self.facStaffField.text = [self.facStaffArray objectAtIndex:row];
             break;
         case 2006:
-           self.sgaField.text = [self.majorsArray objectAtIndex:row];
+            self.sgaField.text = [self.sgaArray objectAtIndex:row];
             break;
         default:
             break;
