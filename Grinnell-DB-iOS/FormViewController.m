@@ -63,7 +63,7 @@
         //NSLog(@"Response code: %d", [response statusCode]);
         if([response statusCode] >= 200 && [response statusCode] < 300){
             NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
-            // NSLog(@"Response ==> %@", responseData);
+             NSLog(@"Response ==> %@", responseData);
             
             
             NSRange startRange = [responseData rangeOfString:@"<select name=\"Department\">"];
@@ -78,11 +78,11 @@
             endRange = [responseData rangeOfString:@"SGA"];
             [self parseHTML:startRange :endRange :concentrationArray :responseData];
             
-            startRange = [responseData rangeOfString:@"<select name=\"sga\">"];
+            startRange = [responseData rangeOfString:@"<select name=\"SGA\">"];
             endRange = [responseData rangeOfString:@"Hiatus"];
             [self parseHTML:startRange :endRange :sgaArray :responseData];
             
-            startRange = [responseData rangeOfString:@"<select name=\"hiatus\">"];
+            startRange = [responseData rangeOfString:@"<select name=\"Hiatus\">"];
             endRange = [responseData rangeOfString:@"Student Class"];
             [self parseHTML:startRange :endRange :hiatusArray :responseData];
             
@@ -96,13 +96,6 @@
         NSLog(@"Exception: %@", e);
         //[self alertStatus:@"Login Failed." :@"Login Failed!"];
     }
-    
-    
-    
-    
-    
-    
-	
     
     myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 200, 320, 200)];
     myPickerView.delegate = self;
