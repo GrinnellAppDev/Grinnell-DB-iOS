@@ -15,7 +15,7 @@
 @end
 
 @implementation FormViewController
-@synthesize lastNameField, firstNameField, usernameField, phoneField, campusAddressField, homeAddressField, majorField, concentrationField, sgaField, hiatusField, classField, facStaffField, majorsArray, keyboardControls;
+@synthesize lastNameField, firstNameField, usernameField, phoneField, campusAddressField, homeAddressField, majorField, concentrationField, sgaField, hiatusField, classField, facStaffField, majorsArray, keyboardControls, textFieldIdentifier, myPickerView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,17 +24,28 @@
     UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clear:)];
     [self.navigationItem setLeftBarButtonItem:clear animated:YES];
     
-    // Set up Picker view
-	self.majorsArray = [[NSMutableArray alloc] initWithArray:[NSArray arrayWithObjects: @"Computer Science", @"Math", @"Physics", nil]];
-    /*self.majorField.inputView = self.thePicker;
-    self.thePicker.hidden = YES;
-    self.thePicker.showsSelectionIndicator = YES;*/
-    
-    
     // Set up previous/next/done buttons
     fields = [[NSMutableArray alloc] initWithObjects:firstNameField, lastNameField, usernameField, classField, phoneField, campusAddressField, majorField, concentrationField, hiatusField, homeAddressField, facStaffField, sgaField, nil];
     [self setKeyboardControls:[[BSKeyboardControls alloc] initWithFields:fields]];
     [self.keyboardControls setDelegate:self];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    textFieldIdentifier = 0;
+	self.majorsArray = [[NSMutableArray alloc] initWithArray:[NSArray arrayWithObjects: @"Computer Science", @"Math", @"Physics", nil]];
+    myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 200, 320, 200)];
+    myPickerView.delegate = self;
+    myPickerView.showsSelectionIndicator = YES;
+    [self.view addSubview:myPickerView];
+    myPickerView.hidden = YES;
+    self.majorField.inputView = myPickerView;
+    self.concentrationField.inputView = myPickerView;
+    self.sgaField.inputView = myPickerView;
+    self.hiatusField.inputView = myPickerView;
+    self.classField.inputView = myPickerView;
+    self.facStaffField.inputView = myPickerView;
+    
+    [super viewWillAppear:animated];
 }
 
 - (void)keyboardControlsDonePressed:(BSKeyboardControls *)keyControls {
@@ -48,6 +59,12 @@
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     [keyboardControls setActiveField:textField];
+    
+    if (0 != textField.tag) {
+        textField.inputView.hidden = NO;
+        textFieldIdentifier = textField.tag;
+        [myPickerView reloadAllComponents];
+    }
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
@@ -64,18 +81,33 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-/*
+
 #pragma mark UIPicker methods
--(IBAction)labDidBeginEditing{
-    self.thePicker.hidden = NO;
-    // self.doneBar.hidden = NO;
-    self.thePicker = [[UIPickerView alloc] init];
-}
-
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return [self.majorsArray objectAtIndex:row];
+    switch (textFieldIdentifier) {
+        case 2001:
+            return [self.majorsArray objectAtIndex:row];
+            break;
+        case 2002:
+            return [self.majorsArray objectAtIndex:row];
+            break;
+        case 2003:
+            return [self.majorsArray objectAtIndex:row];
+            break;
+        case 2004:
+            return [self.majorsArray objectAtIndex:row];
+            break;
+        case 2005:
+            return [self.majorsArray objectAtIndex:row];
+            break;
+        case 2006:
+            return [self.majorsArray objectAtIndex:row];
+            break;
+        default:
+            return @"";
+            break;
+    }
 }
-
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
     return 1;
@@ -83,12 +115,61 @@
 
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
-    return self.majorsArray.count;
+    NSLog(@"%d", textFieldIdentifier);
+    switch (textFieldIdentifier) {
+        case 2001:
+            return self.majorsArray.count;
+            break;
+        case 2002:
+            return self.majorsArray.count;
+            break;
+        case 2003:
+            return self.majorsArray.count;
+            break;
+        case 2004:
+            return self.majorsArray.count;
+            break;
+        case 2005:
+            return self.majorsArray.count;
+            break;
+        case 2006:
+            return self.majorsArray.count;
+            break;
+        default:
+            return 0;
+            break;
+    }
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    self.majorField.text = [self.majorsArray objectAtIndex:row];
-}*/
+    switch (textFieldIdentifier) {
+        case 2001:
+            self.classField.text = [self.majorsArray objectAtIndex:row];
+            break;
+        case 2002:
+            self.majorField.text = [self.majorsArray objectAtIndex:row];
+            break;
+        case 2003:
+            self.concentrationField.text = [self.majorsArray objectAtIndex:row];
+            break;
+        case 2004:
+           self.hiatusField.text = [self.majorsArray objectAtIndex:row];
+            break;
+        case 2005:
+            self.facStaffField.text = [self.majorsArray objectAtIndex:row];
+            break;
+        case 2006:
+           self.sgaField.text = [self.majorsArray objectAtIndex:row];
+            break;
+        default:
+            break;
+    }
+}
+
+
+- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
+    return 300;
+}
 
 - (void)search {
     [self performSegueWithIdentifier:@"searchSegue" sender:self];
@@ -105,7 +186,7 @@
     if ([segue.identifier isEqualToString:@"searchSegue"]) {
         
         ResultsViewController *destViewController = segue.destinationViewController;
-     
+        
         NSMutableArray *searchDetails = [[NSMutableArray alloc] init];
         for (int i=0; i < fields.count; i++){
             UITextField *field = [fields objectAtIndex:i];
