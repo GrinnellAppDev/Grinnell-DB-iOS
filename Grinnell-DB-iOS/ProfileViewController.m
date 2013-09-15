@@ -108,13 +108,13 @@
     }
     else if (0 == indexPath.section && [[self.selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Campus Phone"]){
         NSString *phoneNum = [self.selectedPerson.attributeVals objectAtIndex:indexPath.row];
-        NSString *url = @"tel:";
+        NSString *url = @"telprompt://";
         if (phoneNum.length >= 10)
             url = [url stringByAppendingString:phoneNum];
         else if (phoneNum.length >= 7)
-             url = [url stringByAppendingString:[NSString stringWithFormat:@"tel:641-%@", phoneNum]];
+             url = [url stringByAppendingString:[NSString stringWithFormat:@"telprompt://641-%@", phoneNum]];
         else
-            url = [url stringByAppendingString:[NSString stringWithFormat:@"tel:641-269-%@", phoneNum]];
+            url = [url stringByAppendingString:[NSString stringWithFormat:@"telprompt://641-269-%@", phoneNum]];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     }
 

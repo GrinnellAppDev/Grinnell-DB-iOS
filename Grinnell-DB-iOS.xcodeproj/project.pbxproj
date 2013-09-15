@@ -95,7 +95,6 @@
 		36363CB717E11EAC00B01E34 = {
 			isa = PBXGroup;
 			children = (
-				3B55415217E26D4E008B4F40 /* MessageUI.framework */,
 				36363CCC17E11EAC00B01E34 /* Grinnell-DB-iOS */,
 				36363CC517E11EAC00B01E34 /* Frameworks */,
 				36363CC317E11EAC00B01E34 /* Products */,
@@ -113,6 +112,7 @@
 		36363CC517E11EAC00B01E34 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B55415217E26D4E008B4F40 /* MessageUI.framework */,
 				36363CC617E11EAC00B01E34 /* UIKit.framework */,
 				36363CC817E11EAC00B01E34 /* Foundation.framework */,
 				36363CCA17E11EAC00B01E34 /* CoreGraphics.framework */,
