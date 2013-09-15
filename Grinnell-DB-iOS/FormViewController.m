@@ -31,14 +31,19 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    // Used to pass the identity of a textField into pickerView methods
     textFieldIdentifier = 0;
-    self.majorsArray = [[NSMutableArray alloc] init];
-    self.concentrationArray = [[NSMutableArray alloc] init];
-	self.sgaArray = [[NSMutableArray alloc] init];
-	self.hiatusArray = [[NSMutableArray alloc] init];
-	self.facStaffArray = [[NSMutableArray alloc] init];
-    self.classArray = [[NSMutableArray alloc] init];
     
+    // Instantiate the picker view arrays
+    // Note: the empty string sets up the clearing option in the picker
+    self.majorsArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
+    self.concentrationArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
+	self.sgaArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
+	self.hiatusArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
+	self.facStaffArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
+    self.classArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
+    
+    // Try to populate the picker view arrays
     @try{
         NSString *post =[[NSString alloc] initWithFormat:@""];
         
@@ -63,8 +68,7 @@
         //NSLog(@"Response code: %d", [response statusCode]);
         if([response statusCode] >= 200 && [response statusCode] < 300){
             NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
-             NSLog(@"Response ==> %@", responseData);
-            
+             //NSLog(@"Response ==> %@", responseData);
             
             NSRange startRange = [responseData rangeOfString:@"<select name=\"Department\">"];
             NSRange endRange = [responseData rangeOfString:@"Student Major"];
@@ -89,7 +93,6 @@
             startRange = [responseData rangeOfString:@"<select name=\"Gyear\">"];
             endRange = [responseData rangeOfString:@"</form>"];
             [self parseHTML:startRange :endRange :classArray :responseData];
-        
         }
     }
     @catch(NSException * e){
@@ -97,7 +100,8 @@
         //[self alertStatus:@"Login Failed." :@"Login Failed!"];
     }
     
-    myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 200, 320, 200)];
+    // Instantiate the picker and set the field inputs
+    myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 200, 320, 240)];
     myPickerView.delegate = self;
     myPickerView.showsSelectionIndicator = YES;
     [self.view addSubview:myPickerView];
@@ -112,33 +116,25 @@
     [super viewWillAppear:animated];
 }
 
-- (void)parseHTML:(NSRange)startRange :(NSRange)endRange :(NSMutableArray *)array :(NSString *)responseData{
-    startRange.location = startRange.location + startRange.length;
-    startRange.length = endRange.location - startRange.location;
-    NSString *deptString = [responseData substringWithRange:startRange];
-    
-    startRange = [deptString rangeOfString:@"option value="];
-    while (NSNotFound != startRange.location){
-        endRange = [deptString rangeOfString:@">"];
-        endRange.length = endRange.location - (startRange.location + startRange.length) - 2;
-        endRange.location = startRange.location + startRange.length + 1;
-        NSString *tempString = [deptString substringWithRange:endRange];
-        
-        if (![tempString isEqualToString:@"\" selecte"] && ![tempString isEqualToString:@"Any"])
-            [array addObject:tempString];
-        
-        NSRange replaceRange = [deptString rangeOfString:@"</option>"];
-        if (replaceRange.location != NSNotFound) {
-            replaceRange.length = replaceRange.location + replaceRange.length;
-            replaceRange.location = 0;
-            deptString = [deptString stringByReplacingCharactersInRange:replaceRange withString:@""];
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+// Pass data to the ResultsViewController
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"searchSegue"]) {
+        ResultsViewController *destViewController = segue.destinationViewController;
+        NSMutableArray *searchDetails = [[NSMutableArray alloc] init];
+        for (int i=0; i < fields.count; i++){
+            UITextField *field = [fields objectAtIndex:i];
+            [searchDetails addObject:field.text];
         }
-        
-        startRange = [deptString rangeOfString:@"option value="];
-        
+        destViewController.searchDetails = searchDetails;
     }
 }
 
+#pragma mark Keyboard/textField methods
 - (void)keyboardControlsDonePressed:(BSKeyboardControls *)keyControls {
     [keyControls.activeField resignFirstResponder];
 }
@@ -155,22 +151,14 @@
         textField.inputView.hidden = NO;
         textFieldIdentifier = textField.tag;
         [myPickerView reloadAllComponents];
+        [myPickerView selectRow:0 inComponent:0 animated:YES];
     }
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-    [keyboardControls setActiveField:textView];
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     [self search];
     return YES;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark UIPicker methods
@@ -261,31 +249,63 @@
     return 300;
 }
 
+#pragma mark Custom methods
+// This method is used to get data from the HTML form and populate the picker arrays
+- (void)parseHTML:(NSRange)startRange :(NSRange)endRange :(NSMutableArray *)array :(NSString *)responseData{
+    // Create a string with only the data we are interested in for this picker
+    startRange.location = startRange.location + startRange.length;
+    startRange.length = endRange.location - startRange.location;
+    NSString *dataString = [responseData substringWithRange:startRange];
+    
+    // Skip over the initial empty tag
+    NSRange replaceRange = [dataString rangeOfString:@"</option>"];
+    if (replaceRange.location != NSNotFound) {
+        replaceRange.length = replaceRange.location + replaceRange.length;
+        replaceRange.location = 0;
+        dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
+    }
+    
+    // Check for a value to be processed
+    NSRange testRange = [dataString rangeOfString:@"</option>"];
+    while (NSNotFound != testRange.location) {
+        // Get the range of the value being processed
+        startRange = [dataString rangeOfString:@"\">"];
+        endRange = [dataString rangeOfString:@"</option>"];
+        endRange.length = endRange.location - (startRange.location + startRange.length);
+        endRange.location = startRange.location + startRange.length;
+        
+        // Get the value and remove whitespace
+        NSString *tempString = [dataString substringWithRange:endRange];
+        tempString = [tempString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        // Add value to array
+        if (![tempString isEqualToString:@""] && NULL != tempString)
+            [array addObject:tempString];
+        
+        // Remove the section of the string just processed
+        NSRange replaceRange = [dataString rangeOfString:@"</option>"];
+        if (replaceRange.location != NSNotFound) {
+            replaceRange.length = replaceRange.location + replaceRange.length;
+            replaceRange.location = 0;
+            dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
+        }
+        
+        // Check for another value to be processed
+        testRange = [dataString rangeOfString:@"</option>"];
+    }
+}
+
+// Allows the search button to trigger the segue
 - (void)search {
     [self performSegueWithIdentifier:@"searchSegue" sender:self];
 }
 
+// Clears all textFields in the form
 - (void)clear:(id)sender{
     for (int i=0; i < fields.count; i++){
         UITextField *field = [fields objectAtIndex:i];
         field.text = @"";
     }
 }
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"searchSegue"]) {
-        
-        ResultsViewController *destViewController = segue.destinationViewController;
-        
-        NSMutableArray *searchDetails = [[NSMutableArray alloc] init];
-        for (int i=0; i < fields.count; i++){
-            UITextField *field = [fields objectAtIndex:i];
-            [searchDetails addObject:field.text];
-        }
-        
-        destViewController.searchDetails = searchDetails;
-    }
-}
-
 
 @end

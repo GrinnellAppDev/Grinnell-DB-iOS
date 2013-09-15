@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BSKeyboardControls.h"
 
-@interface FormViewController : UITableViewController <UITextFieldDelegate, UIPickerViewDelegate,UITextViewDelegate, BSKeyboardControlsDelegate> {
+@interface FormViewController : UITableViewController <UITextFieldDelegate, UIPickerViewDelegate, BSKeyboardControlsDelegate> {
     NSMutableArray *fields;
 }
 
