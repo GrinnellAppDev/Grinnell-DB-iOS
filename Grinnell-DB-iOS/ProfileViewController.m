@@ -38,7 +38,8 @@
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:18];
-    label.text = self.selectedPerson.name;
+    NSString *name = [NSString stringWithFormat:@"%@ %@", self.selectedPerson.firstName, self.selectedPerson.lastName];
+    label.text = name;
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 90, 90)];
     imageView.image = self.selectedPerson.profilePic;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
@@ -58,7 +59,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.selectedPerson.attributes.count;
+    // Repress status and picURL from tableView
+    return self.selectedPerson.attributes.count - 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

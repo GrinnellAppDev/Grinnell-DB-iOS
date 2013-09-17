@@ -16,6 +16,7 @@
 - (void)search;
 - (void)clear:(id)sender;
 - (void)parseHTML:(NSRange)startRange :(NSRange)endRange :(NSMutableArray *)array :(NSString *)responseData;
+- (void)parseResults:(NSString *)dataString;
 
 @property (nonatomic, strong) NSMutableArray *majorsArray;
 @property (nonatomic, strong) NSMutableArray *concentrationArray;
@@ -23,6 +24,7 @@
 @property (nonatomic, strong) NSMutableArray *classArray;
 @property (nonatomic, strong) NSMutableArray *facStaffArray;
 @property (nonatomic, strong) NSMutableArray *hiatusArray;
+@property (nonatomic, strong) NSMutableArray *searchResults;
 @property (nonatomic, weak) IBOutlet UITextField *lastNameField;
 @property (nonatomic, weak) IBOutlet UITextField *firstNameField;
 @property (nonatomic, weak) IBOutlet UITextField *usernameField;
