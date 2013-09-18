@@ -110,18 +110,38 @@
     
     NSString *first = tempPerson.firstName;
     NSString *last = tempPerson.lastName;
+    /*
     NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Status"]);
+    NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Username"]);
+    NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Class"]);
+    NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Major"]);
+    NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Department"]);
+    NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Title"]);
+    */
     NSString *status = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Status"]];
     NSString *username = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Username"]];
-    NSString *year = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Class"]];
-    NSString *major = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Major"]];
-    
+   // NSLog(@"%@", status);
+    if ([status isEqualToString:@"Student"]) {
+        NSString *year = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Class"]];
+        NSString *major = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Major"]];
+        majorLbl.text = major;
+        classLbl.text = year;
+        statusLbl.text = status;
+    }
+    else {
+        
+        NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Department"]);
+        NSString *dept = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Department"]];
+        NSString *title = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Title"]];
+        majorLbl.text = title;
+        classLbl.text = dept;
+        statusLbl.text = @"Fac/Staff";
+    }
     
     nameLbl.text = [NSString stringWithFormat:@"%@, %@", last, first];
-    statusLbl.text = status;
+    
     usernameLbl.text = username;
-    majorLbl.text = major;
-    classLbl.text = year;
+
     
     return cell;
 }

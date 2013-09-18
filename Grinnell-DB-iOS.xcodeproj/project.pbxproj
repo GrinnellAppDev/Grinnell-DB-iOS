@@ -166,12 +166,12 @@
 		3B55415917E27A03008B4F40 /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3B59473E17E93E090001A61E /* Reachability.h */,
-				3B59473F17E93E090001A61E /* Reachability.m */,
-				3B55414F17E26B62008B4F40 /* Person.h */,
-				3B55415017E26B62008B4F40 /* Person.m */,
 				36363CEC17E11F2000B01E34 /* BSKeyboardControls.h */,
 				36363CED17E11F2000B01E34 /* BSKeyboardControls.m */,
+				3B55414F17E26B62008B4F40 /* Person.h */,
+				3B55415017E26B62008B4F40 /* Person.m */,
+				3B59473E17E93E090001A61E /* Reachability.h */,
+				3B59473F17E93E090001A61E /* Reachability.m */,
 			);
 			name = "Helper Classes";
 			sourceTree = "<group>";

@@ -41,6 +41,7 @@
     NSString *name = [NSString stringWithFormat:@"%@ %@", self.selectedPerson.firstName, self.selectedPerson.lastName];
     label.text = name;
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 90, 90)];
+    imageView.contentMode = UIViewContentModeScaleAspectFit;
     imageView.image = self.selectedPerson.profilePic;
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
     [view addSubview:imageView];

@@ -425,7 +425,7 @@
 // This method is used to get data from the HTML form and populate the picker arrays
 - (void)parseResults:(NSString *)dataString {
     NSRange testRange = [dataString rangeOfString:@"Your search returned a <i>very</i> large number of records and you must reduce the number of matches by refining your search criteria using the form at the bottom of the page"];
-    NSLog(@"%@", dataString);
+    //NSLog(@"%@", dataString);
     if (NSNotFound != testRange.location) {
         [self showVagueSearchAlert];
         self.searchResults = NULL;
@@ -472,8 +472,8 @@
         startRange.length = endRange.location;
         endRange.location += 2;;
         endRange.length = name.length - endRange.location;
-        NSString *first = [name substringWithRange:startRange];
-        NSString *last = [name substringWithRange:endRange];
+        NSString *last = [name substringWithRange:startRange];
+        NSString *first = [name substringWithRange:endRange];
         tmpPerson.firstName = first;
         tmpPerson.lastName = last;
         
@@ -484,9 +484,11 @@
             replaceRange.location = 0;
             dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
         }
-        
+        NSRange anotherRange;
         // Get the remaining attributes
-        NSString *majYear;
+        NSString *temporary;
+        NSString *majYr;
+        NSString *greekTest;
         for (int i = 0; i < 6; i++) {
             switch (i) {
                 case 0:
@@ -494,56 +496,105 @@
                     endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
                     endRange.length = endRange.location - (startRange.location + startRange.length);
                     endRange.location = startRange.location + startRange.length;
-                    majYear = [dataString substringWithRange:endRange];
-                    endRange = [majYear rangeOfString:@" ("];
-                    startRange.location = 0;
-                    startRange.length = endRange.location;
-                    [tmpPerson.attributes addObject:@"Major"];
-                    [tmpPerson.attributeVals addObject:[majYear substringWithRange:startRange]];
-                    endRange.location = endRange.location + endRange.length;
-                    endRange.length = 4;
-                    [tmpPerson.attributes addObject:@"Class"];
-                    [tmpPerson.attributeVals addObject:[majYear substringWithRange:endRange]];
+                    temporary = [dataString substringWithRange:endRange];
+                    endRange = [temporary rangeOfString:@" ("];
+                    startRange = [temporary rangeOfString:@"<br />"];
+                    
+                    // Deal with departments containing '(' character in name
+                    anotherRange.location = endRange.location + endRange.length;
+                    anotherRange.length = 1;
+                    greekTest = [temporary substringWithRange:anotherRange];
+                    
+                    if ([@"2" isEqualToString:greekTest] && endRange.location < startRange.location) {
+                        startRange.location = 0;
+                        startRange.length = endRange.location;
+                        majYr = [temporary substringWithRange:startRange];
+                        if (![majYr isEqualToString:@""]) {
+                            [tmpPerson.attributes addObject:@"Major"];
+                            [tmpPerson.attributeVals addObject:majYr];
+                        }
+                        endRange.location = endRange.location + endRange.length;
+                        endRange.length = 4;
+                        majYr = [temporary substringWithRange:endRange];
+                        if (![majYr isEqualToString:@""]) {
+                            [tmpPerson.attributes addObject:@"Class"];
+                            [tmpPerson.attributeVals addObject:majYr];
+                        }
+                    }
+                    else {
+                        startRange.length = startRange.location;
+                        startRange.location = 0;
+                        majYr = [temporary substringWithRange:startRange];
+                        if (![majYr isEqualToString:@""]) {
+                            [tmpPerson.attributes addObject:@"Department"];
+                            [tmpPerson.attributeVals addObject:majYr];
+                        }
+                        
+                        startRange = [temporary rangeOfString:@"<div class=\"tny\">"];
+                        endRange = [temporary rangeOfString:@"</div></td>"];
+                        endRange.length = endRange.location - (startRange.location + startRange.length);
+                        endRange.location = startRange.location + startRange.length;
+                        //majYr = [temporary substringWithRange:endRange];
+                        
+                        if (![majYr isEqualToString:@""]) {
+                            [tmpPerson.attributes addObject:@"Title"];
+                            [tmpPerson.attributeVals addObject:majYr];
+                        }
+                    }
                     break;
                 case 1:
                     startRange = [dataString rangeOfString:@"valign=\"top\">"];
                     endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
                     endRange.length = endRange.location - (startRange.location + startRange.length);
                     endRange.location = startRange.location + startRange.length;
-                    [tmpPerson.attributes addObject:@"Campus Phone"];
-                    [tmpPerson.attributeVals addObject:[dataString substringWithRange:endRange]];
+                    temporary = [dataString substringWithRange:endRange];
+                    temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    if (![temporary isEqualToString:@""]) {
+                        [tmpPerson.attributes addObject:@"Campus Phone"];
+                        [tmpPerson.attributeVals addObject:temporary];
+                    }
                     break;
                 case 2:
                     startRange = [dataString rangeOfString:@"valign=\"top\"> <font size=\"-1\">"];
                     endRange = [dataString rangeOfString:@"@grinnell.edu" options:NSCaseInsensitiveSearch];
                     endRange.length = endRange.location - (startRange.location + startRange.length);
                     endRange.location = startRange.location + startRange.length;
+                    temporary = [dataString substringWithRange:endRange];
                     [tmpPerson.attributes addObject:@"Username"];
-                    [tmpPerson.attributeVals addObject:[dataString substringWithRange:endRange]];
+                    [tmpPerson.attributeVals addObject:temporary];
                     break;
                 case 3:
                     startRange = [dataString rangeOfString:@"valign=\"top\">"];
                     endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
                     endRange.length = endRange.location - (startRange.location + startRange.length);
-                    endRange.location = startRange.location + startRange.length + 1;
-                    [tmpPerson.attributes addObject:@"Campus Address"];
-                    [tmpPerson.attributeVals addObject:[dataString substringWithRange:endRange]];
+                    endRange.location = startRange.location + startRange.length;
+                    temporary = [dataString substringWithRange:endRange];
+                    temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    if (![temporary isEqualToString:@""]) {
+                        [tmpPerson.attributes addObject:@"Campus Address"];
+                        [tmpPerson.attributeVals addObject:temporary];
+                    }
                     break;
                 case 4:
                     startRange = [dataString rangeOfString:@"valign=\"top\">"];
                     endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
                     endRange.length = endRange.location - (startRange.location + startRange.length);
                     endRange.location = startRange.location + startRange.length;
-                    [tmpPerson.attributes addObject:@"Box Number"];
-                    [tmpPerson.attributeVals addObject:[dataString substringWithRange:endRange]];
+                    temporary = [dataString substringWithRange:endRange];
+                    if (![temporary isEqualToString:@""]) {
+                        [tmpPerson.attributes addObject:@"Box Number"];
+                        [tmpPerson.attributeVals addObject:temporary];
+                    }
                     break;
                 case 5:
                     startRange = [dataString rangeOfString:@"valign=\"top\">"];
                     endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
                     endRange.length = endRange.location - (startRange.location + startRange.length);
                     endRange.location = startRange.location + startRange.length;
+                    temporary = [dataString substringWithRange:endRange];
+                    temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                     [tmpPerson.attributes addObject:@"Status"];
-                    [tmpPerson.attributeVals addObject:[dataString substringWithRange:endRange]];
+                    [tmpPerson.attributeVals addObject:temporary];
                     break;
                 default:
                     break;
@@ -569,6 +620,11 @@
         [tmpPerson.attributes addObject:@"picURL"];
         [tmpPerson.attributeVals addObject:urlString];
         
+        /*
+        NSLog(@"name: %@ %@", tmpPerson.firstName, tmpPerson.lastName);
+        for (int i = 0; i < tmpPerson.attributes.count; i++)
+            NSLog(@"%@ %@", [tmpPerson.attributes objectAtIndex:i], [tmpPerson.attributeVals objectAtIndex:i]);
+        */
         //NSLog(@"%@", tmpPerson);
         [self.searchResults addObject:tmpPerson];
         
