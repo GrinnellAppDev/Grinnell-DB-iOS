@@ -9,6 +9,7 @@
 #import "ResultsViewController.h"
 #import "ProfileViewController.h"
 #import "Person.h"
+#import "Reachability.h"
 
 @interface ResultsViewController ()
 
@@ -33,6 +34,41 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"PushToProfile"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        ProfileViewController *destViewController = segue.destinationViewController;
+        Person *selected = [[Person alloc] init];
+        selected = [self.searchDetails objectAtIndex:indexPath.row];
+        
+        if ([self networkCheck]){
+            NSString *urlStr = [selected.attributeVals objectAtIndex:
+                                [selected.attributes indexOfObject:@"picURL"]];
+            
+            if(urlStr != NULL) {
+                NSURL *imageURL = [[NSURL alloc] initWithString:urlStr];
+                // Fetch the image
+                selected.profilePic = [UIImage imageWithData: [NSData dataWithContentsOfURL:imageURL]];
+            }
+        }
+        else {
+            // Network Check Failed - Show Alert
+            [self performSelectorOnMainThread:@selector(showNoNetworkAlert)
+                                   withObject:nil
+                                waitUntilDone:YES];
+            return;
+        }
+        destViewController.selectedPerson = selected;
+    }
+}
+
+//Method to determine the availability of network Connections using the Reachability Class
+- (BOOL)networkCheck {
+    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus networkStatus = [networkReachability currentReachabilityStatus];
+    return (!(networkStatus == NotReachable));
 }
 
 #pragma mark - Table view data source
@@ -66,10 +102,10 @@
     
     Person *tempPerson = [[Person alloc] init];
     tempPerson = [self.searchDetails objectAtIndex:indexPath.row];
-    
+    /*
     for (int i = 0; i < tempPerson.attributes.count; i++)
         NSLog(@"%@", [tempPerson.attributes objectAtIndex:i]);
-    NSLog(@"done with that person\n");
+    NSLog(@"done with that person\n");*/
 
     
     NSString *first = tempPerson.firstName;
@@ -95,13 +131,21 @@
     [self performSegueWithIdentifier:@"PushToProfile" sender:self];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.identifier isEqualToString:@"PushToProfile"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        ProfileViewController *destViewController = segue.destinationViewController;
-        
-        destViewController.selectedPerson = [self.searchDetails objectAtIndex:indexPath.row];
-    }
+#pragma mark UIAlertViewDelegate Methods
+// Called when an alert button is tapped.
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    return;
+}
+
+- (void)showNoNetworkAlert {
+    UIAlertView *network = [[UIAlertView alloc]
+                            initWithTitle:@"No Network Connection"
+                            message:@"Turn on cellular data or use Wi-Fi to access the server"
+                            delegate:self
+                            cancelButtonTitle:@"OK"
+                            otherButtonTitles:nil
+                            ];
+    [network show];
 }
 
 @end

@@ -13,6 +13,7 @@
     NSMutableArray *fields;
 }
 
+- (BOOL)networkCheck;
 - (void)search;
 - (void)clear:(id)sender;
 - (void)parseHTML:(NSRange)startRange :(NSRange)endRange :(NSMutableArray *)array :(NSString *)responseData;

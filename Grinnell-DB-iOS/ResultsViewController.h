@@ -10,6 +10,8 @@
 
 @interface ResultsViewController : UITableViewController
 
+- (BOOL)networkCheck;
+
 @property (nonatomic, strong) NSString *cellIdentifier;
 @property (nonatomic, strong) NSMutableArray *searchDetails;
 

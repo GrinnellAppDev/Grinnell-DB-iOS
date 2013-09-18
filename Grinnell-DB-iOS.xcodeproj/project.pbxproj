@@ -26,6 +26,8 @@
 		3B55415117E26B62008B4F40 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B55415017E26B62008B4F40 /* Person.m */; };
 		3B55415317E26D4E008B4F40 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B55415217E26D4E008B4F40 /* MessageUI.framework */; };
 		3B55415817E27453008B4F40 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B55415717E27453008B4F40 /* ProfileCell.xib */; };
+		3B59474017E93E090001A61E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B59473F17E93E090001A61E /* Reachability.m */; };
+		3B59474217E93FC80001A61E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B59474117E93FC80001A61E /* SystemConfiguration.framework */; };
 		3BFC8F7E17E12C9F003832DF /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7517E12C9E003832DF /* Icon-72.png */; };
 		3BFC8F7F17E12C9F003832DF /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7617E12C9E003832DF /* Icon-144.png */; };
 		3BFC8F8017E12C9F003832DF /* Icon-Small-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7717E12C9F003832DF /* Icon-Small-50.png */; };
@@ -66,6 +68,9 @@
 		3B55415017E26B62008B4F40 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		3B55415217E26D4E008B4F40 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3B55415717E27453008B4F40 /* ProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
+		3B59473E17E93E090001A61E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		3B59473F17E93E090001A61E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		3B59474117E93FC80001A61E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3BFC8F7517E12C9E003832DF /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		3BFC8F7617E12C9E003832DF /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-144.png"; sourceTree = "<group>"; };
 		3BFC8F7717E12C9F003832DF /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -82,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B59474217E93FC80001A61E /* SystemConfiguration.framework in Frameworks */,
 				3B55415317E26D4E008B4F40 /* MessageUI.framework in Frameworks */,
 				36363CC717E11EAC00B01E34 /* UIKit.framework in Frameworks */,
 				36363CC917E11EAC00B01E34 /* Foundation.framework in Frameworks */,
@@ -112,6 +118,7 @@
 		36363CC517E11EAC00B01E34 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3B59474117E93FC80001A61E /* SystemConfiguration.framework */,
 				3B55415217E26D4E008B4F40 /* MessageUI.framework */,
 				36363CC617E11EAC00B01E34 /* UIKit.framework */,
 				36363CC817E11EAC00B01E34 /* Foundation.framework */,
@@ -159,6 +166,8 @@
 		3B55415917E27A03008B4F40 /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3B59473E17E93E090001A61E /* Reachability.h */,
+				3B59473F17E93E090001A61E /* Reachability.m */,
 				3B55414F17E26B62008B4F40 /* Person.h */,
 				3B55415017E26B62008B4F40 /* Person.m */,
 				36363CEC17E11F2000B01E34 /* BSKeyboardControls.h */,
@@ -268,6 +277,7 @@
 				3B55414817E24CED008B4F40 /* ResultsViewController.m in Sources */,
 				3B55414E17E267AE008B4F40 /* ProfileViewController.m in Sources */,
 				3B55415117E26B62008B4F40 /* Person.m in Sources */,
+				3B59474017E93E090001A61E /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

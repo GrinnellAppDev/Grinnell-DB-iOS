@@ -105,7 +105,7 @@
             NSString *recipient = [self.selectedPerson.attributeVals objectAtIndex:indexPath.row];
             recipient = [recipient stringByAppendingString:@"@grinnell.edu"];
             [mailViewController setToRecipients:[NSArray arrayWithObject:recipient]];
-            [self presentModalViewController:mailViewController animated:YES];
+            [self presentViewController:mailViewController animated:YES completion:nil];
         }
     }
     else if (0 == indexPath.section && [[self.selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Campus Phone"]){
@@ -125,7 +125,7 @@
 
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
-    [self dismissModalViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
