@@ -517,8 +517,7 @@
                     startRange = [dataString rangeOfString:@"valign=\"top\"> <font size=\"-1\">"];
                     endRange = [dataString rangeOfString:@"@grinnell.edu" options:NSCaseInsensitiveSearch];
                     endRange.length = endRange.location - (startRange.location + startRange.length);
-                    endRange.location = startRange.location + startRange.length + 1;
-                    
+                    endRange.location = startRange.location + startRange.length;
                     [tmpPerson.attributes addObject:@"Username"];
                     [tmpPerson.attributeVals addObject:[dataString substringWithRange:endRange]];
                     break;
@@ -526,7 +525,7 @@
                     startRange = [dataString rangeOfString:@"valign=\"top\">"];
                     endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
                     endRange.length = endRange.location - (startRange.location + startRange.length);
-                    endRange.location = startRange.location + startRange.length;
+                    endRange.location = startRange.location + startRange.length + 1;
                     [tmpPerson.attributes addObject:@"Campus Address"];
                     [tmpPerson.attributeVals addObject:[dataString substringWithRange:endRange]];
                     break;
