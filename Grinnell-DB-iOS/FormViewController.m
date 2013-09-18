@@ -458,7 +458,7 @@
         endRange.location = startRange.location + startRange.length;
         NSString *urlString = [dataString substringWithRange:endRange];
         urlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        // NSLog(@"%@", urlString);
+         //NSLog(@"%@", urlString);
         
         // Get and process the name
         startRange = [dataString rangeOfString:@"target = \"_blank\">"];
@@ -476,6 +476,7 @@
         NSString *first = [name substringWithRange:endRange];
         tmpPerson.firstName = first;
         tmpPerson.lastName = last;
+        //NSLog(@"%@ %@ %@", name, first, last);
         
         // Remove everything dealt with so far
         replaceRange = [dataString rangeOfString:@"</a></TD>"];
@@ -501,9 +502,11 @@
                     startRange = [temporary rangeOfString:@"<br />"];
                     
                     // Deal with departments containing '(' character in name
-                    anotherRange.location = endRange.location + endRange.length;
-                    anotherRange.length = 1;
-                    greekTest = [temporary substringWithRange:anotherRange];
+                    if (NSNotFound != endRange.location){
+                        anotherRange.location = endRange.location + endRange.length;
+                        anotherRange.length = 1;
+                        greekTest = [temporary substringWithRange:anotherRange];
+                    }
                     
                     if ([@"2" isEqualToString:greekTest] && endRange.location < startRange.location) {
                         startRange.location = 0;
@@ -525,16 +528,22 @@
                         startRange.length = startRange.location;
                         startRange.location = 0;
                         majYr = [temporary substringWithRange:startRange];
+                        majYr = [majYr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                        
                         if (![majYr isEqualToString:@""]) {
                             [tmpPerson.attributes addObject:@"Department"];
                             [tmpPerson.attributeVals addObject:majYr];
                         }
-                        
+                        //NSLog(@"%@", majYr);
                         startRange = [temporary rangeOfString:@"<div class=\"tny\">"];
-                        endRange = [temporary rangeOfString:@"</div></td>"];
+                        endRange = [temporary rangeOfString:@"</div>"];
                         endRange.length = endRange.location - (startRange.location + startRange.length);
                         endRange.location = startRange.location + startRange.length;
-                        //majYr = [temporary substringWithRange:endRange];
+                        
+                        //NSLog(@"%d %d, %d %d", startRange.location, startRange.length, endRange.location, endRange.length);
+                        majYr = [temporary substringWithRange:endRange];
+                        majYr = [majYr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                        majYr = [majYr stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
                         
                         if (![majYr isEqualToString:@""]) {
                             [tmpPerson.attributes addObject:@"Title"];
