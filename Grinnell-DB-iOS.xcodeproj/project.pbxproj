@@ -220,6 +220,11 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = AppDev;
+				TargetAttributes = {
+					36363CC117E11EAC00B01E34 = {
+						DevelopmentTeam = H69TS4DPUJ;
+					};
+				};
 			};
 			buildConfigurationList = 36363CBC17E11EAC00B01E34 /* Build configuration list for PBXProject "Grinnell-DB-iOS" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -366,6 +371,7 @@
 		36363CEA17E11EAC00B01E34 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Grinnell-DB-iOS/Grinnell-DB-iOS-Prefix.pch";
 				INFOPLIST_FILE = "Grinnell-DB-iOS/Grinnell-DB-iOS-Info.plist";
@@ -377,6 +383,7 @@
 		36363CEB17E11EAC00B01E34 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Grinnell-DB-iOS/Grinnell-DB-iOS-Prefix.pch";
 				INFOPLIST_FILE = "Grinnell-DB-iOS/Grinnell-DB-iOS-Info.plist";

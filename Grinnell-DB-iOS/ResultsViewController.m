@@ -129,8 +129,7 @@
         statusLbl.text = status;
     }
     else {
-        
-        NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Department"]);
+       // NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Department"]);
         NSString *dept = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Department"]];
         NSString *title = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Title"]];
         majorLbl.text = title;
