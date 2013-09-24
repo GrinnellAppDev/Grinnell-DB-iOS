@@ -36,6 +36,7 @@
     // Used to pass the identity of a textField into pickerView methods
     textFieldIdentifier = 0;
     
+    self.searchResults = [[NSMutableArray alloc] init];
     // Instantiate the picker view arrays
     // Note: the empty string sets up the clearing option in the picker
     self.majorsArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
@@ -44,63 +45,10 @@
 	self.hiatusArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
 	self.facStaffArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
     self.classArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
+    
+    
     if ([self networkCheck]) {
-        // Try to populate the picker view arrays
-        @try{
-            NSString *post =[[NSString alloc] initWithFormat:@""];
-            
-            NSURL *url=[NSURL URLWithString:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp"];
-            
-            NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-            
-            NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-            
-            NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-            [request setURL:url];
-            [request setHTTPMethod:@"POST"];
-            [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-            [request setValue:@"application/html" forHTTPHeaderField:@"Accept"];
-            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-            [request setHTTPBody:postData];
-            
-            NSError *error = [[NSError alloc] init];
-            NSHTTPURLResponse *response = nil;
-            NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-            
-            //NSLog(@"Response code: %d", [response statusCode]);
-            if([response statusCode] >= 200 && [response statusCode] < 300){
-                NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
-                //NSLog(@"Response ==> %@", responseData);
-                
-                NSRange startRange = [responseData rangeOfString:@"<select name=\"Department\">"];
-                NSRange endRange = [responseData rangeOfString:@"Student Major"];
-                [self parseHTML:startRange :endRange :facStaffArray :responseData];
-                
-                startRange = [responseData rangeOfString:@"<select name=\"Major\">"];
-                endRange = [responseData rangeOfString:@"Concentration"];
-                [self parseHTML:startRange :endRange :majorsArray :responseData];
-                
-                startRange = [responseData rangeOfString:@"<select name=\"conc\">"];
-                endRange = [responseData rangeOfString:@"SGA"];
-                [self parseHTML:startRange :endRange :concentrationArray :responseData];
-                
-                startRange = [responseData rangeOfString:@"<select name=\"SGA\">"];
-                endRange = [responseData rangeOfString:@"Hiatus"];
-                [self parseHTML:startRange :endRange :sgaArray :responseData];
-                
-                startRange = [responseData rangeOfString:@"<select name=\"Hiatus\">"];
-                endRange = [responseData rangeOfString:@"Student Class"];
-                [self parseHTML:startRange :endRange :hiatusArray :responseData];
-                
-                startRange = [responseData rangeOfString:@"<select name=\"Gyear\">"];
-                endRange = [responseData rangeOfString:@"</form>"];
-                [self parseHTML:startRange :endRange :classArray :responseData];
-            }
-        }
-        @catch(NSException * e){
-            NSLog(@"Exception: %@", e);
-            [self showGrinnellAlert];
-        }
+        [self load];
     }
     else {
         // Network Check Failed - Show Alert
@@ -160,43 +108,10 @@
     NSString *home = [searchDetails objectAtIndex:9];
     NSString *facStaff = [searchDetails objectAtIndex:10];
     NSString *sga = [searchDetails objectAtIndex:11];
+    NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&pagenum=1&LastName=%@&LNameSearch=startswith&FirstName=%@&FNameSearch=startswith&email=%@&campusphonenumber=%@&campusquery=%@&Homequery=%@&Department=%@&Major=%@&conc=%@&SGA=%@&Hiatus=%@&Gyear=%@&submit_search=Search", last, first, user, phone, address, home, facStaff, major, conc, sga, hiatus, year]];
     
-    // Try the search
-    @try{
-        NSString *post =[[NSString alloc] initWithFormat:@""];
-        
-        NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&LastName=%@&LNameSearch=startswith&FirstName=%@&FNameSearch=startswith&email=%@&campusphonenumber=%@&campusquery=%@&Homequery=%@&Department=%@&Major=%@&conc=%@&SGA=%@&Hiatus=%@&Gyear=%@&submit_search=Search", last, first, user, phone, address, home, facStaff, major, conc, sga, hiatus, year]];
-        
-        // NSLog(@"%@", url);
-        
-        NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-        
-        NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
-        
-        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
-        [request setURL:url];
-        [request setHTTPMethod:@"POST"];
-        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
-        [request setValue:@"application/html" forHTTPHeaderField:@"Accept"];
-        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
-        [request setHTTPBody:postData];
-        
-        NSError *error = [[NSError alloc] init];
-        NSHTTPURLResponse *response = nil;
-        NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-        
-        //NSLog(@"Response code: %d", [response statusCode]);
-        if([response statusCode] >= 200 && [response statusCode] < 300){
-            NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
-            // NSLog(@"Response ==> %@", responseData);
-            [self parseResults:responseData];
-        }
-    }
-    @catch(NSException * e){
-        NSLog(@"Exception: %@", e);
-        if ([self networkCheck])
-            [self showErrorAlert];
-    }
+    [self searchUsingURL:url forPage:1];
+
     if (NULL == self.searchResults)
         return NO;
     else
@@ -269,7 +184,6 @@
     return 1;
 }
 
-
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     switch (textFieldIdentifier) {
         case 2001:
@@ -320,7 +234,6 @@
             break;
     }
 }
-
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     return 300;
@@ -377,6 +290,125 @@
 }
 
 #pragma mark Custom methods
+-(void)load {
+    // Try to populate the picker view arrays
+    @try{
+        NSString *post =[[NSString alloc] initWithFormat:@""];
+        
+        NSURL *url=[NSURL URLWithString:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp"];
+        
+        NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+        
+        NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+        
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:url];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+        [request setValue:@"application/html" forHTTPHeaderField:@"Accept"];
+        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPBody:postData];
+        
+        NSError *error = [[NSError alloc] init];
+        NSHTTPURLResponse *response = nil;
+        NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        //NSLog(@"Response code: %d", [response statusCode]);
+        if([response statusCode] >= 200 && [response statusCode] < 300){
+            NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
+            //NSLog(@"Response ==> %@", responseData);
+            
+            NSRange startRange = [responseData rangeOfString:@"<select name=\"Department\">"];
+            NSRange endRange = [responseData rangeOfString:@"Student Major"];
+            [self parseHTML:startRange :endRange :facStaffArray :responseData];
+            
+            startRange = [responseData rangeOfString:@"<select name=\"Major\">"];
+            endRange = [responseData rangeOfString:@"Concentration"];
+            [self parseHTML:startRange :endRange :majorsArray :responseData];
+            
+            startRange = [responseData rangeOfString:@"<select name=\"conc\">"];
+            endRange = [responseData rangeOfString:@"SGA"];
+            [self parseHTML:startRange :endRange :concentrationArray :responseData];
+            
+            startRange = [responseData rangeOfString:@"<select name=\"SGA\">"];
+            endRange = [responseData rangeOfString:@"Hiatus"];
+            [self parseHTML:startRange :endRange :sgaArray :responseData];
+            
+            startRange = [responseData rangeOfString:@"<select name=\"Hiatus\">"];
+            endRange = [responseData rangeOfString:@"Student Class"];
+            [self parseHTML:startRange :endRange :hiatusArray :responseData];
+            
+            startRange = [responseData rangeOfString:@"<select name=\"Gyear\">"];
+            endRange = [responseData rangeOfString:@"</form>"];
+            [self parseHTML:startRange :endRange :classArray :responseData];
+        }
+    }
+    @catch(NSException * e){
+        NSLog(@"Exception: %@", e);
+        [self showGrinnellAlert];
+    }
+}
+
+- (void)searchUsingURL:(NSURL *)url forPage:(int)pageNum {
+    int numberOfPages;
+    float numberOfEntries;
+    
+    // Try the search
+    @try{
+        NSString *post =[[NSString alloc] initWithFormat:@""];
+        NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+        NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:url];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+        [request setValue:@"application/html" forHTTPHeaderField:@"Accept"];
+        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPBody:postData];
+        
+        NSError *error = [[NSError alloc] init];
+        NSHTTPURLResponse *response = nil;
+        NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        //NSLog(@"Response code: %d", [response statusCode]);
+        if([response statusCode] >= 200 && [response statusCode] < 300){
+            NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
+            // NSLog(@"Response ==> %@", responseData);
+            
+            NSRange startRange = [responseData rangeOfString:@"</em> found"];
+            NSRange endRange = [responseData rangeOfString:@"entries"];
+            endRange.length = endRange.location - (startRange.location + startRange.length);
+            endRange.location = startRange.location + startRange.length;
+            if (NSNotFound != endRange.location) {
+                numberOfEntries = [[responseData substringWithRange:endRange] floatValue];
+                numberOfPages = ceil(numberOfEntries / 15);
+                //NSLog(@"%d", numberOfPages);
+            }
+            
+            [self parseResults:responseData];
+            
+            NSLog(@"%d", self.searchResults.count);
+            
+            if (pageNum < numberOfPages) {
+                pageNum++;
+                NSString *urlStr = [url absoluteString];
+                startRange = [urlStr rangeOfString:@"&pagenum="];
+                endRange = [urlStr rangeOfString:@"&LastName="];
+                endRange.length = endRange.location - (startRange.location + startRange.length);
+                endRange.location = startRange.location + startRange.length;
+                urlStr = [urlStr stringByReplacingCharactersInRange:endRange withString:[NSString stringWithFormat:@"%d", pageNum]];
+                url = [NSURL URLWithString:urlStr];
+                [self searchUsingURL:url forPage:pageNum];
+            }
+        }
+    }
+    @catch(NSException * e){
+        NSLog(@"Exception: %@", e);
+        if ([self networkCheck])
+            [self showErrorAlert];
+    }
+}
+
 // This method is used to get data from the HTML form and populate the picker arrays
 - (void)parseHTML:(NSRange)startRange :(NSRange)endRange :(NSMutableArray *)array :(NSString *)responseData {
     // Create a string with only the data we are interested in for this picker
@@ -424,6 +456,7 @@
 
 // This method is used to get data from the HTML form and populate the picker arrays
 - (void)parseResults:(NSString *)dataString {
+    //Test for VAGUE SEARCH
     NSRange testRange = [dataString rangeOfString:@"Your search returned a <i>very</i> large number of records and you must reduce the number of matches by refining your search criteria using the form at the bottom of the page"];
     //NSLog(@"%@", dataString);
     if (NSNotFound != testRange.location) {
@@ -432,13 +465,18 @@
         return;
     }
     
-    self.searchResults = [[NSMutableArray alloc] init];
+    int pagesNumber;
+    testRange = [dataString rangeOfString:@"</em> found "];
+    NSRange replaceRange = [dataString rangeOfString:@" entries"];
+    replaceRange.length = replaceRange.location - (testRange.location + testRange.length);
+    replaceRange.location = testRange.location + testRange.length;
+    pagesNumber = [[dataString substringWithRange:replaceRange] intValue];
     
     // Check for a value to be processed
     testRange = [dataString rangeOfString:@"onmouseout=\"this.style.cursor='default'\" >"];
     
     // Delete the string before that value
-    NSRange replaceRange = [dataString rangeOfString:@"onmouseout=\"this.style.cursor='default'\" >"];
+    replaceRange = [dataString rangeOfString:@"onmouseout=\"this.style.cursor='default'\" >"];
     if (replaceRange.location != NSNotFound) {
         replaceRange.length = replaceRange.location + replaceRange.length;
         replaceRange.location = 0;
@@ -634,7 +672,8 @@
         for (int i = 0; i < tmpPerson.attributes.count; i++)
             NSLog(@"%@ %@", [tmpPerson.attributes objectAtIndex:i], [tmpPerson.attributeVals objectAtIndex:i]);
         */
-        //NSLog(@"%@", tmpPerson);
+       // NSLog(@"%@", tmpPerson.lastName);
+    
         [self.searchResults addObject:tmpPerson];
         
         // Check for another value to be processed

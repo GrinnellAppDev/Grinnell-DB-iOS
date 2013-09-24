@@ -15,7 +15,9 @@
 
 - (BOOL)networkCheck;
 - (void)search;
+- (void)load;
 - (void)clear:(id)sender;
+- (void)searchUsingURL:(NSURL *)url forPage:(int)pageNum;
 - (void)parseHTML:(NSRange)startRange :(NSRange)endRange :(NSMutableArray *)array :(NSString *)responseData;
 - (void)parseResults:(NSString *)dataString;
 
