@@ -310,6 +310,17 @@
     [error show];
 }
 
+- (void)showNoResultsAlert {
+    UIAlertView *error = [[UIAlertView alloc]
+                          initWithTitle:@"An Error Occurred"
+                          message:@"Your search returned no results!"
+                          delegate:self
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil
+                          ];
+    [error show];
+}
+
 #pragma mark Custom methods
 -(void)load {
     // Try to populate the picker view arrays
@@ -404,6 +415,11 @@
             
             NSRange startRange = [responseData rangeOfString:@"</em> found"];
             NSRange endRange = [responseData rangeOfString:@"entries"];
+            if (NSNotFound == endRange.location) {
+                [self showNoResultsAlert];
+                self.searchResults = NULL;
+                return;
+            }
             endRange.length = endRange.location - (startRange.location + startRange.length);
             endRange.location = startRange.location + startRange.length;
             if (NSNotFound != endRange.location) {
