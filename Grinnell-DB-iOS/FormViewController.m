@@ -108,23 +108,35 @@
     NSString *last = [searchDetails objectAtIndex:1];
     NSString *user = [searchDetails objectAtIndex:2];
     if (self.onCampusBool) {
-    NSString *year = [searchDetails objectAtIndex:3];
-    NSString *phone = [searchDetails objectAtIndex:4];
-    NSString *address = [searchDetails objectAtIndex:5];
-    NSString *major = [searchDetails objectAtIndex:6];
-    NSString *conc = [searchDetails objectAtIndex:7];
-    NSString *hiatus = [searchDetails objectAtIndex:8];
-    NSString *home = [searchDetails objectAtIndex:9];
-    NSString *facStaff = [searchDetails objectAtIndex:10];
-    NSString *sga = [searchDetails objectAtIndex:11];
-    url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&pagenum=1&LastName=%@&LNameSearch=startswith&FirstName=%@&FNameSearch=startswith&email=%@&campusphonenumber=%@&campusquery=%@&Homequery=%@&Department=%@&Major=%@&conc=%@&SGA=%@&Hiatus=%@&Gyear=%@&submit_search=Search", last, first, user, phone, address, home, facStaff, major, conc, sga, hiatus, year]];
+        NSString *year = [searchDetails objectAtIndex:3];
+        if ([year isEqualToString:@"Any"])
+            year = @"";
+        NSString *phone = [searchDetails objectAtIndex:4];
+        NSString *address = [searchDetails objectAtIndex:5];
+        NSString *major = [searchDetails objectAtIndex:6];
+        if ([major isEqualToString:@"Any"])
+            major = @"";
+        NSString *conc = [searchDetails objectAtIndex:7];
+        if ([conc isEqualToString:@"Any"])
+            conc = @"";
+        NSString *hiatus = [searchDetails objectAtIndex:8];
+        if ([hiatus isEqualToString:@"Any"])
+            hiatus = @"";
+        NSString *home = [searchDetails objectAtIndex:9];
+        NSString *facStaff = [searchDetails objectAtIndex:10];
+        if ([facStaff isEqualToString:@"Any"])
+            facStaff = @"";
+        NSString *sga = [searchDetails objectAtIndex:11];
+        if ([sga isEqualToString:@"Any"])
+            sga = @"";
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&pagenum=1&LastName=%@&LNameSearch=startswith&FirstName=%@&FNameSearch=startswith&email=%@&campusphonenumber=%@&campusquery=%@&Homequery=%@&Department=%@&Major=%@&conc=%@&SGA=%@&Hiatus=%@&Gyear=%@&submit_search=Search", last, first, user, phone, address, home, facStaff, major, conc, sga, hiatus, year]];
     }
     else
         url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&pagenum=1&LastName=%@&LNameSearch=startswith&FirstName=%@&FNameSearch=startswith&email=%@&submit_search=Search", last, first, user]];
     
     // Start the search
     [self searchUsingURL:url forPage:1];
-
+    NSLog(@"Here");
     if (NULL == self.searchResults)
         return NO;
     else
@@ -353,27 +365,27 @@
             NSRange startRange = [responseData rangeOfString:@"<select name=\"Department\">"];
             NSRange endRange = [responseData rangeOfString:@"Student Major"];
             if (NSNotFound != endRange.location) {
-            [self parseHTML:startRange :endRange :facStaffArray :responseData];
-            
-            startRange = [responseData rangeOfString:@"<select name=\"Major\">"];
-            endRange = [responseData rangeOfString:@"Concentration"];
-            [self parseHTML:startRange :endRange :majorsArray :responseData];
-            
-            startRange = [responseData rangeOfString:@"<select name=\"conc\">"];
-            endRange = [responseData rangeOfString:@"SGA"];
-            [self parseHTML:startRange :endRange :concentrationArray :responseData];
-            
-            startRange = [responseData rangeOfString:@"<select name=\"SGA\">"];
-            endRange = [responseData rangeOfString:@"Hiatus"];
-            [self parseHTML:startRange :endRange :sgaArray :responseData];
-            
-            startRange = [responseData rangeOfString:@"<select name=\"Hiatus\">"];
-            endRange = [responseData rangeOfString:@"Student Class"];
-            [self parseHTML:startRange :endRange :hiatusArray :responseData];
-            
-            startRange = [responseData rangeOfString:@"<select name=\"Gyear\">"];
-            endRange = [responseData rangeOfString:@"</form>"];
-            [self parseHTML:startRange :endRange :classArray :responseData];
+                [self parseHTML:startRange :endRange :facStaffArray :responseData];
+                
+                startRange = [responseData rangeOfString:@"<select name=\"Major\">"];
+                endRange = [responseData rangeOfString:@"Concentration"];
+                [self parseHTML:startRange :endRange :majorsArray :responseData];
+                
+                startRange = [responseData rangeOfString:@"<select name=\"conc\">"];
+                endRange = [responseData rangeOfString:@"SGA"];
+                [self parseHTML:startRange :endRange :concentrationArray :responseData];
+                
+                startRange = [responseData rangeOfString:@"<select name=\"SGA\">"];
+                endRange = [responseData rangeOfString:@"Hiatus"];
+                [self parseHTML:startRange :endRange :sgaArray :responseData];
+                
+                startRange = [responseData rangeOfString:@"<select name=\"Hiatus\">"];
+                endRange = [responseData rangeOfString:@"Student Class"];
+                [self parseHTML:startRange :endRange :hiatusArray :responseData];
+                
+                startRange = [responseData rangeOfString:@"<select name=\"Gyear\">"];
+                endRange = [responseData rangeOfString:@"</form>"];
+                [self parseHTML:startRange :endRange :classArray :responseData];
             }
             else {
                 [self showGrinnellAlert];
@@ -412,24 +424,36 @@
         if([response statusCode] >= 200 && [response statusCode] < 300){
             NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
             // NSLog(@"Response ==> %@", responseData);
+
             
-            NSRange startRange = [responseData rangeOfString:@"</em> found"];
-            NSRange endRange = [responseData rangeOfString:@"entries"];
-            if (NSNotFound == endRange.location) {
+            NSRange startRange = [responseData rangeOfString:@" found"];
+            if (NSNotFound == startRange.location) {
+                [self showErrorAlert];
+                return;
+            }
+            startRange.length = startRange.location + startRange.length;
+            startRange.location = 0;
+            responseData = [responseData stringByReplacingCharactersInRange:startRange withString:@""];
+
+            NSRange endRange = [responseData rangeOfString:@"matches"];
+            if (NSNotFound != endRange.location) {
                 [self showNoResultsAlert];
                 self.searchResults = NULL;
                 return;
             }
-            endRange.length = endRange.location - (startRange.location + startRange.length);
-            endRange.location = startRange.location + startRange.length;
-            if (NSNotFound != endRange.location) {
-                numberOfEntries = [[responseData substringWithRange:endRange] floatValue];
-                numberOfPages = ceil(numberOfEntries / 15);
-                //NSLog(@"%d", numberOfPages);
+            endRange = [responseData rangeOfString:@"entr"];
+            if (NSNotFound == endRange.location) {
+                [self showErrorAlert];
+                self.searchResults = NULL;
+                return;
             }
+            endRange.length = endRange.location;
+            endRange.location = 0;
+            numberOfEntries = [[responseData substringWithRange:endRange] floatValue];
+            numberOfPages = ceil(numberOfEntries / 15);
             
             [self parseResults:responseData];
-          // NSLog(@"%d", self.searchResults.count);
+            // NSLog(@"%d", self.searchResults.count);
             
             if (pageNum < numberOfPages) {
                 pageNum++;
@@ -438,6 +462,7 @@
                 endRange = [urlStr rangeOfString:@"&LastName="];
                 endRange.length = endRange.location - (startRange.location + startRange.length);
                 endRange.location = startRange.location + startRange.length;
+                // TODO - error check this STRINGBYREPLACING
                 urlStr = [urlStr stringByReplacingCharactersInRange:endRange withString:[NSString stringWithFormat:@"%d", pageNum]];
                 url = [NSURL URLWithString:urlStr];
                 [self searchUsingURL:url forPage:pageNum];
@@ -458,11 +483,16 @@
     // Create a string with only the data we are interested in for this picker
     startRange.location = startRange.location + startRange.length;
     startRange.length = endRange.location - startRange.location;
+    // Sanity Check
+    if (NSNotFound == startRange.location) {
+        [self showErrorAlert];
+        return;
+    }
     NSString *dataString = [responseData substringWithRange:startRange];
     
     // Skip over the initial empty tag
     NSRange replaceRange = [dataString rangeOfString:@"</option>"];
-    if (replaceRange.location != NSNotFound) {
+    if (NSNotFound != replaceRange.location) {
         replaceRange.length = replaceRange.location + replaceRange.length;
         replaceRange.location = 0;
         dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
@@ -478,6 +508,10 @@
         endRange.location = startRange.location + startRange.length;
         
         // Get the value and remove whitespace
+        if (NSNotFound == endRange.location) {
+            [self showErrorAlert];
+            NSLog(@"Error parsing picker options");
+        }
         NSString *tempString = [dataString substringWithRange:endRange];
         tempString = [tempString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
@@ -501,8 +535,8 @@
 // This method parses the HTML returned by the search request when off campus
 - (void)parseResultsOffCampus:(NSString *)dataString {
     // Check for a value to be processed
-   NSRange testRange = [dataString rangeOfString:@"&nbsp;</TD>" options:NSCaseInsensitiveSearch];
-
+    NSRange testRange = [dataString rangeOfString:@"&nbsp;</TD>" options:NSCaseInsensitiveSearch];
+    
     // Delete the string before that value
     NSRange replaceRange = [dataString rangeOfString:@"&nbsp;</TD>" options:NSCaseInsensitiveSearch];
     if (replaceRange.location != NSNotFound) {
@@ -561,21 +595,21 @@
                             [tmpPerson.attributes addObject:@"Department"];
                             [tmpPerson.attributeVals addObject:temporary];
                         }/*
-                        //NSLog(@"%@", majYr);
-                        startRange = [temporary rangeOfString:@"<div class=\"tny\">"];
-                        endRange = [temporary rangeOfString:@"</div>"];
-                        endRange.length = endRange.location - (startRange.location + startRange.length);
-                        endRange.location = startRange.location + startRange.length;
-                        
-                        //NSLog(@"%d %d, %d %d", startRange.location, startRange.length, endRange.location, endRange.length);
-                        majYr = [temporary substringWithRange:endRange];
-                        majYr = [majYr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                        majYr = [majYr stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
-                        
-                        if (![majYr isEqualToString:@""]) {
-                            [tmpPerson.attributes addObject:@"Title"];
-                            [tmpPerson.attributeVals addObject:majYr];
-                        }*/
+                          //NSLog(@"%@", majYr);
+                          startRange = [temporary rangeOfString:@"<div class=\"tny\">"];
+                          endRange = [temporary rangeOfString:@"</div>"];
+                          endRange.length = endRange.location - (startRange.location + startRange.length);
+                          endRange.location = startRange.location + startRange.length;
+                          
+                          //NSLog(@"%d %d, %d %d", startRange.location, startRange.length, endRange.location, endRange.length);
+                          majYr = [temporary substringWithRange:endRange];
+                          majYr = [majYr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                          majYr = [majYr stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
+                          
+                          if (![majYr isEqualToString:@""]) {
+                          [tmpPerson.attributes addObject:@"Title"];
+                          [tmpPerson.attributeVals addObject:majYr];
+                          }*/
                     }
                     break;
                 case 2:
@@ -652,7 +686,7 @@
          for (int i = 0; i < tmpPerson.attributes.count; i++)
          NSLog(@"%@ %@", [tmpPerson.attributes objectAtIndex:i], [tmpPerson.attributeVals objectAtIndex:i]);
          */
-         //NSLog(@"%@", tmpPerson.lastName);
+        //NSLog(@"%@", tmpPerson.lastName);
         
         [self.searchResults addObject:tmpPerson];
         
@@ -680,13 +714,6 @@
         return;
     }
     
-    int pagesNumber;
-    testRange = [dataString rangeOfString:@"found "];
-    NSRange replaceRange = [dataString rangeOfString:@" entries"];
-    replaceRange.length = replaceRange.location - (testRange.location + testRange.length);
-    replaceRange.location = testRange.location + testRange.length;
-    pagesNumber = [[dataString substringWithRange:replaceRange] intValue];
-    
     // Check for a value to be processed
     testRange = [dataString rangeOfString:@"onmouseout=\"this.style.cursor='default'\" >"];
     if (NSNotFound == testRange.location) {
@@ -694,7 +721,7 @@
         return;
     }
     // Delete the string before that value
-    replaceRange = [dataString rangeOfString:@"onmouseout=\"this.style.cursor='default'\" >"];
+    NSRange replaceRange = [dataString rangeOfString:@"onmouseout=\"this.style.cursor='default'\" >"];
     if (replaceRange.location != NSNotFound) {
         replaceRange.length = replaceRange.location + replaceRange.length;
         replaceRange.location = 0;
@@ -714,7 +741,7 @@
         endRange.location = startRange.location + startRange.length;
         NSString *urlString = [dataString substringWithRange:endRange];
         urlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-         //NSLog(@"%@", urlString);
+        //NSLog(@"%@", urlString);
         
         // Get and process the name
         startRange = [dataString rangeOfString:@"target = \"_blank\">"];
@@ -885,12 +912,12 @@
         [tmpPerson.attributeVals addObject:urlString];
         
         /*
-        NSLog(@"name: %@ %@", tmpPerson.firstName, tmpPerson.lastName);
-        for (int i = 0; i < tmpPerson.attributes.count; i++)
-            NSLog(@"%@ %@", [tmpPerson.attributes objectAtIndex:i], [tmpPerson.attributeVals objectAtIndex:i]);
-        */
-       // NSLog(@"%@", tmpPerson.lastName);
-    
+         NSLog(@"name: %@ %@", tmpPerson.firstName, tmpPerson.lastName);
+         for (int i = 0; i < tmpPerson.attributes.count; i++)
+         NSLog(@"%@ %@", [tmpPerson.attributes objectAtIndex:i], [tmpPerson.attributeVals objectAtIndex:i]);
+         */
+        // NSLog(@"%@", tmpPerson.lastName);
+        
         [self.searchResults addObject:tmpPerson];
         
         // Check for another value to be processed
