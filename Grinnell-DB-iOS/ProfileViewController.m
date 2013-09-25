@@ -61,7 +61,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Repress status and picURL from tableView
-    return self.selectedPerson.attributes.count - 2;
+    int sub = 0;
+    if (NSNotFound != [self.selectedPerson.attributes indexOfObject:@"picURL"])
+        sub++;
+    if (NSNotFound != [self.selectedPerson.attributes indexOfObject:@"Status"])
+         sub++;
+    return self.selectedPerson.attributes.count - sub;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

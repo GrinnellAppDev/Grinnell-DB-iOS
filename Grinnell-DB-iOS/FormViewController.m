@@ -25,18 +25,15 @@
     // Set up clear button in top left corner
     UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clear:)];
     [self.navigationItem setLeftBarButtonItem:clear animated:YES];
-    
-    // Set up previous/next/done buttons
-    fields = [[NSMutableArray alloc] initWithObjects:firstNameField, lastNameField, usernameField, classField, phoneField, campusAddressField, majorField, concentrationField, hiatusField, homeAddressField, facStaffField, sgaField, nil];
-    [self setKeyboardControls:[[BSKeyboardControls alloc] initWithFields:fields]];
-    [self.keyboardControls setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     // Used to pass the identity of a textField into pickerView methods
     textFieldIdentifier = 0;
     
+    // Must be re-initialized each time this view re-appears
     self.searchResults = [[NSMutableArray alloc] init];
+    
     // Instantiate the picker view arrays
     // Note: the empty string sets up the clearing option in the picker
     self.majorsArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
@@ -46,17 +43,28 @@
 	self.facStaffArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
     self.classArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
     
+    // Assume on campus... This will be changed during [self load]
+    self.onCampusBool = YES;
     
     if ([self networkCheck]) {
         [self load];
     }
     else {
         // Network Check Failed - Show Alert
-        [self performSelectorOnMainThread:@selector(showNoNetworkAlert)
-                               withObject:nil
+        [self performSelectorOnMainThread:@selector(showNoNetworkAlert) withObject:nil
                             waitUntilDone:YES];
         return;
     }
+    
+    // Set up previous/next/done buttons
+    if (self.onCampusBool)
+        fields = [[NSMutableArray alloc] initWithObjects:firstNameField, lastNameField, usernameField, classField, phoneField, campusAddressField, majorField, concentrationField, hiatusField, homeAddressField, facStaffField, sgaField, nil];
+    else
+        fields = [[NSMutableArray alloc] initWithObjects:firstNameField, lastNameField, usernameField, nil];
+    
+    [self setKeyboardControls:[[BSKeyboardControls alloc] initWithFields:fields]];
+    [self.keyboardControls setDelegate:self];
+    
     // Instantiate the picker and set the field inputs
     myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 200, 320, 240)];
     myPickerView.delegate = self;
@@ -76,8 +84,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    
-    
 }
 
 //Method to determine the availability of network Connections using the Reachability Class
@@ -87,9 +93,11 @@
     return (!(networkStatus == NotReachable));
 }
 
-// Perform the search
+// Perform the search... If no results come back, prevent segue from happening by returning NO
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     NSMutableArray *searchDetails = [[NSMutableArray alloc] init];
+    NSURL *url;
+    
     for (int i=0; i < fields.count; i++){
         UITextField *field = [fields objectAtIndex:i];
         NSString *tmp = [field.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
@@ -99,6 +107,7 @@
     NSString *first = [searchDetails objectAtIndex:0];
     NSString *last = [searchDetails objectAtIndex:1];
     NSString *user = [searchDetails objectAtIndex:2];
+    if (self.onCampusBool) {
     NSString *year = [searchDetails objectAtIndex:3];
     NSString *phone = [searchDetails objectAtIndex:4];
     NSString *address = [searchDetails objectAtIndex:5];
@@ -108,8 +117,12 @@
     NSString *home = [searchDetails objectAtIndex:9];
     NSString *facStaff = [searchDetails objectAtIndex:10];
     NSString *sga = [searchDetails objectAtIndex:11];
-    NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&pagenum=1&LastName=%@&LNameSearch=startswith&FirstName=%@&FNameSearch=startswith&email=%@&campusphonenumber=%@&campusquery=%@&Homequery=%@&Department=%@&Major=%@&conc=%@&SGA=%@&Hiatus=%@&Gyear=%@&submit_search=Search", last, first, user, phone, address, home, facStaff, major, conc, sga, hiatus, year]];
+    url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&pagenum=1&LastName=%@&LNameSearch=startswith&FirstName=%@&FNameSearch=startswith&email=%@&campusphonenumber=%@&campusquery=%@&Homequery=%@&Department=%@&Major=%@&conc=%@&SGA=%@&Hiatus=%@&Gyear=%@&submit_search=Search", last, first, user, phone, address, home, facStaff, major, conc, sga, hiatus, year]];
+    }
+    else
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&pagenum=1&LastName=%@&LNameSearch=startswith&FirstName=%@&FNameSearch=startswith&email=%@&submit_search=Search", last, first, user]];
     
+    // Start the search
     [self searchUsingURL:url forPage:1];
 
     if (NULL == self.searchResults)
@@ -239,6 +252,14 @@
     return 300;
 }
 
+#pragma mark UITableView overrides
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (self.onCampusBool) {
+        return 12;
+    }
+    else return 3;
+}
+
 #pragma mark UIAlertViewDelegate Methods
 // Called when an alert button is tapped.
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
@@ -258,8 +279,8 @@
 
 - (void)showGrinnellAlert {
     UIAlertView *error = [[UIAlertView alloc]
-                          initWithTitle:@"An Error Occurred"
-                          message:@"Please connect to GrinnellCollegeStudent or GrinnellCollegeWireless"
+                          initWithTitle:@"Note:"
+                          message:@"You can gain access to the full directory search system and information by connecting to GrinnellCollegeStudent or GrinnellCollegeWireless"
                           delegate:self
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil
@@ -320,6 +341,7 @@
             
             NSRange startRange = [responseData rangeOfString:@"<select name=\"Department\">"];
             NSRange endRange = [responseData rangeOfString:@"Student Major"];
+            if (NSNotFound != endRange.location) {
             [self parseHTML:startRange :endRange :facStaffArray :responseData];
             
             startRange = [responseData rangeOfString:@"<select name=\"Major\">"];
@@ -341,11 +363,16 @@
             startRange = [responseData rangeOfString:@"<select name=\"Gyear\">"];
             endRange = [responseData rangeOfString:@"</form>"];
             [self parseHTML:startRange :endRange :classArray :responseData];
+            }
+            else {
+                [self showGrinnellAlert];
+                self.onCampusBool = NO;
+            }
         }
     }
     @catch(NSException * e){
         NSLog(@"Exception: %@", e);
-        [self showGrinnellAlert];
+        [self showErrorAlert];
     }
 }
 
@@ -386,8 +413,7 @@
             }
             
             [self parseResults:responseData];
-            
-            NSLog(@"%d", self.searchResults.count);
+          // NSLog(@"%d", self.searchResults.count);
             
             if (pageNum < numberOfPages) {
                 pageNum++;
@@ -406,6 +432,8 @@
         NSLog(@"Exception: %@", e);
         if ([self networkCheck])
             [self showErrorAlert];
+        else
+            [self showNoNetworkAlert];
     }
 }
 
@@ -454,7 +482,178 @@
     }
 }
 
-// This method is used to get data from the HTML form and populate the picker arrays
+// This method parses the HTML returned by the search request when off campus
+- (void)parseResultsOffCampus:(NSString *)dataString {
+    // Check for a value to be processed
+   NSRange testRange = [dataString rangeOfString:@"&nbsp;</TD>" options:NSCaseInsensitiveSearch];
+
+    // Delete the string before that value
+    NSRange replaceRange = [dataString rangeOfString:@"&nbsp;</TD>" options:NSCaseInsensitiveSearch];
+    if (replaceRange.location != NSNotFound) {
+        replaceRange.length = replaceRange.location + replaceRange.length;
+        replaceRange.location = 0;
+        dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
+    }
+    
+    // Delete string after final person
+    replaceRange = [dataString rangeOfString:@"End of page - Begin Footers" options:NSCaseInsensitiveSearch];
+    NSRange endRange = [dataString rangeOfString:@"</html>" options:NSCaseInsensitiveSearch];
+    replaceRange.length = endRange.length + endRange.location - replaceRange.location;
+    dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
+    
+    // Loop through the people
+    while (NSNotFound != testRange.location) {
+        Person *tmpPerson = [[Person alloc] init];
+        tmpPerson.attributes = [[NSMutableArray alloc] init];
+        tmpPerson.attributeVals = [[NSMutableArray alloc] init];
+        NSRange startRange;
+        NSString *temporary, *name, *last, *first;
+        for (int i = 0; i < 6; i++) {
+            switch (i) {
+                case 0:
+                    startRange = [dataString rangeOfString:@"valign=\"top\">"];
+                    endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
+                    endRange.length = endRange.location - (startRange.location + startRange.length);
+                    endRange.location = startRange.location + startRange.length;
+                    name = [dataString substringWithRange:endRange];
+                    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    endRange = [name rangeOfString:@", "];
+                    startRange.location = 0;
+                    startRange.length = endRange.location;
+                    endRange.location += 2;;
+                    endRange.length = name.length - endRange.location;
+                    last = [name substringWithRange:startRange];
+                    first = [name substringWithRange:endRange];
+                    tmpPerson.firstName = first;
+                    tmpPerson.lastName = last;
+                    break;
+                case 1:
+                    startRange = [dataString rangeOfString:@"valign=\"top\">"];
+                    endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
+                    endRange.length = endRange.location - (startRange.location + startRange.length);
+                    endRange.location = startRange.location + startRange.length;
+                    temporary = [dataString substringWithRange:endRange];
+                    
+                    if (NSNotFound != [temporary rangeOfString:@"<span class=\"tn2y\">Data"].location) {
+                        [tmpPerson.attributes addObject:@"Department"];
+                        [tmpPerson.attributeVals addObject:@"Data unavailable off campus"];
+                    }
+                    else {
+                        temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                        temporary = [temporary stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
+                        if (![temporary isEqualToString:@""]) {
+                            [tmpPerson.attributes addObject:@"Department"];
+                            [tmpPerson.attributeVals addObject:temporary];
+                        }/*
+                        //NSLog(@"%@", majYr);
+                        startRange = [temporary rangeOfString:@"<div class=\"tny\">"];
+                        endRange = [temporary rangeOfString:@"</div>"];
+                        endRange.length = endRange.location - (startRange.location + startRange.length);
+                        endRange.location = startRange.location + startRange.length;
+                        
+                        //NSLog(@"%d %d, %d %d", startRange.location, startRange.length, endRange.location, endRange.length);
+                        majYr = [temporary substringWithRange:endRange];
+                        majYr = [majYr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                        majYr = [majYr stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
+                        
+                        if (![majYr isEqualToString:@""]) {
+                            [tmpPerson.attributes addObject:@"Title"];
+                            [tmpPerson.attributeVals addObject:majYr];
+                        }*/
+                    }
+                    break;
+                case 2:
+                    startRange = [dataString rangeOfString:@"valign=\"top\">"];
+                    endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
+                    endRange.length = endRange.location - (startRange.location + startRange.length);
+                    endRange.location = startRange.location + startRange.length;
+                    temporary = [dataString substringWithRange:endRange];
+                    temporary = [temporary stringByReplacingOccurrencesOfString:@"<span class=\"tny2\">" withString:@""];
+                    temporary = [temporary stringByReplacingOccurrencesOfString:@"</span>" withString:@""];
+                    temporary = [temporary stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
+                    temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    if (![temporary isEqualToString:@""]) {
+                        [tmpPerson.attributes addObject:@"Campus Phone"];
+                        [tmpPerson.attributeVals addObject:temporary];
+                    }
+                    break;
+                case 3:
+                    startRange = [dataString rangeOfString:@"valign=\"top\"> <font size=\"-1\">"];
+                    endRange = [dataString rangeOfString:@"@grinnell.edu" options:NSCaseInsensitiveSearch];
+                    endRange.length = endRange.location - (startRange.location + startRange.length);
+                    endRange.location = startRange.location + startRange.length;
+                    temporary = [dataString substringWithRange:endRange];
+                    [tmpPerson.attributes addObject:@"Username"];
+                    [tmpPerson.attributeVals addObject:temporary];
+                    break;
+                case 4:
+                    startRange = [dataString rangeOfString:@"valign=\"top\">"];
+                    endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
+                    endRange.length = endRange.location - (startRange.location + startRange.length);
+                    endRange.location = startRange.location + startRange.length;
+                    temporary = [dataString substringWithRange:endRange];
+                    temporary = [temporary stringByReplacingOccurrencesOfString:@"<span class=\"tny2\">" withString:@""];
+                    temporary = [temporary stringByReplacingOccurrencesOfString:@"</span>" withString:@""];
+                    temporary = [temporary stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
+                    temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    if (![temporary isEqualToString:@""]) {
+                        [tmpPerson.attributes addObject:@"Campus Address"];
+                        [tmpPerson.attributeVals addObject:temporary];
+                    }
+                    break;
+                case 5:
+                    startRange = [dataString rangeOfString:@"valign=\"top\">"];
+                    endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
+                    endRange.length = endRange.location - (startRange.location + startRange.length);
+                    endRange.location = startRange.location + startRange.length;
+                    temporary = [dataString substringWithRange:endRange];
+                    temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    [tmpPerson.attributes addObject:@"Status"];
+                    [tmpPerson.attributeVals addObject:temporary];
+                    break;
+                default:
+                    break;
+            }
+            // Remove the just processed attribute
+            replaceRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
+            if (replaceRange.location != NSNotFound) {
+                replaceRange.length = replaceRange.location + replaceRange.length;
+                replaceRange.location = 0;
+                dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
+            }
+        }
+        
+        // Remove the section of the string just processed
+        replaceRange = [dataString rangeOfString:@"</tr>"];
+        if (replaceRange.location != NSNotFound) {
+            replaceRange.length = replaceRange.location + replaceRange.length;
+            replaceRange.location = 0;
+            dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
+        }
+        
+        /*
+         NSLog(@"name: %@ %@", tmpPerson.firstName, tmpPerson.lastName);
+         for (int i = 0; i < tmpPerson.attributes.count; i++)
+         NSLog(@"%@ %@", [tmpPerson.attributes objectAtIndex:i], [tmpPerson.attributeVals objectAtIndex:i]);
+         */
+         //NSLog(@"%@", tmpPerson.lastName);
+        
+        [self.searchResults addObject:tmpPerson];
+        
+        // Check for another value to be processed
+        testRange = [dataString rangeOfString:@"&nbsp;</TD>"];
+        
+        // Remove the header line
+        replaceRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
+        if (replaceRange.location != NSNotFound) {
+            replaceRange.length = replaceRange.location + replaceRange.length;
+            replaceRange.location = 0;
+            dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
+        }
+    }
+}
+
+// This method parses the HTML returned by the search request
 - (void)parseResults:(NSString *)dataString {
     //Test for VAGUE SEARCH
     NSRange testRange = [dataString rangeOfString:@"Your search returned a <i>very</i> large number of records and you must reduce the number of matches by refining your search criteria using the form at the bottom of the page"];
@@ -466,7 +665,7 @@
     }
     
     int pagesNumber;
-    testRange = [dataString rangeOfString:@"</em> found "];
+    testRange = [dataString rangeOfString:@"found "];
     NSRange replaceRange = [dataString rangeOfString:@" entries"];
     replaceRange.length = replaceRange.location - (testRange.location + testRange.length);
     replaceRange.location = testRange.location + testRange.length;
@@ -474,7 +673,10 @@
     
     // Check for a value to be processed
     testRange = [dataString rangeOfString:@"onmouseout=\"this.style.cursor='default'\" >"];
-    
+    if (NSNotFound == testRange.location) {
+        [self parseResultsOffCampus:dataString];
+        return;
+    }
     // Delete the string before that value
     replaceRange = [dataString rangeOfString:@"onmouseout=\"this.style.cursor='default'\" >"];
     if (replaceRange.location != NSNotFound) {
@@ -525,9 +727,7 @@
         }
         NSRange anotherRange;
         // Get the remaining attributes
-        NSString *temporary;
-        NSString *majYr;
-        NSString *greekTest;
+        NSString *temporary, *majYr, *greekTest;
         for (int i = 0; i < 6; i++) {
             switch (i) {
                 case 0:
@@ -596,6 +796,7 @@
                     endRange.location = startRange.location + startRange.length;
                     temporary = [dataString substringWithRange:endRange];
                     temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    
                     if (![temporary isEqualToString:@""]) {
                         [tmpPerson.attributes addObject:@"Campus Phone"];
                         [tmpPerson.attributeVals addObject:temporary];

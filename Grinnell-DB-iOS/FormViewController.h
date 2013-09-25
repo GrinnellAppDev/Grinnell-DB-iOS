@@ -20,6 +20,7 @@
 - (void)searchUsingURL:(NSURL *)url forPage:(int)pageNum;
 - (void)parseHTML:(NSRange)startRange :(NSRange)endRange :(NSMutableArray *)array :(NSString *)responseData;
 - (void)parseResults:(NSString *)dataString;
+- (void)parseResultsOffCampus:(NSString *)dataString;
 
 @property (nonatomic, strong) NSMutableArray *majorsArray;
 @property (nonatomic, strong) NSMutableArray *concentrationArray;
@@ -42,6 +43,7 @@
 @property (nonatomic, weak) IBOutlet UITextField *facStaffField;
 @property (nonatomic, strong) BSKeyboardControls *keyboardControls;
 @property (nonatomic, assign) int textFieldIdentifier;
+@property (nonatomic, assign) BOOL onCampusBool;
 @property (nonatomic, strong) IBOutlet UIPickerView *myPickerView;
 
 @end

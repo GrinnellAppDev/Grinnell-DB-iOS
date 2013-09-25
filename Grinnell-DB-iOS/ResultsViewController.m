@@ -16,7 +16,6 @@
 @end
 
 @implementation ResultsViewController
-
 @synthesize cellIdentifier;
 
 - (id)initWithStyle:(UITableViewStyle)style {
@@ -44,13 +43,14 @@
         selected = [self.searchDetails objectAtIndex:indexPath.row];
         
         if ([self networkCheck]){
-            NSString *urlStr = [selected.attributeVals objectAtIndex:
-                                [selected.attributes indexOfObject:@"picURL"]];
-            
-            if(urlStr != NULL) {
-                NSURL *imageURL = [[NSURL alloc] initWithString:urlStr];
-                // Fetch the image
-                selected.profilePic = [UIImage imageWithData: [NSData dataWithContentsOfURL:imageURL]];
+            int index = [selected.attributes indexOfObject:@"picURL"];
+            if (NSNotFound != index) {
+                NSString *urlStr = [selected.attributeVals objectAtIndex:index];
+                if(urlStr != NULL) {
+                    NSURL *imageURL = [[NSURL alloc] initWithString:urlStr];
+                    // Fetch the image
+                    selected.profilePic = [UIImage imageWithData: [NSData dataWithContentsOfURL:imageURL]];
+                }
             }
         }
         else {
@@ -128,20 +128,25 @@
         classLbl.text = year;
         statusLbl.text = status;
     }
-    else {
-       // NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Department"]);
+    else if ([status isEqualToString:@"Faculty / Staff"]) {
         NSString *dept = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Department"]];
         NSString *title = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Title"]];
         majorLbl.text = title;
         classLbl.text = dept;
         statusLbl.text = @"Fac/Staff";
     }
+    else {
+       // NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Department"]);
+        NSString *dept = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Department"]];
+        majorLbl.text = dept;
+        statusLbl.text = @"Unavailable";
+        classLbl.text = @"Unavailable";
+    }
     
     nameLbl.text = [NSString stringWithFormat:@"%@, %@", last, first];
     
     usernameLbl.text = username;
 
-    
     return cell;
 }
 
