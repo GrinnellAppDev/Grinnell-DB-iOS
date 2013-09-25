@@ -136,7 +136,7 @@
     
     // Start the search
     [self searchUsingURL:url forPage:1];
-    NSLog(@"Here");
+    
     if (NULL == self.searchResults)
         return NO;
     else
@@ -402,7 +402,7 @@
 - (void)searchUsingURL:(NSURL *)url forPage:(int)pageNum {
     int numberOfPages;
     float numberOfEntries;
-    
+    //NSLog(@"%@", url);
     // Try the search
     @try{
         NSString *post =[[NSString alloc] initWithFormat:@""];
@@ -435,7 +435,7 @@
             startRange.location = 0;
             responseData = [responseData stringByReplacingCharactersInRange:startRange withString:@""];
 
-            NSRange endRange = [responseData rangeOfString:@"matches"];
+            NSRange endRange = [responseData rangeOfString:@"<strong>no</strong> matches"];
             if (NSNotFound != endRange.location) {
                 [self showNoResultsAlert];
                 self.searchResults = NULL;
@@ -806,9 +806,16 @@
                         }
                     }
                     else {
+                        startRange = [temporary rangeOfString:@"<div class=\"tny\">"];
                         startRange.length = startRange.location;
                         startRange.location = 0;
                         majYr = [temporary substringWithRange:startRange];
+                        majYr = [majYr stringByReplacingOccurrencesOfString:@";<br" withString:@""];
+                        majYr = [majYr stringByReplacingOccurrencesOfString:@">" withString:@""];
+                        majYr = [majYr stringByReplacingOccurrencesOfString:@";" withString:@""];
+                        majYr = [majYr stringByReplacingOccurrencesOfString:@"<br />" withString:@""];
+                        majYr = [majYr stringByReplacingOccurrencesOfString:@"<br /" withString:@""];
+                        majYr = [majYr stringByTrimmingCharactersInSet:[NSCharacterSet punctuationCharacterSet]];
                         majYr = [majYr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                         
                         if (![majYr isEqualToString:@""]) {
@@ -872,7 +879,7 @@
                     endRange.length = endRange.location - (startRange.location + startRange.length);
                     endRange.location = startRange.location + startRange.length;
                     temporary = [dataString substringWithRange:endRange];
-                    if (![temporary isEqualToString:@""]) {
+                    if (![temporary isEqualToString:@""] && ![temporary isEqualToString:@"&nbsp;"]) {
                         [tmpPerson.attributes addObject:@"Box Number"];
                         [tmpPerson.attributeVals addObject:temporary];
                     }
