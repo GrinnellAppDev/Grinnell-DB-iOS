@@ -120,9 +120,10 @@
         if (phoneNum.length >= 10)
             url = [url stringByAppendingString:phoneNum];
         else if (phoneNum.length >= 7)
-             url = [url stringByAppendingString:[NSString stringWithFormat:@"telprompt://641-%@", phoneNum]];
+             url = [url stringByAppendingString:[NSString stringWithFormat:@"641-%@", phoneNum]];
         else
-            url = [url stringByAppendingString:[NSString stringWithFormat:@"telprompt://641-269-%@", phoneNum]];
+            url = [url stringByAppendingString:[NSString stringWithFormat:@"641-269-%@", phoneNum]];
+        
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     }
 
