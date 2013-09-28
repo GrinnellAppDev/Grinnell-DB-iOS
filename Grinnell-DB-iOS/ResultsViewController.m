@@ -139,25 +139,12 @@
     
     Person *tempPerson = [[Person alloc] init];
     tempPerson = [self.searchDetails objectAtIndex:indexPath.row];
-    /*
-     for (int i = 0; i < tempPerson.attributes.count; i++)
-     NSLog(@"%@", [tempPerson.attributes objectAtIndex:i]);
-     NSLog(@"done with that person\n");*/
-    
     
     NSString *first = tempPerson.firstName;
     NSString *last = tempPerson.lastName;
-    /*
-     NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Status"]);
-     NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Username"]);
-     NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Class"]);
-     NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Major"]);
-     NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Department"]);
-     NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Title"]);
-     */
     NSString *status = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Status"]];
     NSString *username = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Username"]];
-    // NSLog(@"%@", status);
+    
     if ([status isEqualToString:@"Student"]) {
         NSString *year = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Class"]];
         NSString *major = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Major"]];
@@ -167,18 +154,23 @@
     }
     else if ([status isEqualToString:@"Faculty / Staff"]) {
         NSString *dept = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Department"]];
-        //NSLog(@"%@", dept);
         NSString *title = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Title"]];
         majorLbl.text = title;
         classLbl.text = dept;
         statusLbl.text = @"Fac/Staff";
     }
     else {
-        // NSLog(@"%d", [tempPerson.attributes indexOfObject:@"Department"]);
-        NSString *dept = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Department"]];
-        majorLbl.text = dept;
+        int index = [tempPerson.attributes indexOfObject:@"Title"];
+        if (NSNotFound != index) {
+            NSString *title = [tempPerson.attributeVals objectAtIndex:index];
+            majorLbl.text = title;
+            classLbl.text = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Department"]];
+        }
+        else {
+            majorLbl.text = @"Data unavailable off campus";
+            classLbl.text = @"Unavailable";
+        }
         statusLbl.text = @"Unavailable";
-        classLbl.text = @"Unavailable";
     }
     
     nameLbl.text = [NSString stringWithFormat:@"%@, %@", last, first];

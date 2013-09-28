@@ -584,33 +584,42 @@
                     endRange.location = startRange.location + startRange.length;
                     temporary = [dataString substringWithRange:endRange];
                     
-                    if (NSNotFound != [temporary rangeOfString:@"<span class=\"tn2y\">Data"].location) {
-                        [tmpPerson.attributes addObject:@"Department"];
-                        [tmpPerson.attributeVals addObject:@"Data unavailable off campus"];
-                    }
-                    else {
-                        temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                        temporary = [temporary stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
-                        NSLog(@"%@", temporary);
-                        if (![temporary isEqualToString:@""]) {
+                    if (![temporary isEqualToString:@""]) {
+                        if (NSNotFound != [temporary rangeOfString:@"<span class=\"tn2y\">Data"].location) {
                             [tmpPerson.attributes addObject:@"Department"];
-                            [tmpPerson.attributeVals addObject:temporary];
-                        }/*
-                          //NSLog(@"%@", majYr);
-                          startRange = [temporary rangeOfString:@"<div class=\"tny\">"];
-                          endRange = [temporary rangeOfString:@"</div>"];
-                          endRange.length = endRange.location - (startRange.location + startRange.length);
-                          endRange.location = startRange.location + startRange.length;
-                          
-                          //NSLog(@"%d %d, %d %d", startRange.location, startRange.length, endRange.location, endRange.length);
-                          majYr = [temporary substringWithRange:endRange];
-                          majYr = [majYr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                          majYr = [majYr stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
-                          
-                          if (![majYr isEqualToString:@""]) {
-                          [tmpPerson.attributes addObject:@"Title"];
-                          [tmpPerson.attributeVals addObject:majYr];
-                          }*/
+                            [tmpPerson.attributeVals addObject:@"Data unavailable off campus"];
+                        }
+                        else {
+                            temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                            temporary = [temporary stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
+                            int index = 0;
+                            for (int i = 2; i < temporary.length; i++) {
+                                BOOL letterOneIsLowercase = [[NSCharacterSet lowercaseLetterCharacterSet] characterIsMember:[temporary characterAtIndex:i-2]];
+                                BOOL letterTwoIsUppercase = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[temporary characterAtIndex:i-1]];
+                                BOOL letterThreeIsLowercase = [[NSCharacterSet lowercaseLetterCharacterSet] characterIsMember:[temporary characterAtIndex:i]];
+                                if (letterOneIsLowercase && letterTwoIsUppercase && letterThreeIsLowercase) {
+                                    index = i - 1;
+                                    break;
+                                }
+                            }
+                            if (0 == index)
+                                for (int i = 1; i < temporary.length; i++) {
+                                    BOOL letterOneIsUppercase = [[NSCharacterSet uppercaseLetterCharacterSet] characterIsMember:[temporary characterAtIndex:i-1]];
+                                    BOOL letterTwoIsLowercase = [[NSCharacterSet lowercaseLetterCharacterSet] characterIsMember:[temporary characterAtIndex:i]];
+                                    if (letterOneIsUppercase && letterTwoIsLowercase) {
+                                        index = i - 1;
+                                        break;
+                                    }
+                                }
+                            startRange.location = 0;
+                            startRange.length = index;
+                            [tmpPerson.attributes addObject:@"Department"];
+                            [tmpPerson.attributeVals addObject:[temporary substringWithRange:startRange]];
+                            startRange.location = index;
+                            startRange.length = temporary.length - index;
+                            [tmpPerson.attributes addObject:@"Title"];
+                            [tmpPerson.attributeVals addObject:[temporary substringWithRange:startRange]];
+                        }
                     }
                     break;
                 case 2:
