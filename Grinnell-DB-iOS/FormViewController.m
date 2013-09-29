@@ -944,6 +944,27 @@
             dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
         }
         
+        // Check if what we expect to be the next person is actually SGA info
+        testRange = [dataString rangeOfString:@"&nbsp;</TD>"];
+        replaceRange = [dataString rangeOfString:@"colspan="];
+        if (replaceRange.location < testRange.location) {
+            startRange = [dataString rangeOfString:@"<span class=\"tn2y\">"];
+            endRange = [dataString rangeOfString:@"</span></TD>" options:NSCaseInsensitiveSearch];
+            endRange.length = endRange.location - (startRange.location + startRange.length);
+            endRange.location = startRange.location + startRange.length;
+            temporary = [dataString substringWithRange:endRange];
+            temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            int index = [tmpPerson.attributes indexOfObject:@"Status"];
+            [tmpPerson.attributes insertObject:@"SGA" atIndex:index];
+            [tmpPerson.attributeVals insertObject:temporary atIndex:index];
+            replaceRange = [dataString rangeOfString:@"</tr>"];
+            if (replaceRange.location != NSNotFound) {
+                replaceRange.length = replaceRange.location + replaceRange.length;
+                replaceRange.location = 0;
+                dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
+            }
+        }
+
         [tmpPerson.attributes addObject:@"picURL"];
         [tmpPerson.attributeVals addObject:urlString];
         
