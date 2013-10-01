@@ -34,17 +34,26 @@
 
     // Create table's header view and add name/picture as subviews
     UILabel *label = [[UILabel alloc] init];
-    label.frame = CGRectMake(120, 40, 200, 30);
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
+    
+    if (Nil != self.selectedPerson.profilePic){
+        label.frame = CGRectMake(100, 35, 210, 40);
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 90, 90)];
+        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.image = self.selectedPerson.profilePic;
+        [view addSubview:imageView];
+    }
+    else
+        label.frame = CGRectMake(20, 35, 280, 40);
+    
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor blackColor];
-    label.font = [UIFont boldSystemFontOfSize:18];
+    label.font = [UIFont boldSystemFontOfSize:20];
+    label.adjustsLetterSpacingToFitWidth = YES;
+    label.adjustsFontSizeToFitWidth = YES;
     NSString *name = [NSString stringWithFormat:@"%@ %@", self.selectedPerson.firstName, self.selectedPerson.lastName];
     label.text = name;
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 90, 90)];
-    imageView.contentMode = UIViewContentModeScaleAspectFit;
-    imageView.image = self.selectedPerson.profilePic;
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
-    [view addSubview:imageView];
+
     [view addSubview:label];
     self.tableView.tableHeaderView = view;
 }

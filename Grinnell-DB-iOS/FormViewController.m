@@ -22,17 +22,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationController.interactivePopGestureRecognizer.enabled = NO;
+    
     // Set up clear button in top left corner
     UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clear:)];
     [self.navigationItem setLeftBarButtonItem:clear animated:YES];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    // Used to pass the identity of a textField into pickerView methods
-    textFieldIdentifier = 0;
     
-    // Must be re-initialized each time this view re-appears
-    self.searchResults = [[NSMutableArray alloc] init];
     
     // Instantiate the picker view arrays
     // Note: the empty string sets up the clearing option in the picker
@@ -45,6 +40,27 @@
     
     // Assume on campus... This will be changed during [self load]
     self.onCampusBool = YES;
+    
+    // Instantiate the picker and set the field inputs
+    myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 200, 320, 240)];
+    myPickerView.delegate = self;
+    myPickerView.showsSelectionIndicator = YES;
+    [self.view addSubview:myPickerView];
+    myPickerView.hidden = YES;
+    self.majorField.inputView = myPickerView;
+    self.concentrationField.inputView = myPickerView;
+    self.sgaField.inputView = myPickerView;
+    self.hiatusField.inputView = myPickerView;
+    self.classField.inputView = myPickerView;
+    self.facStaffField.inputView = myPickerView;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    // Used to pass the identity of a textField into pickerView methods
+    textFieldIdentifier = 0;
+    
+    // Must be re-initialized each time this view re-appears
+    self.searchResults = [[NSMutableArray alloc] init];
     
     if ([self networkCheck]) {
         [self load];
@@ -64,19 +80,6 @@
     
     [self setKeyboardControls:[[BSKeyboardControls alloc] initWithFields:fields]];
     [self.keyboardControls setDelegate:self];
-    
-    // Instantiate the picker and set the field inputs
-    myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 200, 320, 240)];
-    myPickerView.delegate = self;
-    myPickerView.showsSelectionIndicator = YES;
-    [self.view addSubview:myPickerView];
-    myPickerView.hidden = YES;
-    self.majorField.inputView = myPickerView;
-    self.concentrationField.inputView = myPickerView;
-    self.sgaField.inputView = myPickerView;
-    self.hiatusField.inputView = myPickerView;
-    self.classField.inputView = myPickerView;
-    self.facStaffField.inputView = myPickerView;
     
     [super viewWillAppear:animated];
 }
@@ -157,13 +160,15 @@
 }
 
 - (void)keyboardControls:(BSKeyboardControls *)keyControls selectedField:(UIView *)field inDirection:(BSKeyboardControlsDirection)direction {
-    UIView *view = keyControls.activeField.superview.superview;
-    [self.tableView scrollRectToVisible:view.frame animated:YES];
+    /*UIView *view = keyControls.activeField.superview.superview;
+     [self.tableView scrollRectToVisible:view.frame animated:YES];*/
+    [keyControls setActiveField:field];
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     [keyboardControls setActiveField:textField];
     
+    // Show the picker if needed for this field
     if (0 != textField.tag) {
         textField.inputView.hidden = NO;
         textFieldIdentifier = textField.tag;
@@ -275,6 +280,7 @@
 #pragma mark UIAlertViewDelegate Methods
 // Called when an alert button is tapped.
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    [self viewWillAppear:YES];
     return;
 }
 
@@ -365,31 +371,40 @@
             NSRange startRange = [responseData rangeOfString:@"<select name=\"Department\">"];
             NSRange endRange = [responseData rangeOfString:@"Student Major"];
             if (NSNotFound != endRange.location) {
-                [self parseHTML:startRange :endRange :facStaffArray :responseData];
-                
-                startRange = [responseData rangeOfString:@"<select name=\"Major\">"];
-                endRange = [responseData rangeOfString:@"Concentration"];
-                [self parseHTML:startRange :endRange :majorsArray :responseData];
-                
-                startRange = [responseData rangeOfString:@"<select name=\"conc\">"];
-                endRange = [responseData rangeOfString:@"SGA"];
-                [self parseHTML:startRange :endRange :concentrationArray :responseData];
-                
-                startRange = [responseData rangeOfString:@"<select name=\"SGA\">"];
-                endRange = [responseData rangeOfString:@"Hiatus"];
-                [self parseHTML:startRange :endRange :sgaArray :responseData];
-                
-                startRange = [responseData rangeOfString:@"<select name=\"Hiatus\">"];
-                endRange = [responseData rangeOfString:@"Student Class"];
-                [self parseHTML:startRange :endRange :hiatusArray :responseData];
-                
-                startRange = [responseData rangeOfString:@"<select name=\"Gyear\">"];
-                endRange = [responseData rangeOfString:@"</form>"];
-                [self parseHTML:startRange :endRange :classArray :responseData];
+                self.onCampusBool = YES;
+                if (NSNotFound == [facStaffArray indexOfObject:@"Any"]) {
+                    [self parseHTML:startRange :endRange :facStaffArray :responseData];
+                    
+                    startRange = [responseData rangeOfString:@"<select name=\"Major\">"];
+                    endRange = [responseData rangeOfString:@"Concentration"];
+                    [self parseHTML:startRange :endRange :majorsArray :responseData];
+                    
+                    startRange = [responseData rangeOfString:@"<select name=\"conc\">"];
+                    endRange = [responseData rangeOfString:@"SGA"];
+                    [self parseHTML:startRange :endRange :concentrationArray :responseData];
+                    
+                    startRange = [responseData rangeOfString:@"<select name=\"SGA\">"];
+                    endRange = [responseData rangeOfString:@"Hiatus"];
+                    [self parseHTML:startRange :endRange :sgaArray :responseData];
+                    
+                    startRange = [responseData rangeOfString:@"<select name=\"Hiatus\">"];
+                    endRange = [responseData rangeOfString:@"Student Class"];
+                    [self parseHTML:startRange :endRange :hiatusArray :responseData];
+                    
+                    startRange = [responseData rangeOfString:@"<select name=\"Gyear\">"];
+                    endRange = [responseData rangeOfString:@"</form>"];
+                    [self parseHTML:startRange :endRange :classArray :responseData];
+                }
+                [self.tableView reloadData];
             }
             else {
-                [self showGrinnellAlert];
+                if (!self.notFirstRun) {
+                    [self showGrinnellAlert];
+                    self.notFirstRun = YES;
+                }
                 self.onCampusBool = NO;
+                //[self reloadInputViews];
+                [self.tableView reloadData];
             }
         }
     }
@@ -447,6 +462,14 @@
                 self.searchResults = NULL;
                 return;
             }
+            //Test for VAGUE SEARCH
+            NSRange testRange = [responseData rangeOfString:@"Your search returned a <i>very</i> large number of records and you must reduce the number of matches by refining your search criteria using the form at the bottom of the page"];
+            if (NSNotFound != testRange.location) {
+                [self showVagueSearchAlert];
+                self.searchResults = NULL;
+                return;
+            }
+            
             endRange.length = endRange.location;
             endRange.location = 0;
             numberOfEntries = [[responseData substringWithRange:endRange] floatValue];
@@ -734,17 +757,8 @@
 
 // This method parses the HTML returned by the search request
 - (void)parseResults:(NSString *)dataString {
-    //Test for VAGUE SEARCH
-    NSRange testRange = [dataString rangeOfString:@"Your search returned a <i>very</i> large number of records and you must reduce the number of matches by refining your search criteria using the form at the bottom of the page"];
-    //NSLog(@"%@", dataString);
-    if (NSNotFound != testRange.location) {
-        [self showVagueSearchAlert];
-        self.searchResults = NULL;
-        return;
-    }
-    
     // Check for a value to be processed
-    testRange = [dataString rangeOfString:@"onmouseout=\"this.style.cursor='default'\" >"];
+    NSRange testRange = [dataString rangeOfString:@"onmouseout=\"this.style.cursor='default'\" >"];
     if (NSNotFound == testRange.location) {
         [self parseResultsOffCampus:dataString];
         return;
@@ -970,7 +984,7 @@
         [tmpPerson.attributes addObject:@"picURL"];
         [tmpPerson.attributeVals addObject:urlString];
         
-       /*  NSLog(@"name: %@ %@", tmpPerson.firstName, tmpPerson.lastName);
+        /*  NSLog(@"name: %@ %@", tmpPerson.firstName, tmpPerson.lastName);
          for (int i = 0; i < tmpPerson.attributes.count; i++)
          NSLog(@"%@ %@", [tmpPerson.attributes objectAtIndex:i], [tmpPerson.attributeVals objectAtIndex:i]);*/
         // NSLog(@"%@", tmpPerson.lastName);

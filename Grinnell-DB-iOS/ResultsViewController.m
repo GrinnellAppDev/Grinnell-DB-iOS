@@ -38,6 +38,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"PushToProfile"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         ProfileViewController *destViewController = segue.destinationViewController;
         Person *selected = [[Person alloc] init];
         selected = [self.searchDetails objectAtIndex:indexPath.row];

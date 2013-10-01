@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BSKeyboardControls.h"
 
-@interface FormViewController : UITableViewController <UITextFieldDelegate, UIPickerViewDelegate, BSKeyboardControlsDelegate> {
+@interface FormViewController : UITableViewController <UITextFieldDelegate, UIPickerViewDelegate, BSKeyboardControlsDelegate, UITableViewDataSource, UITableViewDelegate> {
     NSMutableArray *fields;
 }
 
@@ -44,6 +44,7 @@
 @property (nonatomic, strong) BSKeyboardControls *keyboardControls;
 @property (nonatomic, assign) int textFieldIdentifier;
 @property (nonatomic, assign) BOOL onCampusBool;
+@property (nonatomic, assign) BOOL notFirstRun;
 @property (nonatomic, strong) IBOutlet UIPickerView *myPickerView;
 
 @end
