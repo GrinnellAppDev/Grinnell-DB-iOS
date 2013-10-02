@@ -43,40 +43,6 @@
         Person *selected = [[Person alloc] init];
         selected = [self.searchDetails objectAtIndex:indexPath.row];
         
-        if ([@"Faculty / Staff" isEqualToString:[selected.attributeVals objectAtIndex:[selected.attributes indexOfObject:@"Status"]]]) {
-            NSMutableArray *titleArray = [[NSMutableArray alloc] init];
-            int index = [selected.attributes indexOfObject:@"Title"];
-            NSString *title = [selected.attributeVals objectAtIndex:index];
-            NSRange testRange = [title rangeOfString:@"\n"];
-            title = [title stringByAppendingString:@"\n"];
-            if (NSNotFound != testRange.location) {
-                [selected.attributes removeObjectAtIndex:index];
-                [selected.attributeVals removeObjectAtIndex:index];
-                
-                while (NSNotFound != testRange.location) {
-                    //separate the two titles
-                    testRange.length = testRange.location;
-                    testRange.location = 0;
-                    NSString *tempTitle = [title substringWithRange:testRange];
-                    tempTitle = [tempTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                    tempTitle = [tempTitle stringByReplacingOccurrencesOfString:@";" withString:@""];
-                    testRange.length++;
-                    title = [title stringByReplacingCharactersInRange:testRange withString:@""];
-                    
-                    //add to title array
-                    [titleArray addObject:tempTitle];
-                    
-                    testRange = [title rangeOfString:@"\n"];
-                }
-                for (int i = 0; i < titleArray.count; i++) {
-                    [selected.attributes insertObject:@"Title" atIndex:index];
-                    [selected.attributeVals insertObject:[titleArray objectAtIndex:i] atIndex:index + i];
-                }
-            }
-            else {
-                // Do nothing
-            }
-        }
         if ([self networkCheck]) {
             int index = [selected.attributes indexOfObject:@"picURL"];
             if (NSNotFound != index) {
@@ -152,8 +118,21 @@
     }
     else if ([status isEqualToString:@"Faculty / Staff"]) {
         NSString *dept = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Department"]];
-        NSString *title = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Title"]];
-        majorLbl.text = title;
+        
+        NSMutableArray *titleArray = [[NSMutableArray alloc] init];
+        int index = [tempPerson.attributes indexOfObject:@"Title"];
+        while ([@"Title" isEqualToString:[tempPerson.attributes objectAtIndex:index]]) {
+            NSString *title = [tempPerson.attributeVals objectAtIndex:index];
+            [titleArray addObject:title];
+            index++;
+        }
+        NSString *compositeTitle = [titleArray objectAtIndex:0];
+        
+        for (int i = 1; i < titleArray.count; i++)
+          compositeTitle = [compositeTitle stringByAppendingString:[NSString stringWithFormat:@"/%@", [titleArray objectAtIndex:i]]];
+        
+        compositeTitle = [compositeTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        majorLbl.text = compositeTitle;
         classLbl.text = dept;
         statusLbl.text = @"Fac/Staff";
     }
