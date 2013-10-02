@@ -440,6 +440,8 @@
                 [self showErrorAlert];
                 return;
             }
+            
+            startRange = [responseData rangeOfString:@"Begin ActionBar"];
             startRange.length = startRange.location + startRange.length;
             startRange.location = 0;
             responseData = [responseData stringByReplacingCharactersInRange:startRange withString:@""];
@@ -750,20 +752,23 @@
 
 // This method parses the HTML returned by the search request
 - (void)parseResults:(NSString *)dataString {
+    NSLog(@"%@", dataString);
     // Check for a value to be processed
-    NSRange testRange = [dataString rangeOfString:@"onmouseout=\"this.style.cursor='default'\" >"];
+    NSRange testRange = [dataString rangeOfString:@"GCviewmain" options:NSCaseInsensitiveSearch];
     if (NSNotFound == testRange.location) {
+        NSLog(@"didn't find tag, we must be off campus");
         [self parseResultsOffCampus:dataString];
         return;
     }
     // Delete the string before that value
-    NSRange replaceRange = [dataString rangeOfString:@"onmouseout=\"this.style.cursor='default'\" >"];
+    NSRange replaceRange = [dataString rangeOfString:@"valign=\"top\" style=\"text-align:center;\">"];
     if (replaceRange.location != NSNotFound) {
         replaceRange.length = replaceRange.location + replaceRange.length;
         replaceRange.location = 0;
         dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
     }
     
+    testRange = [dataString rangeOfString:@"valign=\"top\" style=\"text-align:center;\">"];
     // Loop through the people
     while (NSNotFound != testRange.location) {
         Person *tmpPerson = [[Person alloc] init];
@@ -775,9 +780,13 @@
         NSRange endRange = [dataString rangeOfString:@"\" alt=\"Image Thumbnail"];
         endRange.length = endRange.location - (startRange.location + startRange.length);
         endRange.location = startRange.location + startRange.length;
-        NSString *urlString = [dataString substringWithRange:endRange];
-        urlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        testRange = [dataString rangeOfString:@"href=\""];
+        NSString *urlString;
         
+        if (endRange.location < testRange.location) {
+            urlString = [dataString substringWithRange:endRange];
+            urlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        }
         // Get and process the name
         startRange = [dataString rangeOfString:@"target = \"_blank\">"];
         endRange = [dataString rangeOfString:@"</a></TD>"];
@@ -979,7 +988,7 @@
         }
         
         // Check if what we expect to be the next person is actually SGA info
-        testRange = [dataString rangeOfString:@"onmouseout=\"this.style.cursor='default'\" >"];
+        testRange = [dataString rangeOfString:@"valign=\"top\" style=\"text-align:center;\">"];
         replaceRange = [dataString rangeOfString:@"colspan="];
         if (replaceRange.location < testRange.location) {
             startRange = [dataString rangeOfString:@"<span class=\"tny\">"];
@@ -1001,13 +1010,14 @@
                 }
             }
         }
-        [tmpPerson.attributes addObject:@"picURL"];
-        [tmpPerson.attributeVals addObject:urlString];
-        
+        if (Nil != urlString) {
+            [tmpPerson.attributes addObject:@"picURL"];
+            [tmpPerson.attributeVals addObject:urlString];
+        }
         [self.searchResults addObject:tmpPerson];
         
         // Check for another value to be processed
-        testRange = [dataString rangeOfString:@"onmouseout=\"this.style.cursor='default'\" >"];
+        testRange = [dataString rangeOfString:@"valign=\"top\" style=\"text-align:center;\">"];
     }
 }
 
