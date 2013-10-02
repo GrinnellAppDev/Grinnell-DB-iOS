@@ -31,7 +31,7 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-
+    
     // Create table's header view and add name/picture as subviews
     UILabel *label = [[UILabel alloc] init];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
@@ -53,14 +53,13 @@
     label.adjustsFontSizeToFitWidth = YES;
     NSString *name = [NSString stringWithFormat:@"%@ %@", self.selectedPerson.firstName, self.selectedPerson.lastName];
     label.text = name;
-
+    
     [view addSubview:label];
     self.tableView.tableHeaderView = view;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -74,12 +73,11 @@
     if (NSNotFound != [self.selectedPerson.attributes indexOfObject:@"picURL"])
         sub++;
     if (NSNotFound != [self.selectedPerson.attributes indexOfObject:@"Status"])
-         sub++;
+        sub++;
     return self.selectedPerson.attributes.count - sub;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
     // Register the NIB cell object for our custom cell
     [tableView registerNib:[UINib nibWithNibName:@"ProfileCell" bundle:nil] forCellReuseIdentifier:self.cellIdentifier];
     
@@ -105,7 +103,6 @@
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    
     return cell;
 }
 
@@ -129,17 +126,17 @@
         if (phoneNum.length >= 10)
             url = [url stringByAppendingString:phoneNum];
         else if (phoneNum.length >= 7)
-             url = [url stringByAppendingString:[NSString stringWithFormat:@"641-%@", phoneNum]];
+            url = [url stringByAppendingString:[NSString stringWithFormat:@"641-%@", phoneNum]];
         else
             url = [url stringByAppendingString:[NSString stringWithFormat:@"641-269-%@", phoneNum]];
         
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     }
-
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-
+#pragma mark - Mail controller
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

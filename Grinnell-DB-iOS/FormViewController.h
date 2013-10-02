@@ -18,9 +18,9 @@
 - (void)load;
 - (void)clear:(id)sender;
 - (void)searchUsingURL:(NSURL *)url forPage:(int)pageNum;
-- (void)parseHTML:(NSRange)startRange :(NSRange)endRange :(NSMutableArray *)array :(NSString *)responseData;
 - (void)parseResults:(NSString *)dataString;
 - (void)parseResultsOffCampus:(NSString *)dataString;
+- (void)parseHTML:(NSRange)startRange :(NSRange)endRange :(NSMutableArray *)array :(NSString *)responseData;
 
 @property (nonatomic, strong) NSMutableArray *majorsArray;
 @property (nonatomic, strong) NSMutableArray *concentrationArray;
@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSMutableArray *facStaffArray;
 @property (nonatomic, strong) NSMutableArray *hiatusArray;
 @property (nonatomic, strong) NSMutableArray *searchResults;
+@property (nonatomic, strong) IBOutlet UIPickerView *myPickerView;
 @property (nonatomic, weak) IBOutlet UITextField *lastNameField;
 @property (nonatomic, weak) IBOutlet UITextField *firstNameField;
 @property (nonatomic, weak) IBOutlet UITextField *usernameField;
@@ -45,6 +46,5 @@
 @property (nonatomic, assign) int textFieldIdentifier;
 @property (nonatomic, assign) BOOL onCampusBool;
 @property (nonatomic, assign) BOOL notFirstRun;
-@property (nonatomic, strong) IBOutlet UIPickerView *myPickerView;
 
 @end

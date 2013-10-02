@@ -28,7 +28,6 @@
     UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clear:)];
     [self.navigationItem setLeftBarButtonItem:clear animated:YES];
     
-    
     // Instantiate the picker view arrays
     // Note: the empty string sets up the clearing option in the picker
     self.majorsArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
@@ -53,22 +52,20 @@
     self.hiatusField.inputView = myPickerView;
     self.classField.inputView = myPickerView;
     self.facStaffField.inputView = myPickerView;
+    
+    // Used to pass the identity of a textField into pickerView methods
+    textFieldIdentifier = 0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // Used to pass the identity of a textField into pickerView methods
-    textFieldIdentifier = 0;
-    
     // Must be re-initialized each time this view re-appears
     self.searchResults = [[NSMutableArray alloc] init];
     
-    if ([self networkCheck]) {
+    // Check network and load picker views if there is a network
+    if ([self networkCheck])
         [self load];
-    }
     else {
-        // Network Check Failed - Show Alert
-        [self performSelectorOnMainThread:@selector(showNoNetworkAlert) withObject:nil
-                            waitUntilDone:YES];
+        [self showNoNetworkAlert];
         return;
     }
     
@@ -86,7 +83,6 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 //Method to determine the availability of network Connections using the Reachability Class
@@ -101,6 +97,7 @@
     NSMutableArray *searchDetails = [[NSMutableArray alloc] init];
     NSURL *url;
     
+    // Any spaces typed into a field should be turned into pluses for the URL
     for (int i=0; i < fields.count; i++){
         UITextField *field = [fields objectAtIndex:i];
         NSString *tmp = [field.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
@@ -110,6 +107,8 @@
     NSString *first = [searchDetails objectAtIndex:0];
     NSString *last = [searchDetails objectAtIndex:1];
     NSString *user = [searchDetails objectAtIndex:2];
+    
+    // Set up the url properly - Nothing containing the word "any" should be in the url
     if (self.onCampusBool) {
         NSString *year = [searchDetails objectAtIndex:3];
         if ([year isEqualToString:@"Any"])
@@ -140,6 +139,7 @@
     // Start the search
     [self searchUsingURL:url forPage:1];
     
+    // Stop the segue if an error occured (indicated by null value in searchResults)
     if (NULL == self.searchResults)
         return NO;
     else
@@ -363,10 +363,8 @@
         NSHTTPURLResponse *response = nil;
         NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
-        //NSLog(@"Response code: %d", [response statusCode]);
         if([response statusCode] >= 200 && [response statusCode] < 300){
             NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
-            //NSLog(@"Response ==> %@", responseData);
             
             NSRange startRange = [responseData rangeOfString:@"<select name=\"Department\">"];
             NSRange endRange = [responseData rangeOfString:@"Student Major"];
@@ -403,7 +401,6 @@
                     self.notFirstRun = YES;
                 }
                 self.onCampusBool = NO;
-                //[self reloadInputViews];
                 [self.tableView reloadData];
             }
         }
@@ -417,7 +414,7 @@
 - (void)searchUsingURL:(NSURL *)url forPage:(int)pageNum {
     int numberOfPages;
     float numberOfEntries;
-    //NSLog(@"%@", url);
+    
     // Try the search
     @try{
         NSString *post =[[NSString alloc] initWithFormat:@""];
@@ -435,11 +432,8 @@
         NSHTTPURLResponse *response = nil;
         NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
-        //NSLog(@"Response code: %d", [response statusCode]);
         if([response statusCode] >= 200 && [response statusCode] < 300){
             NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
-            // NSLog(@"Response ==> %@", responseData);
-            
             
             NSRange startRange = [responseData rangeOfString:@" found"];
             if (NSNotFound == startRange.location) {
@@ -450,34 +444,40 @@
             startRange.location = 0;
             responseData = [responseData stringByReplacingCharactersInRange:startRange withString:@""];
             
+            // Test for search with no results
             NSRange endRange = [responseData rangeOfString:@"<strong>no</strong> matches"];
             if (NSNotFound != endRange.location) {
                 [self showNoResultsAlert];
                 self.searchResults = NULL;
                 return;
             }
+            
+            // Test for VAGUE SEARCH (too many results)
+            endRange = [responseData rangeOfString:@"Your search returned a <i>very</i> large number of records and you must reduce the number of matches by refining your search criteria using the form at the bottom of the page"];
+            if (NSNotFound != endRange.location) {
+                [self showVagueSearchAlert];
+                self.searchResults = NULL;
+                return;
+            }
+            
+            // Sanity Check
             endRange = [responseData rangeOfString:@"entr"];
             if (NSNotFound == endRange.location) {
                 [self showErrorAlert];
                 self.searchResults = NULL;
                 return;
             }
-            //Test for VAGUE SEARCH
-            NSRange testRange = [responseData rangeOfString:@"Your search returned a <i>very</i> large number of records and you must reduce the number of matches by refining your search criteria using the form at the bottom of the page"];
-            if (NSNotFound != testRange.location) {
-                [self showVagueSearchAlert];
-                self.searchResults = NULL;
-                return;
-            }
             
+            // Get the number of pages of results so we can loop through and get all of them
             endRange.length = endRange.location;
             endRange.location = 0;
             numberOfEntries = [[responseData substringWithRange:endRange] floatValue];
             numberOfPages = ceil(numberOfEntries / 15);
             
+            // Parse our search results
             [self parseResults:responseData];
-            // NSLog(@"%d", self.searchResults.count);
             
+            // Recursive call to parse the next page worth of results
             if (pageNum < numberOfPages) {
                 pageNum++;
                 NSString *urlStr = [url absoluteString];
@@ -485,7 +485,6 @@
                 endRange = [urlStr rangeOfString:@"&LastName="];
                 endRange.length = endRange.location - (startRange.location + startRange.length);
                 endRange.location = startRange.location + startRange.length;
-                // TODO - error check this STRINGBYREPLACING
                 urlStr = [urlStr stringByReplacingCharactersInRange:endRange withString:[NSString stringWithFormat:@"%d", pageNum]];
                 url = [NSURL URLWithString:urlStr];
                 [self searchUsingURL:url forPage:pageNum];
@@ -736,12 +735,6 @@
                 dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
             }
         }
-        /*
-         NSLog(@"name: %@ %@", tmpPerson.firstName, tmpPerson.lastName);
-         for (int i = 0; i < tmpPerson.attributes.count; i++)
-         NSLog(@"%@ %@", [tmpPerson.attributes objectAtIndex:i], [tmpPerson.attributeVals objectAtIndex:i]);
-         */
-        //NSLog(@"%@", tmpPerson.lastName);
         
         [self.searchResults addObject:tmpPerson];
         
@@ -784,7 +777,6 @@
         endRange.location = startRange.location + startRange.length;
         NSString *urlString = [dataString substringWithRange:endRange];
         urlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        //NSLog(@"%@", urlString);
         
         // Get and process the name
         startRange = [dataString rangeOfString:@"target = \"_blank\">"];
@@ -802,7 +794,6 @@
         NSString *first = [name substringWithRange:endRange];
         tmpPerson.firstName = first;
         tmpPerson.lastName = last;
-        //NSLog(@"%@ %@ %@", name, first, last);
         
         // Remove everything dealt with so far
         replaceRange = [dataString rangeOfString:@"</a></TD>"];
@@ -811,8 +802,9 @@
             replaceRange.location = 0;
             dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
         }
-        NSRange anotherRange;
+        
         // Get the remaining attributes
+        NSRange anotherRange;
         NSString *temporary, *majYr, *greekTest;
         for (int i = 0; i < 6; i++) {
             switch (i) {
@@ -865,13 +857,12 @@
                             [tmpPerson.attributes addObject:@"Department"];
                             [tmpPerson.attributeVals addObject:majYr];
                         }
-                        //NSLog(@"%@", majYr);
+                        
                         startRange = [temporary rangeOfString:@"<div class=\"tny\">"];
                         endRange = [temporary rangeOfString:@"</div>"];
                         endRange.length = endRange.location - (startRange.location + startRange.length);
                         endRange.location = startRange.location + startRange.length;
                         
-                        //NSLog(@"%d %d, %d %d", startRange.location, startRange.length, endRange.location, endRange.length);
                         majYr = [temporary substringWithRange:endRange];
                         majYr = [majYr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
                         majYr = [majYr stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
@@ -983,11 +974,6 @@
         }
         [tmpPerson.attributes addObject:@"picURL"];
         [tmpPerson.attributeVals addObject:urlString];
-        
-        /*  NSLog(@"name: %@ %@", tmpPerson.firstName, tmpPerson.lastName);
-         for (int i = 0; i < tmpPerson.attributes.count; i++)
-         NSLog(@"%@ %@", [tmpPerson.attributes objectAtIndex:i], [tmpPerson.attributeVals objectAtIndex:i]);*/
-        // NSLog(@"%@", tmpPerson.lastName);
         
         [self.searchResults addObject:tmpPerson];
         

@@ -69,18 +69,15 @@
                     testRange = [title rangeOfString:@"\n"];
                 }
                 for (int i = 0; i < titleArray.count; i++) {
-                    
                     [selected.attributes insertObject:@"Title" atIndex:index];
                     [selected.attributeVals insertObject:[titleArray objectAtIndex:i] atIndex:index + i];
                 }
-                    
             }
             else {
-            // Do nothing
+                // Do nothing
             }
-            
         }
-        if ([self networkCheck]){
+        if ([self networkCheck]) {
             int index = [selected.attributes indexOfObject:@"picURL"];
             if (NSNotFound != index) {
                 NSString *urlStr = [selected.attributeVals objectAtIndex:index];
