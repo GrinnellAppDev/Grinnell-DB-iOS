@@ -40,8 +40,18 @@
     // Assume on campus... This will be changed during [self load]
     self.onCampusBool = YES;
     
+    // Used to pass the identity of a textField into pickerView methods
+    textFieldIdentifier = 0;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
     // Instantiate the picker and set the field inputs
-    myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 200, 320, 240)];
+    UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
+    if (UIInterfaceOrientationPortrait == orient)
+        myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 200, 320, 240)];
+    else
+        myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 200, 320, 120)];
+    
     myPickerView.delegate = self;
     myPickerView.showsSelectionIndicator = YES;
     [self.view addSubview:myPickerView];
@@ -53,8 +63,7 @@
     self.classField.inputView = myPickerView;
     self.facStaffField.inputView = myPickerView;
     
-    // Used to pass the identity of a textField into pickerView methods
-    textFieldIdentifier = 0;
+    [super viewDidAppear:animated];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -528,15 +537,13 @@
         // Get the range of the value being processed
         startRange = [dataString rangeOfString:@"\">"];
         endRange = [dataString rangeOfString:@"</option>"];
-        endRange.length = endRange.location - (startRange.location + startRange.length);
-        endRange.location = startRange.location + startRange.length;
         
         // Get the value and remove whitespace
         if (NSNotFound == endRange.location) {
             [self showErrorAlert];
             NSLog(@"Error parsing picker options");
         }
-        NSString *tempString = [dataString substringWithRange:endRange];
+        NSString *tempString = [self extractFromString:dataString withRange:startRange andRange:endRange];
         tempString = [tempString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
         // Add value to array
@@ -581,32 +588,23 @@
         tmpPerson.attributes = [[NSMutableArray alloc] init];
         tmpPerson.attributeVals = [[NSMutableArray alloc] init];
         NSRange startRange;
-        NSString *temporary, *name, *last, *first;
+        NSString *temporary, *last, *first;
         for (int i = 0; i < 6; i++) {
             switch (i) {
                 case 0:
-                    startRange = [dataString rangeOfString:@"valign=\"top\">"];
-                    endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
-                    endRange.length = endRange.location - (startRange.location + startRange.length);
-                    endRange.location = startRange.location + startRange.length;
-                    name = [dataString substringWithRange:endRange];
-                    name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-                    endRange = [name rangeOfString:@", "];
+                    temporary = [self getAttributeValue:dataString];
+                    endRange = [temporary rangeOfString:@", "];
                     startRange.location = 0;
                     startRange.length = endRange.location;
                     endRange.location += 2;;
-                    endRange.length = name.length - endRange.location;
-                    last = [name substringWithRange:startRange];
-                    first = [name substringWithRange:endRange];
+                    endRange.length = temporary.length - endRange.location;
+                    last = [temporary substringWithRange:startRange];
+                    first = [temporary substringWithRange:endRange];
                     tmpPerson.firstName = first;
                     tmpPerson.lastName = last;
                     break;
                 case 1:
-                    startRange = [dataString rangeOfString:@"valign=\"top\">"];
-                    endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
-                    endRange.length = endRange.location - (startRange.location + startRange.length);
-                    endRange.location = startRange.location + startRange.length;
-                    temporary = [dataString substringWithRange:endRange];
+                    temporary = [self getAttributeValue:dataString];
                     
                     if (![temporary isEqualToString:@""]) {
                         if (NSNotFound != [temporary rangeOfString:@"<span class=\"tn2y\">Data"].location) {
@@ -647,11 +645,8 @@
                     }
                     break;
                 case 2:
-                    startRange = [dataString rangeOfString:@"valign=\"top\">"];
-                    endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
-                    endRange.length = endRange.location - (startRange.location + startRange.length);
-                    endRange.location = startRange.location + startRange.length;
-                    temporary = [dataString substringWithRange:endRange];
+                    temporary = [self getAttributeValue:dataString];
+                    
                     temporary = [temporary stringByReplacingOccurrencesOfString:@"<span class=\"tny2\">" withString:@""];
                     temporary = [temporary stringByReplacingOccurrencesOfString:@"</span>" withString:@""];
                     temporary = [temporary stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
@@ -662,20 +657,13 @@
                     }
                     break;
                 case 3:
-                    startRange = [dataString rangeOfString:@"valign=\"top\"> <font size=\"-1\">"];
-                    endRange = [dataString rangeOfString:@"@grinnell.edu" options:NSCaseInsensitiveSearch];
-                    endRange.length = endRange.location - (startRange.location + startRange.length);
-                    endRange.location = startRange.location + startRange.length;
-                    temporary = [dataString substringWithRange:endRange];
+                    temporary = [self getEmailAttributeValue:dataString];
                     [tmpPerson.attributes addObject:@"Username"];
                     [tmpPerson.attributeVals addObject:temporary];
                     break;
                 case 4:
-                    startRange = [dataString rangeOfString:@"valign=\"top\">"];
-                    endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
-                    endRange.length = endRange.location - (startRange.location + startRange.length);
-                    endRange.location = startRange.location + startRange.length;
-                    temporary = [dataString substringWithRange:endRange];
+                    temporary = [self getAttributeValue:dataString];
+                    
                     temporary = [temporary stringByReplacingOccurrencesOfString:@"<span class=\"tny2\">" withString:@""];
                     temporary = [temporary stringByReplacingOccurrencesOfString:@"</span>" withString:@""];
                     temporary = [temporary stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
@@ -686,12 +674,8 @@
                     }
                     break;
                 case 5:
-                    startRange = [dataString rangeOfString:@"valign=\"top\">"];
-                    endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
-                    endRange.length = endRange.location - (startRange.location + startRange.length);
-                    endRange.location = startRange.location + startRange.length;
-                    temporary = [dataString substringWithRange:endRange];
-                    temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    temporary = [self getAttributeValue:dataString];
+                    
                     [tmpPerson.attributes addObject:@"Status"];
                     [tmpPerson.attributeVals addObject:temporary];
                     break;
@@ -723,10 +707,8 @@
         if (replaceRange.location < testRange.location) {
             startRange = [dataString rangeOfString:@"<span class=\"tn2y\">"];
             endRange = [dataString rangeOfString:@"</span></TD>" options:NSCaseInsensitiveSearch];
-            endRange.length = endRange.location - (startRange.location + startRange.length);
-            endRange.location = startRange.location + startRange.length;
-            temporary = [dataString substringWithRange:endRange];
-            temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            temporary = [self extractFromString:dataString withRange:startRange andRange:endRange
+                         ];
             int index = [tmpPerson.attributes indexOfObject:@"Status"];
             [tmpPerson.attributes insertObject:@"SGA" atIndex:index];
             [tmpPerson.attributeVals insertObject:temporary atIndex:index];
@@ -752,24 +734,27 @@
 
 // This method parses the HTML returned by the search request
 - (void)parseResults:(NSString *)dataString {
-    NSLog(@"%@", dataString);
-    // Check for a value to be processed
+    // Check for on campus vs. off campus
     NSRange testRange = [dataString rangeOfString:@"GCviewmain" options:NSCaseInsensitiveSearch];
     if (NSNotFound == testRange.location) {
-        NSLog(@"didn't find tag, we must be off campus");
         [self parseResultsOffCampus:dataString];
         return;
     }
-    // Delete the string before that value
-    NSRange replaceRange = [dataString rangeOfString:@"valign=\"top\" style=\"text-align:center;\">"];
-    if (replaceRange.location != NSNotFound) {
-        replaceRange.length = replaceRange.location + replaceRange.length;
-        replaceRange.location = 0;
-        dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
+    
+    // Delete the string before the first value
+    testRange = [dataString rangeOfString:@"valign=\"top\" style=\"text-align:center;\">"];
+    if (NSNotFound != testRange.location) {
+        testRange.length = testRange.location;
+        testRange.location = 0;
+        dataString = [dataString stringByReplacingCharactersInRange:testRange withString:@""];
+    }
+    else {
+        [self showErrorAlert];
+        return;
     }
     
-    testRange = [dataString rangeOfString:@"valign=\"top\" style=\"text-align:center;\">"];
     // Loop through the people
+    NSRange replaceRange;
     while (NSNotFound != testRange.location) {
         Person *tmpPerson = [[Person alloc] init];
         tmpPerson.attributes = [[NSMutableArray alloc] init];
@@ -778,22 +763,16 @@
         // Get and process the url string
         NSRange startRange = [dataString rangeOfString:@"<img src=\""];
         NSRange endRange = [dataString rangeOfString:@"\" alt=\"Image Thumbnail"];
-        endRange.length = endRange.location - (startRange.location + startRange.length);
-        endRange.location = startRange.location + startRange.length;
         testRange = [dataString rangeOfString:@"href=\""];
         NSString *urlString;
+        if (endRange.location < testRange.location)
+            urlString = [self extractFromString:dataString withRange:startRange andRange:endRange];
         
-        if (endRange.location < testRange.location) {
-            urlString = [dataString substringWithRange:endRange];
-            urlString = [urlString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        }
-        // Get and process the name
+        // Get and process the person's name
         startRange = [dataString rangeOfString:@"target = \"_blank\">"];
         endRange = [dataString rangeOfString:@"</a></TD>"];
-        endRange.length = endRange.location - (startRange.location + startRange.length);
-        endRange.location = startRange.location + startRange.length;
-        NSString *name = [dataString substringWithRange:endRange];
-        name = [name stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        NSString *name = [self extractFromString:dataString withRange:startRange andRange:endRange];
+        
         endRange = [name rangeOfString:@", "];
         startRange.location = 0;
         startRange.length = endRange.location;
@@ -813,24 +792,21 @@
         }
         
         // Get the remaining attributes
-        NSRange anotherRange;
         NSString *temporary, *majYr, *greekTest;
         for (int i = 0; i < 6; i++) {
             switch (i) {
+                // Department/Title OR Major/Year
                 case 0:
-                    startRange = [dataString rangeOfString:@"valign=\"top\">"];
-                    endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
-                    endRange.length = endRange.location - (startRange.location + startRange.length);
-                    endRange.location = startRange.location + startRange.length;
-                    temporary = [dataString substringWithRange:endRange];
+                    temporary = [self getAttributeValue:dataString];
+                    
                     endRange = [temporary rangeOfString:@" ("];
                     startRange = [temporary rangeOfString:@"<br />"];
                     
                     // Deal with departments containing '(' character in name
                     if (NSNotFound != endRange.location){
-                        anotherRange.location = endRange.location + endRange.length;
-                        anotherRange.length = 1;
-                        greekTest = [temporary substringWithRange:anotherRange];
+                        replaceRange.location = endRange.location + endRange.length;
+                        replaceRange.length = 1;
+                        greekTest = [temporary substringWithRange:replaceRange];
                     }
                     
                     if ([@"2" isEqualToString:greekTest] && endRange.location < startRange.location) {
@@ -869,18 +845,12 @@
                         
                         startRange = [temporary rangeOfString:@"<div class=\"tny\">"];
                         endRange = [temporary rangeOfString:@"</div>"];
-                        endRange.length = endRange.location - (startRange.location + startRange.length);
-                        endRange.location = startRange.location + startRange.length;
-                        
-                        majYr = [temporary substringWithRange:endRange];
-                        majYr = [majYr stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                        majYr = [self extractFromString:temporary withRange:startRange andRange:endRange];
                         majYr = [majYr stringByReplacingOccurrencesOfString:@"<br />" withString:@"\n"];
                         
                         if (![majYr isEqualToString:@""]) {
-                            
                             NSMutableArray *titleArray = [[NSMutableArray alloc] init];
-//                            int index = [tmpPerson.attributes indexOfObject:@"Title"];
-//                            NSString *title = [tmpPerson.attributeVals objectAtIndex:index];
+                            
                             NSRange testRange = [majYr rangeOfString:@"\n"];
                             majYr = [majYr stringByAppendingString:@"\n"];
                             if (NSNotFound != testRange.location) {
@@ -912,12 +882,7 @@
                     }
                     break;
                 case 1:
-                    startRange = [dataString rangeOfString:@"valign=\"top\">"];
-                    endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
-                    endRange.length = endRange.location - (startRange.location + startRange.length);
-                    endRange.location = startRange.location + startRange.length;
-                    temporary = [dataString substringWithRange:endRange];
-                    temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    temporary = [self getAttributeValue:dataString];
                     
                     if (![temporary isEqualToString:@""]) {
                         [tmpPerson.attributes addObject:@"Campus Phone"];
@@ -925,50 +890,36 @@
                     }
                     break;
                 case 2:
-                    startRange = [dataString rangeOfString:@"valign=\"top\"> <font size=\"-1\">"];
-                    endRange = [dataString rangeOfString:@"@grinnell.edu" options:NSCaseInsensitiveSearch];
-                    endRange.length = endRange.location - (startRange.location + startRange.length);
-                    endRange.location = startRange.location + startRange.length;
-                    temporary = [dataString substringWithRange:endRange];
-                    [tmpPerson.attributes addObject:@"Username"];
-                    [tmpPerson.attributeVals addObject:temporary];
+                    temporary = [self getEmailAttributeValue:dataString];
+                    
+                    if (![temporary isEqualToString:@""]) {
+                        [tmpPerson.attributes addObject:@"Username"];
+                        [tmpPerson.attributeVals addObject:temporary];
+                    }
                     break;
                 case 3:
-                    startRange = [dataString rangeOfString:@"valign=\"top\">"];
-                    endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
-                    endRange.length = endRange.location - (startRange.location + startRange.length);
-                    endRange.location = startRange.location + startRange.length;
-                    temporary = [dataString substringWithRange:endRange];
-                    temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    temporary = [self getAttributeValue:dataString];
+                    
                     if (![temporary isEqualToString:@""]) {
                         [tmpPerson.attributes addObject:@"Campus Address"];
                         [tmpPerson.attributeVals addObject:temporary];
                     }
                     break;
                 case 4:
-                    startRange = [dataString rangeOfString:@"valign=\"top\">"];
-                    endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
-                    endRange.length = endRange.location - (startRange.location + startRange.length);
-                    endRange.location = startRange.location + startRange.length;
-                    temporary = [dataString substringWithRange:endRange];
+                    temporary = [self getAttributeValue:dataString];
+                    
                     if (![temporary isEqualToString:@""] && ![temporary isEqualToString:@"&nbsp;"]) {
                         [tmpPerson.attributes addObject:@"Box Number"];
                         [tmpPerson.attributeVals addObject:temporary];
                     }
                     break;
                 case 5:
-                    startRange = [dataString rangeOfString:@"valign=\"top\">"];
-                    endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
-                    endRange.length = endRange.location - (startRange.location + startRange.length);
-                    endRange.location = startRange.location + startRange.length;
-                    temporary = [dataString substringWithRange:endRange];
-                    temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    temporary = [self getAttributeValue:dataString];
                     [tmpPerson.attributes addObject:@"Status"];
                     [tmpPerson.attributeVals addObject:temporary];
                     break;
                 default:
                     break;
-                    
             }
             // Remove the just processed attribute
             replaceRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
@@ -978,7 +929,6 @@
                 dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
             }
         }
-        
         // Remove the section of the string just processed
         replaceRange = [dataString rangeOfString:@"</tr>"];
         if (replaceRange.location != NSNotFound) {
@@ -995,10 +945,7 @@
             endRange = [dataString rangeOfString:@"</span></TD>" options:NSCaseInsensitiveSearch];
             
             if (NSNotFound != startRange.location && NSNotFound != endRange.location) {
-                endRange.length = endRange.location - (startRange.location + startRange.length);
-                endRange.location = startRange.location + startRange.length;
-                temporary = [dataString substringWithRange:endRange];
-                temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                temporary = [self extractFromString:dataString withRange:startRange andRange:endRange];
                 int index = [tmpPerson.attributes indexOfObject:@"Status"];
                 [tmpPerson.attributes insertObject:@"SGA" atIndex:index];
                 [tmpPerson.attributeVals insertObject:temporary atIndex:index];
@@ -1019,6 +966,30 @@
         // Check for another value to be processed
         testRange = [dataString rangeOfString:@"valign=\"top\" style=\"text-align:center;\">"];
     }
+}
+
+// Getting an attribute
+- (NSString *)getAttributeValue:(NSString *)dataString {
+    NSRange startRange = [dataString rangeOfString:@"valign=\"top\">"];
+    NSRange endRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
+    return [self extractFromString:dataString withRange:startRange andRange:endRange];
+}
+
+// Getting the email attribute
+- (NSString *)getEmailAttributeValue:(NSString *)dataString {
+    NSRange startRange = [dataString rangeOfString:@"valign=\"top\"> <font size=\"-1\">"];
+    NSRange endRange = [dataString rangeOfString:@"@grinnell.edu" options:NSCaseInsensitiveSearch];
+    return [self extractFromString:dataString withRange:startRange andRange:endRange];
+}
+
+// Taking a substring of a string starting at startRange and ending at endRange
+//  Returns nicely formatted!
+- (NSString *)extractFromString:(NSString *)str withRange:(NSRange)startRange andRange:(NSRange)endRange {
+    endRange.length = endRange.location - (startRange.location + startRange.length);
+    endRange.location = startRange.location + startRange.length;
+    NSString *temporary = [str substringWithRange:endRange];
+    temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    return temporary;
 }
 
 // Allows the search button to trigger the segue

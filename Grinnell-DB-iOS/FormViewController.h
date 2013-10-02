@@ -14,6 +14,9 @@
 }
 
 - (BOOL)networkCheck;
+- (NSString *)getAttributeValue:(NSString *)dataString;
+- (NSString *)getEmailAttributeValue:(NSString *)dataString;
+- (NSString *)extractFromString:(NSString *)str withRange:(NSRange)startRange andRange:(NSRange)endRange;
 - (void)search;
 - (void)load;
 - (void)clear:(id)sender;
