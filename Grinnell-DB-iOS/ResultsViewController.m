@@ -100,6 +100,7 @@
     UILabel *usernameLbl = (UILabel *)[cell viewWithTag:1004];
     UILabel *majorLbl = (UILabel *)[cell viewWithTag:1005];
     UILabel *classLbl = (UILabel *)[cell viewWithTag:1006];
+    UIImageView *userImageView = (UIImageView *) [cell viewWithTag:1007];
     
     Person *tempPerson = [[Person alloc] init];
     tempPerson = [self.searchDetails objectAtIndex:indexPath.row];
@@ -108,6 +109,19 @@
     NSString *last = tempPerson.lastName;
     NSString *status = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Status"]];
     NSString *username = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Username"]];
+    NSString *userImageString = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"picURL"]];
+    NSLog(@"USERImage: %@", userImageString);
+    
+    NSURL *imageURL = [[NSURL alloc] initWithString:userImageString];
+    
+    // Fetch the image
+    tempPerson.profilePic = [UIImage imageWithData: [NSData dataWithContentsOfURL:imageURL]];
+    
+    if (Nil != tempPerson.profilePic){
+//        userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 90, 90)];
+        userImageView.contentMode = UIViewContentModeScaleAspectFit;
+        userImageView.image =  tempPerson.profilePic; //self.selectedPerson.profilePic;
+    }
     
     if ([status isEqualToString:@"Student"]) {
         NSString *year = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Class"]];
