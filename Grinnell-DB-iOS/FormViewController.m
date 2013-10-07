@@ -958,8 +958,16 @@
             }
         }
         if (Nil != urlString) {
-            [tmpPerson.attributes addObject:@"picURL"];
-            [tmpPerson.attributeVals addObject:urlString];
+         //   NSString *userImageString = [tmpPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"picURL"]];
+           // NSLog(@"USERImage: %@", userImageString);
+            
+            NSURL *imageURL = [[NSURL alloc] initWithString:urlString];
+            
+            // Fetch the image
+            tmpPerson.profilePic = [UIImage imageWithData: [NSData dataWithContentsOfURL:imageURL]];
+            
+    //        [tmpPerson.attributes addObject:@"picURL"];
+      //      [tmpPerson.attributeVals addObject:urlString];
         }
         [self.searchResults addObject:tmpPerson];
         
