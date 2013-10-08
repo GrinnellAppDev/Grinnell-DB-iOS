@@ -16,3 +16,5 @@ profile
 *.moved-aside
 DerivedData
 .idea/
+
+Grinnell-DB-iOS/ResultsCell.xib

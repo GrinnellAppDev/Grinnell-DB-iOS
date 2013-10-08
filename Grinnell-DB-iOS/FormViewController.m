@@ -450,7 +450,6 @@
                 return;
             }
             
-            startRange = [responseData rangeOfString:@"Begin ActionBar"];
             startRange.length = startRange.location + startRange.length;
             startRange.location = 0;
             responseData = [responseData stringByReplacingCharactersInRange:startRange withString:@""];
@@ -480,8 +479,14 @@
             }
             
             // Get the number of pages of results so we can loop through and get all of them
+            //NSLog(@"%@", [responseData substringWithRange:endRange]);
             endRange.length = endRange.location;
             endRange.location = 0;
+            //endRange.length -= endRange.location;
+           //NSLog(@"%@", [responseData substringWithRange:endRange]);
+           
+            //NSLog(@"is this the error");
+            
             numberOfEntries = [[responseData substringWithRange:endRange] floatValue];
             numberOfPages = ceil(numberOfEntries / 15);
             
@@ -489,6 +494,7 @@
             [self parseResults:responseData];
             
             // Recursive call to parse the next page worth of results
+//            NSLog(@"Number of pages: %d\npage num: %d\nnumbEntries: %f", numberOfPages, pageNum, numberOfEntries);
             if (pageNum < numberOfPages) {
                 pageNum++;
                 NSString *urlStr = [url absoluteString];
@@ -753,8 +759,8 @@
 // This method parses the HTML returned by the search request
 - (void)parseResults:(NSString *)dataString {
     // Check for on campus vs. off campus
-    NSRange testRange = [dataString rangeOfString:@"GCviewmain" options:NSCaseInsensitiveSearch];
-    if (NSNotFound == testRange.location) {
+    NSRange testRange = [dataString rangeOfString:@"You can gain access" options:NSCaseInsensitiveSearch];
+    if (NSNotFound != testRange.location) {
         [self parseResultsOffCampus:dataString];
         return;
     }
@@ -976,8 +982,16 @@
             }
         }
         if (Nil != urlString) {
-            [tmpPerson.attributes addObject:@"picURL"];
-            [tmpPerson.attributeVals addObject:urlString];
+         //   NSString *userImageString = [tmpPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"picURL"]];
+           // NSLog(@"USERImage: %@", userImageString);
+            
+            NSURL *imageURL = [[NSURL alloc] initWithString:urlString];
+            
+            // Fetch the image
+            tmpPerson.profilePic = [UIImage imageWithData: [NSData dataWithContentsOfURL:imageURL]];
+            
+    //        [tmpPerson.attributes addObject:@"picURL"];
+      //      [tmpPerson.attributeVals addObject:urlString];
         }
         [self.searchResults addObject:tmpPerson];
         
