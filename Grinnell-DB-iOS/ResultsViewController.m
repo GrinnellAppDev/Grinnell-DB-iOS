@@ -28,7 +28,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.cellIdentifier = @"OnCResultsCell";
+    if (self.onCampusBool)
+        self.cellIdentifier = @"OnCResultsCell";
+    else
+        self.cellIdentifier = @"OffCResultsCell";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,7 +90,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Register the NIB cell object for our custom cell
-    [tableView registerNib:[UINib nibWithNibName:@"OnCResultsCell" bundle:nil] forCellReuseIdentifier:self.cellIdentifier];
+    if (self.onCampusBool)
+        [tableView registerNib:[UINib nibWithNibName:@"OnCResultsCell" bundle:nil] forCellReuseIdentifier:self.cellIdentifier];
+    else
+        [tableView registerNib:[UINib nibWithNibName:@"OffCResultsCell" bundle:nil] forCellReuseIdentifier:self.cellIdentifier];
     
     UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
 	if (cell == nil) {

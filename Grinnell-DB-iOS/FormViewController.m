@@ -160,6 +160,7 @@
     if ([segue.identifier isEqualToString:@"searchSegue"]) {
         ResultsViewController *destViewController = segue.destinationViewController;
         destViewController.searchDetails = self.searchResults;
+        destViewController.onCampusBool = self.onCampusBool;
     }
 }
 
