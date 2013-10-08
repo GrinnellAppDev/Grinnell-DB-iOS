@@ -37,6 +37,7 @@
 		3BFC8F8417E12C9F003832DF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7B17E12C9F003832DF /* Icon@2x.png */; };
 		3BFC8F8517E12C9F003832DF /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7C17E12C9F003832DF /* iTunesArtwork.png */; };
 		3BFC8F8617E12C9F003832DF /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7D17E12C9F003832DF /* iTunesArtwork@2x.png */; };
+		E1C852D618024FF100D264E8 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C852D518024FF000D264E8 /* Default~iphone.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		3BFC8F7B17E12C9F003832DF /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		3BFC8F7C17E12C9F003832DF /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		3BFC8F7D17E12C9F003832DF /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		E1C852D518024FF000D264E8 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 				36363CD217E11EAC00B01E34 /* main.m */,
 				36363CD417E11EAC00B01E34 /* Grinnell-DB-iOS-Prefix.pch */,
 				36363CD817E11EAC00B01E34 /* Default.png */,
+				E1C852D518024FF000D264E8 /* Default~iphone.png */,
 				36363CDA17E11EAC00B01E34 /* Default@2x.png */,
 				36363CDC17E11EAC00B01E34 /* Default-568h@2x.png */,
 			);
@@ -249,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36363CD117E11EAC00B01E34 /* InfoPlist.strings in Resources */,
+				E1C852D618024FF100D264E8 /* Default~iphone.png in Resources */,
 				36363CD917E11EAC00B01E34 /* Default.png in Resources */,
 				36363CDB17E11EAC00B01E34 /* Default@2x.png in Resources */,
 				36363CDD17E11EAC00B01E34 /* Default-568h@2x.png in Resources */,

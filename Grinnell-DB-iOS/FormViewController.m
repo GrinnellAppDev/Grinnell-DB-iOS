@@ -589,7 +589,7 @@
         tmpPerson.attributeVals = [[NSMutableArray alloc] init];
         NSRange startRange;
         NSString *temporary, *last, *first;
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 7; i++) {
             switch (i) {
                 case 0:
                     temporary = [self getAttributeValue:dataString];
@@ -676,6 +676,18 @@
                 case 5:
                     temporary = [self getAttributeValue:dataString];
                     
+                    temporary = [temporary stringByReplacingOccurrencesOfString:@"<span class=\"tny2\">" withString:@""];
+                    temporary = [temporary stringByReplacingOccurrencesOfString:@"</span>" withString:@""];
+                    temporary = [temporary stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@""];
+                    temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                    if (![temporary isEqualToString:@""]) {
+                        [tmpPerson.attributes addObject:@"Box Number"];
+                        [tmpPerson.attributeVals addObject:temporary];
+                    }
+                    break;
+                case 6:
+                    temporary = [self getAttributeValue:dataString];
+                    
                     [tmpPerson.attributes addObject:@"Status"];
                     [tmpPerson.attributeVals addObject:temporary];
                     break;
@@ -689,6 +701,11 @@
                 replaceRange.location = 0;
                 dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
             }
+            
+            replaceRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
+            endRange = [dataString rangeOfString:@"</tr>" options:NSCaseInsensitiveSearch];
+            if (endRange.location < replaceRange.location)
+                break;
         }
         
         // Remove the section of the string just processed
@@ -707,16 +724,17 @@
         if (replaceRange.location < testRange.location) {
             startRange = [dataString rangeOfString:@"<span class=\"tn2y\">"];
             endRange = [dataString rangeOfString:@"</span></TD>" options:NSCaseInsensitiveSearch];
-            temporary = [self extractFromString:dataString withRange:startRange andRange:endRange
-                         ];
-            int index = [tmpPerson.attributes indexOfObject:@"Status"];
-            [tmpPerson.attributes insertObject:@"SGA" atIndex:index];
-            [tmpPerson.attributeVals insertObject:temporary atIndex:index];
-            replaceRange = [dataString rangeOfString:@"</tr>"];
-            if (replaceRange.location != NSNotFound) {
-                replaceRange.length = replaceRange.location + replaceRange.length;
-                replaceRange.location = 0;
-                dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
+            temporary = [self extractFromString:dataString withRange:startRange andRange:endRange];
+            if (nil != temporary) {
+                int index = [tmpPerson.attributes indexOfObject:@"Status"];
+                [tmpPerson.attributes insertObject:@"SGA" atIndex:index];
+                [tmpPerson.attributeVals insertObject:temporary atIndex:index];
+                replaceRange = [dataString rangeOfString:@"</tr>"];
+                if (replaceRange.location != NSNotFound) {
+                    replaceRange.length = replaceRange.location + replaceRange.length;
+                    replaceRange.location = 0;
+                    dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
+                }
             }
         }
         
@@ -795,7 +813,7 @@
         NSString *temporary, *majYr, *greekTest;
         for (int i = 0; i < 6; i++) {
             switch (i) {
-                // Department/Title OR Major/Year
+                    // Department/Title OR Major/Year
                 case 0:
                     temporary = [self getAttributeValue:dataString];
                     
@@ -987,9 +1005,13 @@
 - (NSString *)extractFromString:(NSString *)str withRange:(NSRange)startRange andRange:(NSRange)endRange {
     endRange.length = endRange.location - (startRange.location + startRange.length);
     endRange.location = startRange.location + startRange.length;
-    NSString *temporary = [str substringWithRange:endRange];
-    temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    return temporary;
+    if (NSNotFound != endRange.location) {
+        NSString *temporary = [str substringWithRange:endRange];
+        temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        return temporary;
+    }
+    else
+        return nil;
 }
 
 // Allows the search button to trigger the segue
