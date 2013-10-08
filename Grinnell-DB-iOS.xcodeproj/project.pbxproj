@@ -21,7 +21,7 @@
 		36363CE617E11EAC00B01E34 /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36363CE517E11EAC00B01E34 /* FormViewController.m */; };
 		36363CEE17E11F6D00B01E34 /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 36363CED17E11F2000B01E34 /* BSKeyboardControls.m */; };
 		3B55414817E24CED008B4F40 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B55414617E24CED008B4F40 /* ResultsViewController.m */; };
-		3B55414B17E25870008B4F40 /* ResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B55414A17E25870008B4F40 /* ResultsCell.xib */; };
+		3B55414B17E25870008B4F40 /* OnCResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B55414A17E25870008B4F40 /* OnCResultsCell.xib */; };
 		3B55414E17E267AE008B4F40 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B55414D17E267AE008B4F40 /* ProfileViewController.m */; };
 		3B55415117E26B62008B4F40 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B55415017E26B62008B4F40 /* Person.m */; };
 		3B55415317E26D4E008B4F40 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B55415217E26D4E008B4F40 /* MessageUI.framework */; };
@@ -61,7 +61,7 @@
 		36363CED17E11F2000B01E34 /* BSKeyboardControls.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSKeyboardControls.m; sourceTree = "<group>"; };
 		3B55414517E24CED008B4F40 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
 		3B55414617E24CED008B4F40 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
-		3B55414A17E25870008B4F40 /* ResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResultsCell.xib; sourceTree = "<group>"; };
+		3B55414A17E25870008B4F40 /* OnCResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnCResultsCell.xib; sourceTree = "<group>"; };
 		3B55414C17E267AE008B4F40 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		3B55414D17E267AE008B4F40 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		3B55414F17E26B62008B4F40 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
@@ -139,7 +139,7 @@
 				36363CE517E11EAC00B01E34 /* FormViewController.m */,
 				3B55414517E24CED008B4F40 /* ResultsViewController.h */,
 				3B55414617E24CED008B4F40 /* ResultsViewController.m */,
-				3B55414A17E25870008B4F40 /* ResultsCell.xib */,
+				3B55414A17E25870008B4F40 /* OnCResultsCell.xib */,
 				3B55414C17E267AE008B4F40 /* ProfileViewController.h */,
 				3B55414D17E267AE008B4F40 /* ProfileViewController.m */,
 				3B55415717E27453008B4F40 /* ProfileCell.xib */,
@@ -263,7 +263,7 @@
 				3BFC8F8417E12C9F003832DF /* Icon@2x.png in Resources */,
 				3BFC8F8517E12C9F003832DF /* iTunesArtwork.png in Resources */,
 				3BFC8F8617E12C9F003832DF /* iTunesArtwork@2x.png in Resources */,
-				3B55414B17E25870008B4F40 /* ResultsCell.xib in Resources */,
+				3B55414B17E25870008B4F40 /* OnCResultsCell.xib in Resources */,
 				3B55415817E27453008B4F40 /* ProfileCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

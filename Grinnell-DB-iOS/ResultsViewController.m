@@ -28,7 +28,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.cellIdentifier = @"ResultsCell";
+    self.cellIdentifier = @"OnCResultsCell";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -87,7 +87,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Register the NIB cell object for our custom cell
-    [tableView registerNib:[UINib nibWithNibName:@"ResultsCell" bundle:nil] forCellReuseIdentifier:self.cellIdentifier];
+    [tableView registerNib:[UINib nibWithNibName:@"OnCResultsCell" bundle:nil] forCellReuseIdentifier:self.cellIdentifier];
     
     UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
 	if (cell == nil) {
