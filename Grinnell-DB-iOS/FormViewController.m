@@ -448,9 +448,7 @@
                 return;
             }
             
-            startRange.length = startRange.location + startRange.length;
-            startRange.location = 0;
-            responseData = [responseData stringByReplacingCharactersInRange:startRange withString:@""];
+            responseData = [self cutString:responseData fromStartToEndOfRange:startRange];
             
             // Test for search with no results
             NSRange endRange = [responseData rangeOfString:@"<strong>no</strong> matches"];
@@ -522,11 +520,8 @@
     
     // Skip over the initial empty tag
     NSRange replaceRange = [dataString rangeOfString:@"</option>"];
-    if (NSNotFound != replaceRange.location) {
-        replaceRange.length = replaceRange.location + replaceRange.length;
-        replaceRange.location = 0;
-        dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
-    }
+    if (NSNotFound != replaceRange.location)
+        dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
     
     // Check for a value to be processed
     NSRange testRange = [dataString rangeOfString:@"</option>"];
@@ -549,11 +544,8 @@
         
         // Remove the section of the string just processed
         NSRange replaceRange = [dataString rangeOfString:@"</option>"];
-        if (replaceRange.location != NSNotFound) {
-            replaceRange.length = replaceRange.location + replaceRange.length;
-            replaceRange.location = 0;
-            dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
-        }
+        if (replaceRange.location != NSNotFound)
+            dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
         
         // Check for another value to be processed
         testRange = [dataString rangeOfString:@"</option>"];
@@ -567,11 +559,8 @@
     
     // Delete the string before that value
     NSRange replaceRange = [dataString rangeOfString:@"&nbsp;</TD>" options:NSCaseInsensitiveSearch];
-    if (replaceRange.location != NSNotFound) {
-        replaceRange.length = replaceRange.location + replaceRange.length;
-        replaceRange.location = 0;
-        dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
-    }
+    if (replaceRange.location != NSNotFound)
+        dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
     
     // Delete string after final person
     replaceRange = [dataString rangeOfString:@"End of page - Begin Footers" options:NSCaseInsensitiveSearch];
@@ -693,11 +682,8 @@
             }
             // Remove the just processed attribute
             replaceRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
-            if (replaceRange.location != NSNotFound) {
-                replaceRange.length = replaceRange.location + replaceRange.length;
-                replaceRange.location = 0;
-                dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
-            }
+            if (replaceRange.location != NSNotFound)
+                dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
             
             replaceRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
             endRange = [dataString rangeOfString:@"</tr>" options:NSCaseInsensitiveSearch];
@@ -707,11 +693,8 @@
         
         // Remove the section of the string just processed
         replaceRange = [dataString rangeOfString:@"</tr>"];
-        if (replaceRange.location != NSNotFound) {
-            replaceRange.length = replaceRange.location + replaceRange.length;
-            replaceRange.location = 0;
-            dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
-        }
+        if (replaceRange.location != NSNotFound)
+            dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
         
         // Check for another value to be processed
         testRange = [dataString rangeOfString:@"&nbsp;</TD>"];
@@ -727,11 +710,8 @@
                 [tmpPerson.attributes insertObject:@"SGA" atIndex:index];
                 [tmpPerson.attributeVals insertObject:temporary atIndex:index];
                 replaceRange = [dataString rangeOfString:@"</tr>"];
-                if (replaceRange.location != NSNotFound) {
-                    replaceRange.length = replaceRange.location + replaceRange.length;
-                    replaceRange.location = 0;
-                    dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
-                }
+                if (replaceRange.location != NSNotFound)
+                    dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
             }
         }
         
@@ -739,11 +719,8 @@
         
         // Remove the header line
         replaceRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
-        if (replaceRange.location != NSNotFound) {
-            replaceRange.length = replaceRange.location + replaceRange.length;
-            replaceRange.location = 0;
-            dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
-        }
+        if (replaceRange.location != NSNotFound)
+            dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
     }
 }
 
@@ -758,11 +735,8 @@
     
     // Delete the string before the first value
     testRange = [dataString rangeOfString:@"valign=\"top\" style=\"text-align:center;\">"];
-    if (NSNotFound != testRange.location) {
-        testRange.length = testRange.location;
-        testRange.location = 0;
-        dataString = [dataString stringByReplacingCharactersInRange:testRange withString:@""];
-    }
+    if (NSNotFound != testRange.location)
+        dataString = [self cutString:dataString fromStartToEndOfRange:testRange];
     else {
         [self showErrorAlert];
         return;
@@ -800,11 +774,8 @@
         
         // Remove everything dealt with so far
         replaceRange = [dataString rangeOfString:@"</a></TD>"];
-        if (replaceRange.location != NSNotFound) {
-            replaceRange.length = replaceRange.location + replaceRange.length;
-            replaceRange.location = 0;
-            dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
-        }
+        if (replaceRange.location != NSNotFound)
+            dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
         
         // Get the remaining attributes
         NSString *temporary, *majYr, *greekTest;
@@ -938,19 +909,13 @@
             }
             // Remove the just processed attribute
             replaceRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
-            if (replaceRange.location != NSNotFound) {
-                replaceRange.length = replaceRange.location + replaceRange.length;
-                replaceRange.location = 0;
-                dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
-            }
+            if (replaceRange.location != NSNotFound)
+                dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
         }
         // Remove the section of the string just processed
         replaceRange = [dataString rangeOfString:@"</tr>"];
-        if (replaceRange.location != NSNotFound) {
-            replaceRange.length = replaceRange.location + replaceRange.length;
-            replaceRange.location = 0;
-            dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
-        }
+        if (replaceRange.location != NSNotFound)
+            dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
         
         // Check if what we expect to be the next person is actually SGA info
         testRange = [dataString rangeOfString:@"valign=\"top\" style=\"text-align:center;\">"];
@@ -965,11 +930,8 @@
                 [tmpPerson.attributes insertObject:@"SGA" atIndex:index];
                 [tmpPerson.attributeVals insertObject:temporary atIndex:index];
                 replaceRange = [dataString rangeOfString:@"</tr>"];
-                if (replaceRange.location != NSNotFound) {
-                    replaceRange.length = replaceRange.location + replaceRange.length;
-                    replaceRange.location = 0;
-                    dataString = [dataString stringByReplacingCharactersInRange:replaceRange withString:@""];
-                }
+                if (replaceRange.location != NSNotFound)
+                    dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
             }
         }
         if (Nil != urlString) {
@@ -1009,6 +971,13 @@
     }
     else
         return nil;
+}
+
+// Cuts the beginning of a string (up to a certain range)
+- (NSString *)cutString:(NSString *)str fromStartToEndOfRange:(NSRange)startRange {
+    startRange.length = startRange.location + startRange.length;
+    startRange.location = 0;
+    return [str stringByReplacingCharactersInRange:startRange withString:@""];
 }
 
 // Allows the search button to trigger the segue

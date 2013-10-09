@@ -17,6 +17,7 @@
 - (NSString *)getAttributeValue:(NSString *)dataString;
 - (NSString *)getEmailAttributeValue:(NSString *)dataString;
 - (NSString *)extractFromString:(NSString *)str withRange:(NSRange)startRange andRange:(NSRange)endRange;
+- (NSString *)cutString:(NSString *)str fromStartToEndOfRange:(NSRange)startRange;
 - (void)search;
 - (void)load;
 - (void)clear:(id)sender;
