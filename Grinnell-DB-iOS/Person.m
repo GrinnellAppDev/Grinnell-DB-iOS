@@ -10,6 +10,6 @@
 
 @implementation Person
 
-@synthesize lastName, firstName, profilePic, attributes, attributeVals;
+@synthesize lastName, firstName, attributes, attributeVals;
 
 @end

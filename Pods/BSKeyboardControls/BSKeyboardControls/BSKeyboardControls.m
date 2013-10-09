@@ -40,10 +40,10 @@
         [self addSubview:self.toolbar];
         
         [self setSegmentedControl:[[UISegmentedControl alloc] initWithItems:@[ NSLocalizedStringFromTable(@"Previous", @"BSKeyboardControls", @"Previous button title."),
-                                   NSLocalizedStringFromTable(@"Next", @"BSKeyboardControls", @"Next button title.") ]]];
+                                                                               NSLocalizedStringFromTable(@"Next", @"BSKeyboardControls", @"Next button title.") ]]];
         [self.segmentedControl addTarget:self action:@selector(segmentedControlValueChanged:) forControlEvents:UIControlEventValueChanged];
         [self.segmentedControl setMomentary:YES];
-        [self.segmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
+        //[self.segmentedControl setSegmentedControlStyle:UISegmentedControlStyleBar];
         [self.segmentedControl setEnabled:NO forSegmentAtIndex:BSKeyboardControlsDirectionPrevious];
         [self.segmentedControl setEnabled:NO forSegmentAtIndex:BSKeyboardControlsDirectionNext];
         [self setSegmentedControlItem:[[UIBarButtonItem alloc] initWithCustomView:self.segmentedControl]];
@@ -87,12 +87,12 @@
         if ([self.fields containsObject:activeField])
         {
             _activeField = activeField;
-            
+        
             if (![activeField isFirstResponder])
             {
                 [activeField becomeFirstResponder];
             }
-            
+        
             [self updateSegmentedControlEnabledStates];
         }
     }
@@ -193,7 +193,7 @@
     if (visibleControls != _visibleControls)
     {
         _visibleControls = visibleControls;
-        
+
         [self.toolbar setItems:[self toolbarItems]];
     }
 }

@@ -19,14 +19,12 @@
 		36363CE017E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36363CDE17E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard */; };
 		36363CE317E11EAC00B01E34 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36363CE117E11EAC00B01E34 /* MainStoryboard_iPad.storyboard */; };
 		36363CE617E11EAC00B01E34 /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36363CE517E11EAC00B01E34 /* FormViewController.m */; };
-		36363CEE17E11F6D00B01E34 /* BSKeyboardControls.m in Sources */ = {isa = PBXBuildFile; fileRef = 36363CED17E11F2000B01E34 /* BSKeyboardControls.m */; };
 		3B55414817E24CED008B4F40 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B55414617E24CED008B4F40 /* ResultsViewController.m */; };
 		3B55414B17E25870008B4F40 /* OffCResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B55414A17E25870008B4F40 /* OffCResultsCell.xib */; };
 		3B55414E17E267AE008B4F40 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B55414D17E267AE008B4F40 /* ProfileViewController.m */; };
 		3B55415117E26B62008B4F40 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B55415017E26B62008B4F40 /* Person.m */; };
 		3B55415317E26D4E008B4F40 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B55415217E26D4E008B4F40 /* MessageUI.framework */; };
 		3B55415817E27453008B4F40 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B55415717E27453008B4F40 /* ProfileCell.xib */; };
-		3B59474017E93E090001A61E /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B59473F17E93E090001A61E /* Reachability.m */; };
 		3B59474217E93FC80001A61E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B59474117E93FC80001A61E /* SystemConfiguration.framework */; };
 		3BFC8F7E17E12C9F003832DF /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7517E12C9E003832DF /* Icon-72.png */; };
 		3BFC8F7F17E12C9F003832DF /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7617E12C9E003832DF /* Icon-144.png */; };
@@ -37,6 +35,7 @@
 		3BFC8F8417E12C9F003832DF /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7B17E12C9F003832DF /* Icon@2x.png */; };
 		3BFC8F8517E12C9F003832DF /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7C17E12C9F003832DF /* iTunesArtwork.png */; };
 		3BFC8F8617E12C9F003832DF /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7D17E12C9F003832DF /* iTunesArtwork@2x.png */; };
+		C385D7DB02A24090A6353E4B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 766E41B0CCF9458DBEAB7986 /* libPods.a */; };
 		E1C852D618024FF100D264E8 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C852D518024FF000D264E8 /* Default~iphone.png */; };
 		E1F2257D18049FEF00063B18 /* OnCResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */; };
 /* End PBXBuildFile section */
@@ -59,8 +58,6 @@
 		36363CE217E11EAC00B01E34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		36363CE417E11EAC00B01E34 /* FormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormViewController.h; sourceTree = "<group>"; };
 		36363CE517E11EAC00B01E34 /* FormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FormViewController.m; sourceTree = "<group>"; };
-		36363CEC17E11F2000B01E34 /* BSKeyboardControls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSKeyboardControls.h; sourceTree = "<group>"; };
-		36363CED17E11F2000B01E34 /* BSKeyboardControls.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSKeyboardControls.m; sourceTree = "<group>"; };
 		3B55414517E24CED008B4F40 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
 		3B55414617E24CED008B4F40 /* ResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultsViewController.m; sourceTree = "<group>"; };
 		3B55414A17E25870008B4F40 /* OffCResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OffCResultsCell.xib; sourceTree = "<group>"; };
@@ -70,8 +67,6 @@
 		3B55415017E26B62008B4F40 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		3B55415217E26D4E008B4F40 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3B55415717E27453008B4F40 /* ProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
-		3B59473E17E93E090001A61E /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		3B59473F17E93E090001A61E /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		3B59474117E93FC80001A61E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3BFC8F7517E12C9E003832DF /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		3BFC8F7617E12C9E003832DF /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-144.png"; sourceTree = "<group>"; };
@@ -82,6 +77,8 @@
 		3BFC8F7B17E12C9F003832DF /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		3BFC8F7C17E12C9F003832DF /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		3BFC8F7D17E12C9F003832DF /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		766E41B0CCF9458DBEAB7986 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB4BB1D0DD52462B875C07C9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		E1C852D518024FF000D264E8 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
 		E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnCResultsCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -96,6 +93,7 @@
 				36363CC717E11EAC00B01E34 /* UIKit.framework in Frameworks */,
 				36363CC917E11EAC00B01E34 /* Foundation.framework in Frameworks */,
 				36363CCB17E11EAC00B01E34 /* CoreGraphics.framework in Frameworks */,
+				C385D7DB02A24090A6353E4B /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +106,7 @@
 				36363CCC17E11EAC00B01E34 /* Grinnell-DB-iOS */,
 				36363CC517E11EAC00B01E34 /* Frameworks */,
 				36363CC317E11EAC00B01E34 /* Products */,
+				BB4BB1D0DD52462B875C07C9 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +126,7 @@
 				36363CC617E11EAC00B01E34 /* UIKit.framework */,
 				36363CC817E11EAC00B01E34 /* Foundation.framework */,
 				36363CCA17E11EAC00B01E34 /* CoreGraphics.framework */,
+				766E41B0CCF9458DBEAB7986 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -172,12 +172,8 @@
 		3B55415917E27A03008B4F40 /* Helper Classes */ = {
 			isa = PBXGroup;
 			children = (
-				36363CEC17E11F2000B01E34 /* BSKeyboardControls.h */,
-				36363CED17E11F2000B01E34 /* BSKeyboardControls.m */,
 				3B55414F17E26B62008B4F40 /* Person.h */,
 				3B55415017E26B62008B4F40 /* Person.m */,
-				3B59473E17E93E090001A61E /* Reachability.h */,
-				3B59473F17E93E090001A61E /* Reachability.m */,
 			);
 			name = "Helper Classes";
 			sourceTree = "<group>";
@@ -205,9 +201,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36363CE917E11EAC00B01E34 /* Build configuration list for PBXNativeTarget "Grinnell-DB-iOS" */;
 			buildPhases = (
+				72B5AAD7AAAD4EFBB8ABC0C7 /* Check Pods Manifest.lock */,
 				36363CBE17E11EAC00B01E34 /* Sources */,
 				36363CBF17E11EAC00B01E34 /* Frameworks */,
 				36363CC017E11EAC00B01E34 /* Resources */,
+				36CE9F08DCF94146B2EAC1CA /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -278,19 +276,50 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		36CE9F08DCF94146B2EAC1CA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		72B5AAD7AAAD4EFBB8ABC0C7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		36363CBE17E11EAC00B01E34 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				36363CD317E11EAC00B01E34 /* main.m in Sources */,
-				36363CEE17E11F6D00B01E34 /* BSKeyboardControls.m in Sources */,
 				36363CD717E11EAC00B01E34 /* AppDelegate.m in Sources */,
 				36363CE617E11EAC00B01E34 /* FormViewController.m in Sources */,
 				3B55414817E24CED008B4F40 /* ResultsViewController.m in Sources */,
 				3B55414E17E267AE008B4F40 /* ProfileViewController.m in Sources */,
 				3B55415117E26B62008B4F40 /* Person.m in Sources */,
-				3B59474017E93E090001A61E /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +407,7 @@
 		};
 		36363CEA17E11EAC00B01E34 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB4BB1D0DD52462B875C07C9 /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -392,6 +422,7 @@
 		};
 		36363CEB17E11EAC00B01E34 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BB4BB1D0DD52462B875C07C9 /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

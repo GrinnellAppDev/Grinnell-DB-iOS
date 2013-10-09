@@ -9,14 +9,16 @@
 #import "ResultsViewController.h"
 #import "ProfileViewController.h"
 #import "Person.h"
-#import "Reachability.h"
+#import <Reachability.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface ResultsViewController ()
 
 @end
 
 @implementation ResultsViewController
-@synthesize cellIdentifier;
+
+@synthesize cellIdentifier, searchDetails, onCampusBool;
 
 - (id)initWithStyle:(UITableViewStyle)style {
     self = [super initWithStyle:style];
@@ -28,10 +30,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (self.onCampusBool)
-        self.cellIdentifier = @"OnCResultsCell";
+    if (onCampusBool)
+        cellIdentifier = @"OnCResultsCell";
     else
-        self.cellIdentifier = @"OffCResultsCell";
+        cellIdentifier = @"OffCResultsCell";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -44,26 +46,7 @@
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
         ProfileViewController *destViewController = segue.destinationViewController;
         Person *selected = [[Person alloc] init];
-        selected = [self.searchDetails objectAtIndex:indexPath.row];
-        
-        if ([self networkCheck]) {
-            int index = [selected.attributes indexOfObject:@"picURL"];
-            if (NSNotFound != index) {
-                NSString *urlStr = [selected.attributeVals objectAtIndex:index];
-                if(urlStr != NULL) {
-                    NSURL *imageURL = [[NSURL alloc] initWithString:urlStr];
-                    // Fetch the image
-                    selected.profilePic = [UIImage imageWithData: [NSData dataWithContentsOfURL:imageURL]];
-                }
-            }
-        }
-        else {
-            // Network Check Failed - Show Alert
-            [self performSelectorOnMainThread:@selector(showNoNetworkAlert)
-                                   withObject:nil
-                                waitUntilDone:YES];
-            return;
-        }
+        selected = [searchDetails objectAtIndex:indexPath.row];
         destViewController.selectedPerson = selected;
     }
 }
@@ -81,7 +64,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.searchDetails.count;
+    return searchDetails.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -90,14 +73,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Register the NIB cell object for our custom cell
-    if (self.onCampusBool)
-        [tableView registerNib:[UINib nibWithNibName:@"OnCResultsCell" bundle:nil] forCellReuseIdentifier:self.cellIdentifier];
+    if (onCampusBool)
+        [tableView registerNib:[UINib nibWithNibName:@"OnCResultsCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
     else
-        [tableView registerNib:[UINib nibWithNibName:@"OffCResultsCell" bundle:nil] forCellReuseIdentifier:self.cellIdentifier];
+        [tableView registerNib:[UINib nibWithNibName:@"OffCResultsCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
     
-    UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
+    UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 	}
     
     // Connect the cell's properties
@@ -109,25 +92,19 @@
     UIImageView *userImageView = (UIImageView *) [cell viewWithTag:1007];
     
     Person *tempPerson = [[Person alloc] init];
-    tempPerson = [self.searchDetails objectAtIndex:indexPath.row];
+    tempPerson = [searchDetails objectAtIndex:indexPath.row];
     
     NSString *first = tempPerson.firstName;
     NSString *last = tempPerson.lastName;
     NSString *status = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Status"]];
     NSString *username = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Username"]];
     
+    // Fetch the image
     int index = [tempPerson.attributes indexOfObject:@"picURL"];
     if (NSNotFound != index){
         NSString *userImageString = [tempPerson.attributeVals objectAtIndex:index];
-        NSURL *imageURL = [[NSURL alloc] initWithString:userImageString];
-    
-        // Fetch the image
-        tempPerson.profilePic = [UIImage imageWithData: [NSData dataWithContentsOfURL:imageURL]];
-    }
-    if (Nil != tempPerson.profilePic){
-//        userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 90, 90)];
         userImageView.contentMode = UIViewContentModeScaleAspectFit;
-        userImageView.image =  tempPerson.profilePic; //self.selectedPerson.profilePic;
+        [userImageView setImageWithURL:[NSURL URLWithString:userImageString] placeholderImage:nil];
     }
     
     if ([status isEqualToString:@"Student"]) {

@@ -7,6 +7,7 @@
 //
 
 #import "ProfileViewController.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface ProfileViewController ()
 
@@ -26,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.cellIdentifier = @"ProfileCell";
+    cellIdentifier = @"ProfileCell";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -36,11 +37,14 @@
     UILabel *label = [[UILabel alloc] init];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
     
-    if (Nil != self.selectedPerson.profilePic){
+    // Get image (from the cache) if it's there
+    int index = [selectedPerson.attributes indexOfObject:@"picURL"];
+    if (NSNotFound != index){
         label.frame = CGRectMake(100, 35, 210, 40);
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 90, 90)];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
-        imageView.image = self.selectedPerson.profilePic;
+        NSString *userImageString = [selectedPerson.attributeVals objectAtIndex:index];
+        [imageView setImageWithURL:[NSURL URLWithString:userImageString] placeholderImage:nil];
         [view addSubview:imageView];
     }
     else
@@ -51,7 +55,7 @@
     label.font = [UIFont boldSystemFontOfSize:20];
     label.adjustsLetterSpacingToFitWidth = YES;
     label.adjustsFontSizeToFitWidth = YES;
-    NSString *name = [NSString stringWithFormat:@"%@ %@", self.selectedPerson.firstName, self.selectedPerson.lastName];
+    NSString *name = [NSString stringWithFormat:@"%@ %@", selectedPerson.firstName, selectedPerson.lastName];
     label.text = name;
     
     [view addSubview:label];
@@ -70,25 +74,25 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Repress status and picURL from tableView
     int sub = 0;
-    if (NSNotFound != [self.selectedPerson.attributes indexOfObject:@"picURL"])
+    if (NSNotFound != [selectedPerson.attributes indexOfObject:@"picURL"])
         sub++;
-    if (NSNotFound != [self.selectedPerson.attributes indexOfObject:@"Status"])
+    if (NSNotFound != [selectedPerson.attributes indexOfObject:@"Status"])
         sub++;
-    return self.selectedPerson.attributes.count - sub;
+    return selectedPerson.attributes.count - sub;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Register the NIB cell object for our custom cell
-    [tableView registerNib:[UINib nibWithNibName:@"ProfileCell" bundle:nil] forCellReuseIdentifier:self.cellIdentifier];
+    [tableView registerNib:[UINib nibWithNibName:@"ProfileCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
     
-    UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:self.cellIdentifier];
+    UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:self.cellIdentifier];
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 	}
     
     // Configure the cell...
-    cell.textLabel.text = [self.selectedPerson.attributeVals objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = [self.selectedPerson.attributes objectAtIndex:indexPath.row];
+    cell.textLabel.text = [selectedPerson.attributeVals objectAtIndex:indexPath.row];
+    cell.detailTextLabel.text = [selectedPerson.attributes objectAtIndex:indexPath.row];
     
     UIDevice *device = [UIDevice currentDevice];
     if ([[device model] isEqualToString:@"iPhone"] && [cell.detailTextLabel.text isEqualToString:@"Campus Phone"]){
@@ -108,20 +112,20 @@
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (0 == indexPath.section && [[self.selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Username"]){
+    if (0 == indexPath.section && [[selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Username"]){
         if([MFMailComposeViewController canSendMail]) {
             MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
             mailViewController.mailComposeDelegate = self;
             
             mailViewController.modalPresentationStyle = UIModalPresentationFormSheet;
-            NSString *recipient = [self.selectedPerson.attributeVals objectAtIndex:indexPath.row];
+            NSString *recipient = [selectedPerson.attributeVals objectAtIndex:indexPath.row];
             recipient = [recipient stringByAppendingString:@"@grinnell.edu"];
             [mailViewController setToRecipients:[NSArray arrayWithObject:recipient]];
             [self presentViewController:mailViewController animated:YES completion:nil];
         }
     }
-    else if (0 == indexPath.section && [[self.selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Campus Phone"]){
-        NSString *phoneNum = [self.selectedPerson.attributeVals objectAtIndex:indexPath.row];
+    else if (0 == indexPath.section && [[selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Campus Phone"]){
+        NSString *phoneNum = [selectedPerson.attributeVals objectAtIndex:indexPath.row];
         NSString *url = @"telprompt://";
         if (phoneNum.length >= 10)
             url = [url stringByAppendingString:phoneNum];
