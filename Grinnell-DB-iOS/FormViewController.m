@@ -983,20 +983,8 @@
             }
         }
         if (Nil != urlString) {
-         //   NSString *userImageString = [tmpPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"picURL"]];
-           // NSLog(@"USERImage: %@", userImageString);
-            
-            NSURL *imageURL = [[NSURL alloc] initWithString:urlString];
-            
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0), ^{
-            
-            // Fetch the image
-            tmpPerson.profilePic = [UIImage imageWithData: [NSData dataWithContentsOfURL:imageURL]];
-            }
-                           );
-            dispatch_async(dispatch_get_main_queue(), ^{});
-    //        [tmpPerson.attributes addObject:@"picURL"];
-      //      [tmpPerson.attributeVals addObject:urlString];
+            [tmpPerson.attributes addObject:@"picURL"];
+            [tmpPerson.attributeVals addObject:urlString];
         }
         [self.searchResults addObject:tmpPerson];
         

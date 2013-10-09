@@ -115,15 +115,15 @@
     NSString *last = tempPerson.lastName;
     NSString *status = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Status"]];
     NSString *username = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Username"]];
-    /*
-    NSString *userImageString = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"picURL"]];
-    NSLog(@"USERImage: %@", userImageString);
     
-    NSURL *imageURL = [[NSURL alloc] initWithString:userImageString];
+    int index = [tempPerson.attributes indexOfObject:@"picURL"];
+    if (NSNotFound != index){
+        NSString *userImageString = [tempPerson.attributeVals objectAtIndex:index];
+        NSURL *imageURL = [[NSURL alloc] initWithString:userImageString];
     
-    // Fetch the image
-    tempPerson.profilePic = [UIImage imageWithData: [NSData dataWithContentsOfURL:imageURL]];
-    */
+        // Fetch the image
+        tempPerson.profilePic = [UIImage imageWithData: [NSData dataWithContentsOfURL:imageURL]];
+    }
     if (Nil != tempPerson.profilePic){
 //        userImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 90, 90)];
         userImageView.contentMode = UIViewContentModeScaleAspectFit;
