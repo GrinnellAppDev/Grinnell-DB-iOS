@@ -636,10 +636,39 @@
                             startRange.length = index;
                             [tmpPerson.attributes addObject:@"Department"];
                             [tmpPerson.attributeVals addObject:[temporary substringWithRange:startRange]];
+                            
+                            //separate multiple titles, if applicable
                             startRange.location = index;
                             startRange.length = temporary.length - index;
-                            [tmpPerson.attributes addObject:@"Title"];
-                            [tmpPerson.attributeVals addObject:[temporary substringWithRange:startRange]];
+                            NSString *majYr = [temporary substringWithRange:startRange];
+                            if (![majYr isEqualToString:@""]) {
+                                NSMutableArray *titleArray = [[NSMutableArray alloc] init];
+                                NSRange testRange = [majYr rangeOfString:@"\n"];
+                                majYr = [majYr stringByAppendingString:@"\n"];
+                                if (NSNotFound != testRange.location) {
+                                    while (NSNotFound != testRange.location) {
+                                        testRange.length = testRange.location;
+                                        testRange.location = 0;
+                                        NSString *tempTitle = [majYr substringWithRange:testRange];
+                                        tempTitle = [tempTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+                                        tempTitle = [tempTitle stringByReplacingOccurrencesOfString:@";" withString:@""];
+                                        testRange.length++;
+                                        majYr = [majYr stringByReplacingCharactersInRange:testRange withString:@""];
+
+                                        //add to title array
+                                        [titleArray addObject:tempTitle];
+                                        testRange = [majYr rangeOfString:@"\n"];
+                                    }
+                                    for (int i = 0; i < titleArray.count; i++) {
+                                        [tmpPerson.attributes addObject:@"Title"];
+                                        [tmpPerson.attributeVals addObject:[titleArray objectAtIndex:i]];
+                                    }
+                                }
+                                else {
+                                    [tmpPerson.attributes addObject:@"Title"];
+                                    [tmpPerson.attributeVals addObject:majYr];
+                                }
+                            }
                         }
                     }
                     break;
