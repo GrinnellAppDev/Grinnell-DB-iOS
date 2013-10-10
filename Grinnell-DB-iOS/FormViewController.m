@@ -103,6 +103,7 @@
 
 // Perform the search... If no results come back, prevent segue from happening by returning NO
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    [keyboardControls.activeField resignFirstResponder];
     // Set up HUD and give it time to run
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Searching";
@@ -193,8 +194,8 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
-    [self search];
+    if ([self shouldPerformSegueWithIdentifier:@"searchSegue" sender:self])
+        [self performSegueWithIdentifier:@"searchSegue" sender:self];
     return YES;
 }
 
@@ -990,12 +991,6 @@
     startRange.length = startRange.location + startRange.length;
     startRange.location = 0;
     return [str stringByReplacingCharactersInRange:startRange withString:@""];
-}
-
-// Allows the search button to trigger the segue
-- (void)search {
-    if ([self shouldPerformSegueWithIdentifier:@"searchSegue" sender:self])
-        [self performSegueWithIdentifier:@"searchSegue" sender:self];
 }
 
 // Clears all textFields in the form
