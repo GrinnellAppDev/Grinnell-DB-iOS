@@ -10,6 +10,7 @@
 #import "ResultsViewController.h"
 #import "Person.h"
 #import <Reachability.h>
+#import <MBProgressHUD.h>
 
 @interface FormViewController ()
 
@@ -102,9 +103,13 @@
 
 // Perform the search... If no results come back, prevent segue from happening by returning NO
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    // Set up HUD and give it time to run
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.labelText = @"Searching";
+    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantPast]];
+    
     NSMutableArray *searchDetails = [[NSMutableArray alloc] init];
     NSURL *url;
-    
     // Any spaces typed into a field should be turned into pluses for the URL
     for (int i=0; i < fields.count; i++){
         UITextField *field = [fields objectAtIndex:i];
@@ -146,6 +151,9 @@
     
     // Start the search
     [self searchUsingURL:url forPage:1];
+    
+    // Hide the HUD
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     
     // Stop the segue if an error occured (indicated by null value in searchResults)
     if (NULL == searchResults)
@@ -292,6 +300,7 @@
 }
 
 - (void)showNoNetworkAlert {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     UIAlertView *network = [[UIAlertView alloc]
                             initWithTitle:@"No Network Connection"
                             message:@"Turn on cellular data or use Wi-Fi to access the server"
@@ -314,6 +323,7 @@
 }
 
 - (void)showErrorAlert {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     UIAlertView *error = [[UIAlertView alloc]
                           initWithTitle:@"An Error Occurred"
                           message:@"Please try again later"
@@ -325,6 +335,7 @@
 }
 
 - (void)showVagueSearchAlert {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     UIAlertView *error = [[UIAlertView alloc]
                           initWithTitle:@"Vague Search"
                           message:@"Please refine your search criteria!"
@@ -336,6 +347,7 @@
 }
 
 - (void)showNoResultsAlert {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     UIAlertView *error = [[UIAlertView alloc]
                           initWithTitle:@"An Error Occurred"
                           message:@"Your search returned no results!"

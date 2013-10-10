@@ -1,5 +1,6 @@
 PODS:
   - BSKeyboardControls (2.0)
+  - MBProgressHUD (0.8)
   - Reachability (3.1.1)
   - SDWebImage (3.4):
     - SDWebImage/Core
@@ -7,11 +8,13 @@ PODS:
 
 DEPENDENCIES:
   - BSKeyboardControls
+  - MBProgressHUD
   - Reachability
   - SDWebImage
 
 SPEC CHECKSUMS:
   BSKeyboardControls: b24def9d769f0990d228abb4e525492cb68a2189
+  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   Reachability: 2be6bc2fd2bd31d97f5db33e75e4b29c79e95883
   SDWebImage: 366188f04c019bfd712d45e3b36aa52070f4abd8
 
