@@ -41,8 +41,9 @@
 		E195CF9F180C8C0200B7D0C3 /* icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = E195CF98180C8C0200B7D0C3 /* icon-100.png */; };
 		E195CFA0180C8C0200B7D0C3 /* icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = E195CF99180C8C0200B7D0C3 /* icon-120.png */; };
 		E195CFA1180C8C0200B7D0C3 /* icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = E195CF9A180C8C0200B7D0C3 /* icon-152.png */; };
-		E195CFA4180C8DF000B7D0C3 /* default~ipad~port.png in Resources */ = {isa = PBXBuildFile; fileRef = E195CFA2180C8DF000B7D0C3 /* default~ipad~port.png */; };
-		E195CFA5180C8DF000B7D0C3 /* default~ipad~land.png in Resources */ = {isa = PBXBuildFile; fileRef = E195CFA3180C8DF000B7D0C3 /* default~ipad~land.png */; };
+		E195CFA4180C8DF000B7D0C3 /* Default~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E195CFA2180C8DF000B7D0C3 /* Default~ipad.png */; };
+		E195CFA5180C8DF000B7D0C3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E195CFA3180C8DF000B7D0C3 /* Default.png */; };
+		E1A9E7D6180C8F2B00D1B3B9 /* iOS Simulator Screen shot Oct 14, 2013 3.44.11 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A9E7D5180C8F2B00D1B3B9 /* iOS Simulator Screen shot Oct 14, 2013 3.44.11 PM.png */; };
 		E1C852D618024FF100D264E8 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C852D518024FF000D264E8 /* Default~iphone.png */; };
 		E1F2257D18049FEF00063B18 /* OnCResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */; };
 /* End PBXBuildFile section */
@@ -91,8 +92,9 @@
 		E195CF98180C8C0200B7D0C3 /* icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-100.png"; sourceTree = "<group>"; };
 		E195CF99180C8C0200B7D0C3 /* icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-120.png"; sourceTree = "<group>"; };
 		E195CF9A180C8C0200B7D0C3 /* icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-152.png"; sourceTree = "<group>"; };
-		E195CFA2180C8DF000B7D0C3 /* default~ipad~port.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default~ipad~port.png"; sourceTree = "<group>"; };
-		E195CFA3180C8DF000B7D0C3 /* default~ipad~land.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default~ipad~land.png"; sourceTree = "<group>"; };
+		E195CFA2180C8DF000B7D0C3 /* Default~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~ipad.png"; sourceTree = "<group>"; };
+		E195CFA3180C8DF000B7D0C3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E1A9E7D5180C8F2B00D1B3B9 /* iOS Simulator Screen shot Oct 14, 2013 3.44.11 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 14, 2013 3.44.11 PM.png"; sourceTree = "<group>"; };
 		E1C852D518024FF000D264E8 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
 		E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnCResultsCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -176,8 +178,9 @@
 				36363CD217E11EAC00B01E34 /* main.m */,
 				36363CD417E11EAC00B01E34 /* Grinnell-DB-iOS-Prefix.pch */,
 				E195CF92180C8AB200B7D0C3 /* Default-568h@2x~iphone.png */,
-				E195CFA2180C8DF000B7D0C3 /* default~ipad~port.png */,
-				E195CFA3180C8DF000B7D0C3 /* default~ipad~land.png */,
+				E1A9E7D5180C8F2B00D1B3B9 /* iOS Simulator Screen shot Oct 14, 2013 3.44.11 PM.png */,
+				E195CFA2180C8DF000B7D0C3 /* Default~ipad.png */,
+				E195CFA3180C8DF000B7D0C3 /* Default.png */,
 				E1C852D518024FF000D264E8 /* Default~iphone.png */,
 			);
 			name = "Supporting Files";
@@ -273,6 +276,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1A9E7D6180C8F2B00D1B3B9 /* iOS Simulator Screen shot Oct 14, 2013 3.44.11 PM.png in Resources */,
 				36363CD117E11EAC00B01E34 /* InfoPlist.strings in Resources */,
 				E1C852D618024FF100D264E8 /* Default~iphone.png in Resources */,
 				E195CF9D180C8C0200B7D0C3 /* icon-76.png in Resources */,
@@ -292,12 +296,12 @@
 				3BFC8F8317E12C9F003832DF /* Icon.png in Resources */,
 				3BFC8F8417E12C9F003832DF /* Icon@2x.png in Resources */,
 				3BFC8F8517E12C9F003832DF /* iTunesArtwork.png in Resources */,
-				E195CFA4180C8DF000B7D0C3 /* default~ipad~port.png in Resources */,
+				E195CFA4180C8DF000B7D0C3 /* Default~ipad.png in Resources */,
 				3BFC8F8617E12C9F003832DF /* iTunesArtwork@2x.png in Resources */,
 				E195CF9E180C8C0200B7D0C3 /* icon-80.png in Resources */,
 				3B55414B17E25870008B4F40 /* OffCResultsCell.xib in Resources */,
 				3B55415817E27453008B4F40 /* ProfileCell.xib in Resources */,
-				E195CFA5180C8DF000B7D0C3 /* default~ipad~land.png in Resources */,
+				E195CFA5180C8DF000B7D0C3 /* Default.png in Resources */,
 				E195CF9B180C8C0200B7D0C3 /* icon-40.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
