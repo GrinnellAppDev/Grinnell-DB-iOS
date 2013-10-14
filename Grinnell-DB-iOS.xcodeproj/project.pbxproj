@@ -36,6 +36,7 @@
 		3BFC8F8517E12C9F003832DF /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7C17E12C9F003832DF /* iTunesArtwork.png */; };
 		3BFC8F8617E12C9F003832DF /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7D17E12C9F003832DF /* iTunesArtwork@2x.png */; };
 		C385D7DB02A24090A6353E4B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 766E41B0CCF9458DBEAB7986 /* libPods.a */; };
+		E195CF93180C8AB200B7D0C3 /* iOS Simulator Screen shot Oct 14, 2013 3.19.45 PM.png in Resources */ = {isa = PBXBuildFile; fileRef = E195CF92180C8AB200B7D0C3 /* iOS Simulator Screen shot Oct 14, 2013 3.19.45 PM.png */; };
 		E1C852D618024FF100D264E8 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = E1C852D518024FF000D264E8 /* Default~iphone.png */; };
 		E1F2257D18049FEF00063B18 /* OnCResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */; };
 /* End PBXBuildFile section */
@@ -79,6 +80,7 @@
 		3BFC8F7D17E12C9F003832DF /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		766E41B0CCF9458DBEAB7986 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB4BB1D0DD52462B875C07C9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		E195CF92180C8AB200B7D0C3 /* iOS Simulator Screen shot Oct 14, 2013 3.19.45 PM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iOS Simulator Screen shot Oct 14, 2013 3.19.45 PM.png"; sourceTree = "<group>"; };
 		E1C852D518024FF000D264E8 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
 		E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnCResultsCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,6 +163,7 @@
 				36363CCF17E11EAC00B01E34 /* InfoPlist.strings */,
 				36363CD217E11EAC00B01E34 /* main.m */,
 				36363CD417E11EAC00B01E34 /* Grinnell-DB-iOS-Prefix.pch */,
+				E195CF92180C8AB200B7D0C3 /* iOS Simulator Screen shot Oct 14, 2013 3.19.45 PM.png */,
 				36363CD817E11EAC00B01E34 /* Default.png */,
 				E1C852D518024FF000D264E8 /* Default~iphone.png */,
 				36363CDA17E11EAC00B01E34 /* Default@2x.png */,
@@ -265,6 +268,7 @@
 				3BFC8F8117E12C9F003832DF /* Icon-Small.png in Resources */,
 				E1F2257D18049FEF00063B18 /* OnCResultsCell.xib in Resources */,
 				3BFC8F8217E12C9F003832DF /* Icon-Small@2x.png in Resources */,
+				E195CF93180C8AB200B7D0C3 /* iOS Simulator Screen shot Oct 14, 2013 3.19.45 PM.png in Resources */,
 				3BFC8F8317E12C9F003832DF /* Icon.png in Resources */,
 				3BFC8F8417E12C9F003832DF /* Icon@2x.png in Resources */,
 				3BFC8F8517E12C9F003832DF /* iTunesArtwork.png in Resources */,
