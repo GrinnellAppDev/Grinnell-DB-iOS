@@ -53,7 +53,6 @@
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:20];
-    label.adjustsLetterSpacingToFitWidth = YES;
     label.adjustsFontSizeToFitWidth = YES;
     NSString *name = [NSString stringWithFormat:@"%@ %@", selectedPerson.firstName, selectedPerson.lastName];
     label.text = name;
