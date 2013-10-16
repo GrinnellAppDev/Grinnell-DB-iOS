@@ -7,10 +7,12 @@
 //
 
 #import "FormViewController.h"
+#import "OptionViewController.h"
 #import "ResultsViewController.h"
 #import "Person.h"
 #import <Reachability.h>
 #import <MBProgressHUD.h>
+#import <WYPopoverController.h>
 
 @interface FormViewController ()
 
@@ -292,6 +294,29 @@
     }
     else return 3;
 }
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
+    [keyboardControls.activeField resignFirstResponder];
+    OptionViewController *controller = [[OptionViewController alloc] initWithNibName:@"OptionViewController" bundle:nil];
+    popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
+    popoverController.delegate = self;
+    [popoverController setPopoverContentSize:CGSizeMake(self.view.frame.size.width, 75)];
+    //UIButton *button = [[UIButton alloc] initWithFrame:[tableView cellForRowAtIndexPath:indexPath].frame];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+
+    if (1 >= indexPath.row) {
+        controller.state = NO;
+    }
+    else {
+        controller.state = YES;
+    }
+    [popoverController presentPopoverFromRect:cell.bounds inView:cell permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
+}
+/*
+- (void)popoverControllerDidDismissPopover:(WYPopoverController *)popoverController {
+    OptionViewController *controller = popoverController.contentViewController;
+}
+*/
 
 #pragma mark UIAlertViewDelegate Methods
 // Called when an alert button is tapped.

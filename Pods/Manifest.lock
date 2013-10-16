@@ -5,17 +5,20 @@ PODS:
   - SDWebImage (3.4):
     - SDWebImage/Core
   - SDWebImage/Core (3.4)
+  - WYPopoverController (0.1.6)
 
 DEPENDENCIES:
   - BSKeyboardControls
   - MBProgressHUD
   - Reachability
   - SDWebImage
+  - WYPopoverController
 
 SPEC CHECKSUMS:
   BSKeyboardControls: b24def9d769f0990d228abb4e525492cb68a2189
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   Reachability: 2be6bc2fd2bd31d97f5db33e75e4b29c79e95883
   SDWebImage: 366188f04c019bfd712d45e3b36aa52070f4abd8
+  WYPopoverController: 32d2f0eb182fd03c22a78e5f6f694580af33c60d
 
 COCOAPODS: 0.26.2

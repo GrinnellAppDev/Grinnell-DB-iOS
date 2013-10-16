@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <BSKeyboardControls/BSKeyboardControls.h>
+#import <WYPopoverController.h>
 
-@interface FormViewController : UITableViewController <UITextFieldDelegate, UIPickerViewDelegate, BSKeyboardControlsDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface FormViewController : UITableViewController <UITextFieldDelegate, UIPickerViewDelegate, BSKeyboardControlsDelegate, UITableViewDataSource, UITableViewDelegate, WYPopoverControllerDelegate> {
     NSMutableArray *fields;
+    WYPopoverController *popoverController;
 }
 
 - (BOOL)networkCheck;
