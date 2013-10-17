@@ -19,11 +19,11 @@
 @end
 
 @implementation FormViewController
-@synthesize lastNameField, firstNameField, usernameField, phoneField, campusAddressField, homeAddressField, majorField, concentrationField, sgaField, hiatusField, classField, facStaffField, keyboardControls, textFieldIdentifier, myPickerView, concentrationArray, sgaArray, facStaffArray, hiatusArray, classArray, majorsArray, searchResults, onCampusBool, notFirstRun;
+@synthesize lastNameField, firstNameField, usernameField, phoneField, campusAddressField, homeAddressField, majorField, concentrationField, sgaField, hiatusField, classField, facStaffField, keyboardControls, textFieldIdentifier, myPickerView, concentrationArray, sgaArray, facStaffArray, hiatusArray, classArray, majorsArray, searchResults, onCampusBool, notFirstRun, statesArray, stateBeforeSettings;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [[NSUserDefaults standardUserDefaults] synchronize];
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     
     // Set up clear button in top left corner
@@ -38,6 +38,7 @@
 	hiatusArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
 	facStaffArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
     classArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
+    statesArray = [[NSMutableArray alloc] initWithObjects:@"AL", @"AK", @"AZ", @"AR", @"CA", @"CO", @"CT", @"DC", @"DE", @"FL", @"GA", @"HI", @"ID", @"IL", @"IN", @"IA", @"KS", @"KY", @"LA", @"ME", @"MD", @"MA", @"MI", @"MN", @"MS", @"MO", @"MT", @"NE", @"NV", @"NH", @"NJ", @"NM", @"NY", @"NC", @"ND", @"OH", @"OK", @"OR", @"PA", @"RI", @"SC", @"SD", @"TN", @"TX", @"UT", @"VT", @"VA", @"WA", @"WV", @"WI", @"WY", nil];
     
     // Assume on campus... This will be changed during [self load]
     onCampusBool = YES;
@@ -64,6 +65,10 @@
     hiatusField.inputView = myPickerView;
     classField.inputView = myPickerView;
     facStaffField.inputView = myPickerView;
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"])
+        homeAddressField.inputView = myPickerView;
+    else
+        homeAddressField.inputView = nil;
     
     [super viewDidAppear:animated];
 }
@@ -123,7 +128,16 @@
     NSString *first = [searchDetails objectAtIndex:0];
     NSString *last = [searchDetails objectAtIndex:1];
     NSString *user = [searchDetails objectAtIndex:2];
+    NSString *firstSearchType, *lastSearchType;
     
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"First"])
+        firstSearchType = @"contains";
+    else
+        firstSearchType = @"startswith";
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Last"])
+        lastSearchType = @"contains";
+    else
+        lastSearchType = @"startswith";
     // Set up the url properly - Nothing containing the word "any" should be in the url
     if (onCampusBool) {
         NSString *year = [searchDetails objectAtIndex:3];
@@ -147,11 +161,17 @@
         NSString *sga = [searchDetails objectAtIndex:11];
         if ([sga isEqualToString:@"Any"])
             sga = @"";
-        url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&pagenum=1&LastName=%@&LNameSearch=startswith&FirstName=%@&FNameSearch=startswith&email=%@&campusphonenumber=%@&campusquery=%@&Homequery=%@&Department=%@&Major=%@&conc=%@&SGA=%@&Hiatus=%@&Gyear=%@&submit_search=Search", last, first, user, phone, address, home, facStaff, major, conc, sga, hiatus, year]];
+        NSString *homeSearchType;
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"])
+            homeSearchType = @"Y";
+        else
+            homeSearchType = @"N";
+        
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&pagenum=1&LastName=%@&LNameSearch=%@&FirstName=%@&FNameSearch=%@&email=%@&campusphonenumber=%@&campusquery=%@&Homequery=%@&StateOnlyCheck=%@&Department=%@&Major=%@&conc=%@&SGA=%@&Hiatus=%@&Gyear=%@&submit_search=Search", last, lastSearchType, first, firstSearchType, user, phone, address, home, homeSearchType, facStaff, major, conc, sga, hiatus, year]];
     }
     else
-        url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&pagenum=1&LastName=%@&LNameSearch=startswith&FirstName=%@&FNameSearch=startswith&email=%@&submit_search=Search", last, first, user]];
-    
+        url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&pagenum=1&LastName=%@&LNameSearch=%@&FirstName=%@&FNameSearch=%@&email=%@&submit_search=Search", last, lastSearchType, first, firstSearchType, user]];
+
     // Start the search
     [self searchUsingURL:url forPage:1];
     
@@ -222,8 +242,13 @@
         case 2006:
             return [sgaArray objectAtIndex:row];
             break;
+        case 2007:
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"])
+                return [statesArray objectAtIndex:row];
+            else return nil;
+            break;
         default:
-            return @"";
+            return nil;
             break;
     }
 }
@@ -252,6 +277,11 @@
         case 2006:
             return sgaArray.count;
             break;
+        case 2007:
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"])
+                return statesArray.count;
+            else return 0;
+            break;
         default:
             return 0;
             break;
@@ -278,6 +308,10 @@
         case 2006:
             sgaField.text = [sgaArray objectAtIndex:row];
             break;
+        case 2007:
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"])
+                homeAddressField.text = [statesArray objectAtIndex:row];
+            break;
         default:
             break;
     }
@@ -301,22 +335,33 @@
     popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
     popoverController.delegate = self;
     [popoverController setPopoverContentSize:CGSizeMake(self.view.frame.size.width, 75)];
-    //UIButton *button = [[UIButton alloc] initWithFrame:[tableView cellForRowAtIndexPath:indexPath].frame];
+    
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
     if (1 >= indexPath.row) {
         controller.state = NO;
+        if (0 == indexPath.row)
+            controller.first = YES;
+        else
+            controller.first = NO;
     }
-    else {
+    else
         controller.state = YES;
-    }
+    stateBeforeSettings = [[NSUserDefaults standardUserDefaults] boolForKey:@"State"];
     [popoverController presentPopoverFromRect:cell.bounds inView:cell permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
 }
-/*
+
 - (void)popoverControllerDidDismissPopover:(WYPopoverController *)popoverController {
-    OptionViewController *controller = popoverController.contentViewController;
+    BOOL temp = [[NSUserDefaults standardUserDefaults] boolForKey:@"State"];
+    if (stateBeforeSettings != temp) {
+        if (temp)
+            homeAddressField.inputView = myPickerView;
+        else
+            homeAddressField.inputView = nil;
+        [self.tableView reloadData];
+    }
 }
-*/
+
 
 #pragma mark UIAlertViewDelegate Methods
 // Called when an alert button is tapped.

@@ -11,6 +11,7 @@
 @interface OptionViewController : UIViewController
 
 @property (nonatomic, assign) BOOL state;
+@property (nonatomic, assign) BOOL first;
 @property (nonatomic, weak) IBOutlet UISwitch *mySwitch;
 @property (nonatomic, weak) IBOutlet UILabel *offLabel;
 @property (nonatomic, weak) IBOutlet UILabel *onLabel;

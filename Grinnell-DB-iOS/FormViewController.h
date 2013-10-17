@@ -33,6 +33,7 @@
 @property (nonatomic, strong) NSMutableArray *classArray;
 @property (nonatomic, strong) NSMutableArray *facStaffArray;
 @property (nonatomic, strong) NSMutableArray *hiatusArray;
+@property (nonatomic, strong) NSMutableArray *statesArray;
 @property (nonatomic, strong) NSMutableArray *searchResults;
 @property (nonatomic, strong) IBOutlet UIPickerView *myPickerView;
 @property (nonatomic, weak) IBOutlet UITextField *lastNameField;
@@ -51,5 +52,6 @@
 @property (nonatomic, assign) int textFieldIdentifier;
 @property (nonatomic, assign) BOOL onCampusBool;
 @property (nonatomic, assign) BOOL notFirstRun;
+@property (nonatomic, assign) BOOL stateBeforeSettings;
 
 @end

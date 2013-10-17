@@ -13,7 +13,7 @@
 @end
 
 @implementation OptionViewController
-@synthesize mySwitch, state, onLabel, offLabel;
+@synthesize mySwitch, state, onLabel, offLabel, first;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,8 +30,14 @@
     if (state) {
         offLabel.text = @"Search by Full Address";
         onLabel.text = @"Search by State only";
+        [mySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"State"]];
     }
     else {
+        if (first)
+            [mySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"First"]];
+        else
+            [mySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"Last"]];
+        
         offLabel.text = @"Search for name that begins with";
         onLabel.text = @"Search for name containing";
     }
@@ -46,7 +52,13 @@
 }
 
 - (void)valueChange:(id)sender {
-    NSLog(@"HERE");
+    if (state)
+        [[NSUserDefaults standardUserDefaults] setBool:mySwitch.isOn forKey:@"State"];
+    else
+        if (first)
+            [[NSUserDefaults standardUserDefaults] setBool:mySwitch.isOn forKey:@"First"];
+        else
+            [[NSUserDefaults standardUserDefaults] setBool:mySwitch.isOn forKey:@"Last"];
 }
 
 @end
