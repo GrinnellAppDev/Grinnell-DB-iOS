@@ -162,7 +162,7 @@
         if ([sga isEqualToString:@"Any"])
             sga = @"";
         NSString *homeSearchType;
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"])
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"] && ![home isEqualToString:@""])
             homeSearchType = @"Y";
         else
             homeSearchType = @"N";
