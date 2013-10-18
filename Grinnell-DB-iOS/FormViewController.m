@@ -12,7 +12,6 @@
 #import "Person.h"
 #import <Reachability.h>
 #import <MBProgressHUD.h>
-#import <WYPopoverController.h>
 
 @interface FormViewController ()
 
@@ -351,6 +350,7 @@
     [popoverController presentPopoverFromRect:cell.bounds inView:cell permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
 }
 
+#pragma mark - Popover overrides
 - (void)popoverControllerDidDismissPopover:(WYPopoverController *)popoverController {
     BOOL temp = [[NSUserDefaults standardUserDefaults] boolForKey:@"State"];
     if (stateBeforeSettings != temp) {
@@ -361,7 +361,6 @@
         [self.tableView reloadData];
     }
 }
-
 
 #pragma mark UIAlertViewDelegate Methods
 // Called when an alert button is tapped.
@@ -1093,7 +1092,7 @@
 }
 
 // Clears all textFields in the form
-- (void)clear:(id)sender{
+- (void)clear:(id)sender {
     for (int i=0; i < fields.count; i++){
         UITextField *field = [fields objectAtIndex:i];
         field.text = @"";

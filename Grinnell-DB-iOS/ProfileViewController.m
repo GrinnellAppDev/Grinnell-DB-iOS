@@ -7,6 +7,7 @@
 //
 
 #import "ProfileViewController.h"
+#import "ProfileImageViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
 
 @interface ProfileViewController ()
@@ -30,7 +31,7 @@
     cellIdentifier = @"ProfileCell";
 }
 
-- (void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     // Create table's header view and add name/picture as subviews
@@ -45,6 +46,10 @@
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         NSString *userImageString = [selectedPerson.attributeVals objectAtIndex:index];
         [imageView setImageWithURL:[NSURL URLWithString:userImageString] placeholderImage:nil];
+        UITapGestureRecognizer *imageTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
+        
+        imageView.userInteractionEnabled = YES;
+        [imageView addGestureRecognizer:imageTapGesture];
         [view addSubview:imageView];
     }
     else
@@ -142,6 +147,18 @@
 #pragma mark - Mail controller
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - image view expansion
+- (void)imageTapped:(id)sender {
+    ProfileImageViewController *controller = [[ProfileImageViewController alloc] initWithNibName:@"ProfileImageViewController" bundle:nil];
+    popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
+    popoverController.delegate = self;
+    [popoverController setPopoverContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
+    int index = [selectedPerson.attributes indexOfObject:@"picURL"];
+    NSString *userImageString = [selectedPerson.attributeVals objectAtIndex:index];
+    controller.picURL = [NSURL URLWithString:userImageString];
+    [popoverController presentPopoverFromRect:self.tableView.tableHeaderView.frame inView:self.view permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
 }
 
 @end

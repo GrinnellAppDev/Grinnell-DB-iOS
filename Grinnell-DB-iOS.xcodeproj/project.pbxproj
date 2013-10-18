@@ -27,6 +27,8 @@
 		3BFC8F8517E12C9F003832DF /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7C17E12C9F003832DF /* iTunesArtwork.png */; };
 		3BFC8F8617E12C9F003832DF /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3BFC8F7D17E12C9F003832DF /* iTunesArtwork@2x.png */; };
 		C385D7DB02A24090A6353E4B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 766E41B0CCF9458DBEAB7986 /* libPods.a */; };
+		E10CF00E1811D6C90053AF44 /* ProfileImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E10CF00C1811D6C90053AF44 /* ProfileImageViewController.m */; };
+		E10CF00F1811D6C90053AF44 /* ProfileImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10CF00D1811D6C90053AF44 /* ProfileImageViewController.xib */; };
 		E18ECE99180DD3A900AFA854 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = E18ECE94180DD3A900AFA854 /* Icon-72.png */; };
 		E18ECE9A180DD3A900AFA854 /* icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = E18ECE95180DD3A900AFA854 /* icon-100.png */; };
 		E18ECE9B180DD3A900AFA854 /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = E18ECE96180DD3A900AFA854 /* Icon-144.png */; };
@@ -79,6 +81,9 @@
 		3BFC8F7D17E12C9F003832DF /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		766E41B0CCF9458DBEAB7986 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB4BB1D0DD52462B875C07C9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		E10CF00B1811D6C90053AF44 /* ProfileImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileImageViewController.h; sourceTree = "<group>"; };
+		E10CF00C1811D6C90053AF44 /* ProfileImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageViewController.m; sourceTree = "<group>"; };
+		E10CF00D1811D6C90053AF44 /* ProfileImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileImageViewController.xib; sourceTree = "<group>"; };
 		E18ECE94180DD3A900AFA854 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		E18ECE95180DD3A900AFA854 /* icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-100.png"; sourceTree = "<group>"; };
 		E18ECE96180DD3A900AFA854 /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-144.png"; sourceTree = "<group>"; };
@@ -193,6 +198,9 @@
 				E1E336BA180F3D8700145508 /* OptionViewController.xib */,
 				3B55414F17E26B62008B4F40 /* Person.h */,
 				3B55415017E26B62008B4F40 /* Person.m */,
+				E10CF00B1811D6C90053AF44 /* ProfileImageViewController.h */,
+				E10CF00C1811D6C90053AF44 /* ProfileImageViewController.m */,
+				E10CF00D1811D6C90053AF44 /* ProfileImageViewController.xib */,
 			);
 			name = "Helper Classes";
 			sourceTree = "<group>";
@@ -299,6 +307,7 @@
 				36363CE017E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard in Resources */,
 				36363CE317E11EAC00B01E34 /* MainStoryboard_iPad.storyboard in Resources */,
 				E195CFA0180C8C0200B7D0C3 /* icon-120.png in Resources */,
+				E10CF00F1811D6C90053AF44 /* ProfileImageViewController.xib in Resources */,
 				E1E336BC180F3D8700145508 /* OptionViewController.xib in Resources */,
 				E1A9E7EB180D0F2C00D1B3B9 /* Default-568h@2x.png in Resources */,
 				E195CF9C180C8C0200B7D0C3 /* icon-58.png in Resources */,
@@ -361,6 +370,7 @@
 			files = (
 				36363CD317E11EAC00B01E34 /* main.m in Sources */,
 				E1E336BB180F3D8700145508 /* OptionViewController.m in Sources */,
+				E10CF00E1811D6C90053AF44 /* ProfileImageViewController.m in Sources */,
 				36363CD717E11EAC00B01E34 /* AppDelegate.m in Sources */,
 				36363CE617E11EAC00B01E34 /* FormViewController.m in Sources */,
 				3B55414817E24CED008B4F40 /* ResultsViewController.m in Sources */,
