@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Person.h"
 
-@interface ResultsViewController : UITableViewController
+@interface ResultsViewController : UITableViewController <UISplitViewControllerDelegate>
 
 - (BOOL)networkCheck;
 - (void)parseProfilePage:(NSString *)urlString forPerson:(Person *)selected;

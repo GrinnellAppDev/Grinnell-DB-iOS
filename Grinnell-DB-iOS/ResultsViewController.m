@@ -29,6 +29,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        self.splitViewController.delegate = self;
+    }
     if (onCampusBool)
         cellIdentifier = @"OnCResultsCell";
     else
@@ -279,5 +282,7 @@
         return nil;
 }
 
-
+- (BOOL) splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation {
+    return NO;
+}
 @end
