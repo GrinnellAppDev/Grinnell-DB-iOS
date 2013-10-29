@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ResultsViewController : UITableViewController
+@interface ResultsViewController : UITableViewController <UISplitViewControllerDelegate>
 
 - (BOOL)networkCheck;
 
