@@ -65,6 +65,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="agX-lC-7Q1" id="oEn-oo-gyn"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -81,6 +84,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="agX-lC-7Q1" id="Led-NT-Kgr"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -97,6 +103,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="agX-lC-7Q1" id="U0s-bh-npt"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -113,6 +122,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="agX-lC-7Q1" id="L94-Y2-ASk"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -129,6 +141,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" keyboardType="numberPad" returnKeyType="search"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="agX-lC-7Q1" id="4bK-4f-O30"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -145,6 +160,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="agX-lC-7Q1" id="CV8-bJ-k2i"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -161,6 +179,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="agX-lC-7Q1" id="qyf-2A-K3U"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -177,6 +198,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="agX-lC-7Q1" id="RmH-CN-3SR"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -193,6 +217,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="agX-lC-7Q1" id="0CQ-DQ-3To"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -209,6 +236,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="agX-lC-7Q1" id="NXw-u7-saz"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -225,6 +255,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="agX-lC-7Q1" id="jh2-25-mo9"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -241,6 +274,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" returnKeyType="search"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="agX-lC-7Q1" id="mTe-s3-1aX"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -259,6 +295,20 @@
                             <outlet property="rightBarButtonItem" destination="ayk-4q-gvr" id="NGO-KI-DqQ"/>
                         </connections>
                     </navigationItem>
+                    <connections>
+                        <outlet property="campusAddressField" destination="Iwz-AV-pTH" id="DQa-oY-hpw"/>
+                        <outlet property="classField" destination="YGp-h4-2b4" id="Opz-U1-n0p"/>
+                        <outlet property="concentrationField" destination="f3l-QD-32v" id="btS-sI-rRS"/>
+                        <outlet property="facStaffField" destination="gvb-xc-NEf" id="VN7-0k-sfJ"/>
+                        <outlet property="firstNameField" destination="kqK-4i-woA" id="r06-Fe-yUZ"/>
+                        <outlet property="hiatusField" destination="3tm-bA-I3d" id="3Q9-x0-yOT"/>
+                        <outlet property="homeAddressField" destination="UV8-on-fQM" id="YOy-ak-sgo"/>
+                        <outlet property="lastNameField" destination="Ous-cm-Otv" id="wke-pC-YwB"/>
+                        <outlet property="majorField" destination="s2I-NC-3hc" id="Ao8-k2-7yr"/>
+                        <outlet property="phoneField" destination="9z1-0p-mMp" id="ZNm-on-qwd"/>
+                        <outlet property="sgaField" destination="jl5-q9-mOV" id="6P0-s2-jce"/>
+                        <outlet property="usernameField" destination="G5Z-vE-mBN" id="NZg-v9-1of"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HVB-Bt-uhm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
