@@ -29,6 +29,9 @@
     UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clear:)];
     [self.navigationItem setLeftBarButtonItem:clear animated:YES];
     
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        [self.navigationItem.rightBarButtonItem setAction:@selector(iPadSearch:)];
+    
     // Instantiate the picker view arrays
     // Note: the empty string sets up the clearing option in the picker
     majorsArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
@@ -1097,6 +1100,11 @@
         UITextField *field = [fields objectAtIndex:i];
         field.text = @"";
     }
+}
+
+// Refreshes results on iPad
+- (void)iPadSearch:(id)sender{
+    NSLog(@"HERE");
 }
 
 @end

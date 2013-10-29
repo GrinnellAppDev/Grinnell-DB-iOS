@@ -26,6 +26,7 @@
 - (void)parseResults:(NSString *)dataString;
 - (void)parseResultsOffCampus:(NSString *)dataString;
 - (void)parseHTML:(NSRange)startRange :(NSRange)endRange :(NSMutableArray *)array :(NSString *)responseData;
+- (void)iPadSearch:(id)sender;
 
 @property (nonatomic, strong) NSMutableArray *majorsArray;
 @property (nonatomic, strong) NSMutableArray *concentrationArray;
