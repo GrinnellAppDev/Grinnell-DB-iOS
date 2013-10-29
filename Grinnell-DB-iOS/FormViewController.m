@@ -870,6 +870,11 @@
         NSString *urlString;
         if (endRange.location < testRange.location)
             urlString = [self extractFromString:dataString withRange:startRange andRange:endRange];
+
+        startRange = [dataString rangeOfString:@"<a href=\"GCdisplaydata.asp?SomeKindofNumber=" options:NSCaseInsensitiveSearch];
+        endRange = [dataString rangeOfString:@"\" target ="];
+        NSString *profileURLString;
+        profileURLString = [self extractFromString:dataString withRange:startRange andRange:endRange];
         
         // Get and process the person's name
         startRange = [dataString rangeOfString:@"target = \"_blank\">"];
@@ -1051,6 +1056,10 @@
         if (Nil != urlString) {
             [tmpPerson.attributes addObject:@"picURL"];
             [tmpPerson.attributeVals addObject:urlString];
+        }
+        if (Nil != profileURLString) {
+            [tmpPerson.attributes addObject:@"profileURL"];
+            [tmpPerson.attributeVals addObject:profileURLString];
         }
         [searchResults addObject:tmpPerson];
         

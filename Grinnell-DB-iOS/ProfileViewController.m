@@ -82,6 +82,8 @@
         sub++;
     if (NSNotFound != [selectedPerson.attributes indexOfObject:@"Status"])
         sub++;
+    if (NSNotFound != [selectedPerson.attributes indexOfObject:@"profileURL"])
+        sub++;
     return selectedPerson.attributes.count - sub;
 }
 
@@ -128,7 +130,7 @@
             [self presentViewController:mailViewController animated:YES completion:nil];
         }
     }
-    else if (0 == indexPath.section && [[selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Campus Phone"]){
+    else if (0 == indexPath.section && ([[selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Campus Phone"] || [[selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Home Phone"])){
         NSString *phoneNum = [selectedPerson.attributeVals objectAtIndex:indexPath.row];
         NSString *url = @"telprompt://";
         if (phoneNum.length >= 10)

@@ -8,7 +8,6 @@
 
 #import "ResultsViewController.h"
 #import "ProfileViewController.h"
-#import "Person.h"
 #import <Reachability.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
@@ -47,6 +46,9 @@
         ProfileViewController *destViewController = segue.destinationViewController;
         Person *selected = [[Person alloc] init];
         selected = [searchDetails objectAtIndex:indexPath.row];
+        int index = [selected.attributes indexOfObject:@"profileURL"];
+        if (NSNotFound != index)
+            [self parseProfilePage:[selected.attributeVals objectAtIndex:index] forPerson:selected];
         destViewController.selectedPerson = selected;
     }
 }
@@ -127,7 +129,7 @@
         NSString *compositeTitle = [titleArray objectAtIndex:0];
         
         for (int i = 1; i < titleArray.count; i++)
-          compositeTitle = [compositeTitle stringByAppendingString:[NSString stringWithFormat:@"/%@", [titleArray objectAtIndex:i]]];
+            compositeTitle = [compositeTitle stringByAppendingString:[NSString stringWithFormat:@"/%@", [titleArray objectAtIndex:i]]];
         
         compositeTitle = [compositeTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         majorLbl.text = compositeTitle;
@@ -176,5 +178,106 @@
                             ];
     [network show];
 }
+
+- (void)showErrorAlert {
+    UIAlertView *error = [[UIAlertView alloc]
+                          initWithTitle:@"An Error Occurred"
+                          message:@"Please try again later"
+                          delegate:self
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil
+                          ];
+    [error show];
+}
+
+- (void)parseProfilePage:(NSString *)urlString forPerson:(Person *)selected {
+    @try{
+        NSString *post =[[NSString alloc] initWithFormat:@""];
+        
+        NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdisplaydata.asp?SomeKindofNumber=%@", urlString]];
+        
+        NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+        
+        NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+        
+        NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
+        [request setURL:url];
+        [request setHTTPMethod:@"POST"];
+        [request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+        [request setValue:@"application/html" forHTTPHeaderField:@"Accept"];
+        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
+        [request setHTTPBody:postData];
+        
+        NSError *error = [[NSError alloc] init];
+        NSHTTPURLResponse *response = nil;
+        NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+        
+        if([response statusCode] >= 200 && [response statusCode] < 300){
+            NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
+           
+            NSRange startRange = [responseData rangeOfString:@"<td ></td></tr><tr><td valign = \"top\">" options:NSCaseInsensitiveSearch];
+            responseData = [self cutString:responseData fromStartToEndOfRange:startRange];
+            int i = [selected.attributes indexOfObject:@"picURL"];
+            int j = [selected.attributes indexOfObject:@"profileURL"];
+            int k = [selected.attributes indexOfObject:@"Status"];
+            int index = MIN(k, MIN(i, j));
+            if (NSNotFound == index)
+                index = selected.attributes.count;
+            
+            startRange = [responseData rangeOfString:@"<TR><TD valign=\"top\" align=\"right\" ><Strong>"];
+            while (NSNotFound != startRange.location){
+                NSRange endRange = [responseData rangeOfString:@":</strong>"];
+                NSString *temp = [self extractFromString:responseData withRange:startRange andRange:endRange];
+                
+                if ([temp isEqualToString:@"Name"] || [temp isEqualToString:@"Major"] || [temp isEqualToString:@"Class"] || [temp isEqualToString:@"E-Mail"] || [temp isEqualToString:@"Campus Box"] || [temp isEqualToString:@"Local Addr"] || [temp isEqualToString:@"Campus Address"] || [temp isEqualToString:@"Campus Phone"] || [temp isEqualToString:@"Titles"] || [temp isEqualToString:@"Department(s)"] || [temp isEqualToString:@"Title"] || [temp isEqualToString:@"Off Campus Study"] || [temp isEqualToString:@"SGA Member"])
+                    ;
+                else {
+                    startRange = [responseData rangeOfString:@"<TD valign=\"top\">" options:NSCaseInsensitiveSearch];
+                    endRange = [responseData rangeOfString:@"</TD></TR>" options:NSCaseInsensitiveSearch];
+                    if ([temp isEqualToString:@""])
+                        temp = @"Home Addr";
+                    [selected.attributes insertObject:temp atIndex:index];
+                    [selected.attributeVals insertObject:[self extractFromString:responseData withRange:startRange andRange:endRange] atIndex:index];
+                    index++;
+                }
+                endRange = [responseData rangeOfString:@"</tr>" options:NSCaseInsensitiveSearch];
+                responseData = [self cutString:responseData fromStartToEndOfRange:endRange];
+                startRange = [responseData rangeOfString:@"<TR><TD valign=\"top\" align=\"right\" ><Strong>"];
+            }
+        }
+        else
+            [self showErrorAlert];
+    }
+    @catch(NSException * e){
+        NSLog(@"Exception: %@", e);
+        [self showErrorAlert];
+    }
+}
+
+// Cuts the beginning of a string (up to a certain range)
+- (NSString *)cutString:(NSString *)str fromStartToEndOfRange:(NSRange)startRange {
+    startRange.length = startRange.location + startRange.length;
+    startRange.location = 0;
+    return [str stringByReplacingCharactersInRange:startRange withString:@""];
+}
+
+
+// Taking a substring of a string starting at startRange and ending at endRange
+//  Returns nicely formatted!
+- (NSString *)extractFromString:(NSString *)str withRange:(NSRange)startRange andRange:(NSRange)endRange {
+    endRange.length = endRange.location - (startRange.location + startRange.length);
+    endRange.location = startRange.location + startRange.length;
+    if (NSNotFound != endRange.location) {
+        NSString *temporary = [str substringWithRange:endRange];
+        temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        temporary = [temporary stringByReplacingOccurrencesOfString:@"</address>" withString:@""];
+        temporary = [temporary stringByReplacingOccurrencesOfString:@"<address>" withString:@""];
+        temporary = [temporary stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
+        return temporary;
+    }
+    else
+        return nil;
+}
+
 
 @end

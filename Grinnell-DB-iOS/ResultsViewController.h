@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Person.h"
 
 @interface ResultsViewController : UITableViewController
 
 - (BOOL)networkCheck;
+- (void)parseProfilePage:(NSString *)urlString forPerson:(Person *)selected;
+- (NSString *)extractFromString:(NSString *)str withRange:(NSRange)startRange andRange:(NSRange)endRange;
 
 @property (nonatomic, strong) NSString *cellIdentifier;
 @property (nonatomic, strong) NSMutableArray *searchDetails;
