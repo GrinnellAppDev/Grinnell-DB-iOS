@@ -111,7 +111,8 @@
         userImageView.contentMode = UIViewContentModeScaleAspectFit;
         [userImageView setImageWithURL:[NSURL URLWithString:userImageString] placeholderImage:nil];
     }
-    
+    else userImageView = nil;
+
     if ([status isEqualToString:@"Student"]) {
         NSString *year = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Class"]];
         NSString *major = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Major"]];
