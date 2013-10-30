@@ -21,6 +21,7 @@
 - (NSString *)extractFromString:(NSString *)str withRange:(NSRange)startRange andRange:(NSRange)endRange;
 - (NSString *)cutString:(NSString *)str fromStartToEndOfRange:(NSRange)startRange;
 - (void)load;
+- (void)searchHelper;
 - (void)clear:(id)sender;
 - (void)searchUsingURL:(NSURL *)url forPage:(int)pageNum;
 - (void)parseResults:(NSString *)dataString;
