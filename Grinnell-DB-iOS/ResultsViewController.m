@@ -31,6 +31,8 @@
     [super viewDidLoad];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         self.splitViewController.delegate = self;
+        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation))
+            ;//[self.splitViewController performSelector:@selector(toggleMasterVisible)];
     }
     if (onCampusBool)
         cellIdentifier = @"OnCResultsCell";

@@ -19,13 +19,32 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Results" id="0sA-o5-rqR"/>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="INw-0a-sXc">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </refreshControl>
+                    <connections>
+                        <segue destination="46j-k7-YKy" kind="push" identifier="PushToProfile" id="7wm-Rl-ipZ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hBQ-6y-D6l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1408" y="286"/>
+        </scene>
+        <!--Profile View Controller - Profile-->
+        <scene sceneID="fgD-0I-gpU">
+            <objects>
+                <tableViewController id="46j-k7-YKy" customClass="ProfileViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="BDs-yv-lKm">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <connections>
+                            <outlet property="dataSource" destination="46j-k7-YKy" id="DnJ-iD-xCP"/>
+                            <outlet property="delegate" destination="46j-k7-YKy" id="rTa-RV-all"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Profile" id="YMr-uy-Xg3"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tPs-Z3-N06" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2372" y="286"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="FQC-Ah-LOY">
@@ -45,7 +64,7 @@
         <!--Form View Controller - Search-->
         <scene sceneID="ztY-4R-lEa">
             <objects>
-                <tableViewController title="Search" clearsSelectionOnViewWillAppear="NO" id="agX-lC-7Q1" customClass="FormViewController" sceneMemberID="viewController">
+                <tableViewController title="Search" id="agX-lC-7Q1" customClass="FormViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="U5V-X5-yBB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -291,9 +310,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Search" id="zBm-Fn-57W">
                         <barButtonItem key="rightBarButtonItem" title="Search" id="ayk-4q-gvr"/>
-                        <connections>
-                            <outlet property="rightBarButtonItem" destination="ayk-4q-gvr" id="NGO-KI-DqQ"/>
-                        </connections>
                     </navigationItem>
                     <connections>
                         <outlet property="campusAddressField" destination="Iwz-AV-pTH" id="DQa-oY-hpw"/>

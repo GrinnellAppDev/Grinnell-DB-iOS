@@ -76,9 +76,6 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    // Must be re-initialized each time this view re-appears
-    searchResults = [[NSMutableArray alloc] init];
-    
     // Check network and load picker views if there is a network
     if ([self networkCheck])
         [self load];
@@ -112,7 +109,6 @@
 
 // Perform the search... If no results come back, prevent segue from happening by returning NO
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-  
     [self searchHelper];
     
     // Stop the segue if an error occured (indicated by null value in searchResults)
@@ -1043,26 +1039,25 @@
 
 // Clears all textFields in the form
 - (void)clear:(id)sender {
-    for (int i=0; i < fields.count; i++){
+    for (int i=0; i < fields.count; i++) {
         UITextField *field = [fields objectAtIndex:i];
         field.text = @"";
     }
 }
 
 // Refreshes results on iPad
-- (void)iPadSearch:(id)sender{
+- (void)iPadSearch:(id)sender {
     [self searchHelper];
-    
-    NSLog(@"%d", searchResults.count);
-    
-    ResultsViewController *results = [self.splitViewController.viewControllers lastObject];
+    UINavigationController *navC = [self.splitViewController.viewControllers lastObject];
+    [navC popToRootViewControllerAnimated:NO];
+    ResultsViewController *results = (ResultsViewController *)navC.topViewController;
     results.searchDetails = searchResults;
     results.onCampusBool = onCampusBool;
-    //NSLog(@"%d", results.searchDetails.count);
-    [results reloadInputViews];
+    [results.tableView reloadData];
 }
 
 - (void) searchHelper {
+    searchResults = [[NSMutableArray alloc] init];
 	  [keyboardControls.activeField resignFirstResponder];
     // Set up HUD and give it time to run
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
