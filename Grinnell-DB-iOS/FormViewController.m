@@ -247,10 +247,6 @@
             break;
     }
 }
-/*
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
-    return 300;
-}*/
 
 #pragma mark UITableView overrides
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -279,7 +275,10 @@
     else
         controller.state = YES;
     stateBeforeSettings = [[NSUserDefaults standardUserDefaults] boolForKey:@"State"];
-    [popoverController presentPopoverFromRect:cell.bounds inView:cell permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+        [popoverController presentPopoverFromRect:cell.bounds inView:cell permittedArrowDirections:WYPopoverArrowDirectionLeft animated:YES];
+    else
+        [popoverController presentPopoverFromRect:cell.bounds inView:cell permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
 }
 
 #pragma mark - Popover overrides
