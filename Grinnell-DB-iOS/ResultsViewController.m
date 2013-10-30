@@ -27,13 +27,13 @@
     return self;
 }
 
+- (void)awakeFromNib {
+    self.splitViewController.delegate = self;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        self.splitViewController.delegate = self;
-        if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation))
-            ;//[self.splitViewController performSelector:@selector(toggleMasterVisible)];
-    }
+
     if (onCampusBool)
         cellIdentifier = @"OnCResultsCell";
     else
@@ -113,7 +113,7 @@
         userImageView.contentMode = UIViewContentModeScaleAspectFit;
         [userImageView setImageWithURL:[NSURL URLWithString:userImageString] placeholderImage:nil];
     }
-    else userImageView = nil;
+    else userImageView.image = nil;
 
     if ([status isEqualToString:@"Student"]) {
         NSString *year = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Class"]];
@@ -241,7 +241,9 @@
                     startRange = [responseData rangeOfString:@"<TD valign=\"top\">" options:NSCaseInsensitiveSearch];
                     endRange = [responseData rangeOfString:@"</TD></TR>" options:NSCaseInsensitiveSearch];
                     if ([temp isEqualToString:@""])
-                        temp = @"Home Addr";
+                        temp = @"Home Address";
+                    else if ([temp isEqualToString:@"Home Addr"])
+                        temp = @"Home Address";
                     [selected.attributes insertObject:temp atIndex:index];
                     [selected.attributeVals insertObject:[self extractFromString:responseData withRange:startRange andRange:endRange] atIndex:index];
                     index++;
@@ -288,4 +290,11 @@
 - (BOOL) splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation {
     return NO;
 }
+/*
+- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController {
+    barButtonItem.title = @"Master";
+    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+    self.popover = popoverController;
+}*/
+
 @end

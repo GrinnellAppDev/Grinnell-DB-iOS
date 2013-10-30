@@ -18,5 +18,5 @@
 @property (nonatomic, strong) NSString *cellIdentifier;
 @property (nonatomic, strong) NSMutableArray *searchDetails;
 @property (nonatomic, assign) BOOL onCampusBool;
-
+@property (nonatomic, strong) UIPopoverController *popover;
 @end

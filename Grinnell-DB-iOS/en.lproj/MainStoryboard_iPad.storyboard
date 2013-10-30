@@ -10,9 +10,10 @@
             <objects>
                 <tableViewController title="Results" id="zbs-b3-oXd" customClass="ResultsViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="5Ny-tB-h6X">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <connections>
                             <outlet property="dataSource" destination="zbs-b3-oXd" id="RPr-Re-AHh"/>
                             <outlet property="delegate" destination="zbs-b3-oXd" id="cnd-Ol-xFk"/>
@@ -32,9 +33,10 @@
             <objects>
                 <tableViewController id="46j-k7-YKy" customClass="ProfileViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="BDs-yv-lKm">
-                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <rect key="frame" x="0.0" y="0.0" width="703" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <connections>
                             <outlet property="dataSource" destination="46j-k7-YKy" id="DnJ-iD-xCP"/>
                             <outlet property="delegate" destination="46j-k7-YKy" id="rTa-RV-all"/>
@@ -66,9 +68,10 @@
             <objects>
                 <tableViewController title="Search" id="agX-lC-7Q1" customClass="FormViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="U5V-X5-yBB">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <sections>
                             <tableViewSection id="VTw-4y-gbe">
                                 <cells>
@@ -310,6 +313,9 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Search" id="zBm-Fn-57W">
                         <barButtonItem key="rightBarButtonItem" title="Search" id="ayk-4q-gvr"/>
+                        <connections>
+                            <outlet property="rightBarButtonItem" destination="ayk-4q-gvr" id="KRQ-HN-u2g"/>
+                        </connections>
                     </navigationItem>
                     <connections>
                         <outlet property="campusAddressField" destination="Iwz-AV-pTH" id="DQa-oY-hpw"/>
@@ -350,6 +356,7 @@
             <objects>
                 <splitViewController id="eis-ex-9uB" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     <connections>
                         <segue destination="hbU-PS-XvK" kind="relationship" relationship="masterViewController" id="AWS-VO-lXK"/>
                         <segue destination="WNi-Os-Jt9" kind="relationship" relationship="detailViewController" id="VGn-pA-gDX"/>
@@ -357,7 +364,7 @@
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="63w-3U-ozs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-427" y="-395"/>
+            <point key="canvasLocation" x="-699" y="-303"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

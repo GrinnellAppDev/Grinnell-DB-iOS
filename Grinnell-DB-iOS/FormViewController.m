@@ -40,7 +40,7 @@
 	hiatusArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
 	facStaffArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
     classArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
-    statesArray = [[NSMutableArray alloc] initWithObjects:@"AL", @"AK", @"AZ", @"AR", @"CA", @"CO", @"CT", @"DC", @"DE", @"FL", @"GA", @"HI", @"ID", @"IL", @"IN", @"IA", @"KS", @"KY", @"LA", @"ME", @"MD", @"MA", @"MI", @"MN", @"MS", @"MO", @"MT", @"NE", @"NV", @"NH", @"NJ", @"NM", @"NY", @"NC", @"ND", @"OH", @"OK", @"OR", @"PA", @"RI", @"SC", @"SD", @"TN", @"TX", @"UT", @"VT", @"VA", @"WA", @"WV", @"WI", @"WY", nil];
+    statesArray = [[NSMutableArray alloc] initWithObjects:@"", @"Any", @"AL", @"AK", @"AZ", @"AR", @"CA", @"CO", @"CT", @"DC", @"DE", @"FL", @"GA", @"HI", @"ID", @"IL", @"IN", @"IA", @"KS", @"KY", @"LA", @"ME", @"MD", @"MA", @"MI", @"MN", @"MS", @"MO", @"MT", @"NE", @"NV", @"NH", @"NJ", @"NM", @"NY", @"NC", @"ND", @"OH", @"OK", @"OR", @"PA", @"RI", @"SC", @"SD", @"TN", @"TX", @"UT", @"VT", @"VA", @"WA", @"WV", @"WI", @"WY", nil];
     
     // Assume on campus... This will be changed during [self load]
     onCampusBool = YES;
@@ -51,16 +51,12 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     // Instantiate the picker and set the field inputs
-    UIInterfaceOrientation orient = [UIApplication sharedApplication].statusBarOrientation;
-    if (UIInterfaceOrientationPortrait == orient)
-        myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 200, 320, 240)];
-    else
-        myPickerView = [[UIPickerView alloc] initWithFrame:CGRectMake(0, 200, 320, 120)];
-    
+    myPickerView = [[UIPickerView alloc] init];
+    [myPickerView setAutoresizesSubviews:YES];
+    [myPickerView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
     myPickerView.delegate = self;
     myPickerView.showsSelectionIndicator = YES;
     [self.view addSubview:myPickerView];
-    myPickerView.hidden = YES;
     majorField.inputView = myPickerView;
     concentrationField.inputView = myPickerView;
     sgaField.inputView = myPickerView;
@@ -141,7 +137,6 @@
     
     // Show the picker if needed for this field
     if (0 != textField.tag) {
-        textField.inputView.hidden = NO;
         textFieldIdentifier = textField.tag;
         [myPickerView reloadAllComponents];
         [myPickerView selectRow:0 inComponent:0 animated:YES];
@@ -252,10 +247,10 @@
             break;
     }
 }
-
+/*
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component {
     return 300;
-}
+}*/
 
 #pragma mark UITableView overrides
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -1103,6 +1098,8 @@
         if ([hiatus isEqualToString:@"Any"])
             hiatus = @"";
         NSString *home = [searchDetails objectAtIndex:9];
+        if ([home isEqualToString:@"Any"])
+            home = @"";
         NSString *facStaff = [searchDetails objectAtIndex:10];
         if ([facStaff isEqualToString:@"Any"])
             facStaff = @"";
