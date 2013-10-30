@@ -112,73 +112,8 @@
 
 // Perform the search... If no results come back, prevent segue from happening by returning NO
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    [keyboardControls.activeField resignFirstResponder];
-    // Set up HUD and give it time to run
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"Searching";
-    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantPast]];
-    
-    NSMutableArray *searchDetails = [[NSMutableArray alloc] init];
-    NSURL *url;
-    // Any spaces typed into a field should be turned into pluses for the URL
-    for (int i=0; i < fields.count; i++){
-        UITextField *field = [fields objectAtIndex:i];
-        NSString *tmp = [field.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-        [searchDetails addObject:tmp];
-    }
-    
-    NSString *first = [searchDetails objectAtIndex:0];
-    NSString *last = [searchDetails objectAtIndex:1];
-    NSString *user = [searchDetails objectAtIndex:2];
-    NSString *firstSearchType, *lastSearchType;
-    
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"First"])
-        firstSearchType = @"contains";
-    else
-        firstSearchType = @"startswith";
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Last"])
-        lastSearchType = @"contains";
-    else
-        lastSearchType = @"startswith";
-    // Set up the url properly - Nothing containing the word "any" should be in the url
-    if (onCampusBool) {
-        NSString *year = [searchDetails objectAtIndex:3];
-        if ([year isEqualToString:@"Any"])
-            year = @"";
-        NSString *phone = [searchDetails objectAtIndex:4];
-        NSString *address = [searchDetails objectAtIndex:5];
-        NSString *major = [searchDetails objectAtIndex:6];
-        if ([major isEqualToString:@"Any"])
-            major = @"";
-        NSString *conc = [searchDetails objectAtIndex:7];
-        if ([conc isEqualToString:@"Any"])
-            conc = @"";
-        NSString *hiatus = [searchDetails objectAtIndex:8];
-        if ([hiatus isEqualToString:@"Any"])
-            hiatus = @"";
-        NSString *home = [searchDetails objectAtIndex:9];
-        NSString *facStaff = [searchDetails objectAtIndex:10];
-        if ([facStaff isEqualToString:@"Any"])
-            facStaff = @"";
-        NSString *sga = [searchDetails objectAtIndex:11];
-        if ([sga isEqualToString:@"Any"])
-            sga = @"";
-        NSString *homeSearchType;
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"] && ![home isEqualToString:@""])
-            homeSearchType = @"Y";
-        else
-            homeSearchType = @"N";
-        
-        url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&pagenum=1&LastName=%@&LNameSearch=%@&FirstName=%@&FNameSearch=%@&email=%@&campusphonenumber=%@&campusquery=%@&Homequery=%@&StateOnlyCheck=%@&Department=%@&Major=%@&conc=%@&SGA=%@&Hiatus=%@&Gyear=%@&submit_search=Search", last, lastSearchType, first, firstSearchType, user, phone, address, home, homeSearchType, facStaff, major, conc, sga, hiatus, year]];
-    }
-    else
-        url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&pagenum=1&LastName=%@&LNameSearch=%@&FirstName=%@&FNameSearch=%@&email=%@&submit_search=Search", last, lastSearchType, first, firstSearchType, user]];
-
-    // Start the search
-    [self searchUsingURL:url forPage:1];
-    
-    // Hide the HUD
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+  
+    [self searchHelper];
     
     // Stop the segue if an error occured (indicated by null value in searchResults)
     if (NULL == searchResults)
@@ -1116,7 +1051,19 @@
 
 // Refreshes results on iPad
 - (void)iPadSearch:(id)sender{
-    [keyboardControls.activeField resignFirstResponder];
+    [self searchHelper];
+    
+    NSLog(@"%d", searchResults.count);
+    
+    ResultsViewController *results = [self.splitViewController.viewControllers lastObject];
+    results.searchDetails = searchResults;
+    results.onCampusBool = onCampusBool;
+    //NSLog(@"%d", results.searchDetails.count);
+    [results reloadInputViews];
+}
+
+- (void) searchHelper {
+	  [keyboardControls.activeField resignFirstResponder];
     // Set up HUD and give it time to run
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Searching";
@@ -1177,19 +1124,12 @@
     }
     else
         url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&pagenum=1&LastName=%@&LNameSearch=%@&FirstName=%@&FNameSearch=%@&email=%@&submit_search=Search", last, lastSearchType, first, firstSearchType, user]];
-    
+
     // Start the search
     [self searchUsingURL:url forPage:1];
     
     // Hide the HUD
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    NSLog(@"%d", searchResults.count);
-    
-    ResultsViewController *results = [self.splitViewController.viewControllers lastObject];
-    results.searchDetails = searchResults;
-    results.onCampusBool = onCampusBool;
-    //NSLog(@"%d", results.searchDetails.count);
-    [results reloadInputViews];
 }
 
 - (BOOL) splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation {
