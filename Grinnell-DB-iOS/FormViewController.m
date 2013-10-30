@@ -57,6 +57,7 @@
     myPickerView.delegate = self;
     myPickerView.showsSelectionIndicator = YES;
     [self.view addSubview:myPickerView];
+    myPickerView.hidden = YES;
     majorField.inputView = myPickerView;
     concentrationField.inputView = myPickerView;
     sgaField.inputView = myPickerView;
@@ -137,6 +138,7 @@
     
     // Show the picker if needed for this field
     if (0 != textField.tag) {
+        myPickerView.hidden = NO;
         textFieldIdentifier = textField.tag;
         [myPickerView reloadAllComponents];
         [myPickerView selectRow:0 inComponent:0 animated:YES];
