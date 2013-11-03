@@ -252,11 +252,10 @@
 
 #pragma mark UITableView overrides
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
-    /*if (onCampusBool) {
+    if (onCampusBool) {
         return 12;
     }
-    else return 3;*/
+    else return 3;
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
