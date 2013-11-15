@@ -232,6 +232,7 @@
             
             startRange = [responseData rangeOfString:@"<TR><TD valign=\"top\" align=\"right\" ><Strong>"];
             while (NSNotFound != startRange.location){
+            	int tempIndex = index;
                 NSRange endRange = [responseData rangeOfString:@":</strong>"];
                 NSString *temp = [self extractFromString:responseData withRange:startRange andRange:endRange];
                 
@@ -244,8 +245,12 @@
                         temp = @"Home Address";
                     else if ([temp isEqualToString:@"Home Addr"])
                         temp = @"Home Address";
-                    [selected.attributes insertObject:temp atIndex:index];
-                    [selected.attributeVals insertObject:[self extractFromString:responseData withRange:startRange andRange:endRange] atIndex:index];
+                    else if ([temp isEqualToString:@"Name*"]) {
+                    	temp = @"Full Name";
+                    	tempIndex = 0;
+                    }
+                    [selected.attributes insertObject:temp atIndex:tempIndex];
+                    [selected.attributeVals insertObject:[self extractFromString:responseData withRange:startRange andRange:endRange] atIndex:tempIndex];
                     index++;
                 }
                 endRange = [responseData rangeOfString:@"</tr>" options:NSCaseInsensitiveSearch];
