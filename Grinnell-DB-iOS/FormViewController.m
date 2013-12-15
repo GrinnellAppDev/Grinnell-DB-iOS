@@ -155,6 +155,11 @@
     return YES;
 }
 
+// Minimize keyboard on user drag
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    [keyboardControls.activeField resignFirstResponder];
+}
+
 #pragma mark UIPicker methods
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
     switch (textFieldIdentifier) {
@@ -1129,7 +1134,5 @@
 - (BOOL) splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation {
     return NO;
 }
-
-
 
 @end
