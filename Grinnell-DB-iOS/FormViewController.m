@@ -88,6 +88,7 @@
         fields = [[NSMutableArray alloc] initWithObjects:firstNameField, lastNameField, usernameField, nil];
     
     [self setKeyboardControls:[[BSKeyboardControls alloc] initWithFields:fields]];
+    keyboardControls.barTintColor = [UIColor whiteColor];
     [keyboardControls setDelegate:self];
     
     [super viewWillAppear:animated];
@@ -1128,5 +1129,7 @@
 - (BOOL) splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation {
     return NO;
 }
+
+
 
 @end
