@@ -33,11 +33,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    if (onCampusBool)
+    
+    if (onCampusBool) {
         cellIdentifier = @"OnCResultsCell";
-    else
+    } else {
         cellIdentifier = @"OffCResultsCell";
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,8 +53,9 @@
         Person *selected = [[Person alloc] init];
         selected = [searchDetails objectAtIndex:indexPath.row];
         int index = [selected.attributes indexOfObject:@"profileURL"];
-        if (NSNotFound != index)
+        if (NSNotFound != index) {
             [self parseProfilePage:[selected.attributeVals objectAtIndex:index] forPerson:selected];
+        }
         destViewController.selectedPerson = selected;
     }
 }
@@ -80,13 +82,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Register the NIB cell object for our custom cell
-    if (onCampusBool)
+    if (onCampusBool) {
         [tableView registerNib:[UINib nibWithNibName:@"OnCResultsCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
-    else
+    } else {
         [tableView registerNib:[UINib nibWithNibName:@"OffCResultsCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
+    }
     
     UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-	if (cell == nil) {
+	if (!cell) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 	}
     
@@ -108,21 +111,21 @@
     
     // Fetch the image
     int index = [tempPerson.attributes indexOfObject:@"picURL"];
-    if (NSNotFound != index){
+    if (NSNotFound != index) {
         NSString *userImageString = [tempPerson.attributeVals objectAtIndex:index];
         userImageView.contentMode = UIViewContentModeScaleAspectFit;
         [userImageView setImageWithURL:[NSURL URLWithString:userImageString] placeholderImage:nil];
+    } else {
+        userImageView.image = nil;
     }
-    else userImageView.image = nil;
-
+    
     if ([status isEqualToString:@"Student"]) {
         NSString *year = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Class"]];
         NSString *major = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Major"]];
         majorLbl.text = major;
         classLbl.text = year;
         statusLbl.text = status;
-    }
-    else if ([status isEqualToString:@"Faculty / Staff"]) {
+    } else if ([status isEqualToString:@"Faculty / Staff"]) {
         NSString *dept = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Department"]];
         
         NSMutableArray *titleArray = [[NSMutableArray alloc] init];
@@ -134,22 +137,21 @@
         }
         NSString *compositeTitle = [titleArray objectAtIndex:0];
         
-        for (int i = 1; i < titleArray.count; i++)
+        for (int i = 1; i < titleArray.count; i++) {
             compositeTitle = [compositeTitle stringByAppendingString:[NSString stringWithFormat:@"/%@", [titleArray objectAtIndex:i]]];
+        }
         
         compositeTitle = [compositeTitle stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         majorLbl.text = compositeTitle;
         classLbl.text = dept;
         statusLbl.text = @"Fac/Staff";
-    }
-    else {
+    } else {
         int index = [tempPerson.attributes indexOfObject:@"Title"];
         if (NSNotFound != index) {
             NSString *title = [tempPerson.attributeVals objectAtIndex:index];
             majorLbl.text = title;
             classLbl.text = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Department"]];
-        }
-        else {
+        } else {
             majorLbl.text = @"Data unavailable off campus";
             classLbl.text = @"Unavailable";
         }
@@ -157,7 +159,6 @@
     }
     
     nameLbl.text = [NSString stringWithFormat:@"%@, %@", last, first];
-    
     usernameLbl.text = username;
     
     return cell;
@@ -197,7 +198,7 @@
 }
 
 - (void)parseProfilePage:(NSString *)urlString forPerson:(Person *)selected {
-    @try{
+    @try {
         NSString *post =[[NSString alloc] initWithFormat:@""];
         
         NSURL *url=[NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdisplaydata.asp?SomeKindofNumber=%@", urlString]];
@@ -218,9 +219,9 @@
         NSHTTPURLResponse *response = nil;
         NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
-        if([response statusCode] >= 200 && [response statusCode] < 300){
+        if ([response statusCode] >= 200 && [response statusCode] < 300) {
             NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
-           
+            
             NSRange startRange = [responseData rangeOfString:@"<td ></td></tr><tr><td valign = \"top\">" options:NSCaseInsensitiveSearch];
             responseData = [self cutString:responseData fromStartToEndOfRange:startRange];
             int i = [selected.attributes indexOfObject:@"picURL"];
@@ -231,21 +232,21 @@
                 index = selected.attributes.count;
             
             startRange = [responseData rangeOfString:@"<TR><TD valign=\"top\" align=\"right\" ><Strong>"];
-            while (NSNotFound != startRange.location){
+            while (NSNotFound != startRange.location) {
             	int tempIndex = index;
                 NSRange endRange = [responseData rangeOfString:@":</strong>"];
                 NSString *temp = [self extractFromString:responseData withRange:startRange andRange:endRange];
                 
-                if ([temp isEqualToString:@"Name"] || [temp isEqualToString:@"Major"] || [temp isEqualToString:@"Class"] || [temp isEqualToString:@"E-Mail"] || [temp isEqualToString:@"Campus Box"] || [temp isEqualToString:@"Local Addr"] || [temp isEqualToString:@"Campus Address"] || [temp isEqualToString:@"Campus Phone"] || [temp isEqualToString:@"Titles"] || [temp isEqualToString:@"Department(s)"] || [temp isEqualToString:@"Title"] || [temp isEqualToString:@"Off Campus Study"] || [temp isEqualToString:@"SGA Member"])
-                    ;
-                else {
+                if ([temp isEqualToString:@"Name"] || [temp isEqualToString:@"Major"] || [temp isEqualToString:@"Class"] || [temp isEqualToString:@"E-Mail"] || [temp isEqualToString:@"Campus Box"] || [temp isEqualToString:@"Local Addr"] || [temp isEqualToString:@"Campus Address"] || [temp isEqualToString:@"Campus Phone"] || [temp isEqualToString:@"Titles"] || [temp isEqualToString:@"Department(s)"] || [temp isEqualToString:@"Title"] || [temp isEqualToString:@"Off Campus Study"] || [temp isEqualToString:@"SGA Member"]) {
+                    ; // Do Nothing
+                } else {
                     startRange = [responseData rangeOfString:@"<TD valign=\"top\">" options:NSCaseInsensitiveSearch];
                     endRange = [responseData rangeOfString:@"</TD></TR>" options:NSCaseInsensitiveSearch];
-                    if ([temp isEqualToString:@""])
+                    if ([temp isEqualToString:@""]) {
                         temp = @"Home Address";
-                    else if ([temp isEqualToString:@"Home Addr"])
+                    } else if ([temp isEqualToString:@"Home Addr"]) {
                         temp = @"Home Address";
-                    else if ([temp isEqualToString:@"Name*"]) {
+                    } else if ([temp isEqualToString:@"Name*"]) {
                     	temp = @"Full Name";
                     	tempIndex = 0;
                     }
@@ -257,9 +258,9 @@
                 responseData = [self cutString:responseData fromStartToEndOfRange:endRange];
                 startRange = [responseData rangeOfString:@"<TR><TD valign=\"top\" align=\"right\" ><Strong>"];
             }
-        }
-        else
+        } else {
             [self showErrorAlert];
+        }
     }
     @catch(NSException * e){
         NSLog(@"Exception: %@", e);
@@ -287,19 +288,19 @@
         temporary = [temporary stringByReplacingOccurrencesOfString:@"<address>" withString:@""];
         temporary = [temporary stringByReplacingOccurrencesOfString:@"&nbsp;" withString:@" "];
         return temporary;
-    }
-    else
+    } else {
         return nil;
+    }
 }
 
 - (BOOL) splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation {
     return NO;
 }
 /*
-- (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController {
-    barButtonItem.title = @"Master";
-    [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
-    self.popover = popoverController;
-}*/
+ - (void)splitViewController:(UISplitViewController *)splitController willHideViewController:(UIViewController *)viewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)popoverController {
+ barButtonItem.title = @"Master";
+ [self.navigationItem setLeftBarButtonItem:barButtonItem animated:YES];
+ self.popover = popoverController;
+ }*/
 
 @end

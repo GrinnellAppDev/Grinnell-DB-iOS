@@ -40,7 +40,7 @@
     
     // Get image (from the cache) if it's there
     int index = [selectedPerson.attributes indexOfObject:@"picURL"];
-    if (NSNotFound != index){
+    if (NSNotFound != index) {
         label.frame = CGRectMake(100, 35, 210, 40);
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 90, 90)];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -51,10 +51,9 @@
         imageView.userInteractionEnabled = YES;
         [imageView addGestureRecognizer:imageTapGesture];
         [view addSubview:imageView];
-    }
-    else
+    } else {
         label.frame = CGRectMake(20, 35, 280, 40);
-    
+    }
     label.backgroundColor = [UIColor clearColor];
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:20];
@@ -78,12 +77,15 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Repress status and picURL from tableView
     int sub = 0;
-    if (NSNotFound != [selectedPerson.attributes indexOfObject:@"picURL"])
+    if (NSNotFound != [selectedPerson.attributes indexOfObject:@"picURL"]) {
         sub++;
-    if (NSNotFound != [selectedPerson.attributes indexOfObject:@"Status"])
+    }
+    if (NSNotFound != [selectedPerson.attributes indexOfObject:@"Status"]) {
         sub++;
-    if (NSNotFound != [selectedPerson.attributes indexOfObject:@"profileURL"])
+    }
+    if (NSNotFound != [selectedPerson.attributes indexOfObject:@"profileURL"]) {
         sub++;
+    }
     return selectedPerson.attributes.count - sub;
 }
 
@@ -92,24 +94,22 @@
     [tableView registerNib:[UINib nibWithNibName:@"ProfileCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
     
     UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-	if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-	}
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
     
     // Configure the cell...
     cell.textLabel.text = [selectedPerson.attributeVals objectAtIndex:indexPath.row];
     cell.detailTextLabel.text = [selectedPerson.attributes objectAtIndex:indexPath.row];
     
     UIDevice *device = [UIDevice currentDevice];
-    if ([[device model] isEqualToString:@"iPhone"] && [cell.detailTextLabel.text isEqualToString:@"Campus Phone"]){
+    if ([[device model] isEqualToString:@"iPhone"] && [cell.detailTextLabel.text isEqualToString:@"Campus Phone"]) {
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    else if ([cell.detailTextLabel.text isEqualToString:@"Username"]){
+    } else if ([cell.detailTextLabel.text isEqualToString:@"Username"]) {
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    }
-    else{
+    } else {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
@@ -118,7 +118,7 @@
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (0 == indexPath.section && [[selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Username"]){
+    if (0 == indexPath.section && [[selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Username"]) {
         if([MFMailComposeViewController canSendMail]) {
             MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
             mailViewController.mailComposeDelegate = self;
@@ -129,17 +129,16 @@
             [mailViewController setToRecipients:[NSArray arrayWithObject:recipient]];
             [self presentViewController:mailViewController animated:YES completion:nil];
         }
-    }
-    else if (0 == indexPath.section && ([[selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Campus Phone"] || [[selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Home Phone"])){
+    } else if (0 == indexPath.section && ([[selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Campus Phone"] || [[selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Home Phone"])) {
         NSString *phoneNum = [selectedPerson.attributeVals objectAtIndex:indexPath.row];
         NSString *url = @"telprompt://";
-        if (phoneNum.length >= 10)
+        if (phoneNum.length >= 10) {
             url = [url stringByAppendingString:phoneNum];
-        else if (phoneNum.length >= 7)
+        } else if (phoneNum.length >= 7) {
             url = [url stringByAppendingString:[NSString stringWithFormat:@"641-%@", phoneNum]];
-        else
+        } else {
             url = [url stringByAppendingString:[NSString stringWithFormat:@"641-269-%@", phoneNum]];
-        
+        }
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:url]];
     }
     

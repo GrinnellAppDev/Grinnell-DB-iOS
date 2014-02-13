@@ -15,8 +15,7 @@
 @implementation OptionViewController
 @synthesize mySwitch, state, onLabel, offLabel, first;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -24,20 +23,18 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     if (state) {
         offLabel.text = @"Search by Full Address";
         onLabel.text = @"Search by State only";
         [mySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"State"]];
-    }
-    else {
-        if (first)
+    } else {
+        if (first) {
             [mySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"First"]];
-        else
+        } else {
             [mySwitch setOn:[[NSUserDefaults standardUserDefaults] boolForKey:@"Last"]];
-        
+        }
         offLabel.text = @"Search for name that begins with";
         onLabel.text = @"Search for name containing";
     }
@@ -45,20 +42,21 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
 - (void)valueChange:(id)sender {
-    if (state)
+    if (state) {
         [[NSUserDefaults standardUserDefaults] setBool:mySwitch.isOn forKey:@"State"];
-    else
-        if (first)
+    } else {
+        if (first) {
             [[NSUserDefaults standardUserDefaults] setBool:mySwitch.isOn forKey:@"First"];
-        else
+        } else {
             [[NSUserDefaults standardUserDefaults] setBool:mySwitch.isOn forKey:@"Last"];
+        }
+    }
 }
 
 @end

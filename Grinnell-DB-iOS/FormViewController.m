@@ -64,28 +64,30 @@
     hiatusField.inputView = myPickerView;
     classField.inputView = myPickerView;
     facStaffField.inputView = myPickerView;
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"])
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"]) {
         homeAddressField.inputView = myPickerView;
-    else
+    } else {
         homeAddressField.inputView = nil;
+    }
     
     [super viewDidAppear:animated];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     // Check network and load picker views if there is a network
-    if ([self networkCheck])
+    if ([self networkCheck]) {
         [self load];
-    else {
+    } else {
         [self showNoNetworkAlert];
         return;
     }
     
     // Set up previous/next/done buttons
-    if (onCampusBool)
+    if (onCampusBool) {
         fields = [[NSMutableArray alloc] initWithObjects:firstNameField, lastNameField, usernameField, classField, phoneField, campusAddressField, majorField, concentrationField, hiatusField, homeAddressField, facStaffField, sgaField, nil];
-    else
+    } else {
         fields = [[NSMutableArray alloc] initWithObjects:firstNameField, lastNameField, usernameField, nil];
+    }
     
     [self setKeyboardControls:[[BSKeyboardControls alloc] initWithFields:fields]];
     keyboardControls.barTintColor = [UIColor whiteColor];
@@ -110,10 +112,11 @@
     [self searchHelper];
     
     // Stop the segue if an error occured (indicated by null value in searchResults)
-    if (NULL == searchResults)
-        return NO;
-    else
+    if (searchResults) {
         return YES;
+    } else {
+        return NO;
+    }
 }
 
 // Pass data to the ResultsViewController
@@ -147,11 +150,13 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [self iPadSearch:textField];
-    else
-        if ([self shouldPerformSegueWithIdentifier:@"searchSegue" sender:self])
+    } else {
+        if ([self shouldPerformSegueWithIdentifier:@"searchSegue" sender:self]) {
             [self performSegueWithIdentifier:@"searchSegue" sender:self];
+        }
+    }
     return YES;
 }
 
@@ -161,7 +166,7 @@
 }
 
 #pragma mark UIPicker methods
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
     switch (textFieldIdentifier) {
         case 2001:
             return [classArray objectAtIndex:row];
@@ -192,11 +197,11 @@
     }
 }
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
     return 1;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     switch (textFieldIdentifier) {
         case 2001:
             return classArray.count;
@@ -217,9 +222,11 @@
             return sgaArray.count;
             break;
         case 2007:
-            if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"])
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"]) {
                 return statesArray.count;
-            else return 0;
+            } else {
+                return 0;
+            }
             break;
         default:
             return 0;
@@ -248,8 +255,9 @@
             sgaField.text = [sgaArray objectAtIndex:row];
             break;
         case 2007:
-            if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"])
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"]) {
                 homeAddressField.text = [statesArray objectAtIndex:row];
+            }
             break;
         default:
             break;
@@ -260,8 +268,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (onCampusBool) {
         return 12;
+    } else {
+        return 3;
     }
-    else return 3;
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
@@ -272,31 +281,34 @@
     [popoverController setPopoverContentSize:CGSizeMake(self.view.frame.size.width, 75)];
     
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-
+    
     if (1 >= indexPath.row) {
         controller.state = NO;
-        if (0 == indexPath.row)
+        if (0 == indexPath.row) {
             controller.first = YES;
-        else
+        } else {
             controller.first = NO;
-    }
-    else
+        }
+    } else {
         controller.state = YES;
+    }
     stateBeforeSettings = [[NSUserDefaults standardUserDefaults] boolForKey:@"State"];
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [popoverController presentPopoverFromRect:cell.bounds inView:cell permittedArrowDirections:WYPopoverArrowDirectionLeft animated:YES];
-    else
+    } else {
         [popoverController presentPopoverFromRect:cell.bounds inView:cell permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
+    }
 }
 
 #pragma mark - Popover overrides
 - (void)popoverControllerDidDismissPopover:(WYPopoverController *)popoverController {
     BOOL temp = [[NSUserDefaults standardUserDefaults] boolForKey:@"State"];
     if (stateBeforeSettings != temp) {
-        if (temp)
+        if (temp) {
             homeAddressField.inputView = myPickerView;
-        else
+        } else {
             homeAddressField.inputView = nil;
+        }
         [self.tableView reloadData];
     }
 }
@@ -370,7 +382,7 @@
 #pragma mark Custom methods
 -(void)load {
     // Try to populate the picker view arrays
-    @try{
+    @try {
         NSString *post =[[NSString alloc] initWithFormat:@""];
         
         NSURL *url=[NSURL URLWithString:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp"];
@@ -422,8 +434,7 @@
                     [self parseHTML:startRange :endRange :classArray :responseData];
                 }
                 [self.tableView reloadData];
-            }
-            else {
+            } else {
                 if (!notFirstRun) {
                     [self showGrinnellAlert];
                     notFirstRun = YES;
@@ -444,7 +455,7 @@
     float numberOfEntries;
     
     // Try the search
-    @try{
+    @try {
         NSString *post =[[NSString alloc] initWithFormat:@""];
         NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
         NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
@@ -460,7 +471,7 @@
         NSHTTPURLResponse *response = nil;
         NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
         
-        if([response statusCode] >= 200 && [response statusCode] < 300){
+        if ([response statusCode] >= 200 && [response statusCode] < 300) {
             NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
             
             NSRange startRange = [responseData rangeOfString:@" found"];
@@ -520,10 +531,11 @@
     }
     @catch(NSException * e){
         NSLog(@"Exception: %@", e);
-        if ([self networkCheck])
+        if ([self networkCheck]) {
             [self showErrorAlert];
-        else
+        } else {
             [self showNoNetworkAlert];
+        }
     }
 }
 
@@ -560,13 +572,15 @@
         tempString = [tempString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         
         // Add value to array
-        if (![tempString isEqualToString:@""] && NULL != tempString)
+        if (![tempString isEqualToString:@""] && NULL != tempString) {
             [array addObject:tempString];
+        }
         
         // Remove the section of the string just processed
         NSRange replaceRange = [dataString rangeOfString:@"</option>"];
-        if (replaceRange.location != NSNotFound)
+        if (replaceRange.location != NSNotFound) {
             dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
+        }
         
         // Check for another value to be processed
         testRange = [dataString rangeOfString:@"</option>"];
@@ -662,7 +676,7 @@
                                         tempTitle = [tempTitle stringByReplacingOccurrencesOfString:@";" withString:@""];
                                         testRange.length++;
                                         majYr = [majYr stringByReplacingCharactersInRange:testRange withString:@""];
-
+                                        
                                         //add to title array
                                         [titleArray addObject:tempTitle];
                                         testRange = [majYr rangeOfString:@"\n"];
@@ -671,8 +685,7 @@
                                         [tmpPerson.attributes addObject:@"Title"];
                                         [tmpPerson.attributeVals addObject:[titleArray objectAtIndex:i]];
                                     }
-                                }
-                                else {
+                                } else {
                                     [tmpPerson.attributes addObject:@"Title"];
                                     [tmpPerson.attributeVals addObject:majYr];
                                 }
@@ -732,19 +745,22 @@
             }
             // Remove the just processed attribute
             replaceRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
-            if (replaceRange.location != NSNotFound)
+            if (replaceRange.location != NSNotFound) {
                 dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
+            }
             
             replaceRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
             endRange = [dataString rangeOfString:@"</tr>" options:NSCaseInsensitiveSearch];
-            if (endRange.location < replaceRange.location)
+            if (endRange.location < replaceRange.location) {
                 break;
+            }
         }
         
         // Remove the section of the string just processed
         replaceRange = [dataString rangeOfString:@"</tr>"];
-        if (replaceRange.location != NSNotFound)
+        if (replaceRange.location != NSNotFound) {
             dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
+        }
         
         // Check for another value to be processed
         testRange = [dataString rangeOfString:@"&nbsp;</TD>"];
@@ -760,8 +776,9 @@
                 [tmpPerson.attributes insertObject:@"SGA" atIndex:index];
                 [tmpPerson.attributeVals insertObject:temporary atIndex:index];
                 replaceRange = [dataString rangeOfString:@"</tr>"];
-                if (replaceRange.location != NSNotFound)
+                if (replaceRange.location != NSNotFound) {
                     dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
+                }
             }
         }
         
@@ -769,8 +786,9 @@
         
         // Remove the header line
         replaceRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
-        if (replaceRange.location != NSNotFound)
+        if (replaceRange.location != NSNotFound) {
             dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
+        }
     }
 }
 
@@ -785,9 +803,9 @@
     
     // Delete the string before the first value
     testRange = [dataString rangeOfString:@"valign=\"top\" style=\"text-align:center;\">"];
-    if (NSNotFound != testRange.location)
+    if (NSNotFound != testRange.location) {
         dataString = [self cutString:dataString fromStartToEndOfRange:testRange];
-    else {
+    } else {
         [self showErrorAlert];
         return;
     }
@@ -804,9 +822,10 @@
         NSRange endRange = [dataString rangeOfString:@"\" alt=\"Image Thumbnail"];
         testRange = [dataString rangeOfString:@"href=\""];
         NSString *urlString;
-        if (endRange.location < testRange.location)
+        if (endRange.location < testRange.location) {
             urlString = [self extractFromString:dataString withRange:startRange andRange:endRange];
-
+        }
+        
         startRange = [dataString rangeOfString:@"<a href=\"GCdisplaydata.asp?SomeKindofNumber=" options:NSCaseInsensitiveSearch];
         endRange = [dataString rangeOfString:@"\" target ="];
         NSString *profileURLString;
@@ -829,8 +848,9 @@
         
         // Remove everything dealt with so far
         replaceRange = [dataString rangeOfString:@"</a></TD>"];
-        if (replaceRange.location != NSNotFound)
+        if (replaceRange.location != NSNotFound) {
             dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
+        }
         
         // Get the remaining attributes
         NSString *temporary, *majYr, *greekTest;
@@ -865,8 +885,7 @@
                             [tmpPerson.attributes addObject:@"Class"];
                             [tmpPerson.attributeVals addObject:majYr];
                         }
-                    }
-                    else {
+                    } else {
                         startRange = [temporary rangeOfString:@"<div class=\"tny\">"];
                         startRange.length = startRange.location;
                         startRange.location = 0;
@@ -914,8 +933,7 @@
                                     [tmpPerson.attributes addObject:@"Title"];
                                     [tmpPerson.attributeVals addObject:[titleArray objectAtIndex:i]];
                                 }
-                            }
-                            else {
+                            } else {
                                 [tmpPerson.attributes addObject:@"Title"];
                                 [tmpPerson.attributeVals addObject:majYr];
                             }
@@ -964,13 +982,15 @@
             }
             // Remove the just processed attribute
             replaceRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
-            if (replaceRange.location != NSNotFound)
+            if (replaceRange.location != NSNotFound) {
                 dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
+            }
         }
         // Remove the section of the string just processed
         replaceRange = [dataString rangeOfString:@"</tr>"];
-        if (replaceRange.location != NSNotFound)
+        if (replaceRange.location != NSNotFound) {
             dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
+        }
         
         // Check if what we expect to be the next person is actually SGA info
         testRange = [dataString rangeOfString:@"valign=\"top\" style=\"text-align:center;\">"];
@@ -985,8 +1005,9 @@
                 [tmpPerson.attributes insertObject:@"SGA" atIndex:index];
                 [tmpPerson.attributeVals insertObject:temporary atIndex:index];
                 replaceRange = [dataString rangeOfString:@"</tr>"];
-                if (replaceRange.location != NSNotFound)
+                if (replaceRange.location != NSNotFound) {
                     dataString = [self cutString:dataString fromStartToEndOfRange:replaceRange];
+                }
             }
         }
         if (Nil != urlString) {
@@ -1027,9 +1048,9 @@
         NSString *temporary = [str substringWithRange:endRange];
         temporary = [temporary stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
         return temporary;
-    }
-    else
+    } else {
         return nil;
+    }
 }
 
 // Cuts the beginning of a string (up to a certain range)
@@ -1060,7 +1081,7 @@
 
 - (void) searchHelper {
     searchResults = [[NSMutableArray alloc] init];
-	  [keyboardControls.activeField resignFirstResponder];
+    [keyboardControls.activeField resignFirstResponder];
     // Set up HUD and give it time to run
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.labelText = @"Searching";
@@ -1080,50 +1101,60 @@
     NSString *user = [searchDetails objectAtIndex:2];
     NSString *firstSearchType, *lastSearchType;
     
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"First"])
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"First"]) {
         firstSearchType = @"contains";
-    else
+    } else {
         firstSearchType = @"startswith";
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Last"])
+    }
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"Last"]) {
         lastSearchType = @"contains";
-    else
+    } else {
         lastSearchType = @"startswith";
+    }
     // Set up the url properly - Nothing containing the word "any" should be in the url
     if (onCampusBool) {
         NSString *year = [searchDetails objectAtIndex:3];
-        if ([year isEqualToString:@"Any"])
+        if ([year isEqualToString:@"Any"]) {
             year = @"";
+        }
         NSString *phone = [searchDetails objectAtIndex:4];
         NSString *address = [searchDetails objectAtIndex:5];
         NSString *major = [searchDetails objectAtIndex:6];
-        if ([major isEqualToString:@"Any"])
+        if ([major isEqualToString:@"Any"]) {
             major = @"";
+        }
         NSString *conc = [searchDetails objectAtIndex:7];
-        if ([conc isEqualToString:@"Any"])
+        if ([conc isEqualToString:@"Any"]) {
             conc = @"";
+        }
         NSString *hiatus = [searchDetails objectAtIndex:8];
-        if ([hiatus isEqualToString:@"Any"])
+        if ([hiatus isEqualToString:@"Any"]) {
             hiatus = @"";
+        }
         NSString *home = [searchDetails objectAtIndex:9];
-        if ([home isEqualToString:@"Any"])
+        if ([home isEqualToString:@"Any"]) {
             home = @"";
+        }
         NSString *facStaff = [searchDetails objectAtIndex:10];
-        if ([facStaff isEqualToString:@"Any"])
+        if ([facStaff isEqualToString:@"Any"]) {
             facStaff = @"";
+        }
         NSString *sga = [searchDetails objectAtIndex:11];
-        if ([sga isEqualToString:@"Any"])
+        if ([sga isEqualToString:@"Any"]) {
             sga = @"";
+        }
         NSString *homeSearchType;
-        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"] && ![home isEqualToString:@""])
+        if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"] && ![home isEqualToString:@""]) {
             homeSearchType = @"Y";
-        else
+        } else {
             homeSearchType = @"N";
+        }
         
         url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&pagenum=1&LastName=%@&LNameSearch=%@&FirstName=%@&FNameSearch=%@&email=%@&campusphonenumber=%@&campusquery=%@&Homequery=%@&StateOnlyCheck=%@&Department=%@&Major=%@&conc=%@&SGA=%@&Hiatus=%@&Gyear=%@&submit_search=Search", last, lastSearchType, first, firstSearchType, user, phone, address, home, homeSearchType, facStaff, major, conc, sga, hiatus, year]];
-    }
-    else
+    } else {
         url = [NSURL URLWithString:[NSString stringWithFormat:@"https://itwebapps.grinnell.edu/classic/asp/campusdirectory/GCdefault.asp?transmit=true&blackboardref=true&pagenum=1&LastName=%@&LNameSearch=%@&FirstName=%@&FNameSearch=%@&email=%@&submit_search=Search", last, lastSearchType, first, firstSearchType, user]];
-
+    }
+    
     // Start the search
     [self searchUsingURL:url forPage:1];
     

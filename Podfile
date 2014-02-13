@@ -1,4 +1,5 @@
 platform :ios, '7.0'
+pod 'FlurrySDK'
 pod 'SDWebImage'
 pod 'Reachability'
 pod 'BSKeyboardControls'
