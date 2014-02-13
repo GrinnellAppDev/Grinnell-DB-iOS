@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     cellIdentifier = @"ProfileCell";
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissImage) name:@"DismissImage" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -160,6 +161,10 @@
     NSString *userImageString = [selectedPerson.attributeVals objectAtIndex:index];
     controller.picURL = [NSURL URLWithString:userImageString];
     [popoverController presentPopoverFromRect:self.tableView.tableHeaderView.frame inView:self.view permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
+}
+
+- (void)dismissImage {
+    [popoverController dismissPopoverAnimated:NO];
 }
 
 @end

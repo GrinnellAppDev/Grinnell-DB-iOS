@@ -28,6 +28,7 @@
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     
     // Clears app on exit
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"DismissImage" object:nil];
     UINavigationController *navC = (UINavigationController *)self.window.rootViewController;
     [navC popToRootViewControllerAnimated:NO];
     FormViewController *formVC = (FormViewController *)[navC.childViewControllers objectAtIndex:0];
