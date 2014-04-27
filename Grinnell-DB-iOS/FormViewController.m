@@ -143,7 +143,7 @@
     // Show the picker if needed for this field
     if (0 != textField.tag) {
         myPickerView.hidden = NO;
-        textFieldIdentifier = textField.tag;
+        textFieldIdentifier = (int)textField.tag;
         [myPickerView reloadAllComponents];
         [myPickerView selectRow:0 inComponent:0 animated:YES];
     }
@@ -389,7 +389,7 @@
         
         NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
         
-        NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
         
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         [request setURL:url];
@@ -458,7 +458,7 @@
     @try {
         NSString *post =[[NSString alloc] initWithFormat:@""];
         NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-        NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         [request setURL:url];
         [request setHTTPMethod:@"POST"];
@@ -772,7 +772,7 @@
             endRange = [dataString rangeOfString:@"</span></TD>" options:NSCaseInsensitiveSearch];
             temporary = [self extractFromString:dataString withRange:startRange andRange:endRange];
             if (nil != temporary) {
-                int index = [tmpPerson.attributes indexOfObject:@"Status"];
+                NSUInteger index = [tmpPerson.attributes indexOfObject:@"Status"];
                 [tmpPerson.attributes insertObject:@"SGA" atIndex:index];
                 [tmpPerson.attributeVals insertObject:temporary atIndex:index];
                 replaceRange = [dataString rangeOfString:@"</tr>"];
@@ -1001,7 +1001,7 @@
             
             if (NSNotFound != startRange.location && NSNotFound != endRange.location) {
                 temporary = [self extractFromString:dataString withRange:startRange andRange:endRange];
-                int index = [tmpPerson.attributes indexOfObject:@"Status"];
+                NSUInteger index = [tmpPerson.attributes indexOfObject:@"Status"];
                 [tmpPerson.attributes insertObject:@"SGA" atIndex:index];
                 [tmpPerson.attributeVals insertObject:temporary atIndex:index];
                 replaceRange = [dataString rangeOfString:@"</tr>"];

@@ -52,7 +52,7 @@
         ProfileViewController *destViewController = segue.destinationViewController;
         Person *selected = [[Person alloc] init];
         selected = [searchDetails objectAtIndex:indexPath.row];
-        int index = [selected.attributes indexOfObject:@"profileURL"];
+        NSUInteger index = [selected.attributes indexOfObject:@"profileURL"];
         if (NSNotFound != index) {
             [self parseProfilePage:[selected.attributeVals objectAtIndex:index] forPerson:selected];
         }
@@ -110,7 +110,7 @@
     NSString *username = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Username"]];
     
     // Fetch the image
-    int index = [tempPerson.attributes indexOfObject:@"picURL"];
+    NSUInteger index = [tempPerson.attributes indexOfObject:@"picURL"];
     if (NSNotFound != index) {
         NSString *userImageString = [tempPerson.attributeVals objectAtIndex:index];
         userImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -129,7 +129,7 @@
         NSString *dept = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Department"]];
         
         NSMutableArray *titleArray = [[NSMutableArray alloc] init];
-        int index = [tempPerson.attributes indexOfObject:@"Title"];
+        NSUInteger index = [tempPerson.attributes indexOfObject:@"Title"];
         while ([@"Title" isEqualToString:[tempPerson.attributes objectAtIndex:index]]) {
             NSString *title = [tempPerson.attributeVals objectAtIndex:index];
             [titleArray addObject:title];
@@ -146,7 +146,7 @@
         classLbl.text = dept;
         statusLbl.text = @"Fac/Staff";
     } else {
-        int index = [tempPerson.attributes indexOfObject:@"Title"];
+        NSUInteger index = [tempPerson.attributes indexOfObject:@"Title"];
         if (NSNotFound != index) {
             NSString *title = [tempPerson.attributeVals objectAtIndex:index];
             majorLbl.text = title;
@@ -205,7 +205,7 @@
         
         NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
         
-        NSString *postLength = [NSString stringWithFormat:@"%d", [postData length]];
+        NSString *postLength = [NSString stringWithFormat:@"%lu", (unsigned long)[postData length]];
         
         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
         [request setURL:url];
@@ -224,16 +224,16 @@
             
             NSRange startRange = [responseData rangeOfString:@"<td ></td></tr><tr><td valign = \"top\">" options:NSCaseInsensitiveSearch];
             responseData = [self cutString:responseData fromStartToEndOfRange:startRange];
-            int i = [selected.attributes indexOfObject:@"picURL"];
-            int j = [selected.attributes indexOfObject:@"profileURL"];
-            int k = [selected.attributes indexOfObject:@"Status"];
-            int index = MIN(k, MIN(i, j));
+            NSUInteger i = [selected.attributes indexOfObject:@"picURL"];
+            NSUInteger j = [selected.attributes indexOfObject:@"profileURL"];
+            NSUInteger k = [selected.attributes indexOfObject:@"Status"];
+            NSUInteger index = MIN(k, MIN(i, j));
             if (NSNotFound == index)
                 index = selected.attributes.count;
             
             startRange = [responseData rangeOfString:@"<TR><TD valign=\"top\" align=\"right\" ><Strong>"];
             while (NSNotFound != startRange.location) {
-            	int tempIndex = index;
+            	NSUInteger tempIndex = index;
                 NSRange endRange = [responseData rangeOfString:@":</strong>"];
                 NSString *temp = [self extractFromString:responseData withRange:startRange andRange:endRange];
                 

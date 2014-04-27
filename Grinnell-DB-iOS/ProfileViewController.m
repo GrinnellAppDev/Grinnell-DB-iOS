@@ -40,7 +40,7 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
     
     // Get image (from the cache) if it's there
-    int index = [selectedPerson.attributes indexOfObject:@"picURL"];
+    NSUInteger index = [selectedPerson.attributes indexOfObject:@"picURL"];
     if (NSNotFound != index) {
         label.frame = CGRectMake(100, 35, 210, 40);
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 90, 90)];
@@ -157,7 +157,7 @@
     popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
     popoverController.delegate = self;
     [popoverController setPopoverContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
-    int index = [selectedPerson.attributes indexOfObject:@"picURL"];
+    NSUInteger index = [selectedPerson.attributes indexOfObject:@"picURL"];
     NSString *userImageString = [selectedPerson.attributeVals objectAtIndex:index];
     controller.picURL = [NSURL URLWithString:userImageString];
     [popoverController presentPopoverFromRect:self.tableView.tableHeaderView.frame inView:self.view permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];

@@ -14,12 +14,14 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    NSString *strings_private = [[NSBundle mainBundle] pathForResource:@"strings_private" ofType:@"strings"];
+    NSDictionary *keysDict = [NSDictionary dictionaryWithContentsOfFile:strings_private];
+    
+    [Crashlytics startWithAPIKey:[keysDict objectForKey:@"CrashlyticsAPIKey"]];
+    
     [Flurry setCrashReportingEnabled:NO];
-    [Flurry startSession:@"KNW2BX2RWM29RC7YDGNC"];
+    [Flurry startSession:[keysDict objectForKey:@"FlurrySession"]];
     
-    [Crashlytics startWithAPIKey:@"45894d9e8a6bc3b8513651d6de36159e2c836e51"];
-    
-    // Override point for customization after application launch.
     return YES;
 }
 							
