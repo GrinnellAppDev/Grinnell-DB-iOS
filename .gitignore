@@ -18,3 +18,5 @@ DerivedData
 .idea/
 
 Grinnell-DB-iOS/ResultsCell.xib
+
+strings_private.strings

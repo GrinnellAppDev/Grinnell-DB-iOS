@@ -29,6 +29,7 @@
 		C385D7DB02A24090A6353E4B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 766E41B0CCF9458DBEAB7986 /* libPods.a */; };
 		E10CF00E1811D6C90053AF44 /* ProfileImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E10CF00C1811D6C90053AF44 /* ProfileImageViewController.m */; };
 		E10CF00F1811D6C90053AF44 /* ProfileImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10CF00D1811D6C90053AF44 /* ProfileImageViewController.xib */; };
+		E1883D1A190DB365004B6D5C /* strings_private.strings in Resources */ = {isa = PBXBuildFile; fileRef = E1883D19190DB365004B6D5C /* strings_private.strings */; };
 		E18ECE99180DD3A900AFA854 /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = E18ECE94180DD3A900AFA854 /* Icon-72.png */; };
 		E18ECE9A180DD3A900AFA854 /* icon-100.png in Resources */ = {isa = PBXBuildFile; fileRef = E18ECE95180DD3A900AFA854 /* icon-100.png */; };
 		E18ECE9B180DD3A900AFA854 /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = E18ECE96180DD3A900AFA854 /* Icon-144.png */; };
@@ -85,6 +86,7 @@
 		E10CF00B1811D6C90053AF44 /* ProfileImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileImageViewController.h; sourceTree = "<group>"; };
 		E10CF00C1811D6C90053AF44 /* ProfileImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageViewController.m; sourceTree = "<group>"; };
 		E10CF00D1811D6C90053AF44 /* ProfileImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileImageViewController.xib; sourceTree = "<group>"; };
+		E1883D19190DB365004B6D5C /* strings_private.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = strings_private.strings; sourceTree = SOURCE_ROOT; };
 		E18ECE94180DD3A900AFA854 /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		E18ECE95180DD3A900AFA854 /* icon-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-100.png"; sourceTree = "<group>"; };
 		E18ECE96180DD3A900AFA854 /* Icon-144.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-144.png"; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 		36363CCD17E11EAC00B01E34 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E1883D19190DB365004B6D5C /* strings_private.strings */,
 				36363CCE17E11EAC00B01E34 /* Grinnell-DB-iOS-Info.plist */,
 				36363CCF17E11EAC00B01E34 /* InfoPlist.strings */,
 				36363CD217E11EAC00B01E34 /* main.m */,
@@ -304,6 +307,7 @@
 			files = (
 				36363CD117E11EAC00B01E34 /* InfoPlist.strings in Resources */,
 				E18ECE9D180DD3A900AFA854 /* Icon@2x.png in Resources */,
+				E1883D1A190DB365004B6D5C /* strings_private.strings in Resources */,
 				E195CF9D180C8C0200B7D0C3 /* icon-76.png in Resources */,
 				E18ECE9C180DD3A900AFA854 /* Icon.png in Resources */,
 				E18ECE99180DD3A900AFA854 /* Icon-72.png in Resources */,
