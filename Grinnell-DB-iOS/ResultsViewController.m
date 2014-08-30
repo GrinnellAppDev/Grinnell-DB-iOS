@@ -114,7 +114,7 @@
     if (NSNotFound != index) {
         NSString *userImageString = [tempPerson.attributeVals objectAtIndex:index];
         userImageView.contentMode = UIViewContentModeScaleAspectFit;
-        [userImageView setImageWithURL:[NSURL URLWithString:userImageString] placeholderImage:nil];
+        [userImageView sd_setImageWithURL:[NSURL URLWithString:userImageString] placeholderImage:nil];
     } else {
         userImageView.image = nil;
     }

@@ -50,7 +50,7 @@ First you want to close the keyboard if the user presses the "Done button".
 	
 Next you want the view to scroll whenever a field is selected. There are a lot of ways to do this and you may have to tweak this.
 
-	- (void)keyboardControls:(BSKeyboardControls *)keyboardControls directionPressed (BSKeyboardControlsDirection)direction
+	- (void)keyboardControls:(BSKeyboardControls *)keyboardControls selectedField:(UIView *)field inDirection:(BSKeyboardControlsDirection)direction
 	{
     	UIView *view = keyboardControls.activeField.superview.superview;
 	    [self.tableView scrollRectToVisible:view.frame animated:YES];
@@ -64,43 +64,6 @@ This is all there is for the `BSKeyboardControlsDelegate`. Now you want to set u
 	}
 	
 Next you set up the `- (void)textViewDidBeginEditing:` method of the `UITextViewDelegate`. This is similar to the `UITextFieldDelegate`.
-
-	- (void)textViewDidBeginEditing:(UITextView *)textView
-	{
-    	[self.keyboardControls setActiveField:textView];
-	}
-	
-Now you are ready to use BSKeyboardControls. For more information on how to use BSKeyboardControls, please see `Example.xcodeproj`.
-	    {
-	        ((UITextView *) textField).inputAccessoryView = self.keyboardControls;
-	        ((UITextView *) textField).delegate = self;
-	    }
-	}
-	
-Next you will have to set up the delegation methods. BSKeyboardControls requires three delegates: `BSKeyboardControlsDelegate`, `UITextFieldDelegate` and `UITextViewDelegate`.
-
-First you want to close the keyboard if the user presses the "Done button".
-
-	- (void)keyboardControlsDonePressed:(BSKeyboardControls *)controls
-	{
-	    [controls.activeTextField resignFirstResponder];
-	}
-	
-Next you want to focus the previous or the next text field whenever the user presses either the "Previous" or the "Next" button.
-
-	- (void)keyboardControlsPreviousNextPressed:(BSKeyboardControls *)controls withDirection:(KeyboardControlsDirection)direction andActiveTextField:(id)textField
-	{
-	    [textField becomeFirstResponder];
-	}
-	
-This is all there is for the `BSKeyboardControlsDelegate`. Now you want to set up the `UITextFieldDelegate`. The only method required is `- (void)textFieldDidBeginEditing:`
-
-	- (void)textFieldDidBeginEditing:(UITextField *)textField
-	{
-    	[self.keyboardControls setActiveField:textField];
-	}
-	
-Next you set up the `- (void)textViewDidBeginEditing:` method of the `UITextViewDelegate`. This is entirely similar to the `UITextFieldDelegate`.
 
 	- (void)textViewDidBeginEditing:(UITextView *)textView
 	{

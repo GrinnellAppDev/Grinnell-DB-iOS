@@ -20,14 +20,15 @@
 @implementation FormViewController
 @synthesize lastNameField, firstNameField, usernameField, phoneField, campusAddressField, homeAddressField, majorField, concentrationField, sgaField, hiatusField, classField, facStaffField, keyboardControls, textFieldIdentifier, myPickerView, concentrationArray, sgaArray, facStaffArray, hiatusArray, classArray, majorsArray, searchResults, onCampusBool, notFirstRun, statesArray, stateBeforeSettings;
 
+- (IBAction)clearButtonClicked:(id)sender {
+    [self clear:sender];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[NSUserDefaults standardUserDefaults] synchronize];
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
     
-    // Set up clear button in top left corner
-    UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithTitle:@"Clear" style:UIBarButtonItemStyleBordered target:self action:@selector(clear:)];
-    [self.navigationItem setLeftBarButtonItem:clear animated:YES];
     
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [self.navigationItem.rightBarButtonItem setAction:@selector(iPadSearch:)];

@@ -1,17 +1,19 @@
 PODS:
-  - BSKeyboardControls (2.0)
-  - FlurrySDK (4.3.2):
+  - BSKeyboardControls (2.2)
+  - CrashlyticsFramework (2.2.2)
+  - FlurrySDK (5.3.0):
     - FlurrySDK/FlurrySDK
-  - FlurrySDK/FlurrySDK (4.3.2)
-  - MBProgressHUD (0.8)
+  - FlurrySDK/FlurrySDK (5.3.0)
+  - MBProgressHUD (0.9)
   - Reachability (3.1.1)
-  - SDWebImage (3.4):
+  - SDWebImage (3.7.1):
     - SDWebImage/Core
-  - SDWebImage/Core (3.4)
-  - WYPopoverController (0.1.6)
+  - SDWebImage/Core (3.7.1)
+  - WYPopoverController (0.2.2)
 
 DEPENDENCIES:
   - BSKeyboardControls
+  - CrashlyticsFramework
   - FlurrySDK
   - MBProgressHUD
   - Reachability
@@ -19,11 +21,12 @@ DEPENDENCIES:
   - WYPopoverController
 
 SPEC CHECKSUMS:
-  BSKeyboardControls: b24def9d769f0990d228abb4e525492cb68a2189
-  FlurrySDK: 2b2a1e80385e4716cfefdbc107967a88256531bf
-  MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
-  Reachability: be4883bb93f31e38266ae3365e5600a317aae735
-  SDWebImage: 366188f04c019bfd712d45e3b36aa52070f4abd8
-  WYPopoverController: 32d2f0eb182fd03c22a78e5f6f694580af33c60d
+  BSKeyboardControls: c9aa1bdbb5ecd454aa3d0b2279f79c5dc4b6c6ad
+  CrashlyticsFramework: bce4c0e83b50f22aafde946b41a34a6b8ca7acd0
+  FlurrySDK: e1142ae33e294f8307bd6d2209cc082e79b66e90
+  MBProgressHUD: 2038dbcf3dce73215abed6001657043d53aa79a8
+  Reachability: 8e9635e3cb4f98e7f825e51147f677ecc694d0e7
+  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  WYPopoverController: c233d69fdfd5c7e316b481df1060624d7a9e629d
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.33.1

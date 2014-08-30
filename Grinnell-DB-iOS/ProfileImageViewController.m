@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [profPicView setImageWithURL:picURL placeholderImage:nil];
+    [profPicView sd_setImageWithURL:picURL placeholderImage:nil];
 }
 
 - (void)didReceiveMemoryWarning {

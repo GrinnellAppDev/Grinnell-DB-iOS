@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="VwI-0B-fqq">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6206.8" systemVersion="14A329f" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="VwI-0B-fqq">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7026.1"/>
     </dependencies>
     <scenes>
-        <!--Form View Controller - Search-->
+        <!--Search-->
         <scene sceneID="99Y-2p-EO4">
             <objects>
                 <tableViewController id="A0q-X5-9fm" customClass="FormViewController" sceneMemberID="viewController">
@@ -253,6 +252,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Search" id="Dse-8w-y7S">
+                        <barButtonItem key="leftBarButtonItem" title="Clear" id="uqZ-wk-XXu">
+                            <connections>
+                                <action selector="clearButtonClicked:" destination="A0q-X5-9fm" id="1VP-cc-Y0q"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Search" id="SVs-h5-7wH">
                             <connections>
                                 <segue destination="5Ca-p4-Ff0" kind="push" identifier="searchSegue" id="hpT-IS-Q6P"/>
@@ -281,7 +285,7 @@
             </objects>
             <point key="canvasLocation" x="389" y="-15"/>
         </scene>
-        <!--Results View Controller - Results-->
+        <!--Results-->
         <scene sceneID="VS4-og-NYs">
             <objects>
                 <tableViewController id="5Ca-p4-Ff0" customClass="ResultsViewController" sceneMemberID="viewController">
@@ -305,7 +309,7 @@
             </objects>
             <point key="canvasLocation" x="820" y="-15"/>
         </scene>
-        <!--Profile View Controller - Profile-->
+        <!--Profile-->
         <scene sceneID="CgZ-vM-Ja0">
             <objects>
                 <tableViewController id="RYJ-ZD-jtS" customClass="ProfileViewController" sceneMemberID="viewController">
@@ -348,6 +352,9 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination" type="retina4">
+            <size key="portraitSize" width="320" height="568"/>
+            <size key="landscapeSize" width="568" height="320"/>
+        </simulatedScreenMetrics>
     </simulatedMetricsContainer>
 </document>

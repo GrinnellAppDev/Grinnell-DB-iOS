@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "FormViewController.h"
 #import <Flurry.h>
-#import <Crashlytics/Crashlytics.h>
+#import <CrashlyticsFramework/Crashlytics.h>
 
 @implementation AppDelegate
 

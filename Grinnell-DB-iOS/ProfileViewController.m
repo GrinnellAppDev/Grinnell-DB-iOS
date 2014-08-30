@@ -46,7 +46,7 @@
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 90, 90)];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         NSString *userImageString = [selectedPerson.attributeVals objectAtIndex:index];
-        [imageView setImageWithURL:[NSURL URLWithString:userImageString] placeholderImage:nil];
+        [imageView sd_setImageWithURL:[NSURL URLWithString:userImageString] placeholderImage:nil];
         UITapGestureRecognizer *imageTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
         
         imageView.userInteractionEnabled = YES;
