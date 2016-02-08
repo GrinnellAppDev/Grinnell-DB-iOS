@@ -42,15 +42,10 @@
 		E195CF9E180C8C0200B7D0C3 /* icon-80.png in Resources */ = {isa = PBXBuildFile; fileRef = E195CF97180C8C0200B7D0C3 /* icon-80.png */; };
 		E195CFA0180C8C0200B7D0C3 /* icon-120.png in Resources */ = {isa = PBXBuildFile; fileRef = E195CF99180C8C0200B7D0C3 /* icon-120.png */; };
 		E195CFA1180C8C0200B7D0C3 /* icon-152.png in Resources */ = {isa = PBXBuildFile; fileRef = E195CF9A180C8C0200B7D0C3 /* icon-152.png */; };
-		E1A882131825D50800D4A8B4 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A8820F1825D50800D4A8B4 /* Default-Landscape.png */; };
-		E1A882141825D50800D4A8B4 /* Default-Landscape@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A882101825D50800D4A8B4 /* Default-Landscape@2x.png */; };
-		E1A882151825D50800D4A8B4 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A882111825D50800D4A8B4 /* Default-Portrait.png */; };
-		E1A882161825D50800D4A8B4 /* Default-Portrait@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A882121825D50800D4A8B4 /* Default-Portrait@2x.png */; };
-		E1A9E7DE180D0B5800D1B3B9 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A9E7DB180D0B5800D1B3B9 /* Default@2x.png */; };
-		E1A9E7EB180D0F2C00D1B3B9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E1A9E7EA180D0F2C00D1B3B9 /* Default-568h@2x.png */; };
 		E1E336BB180F3D8700145508 /* OptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E336B9180F3D8700145508 /* OptionViewController.m */; };
 		E1E336BC180F3D8700145508 /* OptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E336BA180F3D8700145508 /* OptionViewController.xib */; };
 		E1F2257D18049FEF00063B18 /* OnCResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */; };
+		FA9E0F231C683DCC00699465 /* LaunchImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9E0F221C683DCC00699465 /* LaunchImage.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,16 +95,11 @@
 		E195CF97180C8C0200B7D0C3 /* icon-80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-80.png"; sourceTree = "<group>"; };
 		E195CF99180C8C0200B7D0C3 /* icon-120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-120.png"; sourceTree = "<group>"; };
 		E195CF9A180C8C0200B7D0C3 /* icon-152.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-152.png"; sourceTree = "<group>"; };
-		E1A8820F1825D50800D4A8B4 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
-		E1A882101825D50800D4A8B4 /* Default-Landscape@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape@2x.png"; sourceTree = "<group>"; };
-		E1A882111825D50800D4A8B4 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait.png"; sourceTree = "<group>"; };
-		E1A882121825D50800D4A8B4 /* Default-Portrait@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x.png"; sourceTree = "<group>"; };
-		E1A9E7DB180D0B5800D1B3B9 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		E1A9E7EA180D0F2C00D1B3B9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E1E336B8180F3D8700145508 /* OptionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionViewController.h; sourceTree = "<group>"; };
 		E1E336B9180F3D8700145508 /* OptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionViewController.m; sourceTree = "<group>"; };
 		E1E336BA180F3D8700145508 /* OptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionViewController.xib; sourceTree = "<group>"; };
 		E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnCResultsCell.xib; sourceTree = "<group>"; };
+		FA9E0F221C683DCC00699465 /* LaunchImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchImage.xib; path = ../LaunchImage.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,12 +226,7 @@
 		E1A9E7D9180D0B3A00D1B3B9 /* Launch Images */ = {
 			isa = PBXGroup;
 			children = (
-				E1A8820F1825D50800D4A8B4 /* Default-Landscape.png */,
-				E1A882101825D50800D4A8B4 /* Default-Landscape@2x.png */,
-				E1A882111825D50800D4A8B4 /* Default-Portrait.png */,
-				E1A882121825D50800D4A8B4 /* Default-Portrait@2x.png */,
-				E1A9E7DB180D0B5800D1B3B9 /* Default@2x.png */,
-				E1A9E7EA180D0F2C00D1B3B9 /* Default-568h@2x.png */,
+				FA9E0F221C683DCC00699465 /* LaunchImage.xib */,
 			);
 			name = "Launch Images";
 			sourceTree = "<group>";
@@ -323,23 +308,18 @@
 				E18ECE99180DD3A900AFA854 /* Icon-72.png in Resources */,
 				E18ECE9A180DD3A900AFA854 /* icon-100.png in Resources */,
 				36363CE017E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard in Resources */,
-				E1A882161825D50800D4A8B4 /* Default-Portrait@2x.png in Resources */,
 				36363CE317E11EAC00B01E34 /* MainStoryboard_iPad.storyboard in Resources */,
-				E1A882141825D50800D4A8B4 /* Default-Landscape@2x.png in Resources */,
-				E1A882131825D50800D4A8B4 /* Default-Landscape.png in Resources */,
 				E195CFA0180C8C0200B7D0C3 /* icon-120.png in Resources */,
 				E10CF00F1811D6C90053AF44 /* ProfileImageViewController.xib in Resources */,
 				E1E336BC180F3D8700145508 /* OptionViewController.xib in Resources */,
-				E1A9E7EB180D0F2C00D1B3B9 /* Default-568h@2x.png in Resources */,
 				E195CF9C180C8C0200B7D0C3 /* icon-58.png in Resources */,
 				E195CFA1180C8C0200B7D0C3 /* icon-152.png in Resources */,
 				3BFC8F8117E12C9F003832DF /* Icon-Small.png in Resources */,
 				E1F2257D18049FEF00063B18 /* OnCResultsCell.xib in Resources */,
-				E1A9E7DE180D0B5800D1B3B9 /* Default@2x.png in Resources */,
 				D0826FCA19B0BC4D00FF9C67 /* Images.xcassets in Resources */,
+				FA9E0F231C683DCC00699465 /* LaunchImage.xib in Resources */,
 				3BFC8F8517E12C9F003832DF /* iTunesArtwork.png in Resources */,
 				3BFC8F8617E12C9F003832DF /* iTunesArtwork@2x.png in Resources */,
-				E1A882151825D50800D4A8B4 /* Default-Portrait.png in Resources */,
 				E195CF9E180C8C0200B7D0C3 /* icon-80.png in Resources */,
 				3B55414B17E25870008B4F40 /* OffCResultsCell.xib in Resources */,
 				3B55415817E27453008B4F40 /* ProfileCell.xib in Resources */,
@@ -516,7 +496,6 @@
 			baseConfigurationReference = BBC4E8BF605E9288E0910F9B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -535,7 +514,6 @@
 			baseConfigurationReference = BEAF4F470AA20D09E8F57634 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
