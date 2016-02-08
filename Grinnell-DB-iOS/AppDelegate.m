@@ -8,8 +8,7 @@
 
 #import "AppDelegate.h"
 #import "FormViewController.h"
-#import <Flurry.h>
-#import <CrashlyticsFramework/Crashlytics.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
@@ -18,9 +17,6 @@
     NSDictionary *keysDict = [NSDictionary dictionaryWithContentsOfFile:strings_private];
     
     [Crashlytics startWithAPIKey:[keysDict objectForKey:@"CrashlyticsAPIKey"]];
-    
-    [Flurry setCrashReportingEnabled:NO];
-    [Flurry startSession:[keysDict objectForKey:@"FlurrySession"]];
     
     return YES;
 }

@@ -82,7 +82,8 @@
 		3BFC8F7C17E12C9F003832DF /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		3BFC8F7D17E12C9F003832DF /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
 		766E41B0CCF9458DBEAB7986 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		BB4BB1D0DD52462B875C07C9 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		BBC4E8BF605E9288E0910F9B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		BEAF4F470AA20D09E8F57634 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		D0826FC919B0BC4D00FF9C67 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		E10CF00B1811D6C90053AF44 /* ProfileImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileImageViewController.h; sourceTree = "<group>"; };
 		E10CF00C1811D6C90053AF44 /* ProfileImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageViewController.m; sourceTree = "<group>"; };
@@ -134,7 +135,7 @@
 				36363CCC17E11EAC00B01E34 /* Grinnell-DB-iOS */,
 				36363CC517E11EAC00B01E34 /* Frameworks */,
 				36363CC317E11EAC00B01E34 /* Products */,
-				BB4BB1D0DD52462B875C07C9 /* Pods.xcconfig */,
+				FC1DD3E095F626D6D96B70E3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -245,6 +246,15 @@
 			name = "Launch Images";
 			sourceTree = "<group>";
 		};
+		FC1DD3E095F626D6D96B70E3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BBC4E8BF605E9288E0910F9B /* Pods.debug.xcconfig */,
+				BEAF4F470AA20D09E8F57634 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -258,6 +268,7 @@
 				36363CC017E11EAC00B01E34 /* Resources */,
 				36CE9F08DCF94146B2EAC1CA /* Copy Pods Resources */,
 				E1904C8518AD65E100B50E29 /* ShellScript */,
+				39C3606B47F982B3D0E09894 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -352,7 +363,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		39C3606B47F982B3D0E09894 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		72B5AAD7AAAD4EFBB8ABC0C7 /* Check Pods Manifest.lock */ = {
@@ -381,7 +407,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "${PODS_ROOT}/CrashlyticsFramework/Crashlytics.framework/run 45894d9e8a6bc3b8513651d6de36159e2c836e51 e63db966a2704d736a61d448865ca84d08aaaa601dce5b22725702038b26a699";
+			shellScript = "${PODS_ROOT}/Fabric/run 45894d9e8a6bc3b8513651d6de36159e2c836e51 e63db966a2704d736a61d448865ca84d08aaaa601dce5b22725702038b26a699";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -487,7 +513,7 @@
 		};
 		36363CEA17E11EAC00B01E34 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB4BB1D0DD52462B875C07C9 /* Pods.xcconfig */;
+			baseConfigurationReference = BBC4E8BF605E9288E0910F9B /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -506,7 +532,7 @@
 		};
 		36363CEB17E11EAC00B01E34 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BB4BB1D0DD52462B875C07C9 /* Pods.xcconfig */;
+			baseConfigurationReference = BEAF4F470AA20D09E8F57634 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
