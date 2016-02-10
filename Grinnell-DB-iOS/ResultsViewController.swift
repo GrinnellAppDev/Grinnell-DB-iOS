@@ -4,8 +4,9 @@ import UIKit
 extension ResultsViewController: UIViewControllerPreviewingDelegate {
 
   public func previewingContext(previewingContext: UIViewControllerPreviewing, commitViewController viewControllerToCommit: UIViewController) {
-  self.navigationController!.pushViewController(viewControllerToCommit, animated: true)
-    //navigationController?.presentViewController(viewControllerToCommit, animated: true, completion: nil)
+    if let viewControllerToCommit = viewControllerToCommit as? ProfileViewController {
+      self.navigationController!.pushViewController(viewControllerToCommit, animated: true)
+    }
   }
 
   public func previewingContext(previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
@@ -15,7 +16,7 @@ extension ResultsViewController: UIViewControllerPreviewingDelegate {
       let cell = tableView.cellForRowAtIndexPath(indexPath)
       if let cell = cell {
         if #available(iOS 9.0, *) {
-            previewingContext.sourceRect = cell.frame
+          previewingContext.sourceRect = cell.frame
         }
       }
       let controller = ProfileViewController()
