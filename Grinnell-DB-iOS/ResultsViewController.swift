@@ -18,13 +18,8 @@ extension ResultsViewController: UIViewControllerPreviewingDelegate {
             previewingContext.sourceRect = cell.frame
         }
       }
-      let person = searchDetails.objectAtIndex(indexPath.row) as! Person
-      let index = person.attributes?.indexOfObject("profileURL")
-      if let index = index where person.attributeVals.count == 0 {
-        parseProfilePage(person.attributeVals!.objectAtIndex(index) as! String, forPerson: person)
-      }
       let controller = ProfileViewController()
-      controller.selectedPerson = person
+      controller.selectedPerson = self.personForIndexPath(indexPath)
       return controller
     }
     return nil

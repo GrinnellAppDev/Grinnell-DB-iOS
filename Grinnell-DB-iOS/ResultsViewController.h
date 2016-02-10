@@ -14,6 +14,7 @@
 - (BOOL)networkCheck;
 - (void)parseProfilePage:(NSString *)urlString forPerson:(Person *)selected;
 - (NSString *)extractFromString:(NSString *)str withRange:(NSRange)startRange andRange:(NSRange)endRange;
+- (Person *)personForIndexPath:(NSIndexPath *)indexPath;
 
 @property (nonatomic, strong) NSString *cellIdentifier;
 @property (nonatomic, strong) NSMutableArray *searchDetails;

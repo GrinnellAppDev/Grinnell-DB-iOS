@@ -29,8 +29,8 @@
        respondsToSelector:@selector(forceTouchCapability)] &&
       (self.traitCollection.forceTouchCapability ==
        UIForceTouchCapabilityAvailable)) {
-    [self registerForPreviewingWithDelegate:self sourceView:self.view];
-  }
+        [self registerForPreviewingWithDelegate:self sourceView:self.view];
+      }
   if (onCampusBool) {
     cellIdentifier = @"OnCResultsCell";
   } else {
@@ -38,18 +38,21 @@
   }
 }
 
+- (Person *)personForIndexPath:(NSIndexPath *)indexPath {
+  Person *selected = [searchDetails objectAtIndex:indexPath.row];
+  NSUInteger index = [selected.attributes indexOfObject:@"profileURL"];
+  if ((!selected.complete) && (index != NSNotFound)) {
+    [self parseProfilePage:[selected.attributeVals objectAtIndex:index] forPerson:selected];
+  }
+  return selected;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if ([segue.identifier isEqualToString:@"PushToProfile"]) {
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     ProfileViewController *destViewController = segue.destinationViewController;
-    Person *selected = [[Person alloc] init];
-    selected = [searchDetails objectAtIndex:indexPath.row];
-    NSUInteger index = [selected.attributes indexOfObject:@"profileURL"];
-    if (NSNotFound != index) {
-      [self parseProfilePage:[selected.attributeVals objectAtIndex:index] forPerson:selected];
-    }
-    destViewController.selectedPerson = selected;
+    destViewController.selectedPerson = [self personForIndexPath: indexPath];
   }
 }
 
@@ -261,6 +264,7 @@
     NSLog(@"Exception: %@", e);
     [self showErrorAlert];
   }
+  selected.complete = YES;
 }
 
 // Cuts the beginning of a string (up to a certain range)
