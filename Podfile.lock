@@ -1,6 +1,6 @@
 PODS:
   - BSKeyboardControls (2.2)
-  - Crashlytics (3.6.0):
+  - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
   - Fabric (1.6.5)
   - MBProgressHUD (0.9)
@@ -21,7 +21,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   BSKeyboardControls: b701935e789961102e3f20063bba7185800a2d3f
-  Crashlytics: e4e8d02914f2608fbc7bf42b1a7af838b0db67a2
+  Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
   Fabric: 338ffd3c2afcab120638907b4251189de9ad17b3
   MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
   Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
