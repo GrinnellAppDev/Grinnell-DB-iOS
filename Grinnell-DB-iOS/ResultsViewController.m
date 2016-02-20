@@ -109,7 +109,7 @@
 
   // Fetch the image
   NSUInteger index = [tempPerson.attributes indexOfObject:@"picURL"];
-  if (NSNotFound != index) {
+  if (index != NSNotFound) {
     NSString *userImageString = [tempPerson.attributeVals objectAtIndex:index];
     userImageView.contentMode = UIViewContentModeScaleAspectFit;
     [userImageView sd_setImageWithURL:[NSURL URLWithString:userImageString] placeholderImage:nil];
@@ -128,7 +128,7 @@
 
     NSMutableArray *titleArray = [[NSMutableArray alloc] init];
     NSUInteger index = [tempPerson.attributes indexOfObject:@"Title"];
-    while ([@"Title" isEqualToString:[tempPerson.attributes objectAtIndex:index]]) {
+    while ([[tempPerson.attributes objectAtIndex:index] isEqualToString:@"Title"]) {
       NSString *title = [tempPerson.attributeVals objectAtIndex:index];
       [titleArray addObject:title];
       index++;
