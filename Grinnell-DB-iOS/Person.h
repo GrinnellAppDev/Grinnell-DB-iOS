@@ -14,5 +14,6 @@
 @property (nonatomic, strong) NSString *lastName;
 @property (nonatomic, strong) NSMutableArray *attributes;
 @property (nonatomic, strong) NSMutableArray *attributeVals;
+@property (nonatomic) BOOL complete;
 
 @end
