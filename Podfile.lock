@@ -2,13 +2,13 @@ PODS:
   - BSKeyboardControls (2.2)
   - Crashlytics (3.7.0):
     - Fabric (~> 1.6.3)
-  - Fabric (1.6.5)
-  - MBProgressHUD (0.9)
-  - Reachability (3.1.1)
-  - SDWebImage (3.7.1):
-    - SDWebImage/Core (= 3.7.1)
-  - SDWebImage/Core (3.7.1)
-  - WYPopoverController (0.2.2)
+  - Fabric (1.6.6)
+  - MBProgressHUD (0.9.2)
+  - Reachability (3.2)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
+  - WYPopoverController (0.3.9)
 
 DEPENDENCIES:
   - BSKeyboardControls
@@ -22,10 +22,10 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   BSKeyboardControls: b701935e789961102e3f20063bba7185800a2d3f
   Crashlytics: c3a2333dea9e2733d2777f730910321fc9e25c0d
-  Fabric: 338ffd3c2afcab120638907b4251189de9ad17b3
-  MBProgressHUD: d8e7ea388dc1549a42e0d219067cf5f2c898fb66
-  Reachability: dd9aa4fb6667b9f787690a74f53cb7634ce99893
-  SDWebImage: ed3095af2ff88b436426037444979b917f6c5575
-  WYPopoverController: 00d879c25bddd1fd873dcc21aa98c8308d7f1555
+  Fabric: 1abc1e59f11fa39ede6f690ef7309d8563e3ec59
+  MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
+  Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
+  WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
 
 COCOAPODS: 0.39.0

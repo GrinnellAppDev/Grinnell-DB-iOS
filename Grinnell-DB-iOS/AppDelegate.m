@@ -9,14 +9,15 @@
 #import "AppDelegate.h"
 #import "FormViewController.h"
 #import <Crashlytics/Crashlytics.h>
+#import <Fabric/Fabric.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    NSString *strings_private = [[NSBundle mainBundle] pathForResource:@"strings_private" ofType:@"strings"];
-    NSDictionary *keysDict = [NSDictionary dictionaryWithContentsOfFile:strings_private];
-    
-    [Crashlytics startWithAPIKey:[keysDict objectForKey:@"CrashlyticsAPIKey"]];
+    //NSString *strings_private = [[NSBundle mainBundle] pathForResource:@"strings_private" ofType:@"strings"];
+    //NSDictionary *keysDict = [NSDictionary dictionaryWithContentsOfFile:strings_private];
+    [Fabric with:@[[Crashlytics self]]];
+    //[Crashlytics startWithAPIKey:[keysDict objectForKey:@"CrashlyticsAPIKey"]];
     
     return YES;
 }
