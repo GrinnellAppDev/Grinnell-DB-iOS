@@ -1,11 +1,3 @@
-//
-//  FormViewController.m
-//  Grinnell-DB-iOS
-//
-//  Created by Colin Tremblay on 1/28/13.
-//  Copyright (c) 2013 Grinnell AppDev. All rights reserved.
-//
-
 #import "FormViewController.h"
 #import "OptionViewController.h"
 #import "ResultsViewController.h"
@@ -59,6 +51,7 @@
     myPickerView.showsSelectionIndicator = YES;
     [self.view addSubview:myPickerView];
     myPickerView.hidden = YES;
+    [myPickerView removeFromSuperview];
     majorField.inputView = myPickerView;
     concentrationField.inputView = myPickerView;
     sgaField.inputView = myPickerView;
