@@ -289,7 +289,7 @@
         <!--Results-->
         <scene sceneID="VS4-og-NYs">
             <objects>
-                <tableViewController id="5Ca-p4-Ff0" customClass="ResultsViewController" sceneMemberID="viewController">
+                <tableViewController id="5Ca-p4-Ff0" customClass="ResultsViewController" customModule="Grinnell_DB_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="0Ce-UX-n0o">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

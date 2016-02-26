@@ -3,15 +3,19 @@ import UIKit
 public class ResultsViewController: BADResultsViewController {
   override public func viewDidLoad() {
     super.viewDidLoad()
-    /*
-    if ([self.traitCollection
-    respondsToSelector:@selector(forceTouchCapability)] &&
-    (self.traitCollection.forceTouchCapability ==
-    UIForceTouchCapabilityAvailable)) {
-    [self registerForPreviewingWithDelegate:self sourceView:self.view];
+    if #available(iOS 9.0, *) {
+        if traitCollection.forceTouchCapability == UIForceTouchCapability.Available {
+          registerForPreviewingWithDelegate(self, sourceView: view)
+        }
     }
-    */
+    setResultTitleWithResultCount(resultCount:searchDetails.count)
   }
+
+  private func setResultTitleWithResultCount(resultCount count: Int) {
+    let label = count == 1 ? "result" : "results"
+    navigationController?.title = "\(count) \(label)"
+  }
+
 }
 
 
