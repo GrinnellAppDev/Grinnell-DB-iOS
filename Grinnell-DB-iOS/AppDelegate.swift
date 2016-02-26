@@ -11,7 +11,9 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 
   public func applicationWillResignActive(application: UIApplication) {
-    reset(application)
+    if NSUserDefaults.standardUserDefaults().boolForKey("clearOnExit") {
+      reset(application)
+    }
   }
 
   func reset(application: UIApplication) {
