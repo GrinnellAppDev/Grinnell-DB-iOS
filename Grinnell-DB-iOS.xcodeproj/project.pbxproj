@@ -29,7 +29,8 @@
 		E1E336BB180F3D8700145508 /* OptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E336B9180F3D8700145508 /* OptionViewController.m */; };
 		E1E336BC180F3D8700145508 /* OptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E336BA180F3D8700145508 /* OptionViewController.xib */; };
 		E1F2257D18049FEF00063B18 /* OnCResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */; };
-		FA28CB261C6AFF2600608A03 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28CB251C6AFF2600608A03 /* ResultsViewController.swift */; };
+		FA5199EA1C8044AD00BDF482 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5199E91C8044AD00BDF482 /* ResultsViewController.swift */; };
+		FA5199EB1C8044AD00BDF482 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5199E91C8044AD00BDF482 /* ResultsViewController.swift */; };
 		FA9E0F231C683DCC00699465 /* LaunchImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9E0F221C683DCC00699465 /* LaunchImage.xib */; };
 		FA9E0F361C68404900699465 /* GADIconTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9E0F251C683FE200699465 /* GADIconTest.swift */; };
 /* End PBXBuildFile section */
@@ -79,7 +80,7 @@
 		E1E336B9180F3D8700145508 /* OptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionViewController.m; sourceTree = "<group>"; };
 		E1E336BA180F3D8700145508 /* OptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionViewController.xib; sourceTree = "<group>"; };
 		E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnCResultsCell.xib; sourceTree = "<group>"; };
-		FA28CB251C6AFF2600608A03 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		FA5199E91C8044AD00BDF482 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		FA9E0F221C683DCC00699465 /* LaunchImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchImage.xib; path = ../LaunchImage.xib; sourceTree = "<group>"; };
 		FA9E0F241C683FE200699465 /* Grinnell-DB-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grinnell-DB-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		FA9E0F251C683FE200699465 /* GADIconTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GADIconTest.swift; path = "../Grinnell-DB-iOS/Tests/GADIconTest.swift"; sourceTree = "<group>"; };
@@ -155,8 +156,8 @@
 				36363CE417E11EAC00B01E34 /* FormViewController.h */,
 				36363CE517E11EAC00B01E34 /* FormViewController.m */,
 				3B55414517E24CED008B4F40 /* ResultsViewController.h */,
+				FA5199E91C8044AD00BDF482 /* ResultsViewController.swift */,
 				3B55414617E24CED008B4F40 /* ResultsViewController.m */,
-				FA28CB251C6AFF2600608A03 /* ResultsViewController.swift */,
 				3B55414A17E25870008B4F40 /* OffCResultsCell.xib */,
 				E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */,
 				3B55414C17E267AE008B4F40 /* ProfileViewController.h */,
@@ -411,8 +412,8 @@
 				E10CF00E1811D6C90053AF44 /* ProfileImageViewController.m in Sources */,
 				36363CD717E11EAC00B01E34 /* AppDelegate.m in Sources */,
 				36363CE617E11EAC00B01E34 /* FormViewController.m in Sources */,
+				FA5199EA1C8044AD00BDF482 /* ResultsViewController.swift in Sources */,
 				3B55414817E24CED008B4F40 /* ResultsViewController.m in Sources */,
-				FA28CB261C6AFF2600608A03 /* ResultsViewController.swift in Sources */,
 				3B55414E17E267AE008B4F40 /* ProfileViewController.m in Sources */,
 				3B55415117E26B62008B4F40 /* Person.m in Sources */,
 			);
@@ -423,6 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA9E0F361C68404900699465 /* GADIconTest.swift in Sources */,
+				FA5199EB1C8044AD00BDF482 /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,6 +521,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Grinnell-DB-iOS/Grinnell-DB-iOS-Prefix.pch";
@@ -542,6 +545,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Grinnell-DB-iOS/Grinnell-DB-iOS-Prefix.pch";

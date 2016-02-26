@@ -1,5 +1,19 @@
 import UIKit
 
+public class ResultsViewController: BADResultsViewController {
+  override public func viewDidLoad() {
+    super.viewDidLoad()
+    /*
+    if ([self.traitCollection
+    respondsToSelector:@selector(forceTouchCapability)] &&
+    (self.traitCollection.forceTouchCapability ==
+    UIForceTouchCapabilityAvailable)) {
+    [self registerForPreviewingWithDelegate:self sourceView:self.view];
+    }
+    */
+  }
+}
+
 
 extension ResultsViewController: UIViewControllerPreviewingDelegate {
 
