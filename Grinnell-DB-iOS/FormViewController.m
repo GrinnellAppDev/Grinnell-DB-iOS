@@ -1,16 +1,9 @@
-//
-//  FormViewController.m
-//  Grinnell-DB-iOS
-//
-//  Created by Colin Tremblay on 1/28/13.
-//  Copyright (c) 2013 Grinnell AppDev. All rights reserved.
-//
-
 #import "FormViewController.h"
 #import "OptionViewController.h"
 #import "ResultsViewController.h"
 #import "Person.h"
 #import <Reachability.h>
+#import <Crashlytics/Crashlytics.h>
 #import <MBProgressHUD.h>
 
 @interface FormViewController ()
@@ -114,8 +107,13 @@
     
     // Stop the segue if an error occured (indicated by null value in searchResults)
     if (searchResults) {
+        NSNumber *count = [NSNumber numberWithUnsignedLong: searchResults.count];
+        [Answers logCustomEventWithName:@"search"
+                       customAttributes:@{@"results" : count}];
         return YES;
     } else {
+        [Answers logCustomEventWithName:@"search"
+                       customAttributes:@{@"results" : @0}];
         return NO;
     }
 }
