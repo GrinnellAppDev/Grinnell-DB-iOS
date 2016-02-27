@@ -1,23 +1,17 @@
 #import <Crashlytics/Crashlytics.h>
-#import <MBProgressHUD.h>
 #import <Reachability.h>
 
 #import "FormViewController.h"
+#import "Grinnell_DB_iOS-Swift.h"
 #import "OptionViewController.h"
 #import "Person.h"
-
 #import "ResultsViewController.h"
-#import "Grinnell_DB_iOS-Swift.h"
-
-@interface FormViewController ()
-
-@end
 
 @implementation FormViewController
-@synthesize lastNameField, firstNameField, usernameField, phoneField, campusAddressField, homeAddressField, majorField, concentrationField, sgaField, hiatusField, classField, facStaffField, keyboardControls, textFieldIdentifier, myPickerView, concentrationArray, sgaArray, facStaffArray, hiatusArray, classArray, majorsArray, searchResults, onCampusBool, notFirstRun, statesArray, stateBeforeSettings;
+//@synthesize lastNameField, firstNameField, usernameField, phoneField, campusAddressField, homeAddressField, majorField, concentrationField, sgaField, hiatusField, classField, facStaffField, textFieldIdentifier, myPickerView, concentrationArray, sgaArray, facStaffArray, hiatusArray, classArray, majorsArray, searchResults, onCampusBool, notFirstRun, statesArray, stateBeforeSettings;
 
 - (IBAction)clearButtonClicked:(id)sender {
-    [self clear:sender];
+    [self clear];
 }
 
 - (void)viewDidLoad {
@@ -31,41 +25,41 @@
     }
     // Instantiate the picker view arrays
     // Note: the empty string sets up the clearing option in the picker
-    majorsArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
-    concentrationArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
-	sgaArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
-	hiatusArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
-	facStaffArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
-    classArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
-    statesArray = [[NSMutableArray alloc] initWithObjects:@"", @"Any", @"AL", @"AK", @"AZ", @"AR", @"CA", @"CO", @"CT", @"DC", @"DE", @"FL", @"GA", @"HI", @"ID", @"IL", @"IN", @"IA", @"KS", @"KY", @"LA", @"ME", @"MD", @"MA", @"MI", @"MN", @"MS", @"MO", @"MT", @"NE", @"NV", @"NH", @"NJ", @"NM", @"NY", @"NC", @"ND", @"OH", @"OK", @"OR", @"PA", @"RI", @"SC", @"SD", @"TN", @"TX", @"UT", @"VT", @"VA", @"WA", @"WV", @"WI", @"WY", nil];
+    _majorsArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
+    _concentrationArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
+	_sgaArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
+	_hiatusArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
+	_facStaffArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
+    _classArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
+    _statesArray = [[NSMutableArray alloc] initWithObjects:@"", @"Any", @"AL", @"AK", @"AZ", @"AR", @"CA", @"CO", @"CT", @"DC", @"DE", @"FL", @"GA", @"HI", @"ID", @"IL", @"IN", @"IA", @"KS", @"KY", @"LA", @"ME", @"MD", @"MA", @"MI", @"MN", @"MS", @"MO", @"MT", @"NE", @"NV", @"NH", @"NJ", @"NM", @"NY", @"NC", @"ND", @"OH", @"OK", @"OR", @"PA", @"RI", @"SC", @"SD", @"TN", @"TX", @"UT", @"VT", @"VA", @"WA", @"WV", @"WI", @"WY", nil];
     
     // Assume on campus... This will be changed during [self load]
-    onCampusBool = YES;
+    _onCampusBool = YES;
     
     // Used to pass the identity of a textField into pickerView methods
-    textFieldIdentifier = 0;
+    _textFieldIdentifier = 0;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     // Instantiate the picker and set the field inputs
-    myPickerView = [[UIPickerView alloc] init];
-    [myPickerView setAutoresizesSubviews:YES];
-    [myPickerView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
-    myPickerView.delegate = self;
-    myPickerView.showsSelectionIndicator = YES;
-    [self.view addSubview:myPickerView];
-    myPickerView.hidden = YES;
-    [myPickerView removeFromSuperview];
-    majorField.inputView = myPickerView;
-    concentrationField.inputView = myPickerView;
-    sgaField.inputView = myPickerView;
-    hiatusField.inputView = myPickerView;
-    classField.inputView = myPickerView;
-    facStaffField.inputView = myPickerView;
+    _myPickerView = [[UIPickerView alloc] init];
+    [_myPickerView setAutoresizesSubviews:YES];
+    [_myPickerView setAutoresizingMask:UIViewAutoresizingFlexibleHeight];
+    _myPickerView.delegate = self;
+    _myPickerView.showsSelectionIndicator = YES;
+    [self.view addSubview:_myPickerView];
+    _myPickerView.hidden = YES;
+    [_myPickerView removeFromSuperview];
+    _majorField.inputView = _myPickerView;
+    _concentrationField.inputView = _myPickerView;
+    _sgaField.inputView = _myPickerView;
+    _hiatusField.inputView = _myPickerView;
+    _classField.inputView = _myPickerView;
+    _facStaffField.inputView = _myPickerView;
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"]) {
-        homeAddressField.inputView = myPickerView;
+        _homeAddressField.inputView = _myPickerView;
     } else {
-        homeAddressField.inputView = nil;
+        _homeAddressField.inputView = nil;
     }
     
     [super viewDidAppear:animated];
@@ -81,21 +75,13 @@
     }
     
     // Set up previous/next/done buttons
-    if (onCampusBool) {
-        fields = [[NSMutableArray alloc] initWithObjects:firstNameField, lastNameField, usernameField, classField, phoneField, campusAddressField, majorField, concentrationField, hiatusField, homeAddressField, facStaffField, sgaField, nil];
+    if (_onCampusBool) {
+        fields = [[NSMutableArray alloc] initWithObjects:_firstNameField, _lastNameField, _usernameField, _classField, _phoneField, _campusAddressField, _majorField, _concentrationField, _hiatusField, _homeAddressField, _facStaffField, _sgaField, nil];
     } else {
-        fields = [[NSMutableArray alloc] initWithObjects:firstNameField, lastNameField, usernameField, nil];
+        fields = [[NSMutableArray alloc] initWithObjects:_firstNameField, _lastNameField, _usernameField, nil];
     }
     
-    [self setKeyboardControls:[[BSKeyboardControls alloc] initWithFields:fields]];
-    keyboardControls.barTintColor = [UIColor whiteColor];
-    [keyboardControls setDelegate:self];
-    
     [super viewWillAppear:animated];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 //Method to determine the availability of network Connections using the Reachability Class
@@ -110,8 +96,8 @@
     [self searchHelper];
     
     // Stop the segue if an error occured (indicated by null value in searchResults)
-    if (searchResults) {
-        NSNumber *count = [NSNumber numberWithUnsignedLong: searchResults.count];
+    if (_searchResults) {
+        NSNumber *count = [NSNumber numberWithUnsignedLong: _searchResults.count];
         [Answers logCustomEventWithName:@"search"
                        customAttributes:@{@"results" : count}];
         return YES;
@@ -126,29 +112,20 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString:@"searchSegue"]) {
         ResultsViewController *destViewController = segue.destinationViewController;
-        destViewController.searchDetails = searchResults;
-        destViewController.onCampusBool = onCampusBool;
+        destViewController.searchDetails = _searchResults;
+        destViewController.onCampusBool = _onCampusBool;
     }
 }
 
-#pragma mark Keyboard/textField methods
-- (void)keyboardControlsDonePressed:(BSKeyboardControls *)keyControls {
-    [keyControls.activeField resignFirstResponder];
-}
-
-- (void)keyboardControls:(BSKeyboardControls *)keyControls selectedField:(UIView *)field inDirection:(BSKeyboardControlsDirection)direction {
-    [keyControls setActiveField:field];
-}
+#pragma mark textField methods
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [keyboardControls setActiveField:textField];
-    
     // Show the picker if needed for this field
     if (0 != textField.tag) {
-        myPickerView.hidden = NO;
-        textFieldIdentifier = (int)textField.tag;
-        [myPickerView reloadAllComponents];
-        [myPickerView selectRow:0 inComponent:0 animated:YES];
+        _myPickerView.hidden = NO;
+        _textFieldIdentifier = (int)textField.tag;
+        [_myPickerView reloadAllComponents];
+        [_myPickerView selectRow:0 inComponent:0 animated:YES];
     }
 }
 
@@ -165,33 +142,33 @@
 
 // Minimize keyboard on user drag
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [keyboardControls.activeField resignFirstResponder];
+    //[keyboardControls.activeField resignFirstResponder];
 }
 
 #pragma mark UIPicker methods
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    switch (textFieldIdentifier) {
+    switch (_textFieldIdentifier) {
         case 2001:
-            return [classArray objectAtIndex:row];
+            return [_classArray objectAtIndex:row];
             break;
         case 2002:
-            return [majorsArray objectAtIndex:row];
+            return [_majorsArray objectAtIndex:row];
             break;
         case 2003:
-            return [concentrationArray objectAtIndex:row];
+            return [_concentrationArray objectAtIndex:row];
             break;
         case 2004:
-            return [hiatusArray objectAtIndex:row];
+            return [_hiatusArray objectAtIndex:row];
             break;
         case 2005:
-            return [facStaffArray objectAtIndex:row];
+            return [_facStaffArray objectAtIndex:row];
             break;
         case 2006:
-            return [sgaArray objectAtIndex:row];
+            return [_sgaArray objectAtIndex:row];
             break;
         case 2007:
             if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"])
-                return [statesArray objectAtIndex:row];
+                return [_statesArray objectAtIndex:row];
             else return nil;
             break;
         default:
@@ -205,28 +182,28 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-    switch (textFieldIdentifier) {
+    switch (_textFieldIdentifier) {
         case 2001:
-            return classArray.count;
+            return _classArray.count;
             break;
         case 2002:
-            return majorsArray.count;
+            return _majorsArray.count;
             break;
         case 2003:
-            return concentrationArray.count;
+            return _concentrationArray.count;
             break;
         case 2004:
-            return hiatusArray.count;
+            return _hiatusArray.count;
             break;
         case 2005:
-            return facStaffArray.count;
+            return _facStaffArray.count;
             break;
         case 2006:
-            return sgaArray.count;
+            return _sgaArray.count;
             break;
         case 2007:
             if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"]) {
-                return statesArray.count;
+                return _statesArray.count;
             } else {
                 return 0;
             }
@@ -238,28 +215,28 @@
 }
 
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-    switch (textFieldIdentifier) {
+    switch (_textFieldIdentifier) {
         case 2001:
-            classField.text = [classArray objectAtIndex:row];
+            _classField.text = [_classArray objectAtIndex:row];
             break;
         case 2002:
-            majorField.text = [majorsArray objectAtIndex:row];
+            _majorField.text = [_majorsArray objectAtIndex:row];
             break;
         case 2003:
-            concentrationField.text = [concentrationArray objectAtIndex:row];
+            _concentrationField.text = [_concentrationArray objectAtIndex:row];
             break;
         case 2004:
-            hiatusField.text = [hiatusArray objectAtIndex:row];
+            _hiatusField.text = [_hiatusArray objectAtIndex:row];
             break;
         case 2005:
-            facStaffField.text = [facStaffArray objectAtIndex:row];
+            _facStaffField.text = [_facStaffArray objectAtIndex:row];
             break;
         case 2006:
-            sgaField.text = [sgaArray objectAtIndex:row];
+            _sgaField.text = [_sgaArray objectAtIndex:row];
             break;
         case 2007:
             if ([[NSUserDefaults standardUserDefaults] boolForKey:@"State"]) {
-                homeAddressField.text = [statesArray objectAtIndex:row];
+                _homeAddressField.text = [_statesArray objectAtIndex:row];
             }
             break;
         default:
@@ -269,7 +246,7 @@
 
 #pragma mark UITableView overrides
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (onCampusBool) {
+    if (_onCampusBool) {
         return 12;
     } else {
         return 3;
@@ -277,7 +254,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    [keyboardControls.activeField resignFirstResponder];
     OptionViewController *controller = [[OptionViewController alloc] initWithNibName:@"OptionViewController" bundle:nil];
     popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
     popoverController.delegate = self;
@@ -295,7 +271,7 @@
     } else {
         controller.state = YES;
     }
-    stateBeforeSettings = [[NSUserDefaults standardUserDefaults] boolForKey:@"State"];
+    _stateBeforeSettings = [[NSUserDefaults standardUserDefaults] boolForKey:@"State"];
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         [popoverController presentPopoverFromRect:cell.bounds inView:cell permittedArrowDirections:WYPopoverArrowDirectionLeft animated:YES];
     } else {
@@ -306,11 +282,11 @@
 #pragma mark - Popover overrides
 - (void)popoverControllerDidDismissPopover:(WYPopoverController *)popoverController {
     BOOL temp = [[NSUserDefaults standardUserDefaults] boolForKey:@"State"];
-    if (stateBeforeSettings != temp) {
+    if (_stateBeforeSettings != temp) {
         if (temp) {
-            homeAddressField.inputView = myPickerView;
+            _homeAddressField.inputView = _myPickerView;
         } else {
-            homeAddressField.inputView = nil;
+            _homeAddressField.inputView = nil;
         }
         [self.tableView reloadData];
     }
@@ -324,7 +300,6 @@
 }
 
 - (void)showNoNetworkAlert {
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
     UIAlertView *network = [[UIAlertView alloc]
                             initWithTitle:@"No Network Connection"
                             message:@"Turn on cellular data or use Wi-Fi to access the server"
@@ -347,7 +322,6 @@
 }
 
 - (void)showErrorAlert {
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
     UIAlertView *error = [[UIAlertView alloc]
                           initWithTitle:@"An Error Occurred"
                           message:@"Please try again later"
@@ -359,7 +333,6 @@
 }
 
 - (void)showVagueSearchAlert {
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
     UIAlertView *error = [[UIAlertView alloc]
                           initWithTitle:@"Vague Search"
                           message:@"Please refine your search criteria!"
@@ -371,7 +344,6 @@
 }
 
 - (void)showNoResultsAlert {
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
     UIAlertView *error = [[UIAlertView alloc]
                           initWithTitle:@"An Error Occurred"
                           message:@"Your search returned no results!"
@@ -412,37 +384,37 @@
             NSRange startRange = [responseData rangeOfString:@"<select name=\"Department\">"];
             NSRange endRange = [responseData rangeOfString:@"Student Major"];
             if (NSNotFound != endRange.location) {
-                onCampusBool = YES;
-                if (NSNotFound == [facStaffArray indexOfObject:@"Any"]) {
-                    [self parseHTML:startRange :endRange :facStaffArray :responseData];
+                _onCampusBool = YES;
+                if (NSNotFound == [_facStaffArray indexOfObject:@"Any"]) {
+                    [self parseHTML:startRange :endRange :_facStaffArray :responseData];
                     
                     startRange = [responseData rangeOfString:@"<select name=\"Major\">"];
                     endRange = [responseData rangeOfString:@"Concentration"];
-                    [self parseHTML:startRange :endRange :majorsArray :responseData];
+                    [self parseHTML:startRange :endRange :_majorsArray :responseData];
                     
                     startRange = [responseData rangeOfString:@"<select name=\"conc\">"];
                     endRange = [responseData rangeOfString:@"SGA"];
-                    [self parseHTML:startRange :endRange :concentrationArray :responseData];
+                    [self parseHTML:startRange :endRange :_concentrationArray :responseData];
                     
                     startRange = [responseData rangeOfString:@"<select name=\"SGA\">"];
                     endRange = [responseData rangeOfString:@"Hiatus"];
-                    [self parseHTML:startRange :endRange :sgaArray :responseData];
+                    [self parseHTML:startRange :endRange :_sgaArray :responseData];
                     
                     startRange = [responseData rangeOfString:@"<select name=\"Hiatus\">"];
                     endRange = [responseData rangeOfString:@"Student Class"];
-                    [self parseHTML:startRange :endRange :hiatusArray :responseData];
+                    [self parseHTML:startRange :endRange :_hiatusArray :responseData];
                     
                     startRange = [responseData rangeOfString:@"<select name=\"Gyear\">"];
                     endRange = [responseData rangeOfString:@"</form>"];
-                    [self parseHTML:startRange :endRange :classArray :responseData];
+                    [self parseHTML:startRange :endRange :_classArray :responseData];
                 }
                 [self.tableView reloadData];
             } else {
-                if (!notFirstRun) {
+                if (!_notFirstRun) {
                     [self showGrinnellAlert];
-                    notFirstRun = YES;
+                    _notFirstRun = YES;
                 }
-                onCampusBool = NO;
+                _onCampusBool = NO;
                 [self.tableView reloadData];
             }
         }
@@ -489,7 +461,7 @@
             NSRange endRange = [responseData rangeOfString:@"<strong>no</strong> matches"];
             if (NSNotFound != endRange.location) {
                 [self showNoResultsAlert];
-                searchResults = NULL;
+                _searchResults = NULL;
                 return;
             }
             
@@ -497,7 +469,7 @@
             endRange = [responseData rangeOfString:@"Your search returned a <i>very</i> large number of records and you must reduce the number of matches by refining your search criteria using the form at the bottom of the page"];
             if (NSNotFound != endRange.location) {
                 [self showVagueSearchAlert];
-                searchResults = NULL;
+                _searchResults = NULL;
                 return;
             }
             
@@ -505,7 +477,7 @@
             endRange = [responseData rangeOfString:@"entr"];
             if (NSNotFound == endRange.location) {
                 [self showErrorAlert];
-                searchResults = NULL;
+                _searchResults = NULL;
                 return;
             }
             
@@ -785,7 +757,7 @@
             }
         }
         
-        [searchResults addObject:tmpPerson];
+        [_searchResults addObject:tmpPerson];
         
         // Remove the header line
         replaceRange = [dataString rangeOfString:@"</TD>" options:NSCaseInsensitiveSearch];
@@ -1021,7 +993,7 @@
             [tmpPerson.attributes addObject:@"profileURL"];
             [tmpPerson.attributeVals addObject:profileURLString];
         }
-        [searchResults addObject:tmpPerson];
+        [_searchResults addObject:tmpPerson];
         
         // Check for another value to be processed
         testRange = [dataString rangeOfString:@"valign=\"top\" style=\"text-align:center;\">"];
@@ -1064,7 +1036,7 @@
 }
 
 // Clears all textFields in the form
-- (void)clear:(id)sender {
+- (void)clear {
     for (int i=0; i < fields.count; i++) {
         UITextField *field = [fields objectAtIndex:i];
         field.text = @"";
@@ -1077,18 +1049,14 @@
     UINavigationController *navC = [self.splitViewController.viewControllers lastObject];
     [navC popToRootViewControllerAnimated:NO];
     ResultsViewController *results = (ResultsViewController *)navC.topViewController;
-    results.searchDetails = searchResults;
-    results.onCampusBool = onCampusBool;
+    results.searchDetails = _searchResults;
+    results.onCampusBool = _onCampusBool;
     [results.tableView reloadData];
 }
 
 - (void) searchHelper {
-    searchResults = [[NSMutableArray alloc] init];
-    [keyboardControls.activeField resignFirstResponder];
-    // Set up HUD and give it time to run
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"Searching";
-    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantPast]];
+    _searchResults = [[NSMutableArray alloc] init];
+    //[[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantPast]];
     
     NSMutableArray *searchDetails = [[NSMutableArray alloc] init];
     NSURL *url;
@@ -1115,7 +1083,7 @@
         lastSearchType = @"startswith";
     }
     // Set up the url properly - Nothing containing the word "any" should be in the url
-    if (onCampusBool) {
+    if (_onCampusBool) {
         NSString *year = [searchDetails objectAtIndex:3];
         if ([year isEqualToString:@"Any"]) {
             year = @"";
@@ -1160,9 +1128,6 @@
     
     // Start the search
     [self searchUsingURL:url forPage:1];
-    
-    // Hide the HUD
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (BOOL) splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation {
