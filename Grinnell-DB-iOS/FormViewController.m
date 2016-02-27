@@ -1,12 +1,13 @@
+#import <Crashlytics/Crashlytics.h>
 #import <MBProgressHUD.h>
 #import <Reachability.h>
 
 #import "FormViewController.h"
 #import "OptionViewController.h"
 #import "Person.h"
+
 #import "ResultsViewController.h"
 #import "Grinnell_DB_iOS-Swift.h"
-
 
 @interface FormViewController ()
 
@@ -110,8 +111,13 @@
     
     // Stop the segue if an error occured (indicated by null value in searchResults)
     if (searchResults) {
+        NSNumber *count = [NSNumber numberWithUnsignedLong: searchResults.count];
+        [Answers logCustomEventWithName:@"search"
+                       customAttributes:@{@"results" : count}];
         return YES;
     } else {
+        [Answers logCustomEventWithName:@"search"
+                       customAttributes:@{@"results" : @0}];
         return NO;
     }
 }

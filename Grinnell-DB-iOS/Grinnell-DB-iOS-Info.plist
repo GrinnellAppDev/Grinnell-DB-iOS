@@ -30,6 +30,8 @@
 	<dict>
 		<key>APIKey</key>
 		<string>45894d9e8a6bc3b8513651d6de36159e2c836e51</string>
+		<key>Kits</key>
+		<array/>
 	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
