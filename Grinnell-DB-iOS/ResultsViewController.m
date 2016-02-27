@@ -81,9 +81,8 @@
   UILabel *classLbl = (UILabel *)[cell viewWithTag:1006];
   UIImageView *userImageView = (UIImageView *) [cell viewWithTag:1007];
 
-  Person *tempPerson = [[Person alloc] init];
-  tempPerson = [searchDetails objectAtIndex:indexPath.row];
-
+  Person *tempPerson = [searchDetails objectAtIndex:indexPath.row];
+  
   NSString *first = tempPerson.firstName;
   NSString *last = tempPerson.lastName;
   NSString *status = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Status"]];
