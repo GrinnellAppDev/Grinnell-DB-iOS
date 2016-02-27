@@ -22,6 +22,6 @@ public class AppDelegate: UIResponder, UIApplicationDelegate {
     let navigationVC = window!.rootViewController as! UINavigationController
     navigationVC.popToRootViewControllerAnimated(false)
     let form = navigationVC.childViewControllers.first as! FormViewController
-    form.clear(self)
+    form.clear()
   }
 }

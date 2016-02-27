@@ -1,23 +1,17 @@
 #import <Crashlytics/Crashlytics.h>
-#import <MBProgressHUD.h>
 #import <Reachability.h>
 
 #import "FormViewController.h"
+#import "Grinnell_DB_iOS-Swift.h"
 #import "OptionViewController.h"
 #import "Person.h"
-
 #import "ResultsViewController.h"
-#import "Grinnell_DB_iOS-Swift.h"
-
-@interface FormViewController ()
-
-@end
 
 @implementation FormViewController
-@synthesize lastNameField, firstNameField, usernameField, phoneField, campusAddressField, homeAddressField, majorField, concentrationField, sgaField, hiatusField, classField, facStaffField, keyboardControls, textFieldIdentifier, myPickerView, concentrationArray, sgaArray, facStaffArray, hiatusArray, classArray, majorsArray, searchResults, onCampusBool, notFirstRun, statesArray, stateBeforeSettings;
+@synthesize lastNameField, firstNameField, usernameField, phoneField, campusAddressField, homeAddressField, majorField, concentrationField, sgaField, hiatusField, classField, facStaffField, textFieldIdentifier, myPickerView, concentrationArray, sgaArray, facStaffArray, hiatusArray, classArray, majorsArray, searchResults, onCampusBool, notFirstRun, statesArray, stateBeforeSettings;
 
 - (IBAction)clearButtonClicked:(id)sender {
-    [self clear:sender];
+    [self clear];
 }
 
 - (void)viewDidLoad {
@@ -87,15 +81,7 @@
         fields = [[NSMutableArray alloc] initWithObjects:firstNameField, lastNameField, usernameField, nil];
     }
     
-    [self setKeyboardControls:[[BSKeyboardControls alloc] initWithFields:fields]];
-    keyboardControls.barTintColor = [UIColor whiteColor];
-    [keyboardControls setDelegate:self];
-    
     [super viewWillAppear:animated];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
 }
 
 //Method to determine the availability of network Connections using the Reachability Class
@@ -131,18 +117,9 @@
     }
 }
 
-#pragma mark Keyboard/textField methods
-- (void)keyboardControlsDonePressed:(BSKeyboardControls *)keyControls {
-    [keyControls.activeField resignFirstResponder];
-}
-
-- (void)keyboardControls:(BSKeyboardControls *)keyControls selectedField:(UIView *)field inDirection:(BSKeyboardControlsDirection)direction {
-    [keyControls setActiveField:field];
-}
+#pragma mark textField methods
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
-    [keyboardControls setActiveField:textField];
-    
     // Show the picker if needed for this field
     if (0 != textField.tag) {
         myPickerView.hidden = NO;
@@ -165,7 +142,7 @@
 
 // Minimize keyboard on user drag
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    [keyboardControls.activeField resignFirstResponder];
+    //[keyboardControls.activeField resignFirstResponder];
 }
 
 #pragma mark UIPicker methods
@@ -277,7 +254,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    [keyboardControls.activeField resignFirstResponder];
     OptionViewController *controller = [[OptionViewController alloc] initWithNibName:@"OptionViewController" bundle:nil];
     popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
     popoverController.delegate = self;
@@ -324,7 +300,6 @@
 }
 
 - (void)showNoNetworkAlert {
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
     UIAlertView *network = [[UIAlertView alloc]
                             initWithTitle:@"No Network Connection"
                             message:@"Turn on cellular data or use Wi-Fi to access the server"
@@ -347,7 +322,6 @@
 }
 
 - (void)showErrorAlert {
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
     UIAlertView *error = [[UIAlertView alloc]
                           initWithTitle:@"An Error Occurred"
                           message:@"Please try again later"
@@ -359,7 +333,6 @@
 }
 
 - (void)showVagueSearchAlert {
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
     UIAlertView *error = [[UIAlertView alloc]
                           initWithTitle:@"Vague Search"
                           message:@"Please refine your search criteria!"
@@ -371,7 +344,6 @@
 }
 
 - (void)showNoResultsAlert {
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
     UIAlertView *error = [[UIAlertView alloc]
                           initWithTitle:@"An Error Occurred"
                           message:@"Your search returned no results!"
@@ -1064,7 +1036,7 @@
 }
 
 // Clears all textFields in the form
-- (void)clear:(id)sender {
+- (void)clear {
     for (int i=0; i < fields.count; i++) {
         UITextField *field = [fields objectAtIndex:i];
         field.text = @"";
@@ -1084,11 +1056,7 @@
 
 - (void) searchHelper {
     searchResults = [[NSMutableArray alloc] init];
-    [keyboardControls.activeField resignFirstResponder];
-    // Set up HUD and give it time to run
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.labelText = @"Searching";
-    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantPast]];
+    //[[NSRunLoop currentRunLoop] runUntilDate:[NSDate distantPast]];
     
     NSMutableArray *searchDetails = [[NSMutableArray alloc] init];
     NSURL *url;
@@ -1160,9 +1128,6 @@
     
     // Start the search
     [self searchUsingURL:url forPage:1];
-    
-    // Hide the HUD
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (BOOL) splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation {
