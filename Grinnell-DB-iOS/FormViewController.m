@@ -54,6 +54,7 @@
     myPickerView.showsSelectionIndicator = YES;
     [self.view addSubview:myPickerView];
     myPickerView.hidden = YES;
+    [myPickerView removeFromSuperview];
     majorField.inputView = myPickerView;
     concentrationField.inputView = myPickerView;
     sgaField.inputView = myPickerView;
