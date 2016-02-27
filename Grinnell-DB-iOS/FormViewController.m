@@ -8,7 +8,6 @@
 #import "ResultsViewController.h"
 
 @implementation FormViewController
-//@synthesize lastNameField, firstNameField, usernameField, phoneField, campusAddressField, homeAddressField, majorField, concentrationField, sgaField, hiatusField, classField, facStaffField, textFieldIdentifier, myPickerView, concentrationArray, sgaArray, facStaffArray, hiatusArray, classArray, majorsArray, searchResults, onCampusBool, notFirstRun, statesArray, stateBeforeSettings;
 
 - (IBAction)clearButtonClicked:(id)sender {
     [self clear];
