@@ -12,8 +12,9 @@ public class ResultsViewController: BADResultsViewController {
   }
 
   private func setResultTitleWithResultCount(resultCount count: Int) {
-    let label = count == 1 ? "result" : "results"
-    navigationController?.title = "\(count) \(label)"
+    let label = count == 1 ? "Result" : "Results"
+    title = "\(count) \(label)"
+
   }
 
 }
