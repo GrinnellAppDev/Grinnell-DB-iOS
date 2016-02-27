@@ -1,17 +1,12 @@
-//
-//  FormViewController.m
-//  Grinnell-DB-iOS
-//
-//  Created by Colin Tremblay on 1/28/13.
-//  Copyright (c) 2013 Grinnell AppDev. All rights reserved.
-//
+#import <MBProgressHUD.h>
+#import <Reachability.h>
 
 #import "FormViewController.h"
 #import "OptionViewController.h"
-#import "ResultsViewController.h"
 #import "Person.h"
-#import <Reachability.h>
-#import <MBProgressHUD.h>
+#import "ResultsViewController.h"
+#import "Grinnell_DB_iOS-Swift.h"
+
 
 @interface FormViewController ()
 
