@@ -17,11 +17,7 @@
     [super viewDidLoad];
     [[NSUserDefaults standardUserDefaults] synchronize];
     self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-    
-    
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [self.navigationItem.rightBarButtonItem setAction:@selector(iPadSearch:)];
-    }
+
     // Instantiate the picker view arrays
     // Note: the empty string sets up the clearing option in the picker
     _majorsArray = [[NSMutableArray alloc] initWithObjects:@"", nil];
@@ -129,13 +125,10 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [self iPadSearch:textField];
-    } else {
+
         if ([self shouldPerformSegueWithIdentifier:@"searchSegue" sender:self]) {
             [self performSegueWithIdentifier:@"searchSegue" sender:self];
         }
-    }
     return YES;
 }
 
@@ -1042,16 +1035,7 @@
     }
 }
 
-// Refreshes results on iPad
-- (void)iPadSearch:(id)sender {
-    [self searchHelper];
-    UINavigationController *navC = [self.splitViewController.viewControllers lastObject];
-    [navC popToRootViewControllerAnimated:NO];
-    ResultsViewController *results = (ResultsViewController *)navC.topViewController;
-    results.searchDetails = _searchResults;
-    results.onCampusBool = _onCampusBool;
-    [results.tableView reloadData];
-}
+
 
 - (void) searchHelper {
     _searchResults = [[NSMutableArray alloc] init];
