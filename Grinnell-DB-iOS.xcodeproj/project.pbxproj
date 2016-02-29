@@ -34,6 +34,7 @@
 		FA9E0F361C68404900699465 /* GADIconTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9E0F251C683FE200699465 /* GADIconTest.swift */; };
 		FAD455831C81144700023814 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FAD455821C81144700023814 /* Settings.bundle */; };
 		FAD455851C8115EF00023814 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD455841C8115EF00023814 /* AppDelegate.swift */; };
+		FAE06BD01C84F86E00C74794 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE06BCE1C84F86E00C74794 /* Storyboard.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +88,7 @@
 		FA9E0F2F1C68403A00699465 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FAD455821C81144700023814 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		FAD455841C8115EF00023814 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		FAE06BCF1C84F86E00C74794 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				3B55415917E27A03008B4F40 /* Helper Classes */,
 				FAD455841C8115EF00023814 /* AppDelegate.swift */,
 				36363CDE17E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard */,
+				FAE06BCE1C84F86E00C74794 /* Storyboard.storyboard */,
 				FAD455821C81144700023814 /* Settings.bundle */,
 				36363CE117E11EAC00B01E34 /* MainStoryboard_iPad.storyboard */,
 				36363CE417E11EAC00B01E34 /* FormViewController.h */,
@@ -309,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36363CE017E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard in Resources */,
+				FAE06BD01C84F86E00C74794 /* Storyboard.storyboard in Resources */,
 				36363CE317E11EAC00B01E34 /* MainStoryboard_iPad.storyboard in Resources */,
 				FAD455831C81144700023814 /* Settings.bundle in Resources */,
 				E10CF00F1811D6C90053AF44 /* ProfileImageViewController.xib in Resources */,
@@ -455,6 +459,14 @@
 				36363CE217E11EAC00B01E34 /* en */,
 			);
 			name = MainStoryboard_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		FAE06BCE1C84F86E00C74794 /* Storyboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FAE06BCF1C84F86E00C74794 /* en */,
+			);
+			name = Storyboard.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
