@@ -11,8 +11,6 @@
 		36363CC917E11EAC00B01E34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36363CC817E11EAC00B01E34 /* Foundation.framework */; };
 		36363CCB17E11EAC00B01E34 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36363CCA17E11EAC00B01E34 /* CoreGraphics.framework */; };
 		36363CD317E11EAC00B01E34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 36363CD217E11EAC00B01E34 /* main.m */; };
-		36363CE017E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36363CDE17E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard */; };
-		36363CE317E11EAC00B01E34 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36363CE117E11EAC00B01E34 /* MainStoryboard_iPad.storyboard */; };
 		36363CE617E11EAC00B01E34 /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36363CE517E11EAC00B01E34 /* FormViewController.m */; };
 		3B55414817E24CED008B4F40 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B55414617E24CED008B4F40 /* ResultsViewController.m */; };
 		3B55414B17E25870008B4F40 /* OffCResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B55414A17E25870008B4F40 /* OffCResultsCell.xib */; };
@@ -35,6 +33,18 @@
 		FAD455831C81144700023814 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FAD455821C81144700023814 /* Settings.bundle */; };
 		FAD455851C8115EF00023814 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD455841C8115EF00023814 /* AppDelegate.swift */; };
 		FAE06BD01C84F86E00C74794 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE06BCE1C84F86E00C74794 /* Storyboard.storyboard */; };
+		FAE06BD31C85120F00C74794 /* GADFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BD21C85120F00C74794 /* GADFieldTableViewCell.swift */; };
+		FAE06BD41C85120F00C74794 /* GADFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BD21C85120F00C74794 /* GADFieldTableViewCell.swift */; };
+		FAE06BD61C8529A900C74794 /* GADDirectoryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BD51C8529A900C74794 /* GADDirectoryField.swift */; };
+		FAE06BD71C8529A900C74794 /* GADDirectoryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BD51C8529A900C74794 /* GADDirectoryField.swift */; };
+		FAE06BD91C852C8000C74794 /* GADFieldTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BD81C852C8000C74794 /* GADFieldTextField.swift */; };
+		FAE06BDA1C852C8000C74794 /* GADFieldTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BD81C852C8000C74794 /* GADFieldTextField.swift */; };
+		FAE06BE21C852EDF00C74794 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BE11C852EDF00C74794 /* FormViewController.swift */; };
+		FAE06BE31C852EDF00C74794 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BE11C852EDF00C74794 /* FormViewController.swift */; };
+		FAE06BE51C85308700C74794 /* GADTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BE41C85308700C74794 /* GADTextFieldTableViewCell.swift */; };
+		FAE06BE61C85308700C74794 /* GADTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BE41C85308700C74794 /* GADTextFieldTableViewCell.swift */; };
+		FAE06BE81C8530AA00C74794 /* GADSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BE71C8530AA00C74794 /* GADSelectionTableViewCell.swift */; };
+		FAE06BE91C8530AA00C74794 /* GADSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BE71C8530AA00C74794 /* GADSelectionTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,8 +65,6 @@
 		36363CCE17E11EAC00B01E34 /* Grinnell-DB-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Grinnell-DB-iOS-Info.plist"; sourceTree = "<group>"; };
 		36363CD217E11EAC00B01E34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		36363CD417E11EAC00B01E34 /* Grinnell-DB-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grinnell-DB-iOS-Prefix.pch"; sourceTree = "<group>"; };
-		36363CDF17E11EAC00B01E34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		36363CE217E11EAC00B01E34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		36363CE417E11EAC00B01E34 /* FormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormViewController.h; sourceTree = "<group>"; };
 		36363CE517E11EAC00B01E34 /* FormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FormViewController.m; sourceTree = "<group>"; };
 		3B55414517E24CED008B4F40 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
@@ -89,6 +97,12 @@
 		FAD455821C81144700023814 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		FAD455841C8115EF00023814 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE06BCF1C84F86E00C74794 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
+		FAE06BD21C85120F00C74794 /* GADFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADFieldTableViewCell.swift; sourceTree = "<group>"; };
+		FAE06BD51C8529A900C74794 /* GADDirectoryField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADDirectoryField.swift; sourceTree = "<group>"; };
+		FAE06BD81C852C8000C74794 /* GADFieldTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADFieldTextField.swift; sourceTree = "<group>"; };
+		FAE06BE11C852EDF00C74794 /* FormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
+		FAE06BE41C85308700C74794 /* GADTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADTextFieldTableViewCell.swift; sourceTree = "<group>"; };
+		FAE06BE71C8530AA00C74794 /* GADSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADSelectionTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,26 +165,15 @@
 		36363CCC17E11EAC00B01E34 /* Grinnell-DB-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				3B55415917E27A03008B4F40 /* Helper Classes */,
+				FAE06BDC1C852C9700C74794 /* Models */,
+				FAE06BDB1C852C8600C74794 /* TextFields */,
+				FAE06BD11C8511C100C74794 /* Cells */,
+				FAE06BDE1C852CB900C74794 /* View Controllers */,
+				FAE06BDD1C852CA800C74794 /* Storyboards */,
 				FAD455841C8115EF00023814 /* AppDelegate.swift */,
-				36363CDE17E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard */,
-				FAE06BCE1C84F86E00C74794 /* Storyboard.storyboard */,
-				FAD455821C81144700023814 /* Settings.bundle */,
-				36363CE117E11EAC00B01E34 /* MainStoryboard_iPad.storyboard */,
-				36363CE417E11EAC00B01E34 /* FormViewController.h */,
-				36363CE517E11EAC00B01E34 /* FormViewController.m */,
-				3B55414517E24CED008B4F40 /* ResultsViewController.h */,
-				FA5199E91C8044AD00BDF482 /* ResultsViewController.swift */,
-				3B55414617E24CED008B4F40 /* ResultsViewController.m */,
-				3B55414A17E25870008B4F40 /* OffCResultsCell.xib */,
-				E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */,
-				3B55414C17E267AE008B4F40 /* ProfileViewController.h */,
-				3B55414D17E267AE008B4F40 /* ProfileViewController.m */,
-				3B55415717E27453008B4F40 /* ProfileCell.xib */,
-				E1A9E7D9180D0B3A00D1B3B9 /* Launch Images */,
+				FA9E0F241C683FE200699465 /* Grinnell-DB-iOS-Bridging-Header.h */,
 				D0826FC919B0BC4D00FF9C67 /* Images.xcassets */,
 				36363CCD17E11EAC00B01E34 /* Supporting Files */,
-				FA9E0F241C683FE200699465 /* Grinnell-DB-iOS-Bridging-Header.h */,
 			);
 			path = "Grinnell-DB-iOS";
 			sourceTree = "<group>";
@@ -178,34 +181,12 @@
 		36363CCD17E11EAC00B01E34 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				FAD455821C81144700023814 /* Settings.bundle */,
 				36363CCE17E11EAC00B01E34 /* Grinnell-DB-iOS-Info.plist */,
 				36363CD217E11EAC00B01E34 /* main.m */,
 				36363CD417E11EAC00B01E34 /* Grinnell-DB-iOS-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		3B55415917E27A03008B4F40 /* Helper Classes */ = {
-			isa = PBXGroup;
-			children = (
-				E1E336B8180F3D8700145508 /* OptionViewController.h */,
-				E1E336B9180F3D8700145508 /* OptionViewController.m */,
-				E1E336BA180F3D8700145508 /* OptionViewController.xib */,
-				3B55414F17E26B62008B4F40 /* Person.h */,
-				3B55415017E26B62008B4F40 /* Person.m */,
-				E10CF00B1811D6C90053AF44 /* ProfileImageViewController.h */,
-				E10CF00C1811D6C90053AF44 /* ProfileImageViewController.m */,
-				E10CF00D1811D6C90053AF44 /* ProfileImageViewController.xib */,
-			);
-			name = "Helper Classes";
-			sourceTree = "<group>";
-		};
-		E1A9E7D9180D0B3A00D1B3B9 /* Launch Images */ = {
-			isa = PBXGroup;
-			children = (
-				FA9E0F221C683DCC00699465 /* LaunchImage.xib */,
-			);
-			name = "Launch Images";
 			sourceTree = "<group>";
 		};
 		FA9E0F2C1C68403A00699465 /* GADDBTests */ = {
@@ -215,6 +196,83 @@
 				FA9E0F2F1C68403A00699465 /* Info.plist */,
 			);
 			path = GADDBTests;
+			sourceTree = "<group>";
+		};
+		FAE06BD11C8511C100C74794 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				FAE06BD21C85120F00C74794 /* GADFieldTableViewCell.swift */,
+				FAE06BE41C85308700C74794 /* GADTextFieldTableViewCell.swift */,
+				FAE06BE71C8530AA00C74794 /* GADSelectionTableViewCell.swift */,
+				FAE06BDF1C852CF300C74794 /* .xibs */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		FAE06BDB1C852C8600C74794 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				FAE06BD81C852C8000C74794 /* GADFieldTextField.swift */,
+			);
+			name = TextFields;
+			sourceTree = "<group>";
+		};
+		FAE06BDC1C852C9700C74794 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FAE06BD51C8529A900C74794 /* GADDirectoryField.swift */,
+				3B55414F17E26B62008B4F40 /* Person.h */,
+				3B55415017E26B62008B4F40 /* Person.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		FAE06BDD1C852CA800C74794 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FAE06BCE1C84F86E00C74794 /* Storyboard.storyboard */,
+				FA9E0F221C683DCC00699465 /* LaunchImage.xib */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
+		FAE06BDE1C852CB900C74794 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FAE06BE11C852EDF00C74794 /* FormViewController.swift */,
+				36363CE417E11EAC00B01E34 /* FormViewController.h */,
+				36363CE517E11EAC00B01E34 /* FormViewController.m */,
+				3B55414517E24CED008B4F40 /* ResultsViewController.h */,
+				FA5199E91C8044AD00BDF482 /* ResultsViewController.swift */,
+				3B55414617E24CED008B4F40 /* ResultsViewController.m */,
+				3B55414C17E267AE008B4F40 /* ProfileViewController.h */,
+				3B55414D17E267AE008B4F40 /* ProfileViewController.m */,
+				E1E336B8180F3D8700145508 /* OptionViewController.h */,
+				E1E336B9180F3D8700145508 /* OptionViewController.m */,
+				E10CF00B1811D6C90053AF44 /* ProfileImageViewController.h */,
+				E10CF00C1811D6C90053AF44 /* ProfileImageViewController.m */,
+				FAE06BE01C852D0A00C74794 /* .xibs */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FAE06BDF1C852CF300C74794 /* .xibs */ = {
+			isa = PBXGroup;
+			children = (
+				3B55414A17E25870008B4F40 /* OffCResultsCell.xib */,
+				E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */,
+				3B55415717E27453008B4F40 /* ProfileCell.xib */,
+			);
+			name = .xibs;
+			sourceTree = "<group>";
+		};
+		FAE06BE01C852D0A00C74794 /* .xibs */ = {
+			isa = PBXGroup;
+			children = (
+				E1E336BA180F3D8700145508 /* OptionViewController.xib */,
+				E10CF00D1811D6C90053AF44 /* ProfileImageViewController.xib */,
+			);
+			name = .xibs;
 			sourceTree = "<group>";
 		};
 		FC1DD3E095F626D6D96B70E3 /* Pods */ = {
@@ -311,9 +369,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				36363CE017E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard in Resources */,
 				FAE06BD01C84F86E00C74794 /* Storyboard.storyboard in Resources */,
-				36363CE317E11EAC00B01E34 /* MainStoryboard_iPad.storyboard in Resources */,
 				FAD455831C81144700023814 /* Settings.bundle in Resources */,
 				E10CF00F1811D6C90053AF44 /* ProfileImageViewController.xib in Resources */,
 				E1E336BC180F3D8700145508 /* OptionViewController.xib in Resources */,
@@ -416,12 +472,18 @@
 				36363CD317E11EAC00B01E34 /* main.m in Sources */,
 				E1E336BB180F3D8700145508 /* OptionViewController.m in Sources */,
 				E10CF00E1811D6C90053AF44 /* ProfileImageViewController.m in Sources */,
+				FAE06BE81C8530AA00C74794 /* GADSelectionTableViewCell.swift in Sources */,
+				FAE06BD91C852C8000C74794 /* GADFieldTextField.swift in Sources */,
+				FAE06BD31C85120F00C74794 /* GADFieldTableViewCell.swift in Sources */,
 				36363CE617E11EAC00B01E34 /* FormViewController.m in Sources */,
+				FAE06BE51C85308700C74794 /* GADTextFieldTableViewCell.swift in Sources */,
 				FA5199EA1C8044AD00BDF482 /* ResultsViewController.swift in Sources */,
 				3B55414817E24CED008B4F40 /* ResultsViewController.m in Sources */,
 				3B55414E17E267AE008B4F40 /* ProfileViewController.m in Sources */,
+				FAE06BD61C8529A900C74794 /* GADDirectoryField.swift in Sources */,
 				FAD455851C8115EF00023814 /* AppDelegate.swift in Sources */,
 				3B55415117E26B62008B4F40 /* Person.m in Sources */,
+				FAE06BE21C852EDF00C74794 /* FormViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,8 +491,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE06BE31C852EDF00C74794 /* FormViewController.swift in Sources */,
 				FA9E0F361C68404900699465 /* GADIconTest.swift in Sources */,
+				FAE06BD41C85120F00C74794 /* GADFieldTableViewCell.swift in Sources */,
 				FA5199EB1C8044AD00BDF482 /* ResultsViewController.swift in Sources */,
+				FAE06BD71C8529A900C74794 /* GADDirectoryField.swift in Sources */,
+				FAE06BDA1C852C8000C74794 /* GADFieldTextField.swift in Sources */,
+				FAE06BE61C85308700C74794 /* GADTextFieldTableViewCell.swift in Sources */,
+				FAE06BE91C8530AA00C74794 /* GADSelectionTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -445,22 +513,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		36363CDE17E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				36363CDF17E11EAC00B01E34 /* en */,
-			);
-			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		36363CE117E11EAC00B01E34 /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				36363CE217E11EAC00B01E34 /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
-			sourceTree = "<group>";
-		};
 		FAE06BCE1C84F86E00C74794 /* Storyboard.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -7,7 +7,7 @@
 #import "Person.h"
 #import "ResultsViewController.h"
 
-@implementation FormViewController
+@implementation BADFormViewController
 
 - (IBAction)clearButtonClicked:(id)sender {
     [self clear];
@@ -244,39 +244,6 @@
 }
 
 #pragma mark UITableView overrides
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_onCampusBool) {
-        return 12;
-    } else {
-        return 3;
-    }
-}
-
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-    OptionViewController *controller = [[OptionViewController alloc] initWithNibName:@"OptionViewController" bundle:nil];
-    popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
-    popoverController.delegate = self;
-    [popoverController setPopoverContentSize:CGSizeMake(self.view.frame.size.width, 75)];
-    
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-    if (1 >= indexPath.row) {
-        controller.state = NO;
-        if (0 == indexPath.row) {
-            controller.first = YES;
-        } else {
-            controller.first = NO;
-        }
-    } else {
-        controller.state = YES;
-    }
-    _stateBeforeSettings = [[NSUserDefaults standardUserDefaults] boolForKey:@"State"];
-    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-        [popoverController presentPopoverFromRect:cell.bounds inView:cell permittedArrowDirections:WYPopoverArrowDirectionLeft animated:YES];
-    } else {
-        [popoverController presentPopoverFromRect:cell.bounds inView:cell permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
-    }
-}
 
 #pragma mark - Popover overrides
 - (void)popoverControllerDidDismissPopover:(WYPopoverController *)popoverController {
@@ -287,7 +254,7 @@
         } else {
             _homeAddressField.inputView = nil;
         }
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
     }
 }
 
@@ -407,14 +374,14 @@
                     endRange = [responseData rangeOfString:@"</form>"];
                     [self parseHTML:startRange :endRange :_classArray :responseData];
                 }
-                [self.tableView reloadData];
+                //[self.tableView reloadData];
             } else {
                 if (!_notFirstRun) {
                     [self showGrinnellAlert];
                     _notFirstRun = YES;
                 }
                 _onCampusBool = NO;
-                [self.tableView reloadData];
+                //[self.tableView reloadData];
             }
         }
     }

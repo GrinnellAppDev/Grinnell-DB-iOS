@@ -2,7 +2,7 @@
 
 #import <WYPopoverController.h>
 
-@interface FormViewController : UITableViewController <UITextFieldDelegate, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, WYPopoverControllerDelegate> {
+@interface BADFormViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate,WYPopoverControllerDelegate> {
     NSMutableArray *fields;
     WYPopoverController *popoverController;
 }
