@@ -1,6 +1,7 @@
 #import <Reachability.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
+#import "Grinnell_DB_iOS-Swift.h"
 #import "ProfileViewController.h"
 #import "ResultsViewController.h"
 

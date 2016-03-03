@@ -1,7 +1,5 @@
 #import <UIKit/UIKit.h>
 
-#import "Grinnell_DB_iOS-Swift.h"
-
 // Forward declare class to register from Swift (only needed for .h)
 @class GADDirectoryPerson;
 

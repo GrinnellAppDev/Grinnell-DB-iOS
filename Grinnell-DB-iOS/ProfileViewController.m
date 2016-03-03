@@ -1,5 +1,6 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 
+#import "Grinnell_DB_iOS-Swift.h"
 #import "ProfileViewController.h"
 #import "ProfileImageViewController.h"
 
@@ -38,7 +39,7 @@
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:20];
     label.adjustsFontSizeToFitWidth = YES;
-    NSString *name = [NSString stringWithFormat:@"%@ %@", selectedPerson.firstName, _selectedPerson.lastName];
+    NSString *name = [NSString stringWithFormat:@"%@ %@", _selectedPerson.firstName, _selectedPerson.lastName];
     label.text = name;
     
     [view addSubview:label];

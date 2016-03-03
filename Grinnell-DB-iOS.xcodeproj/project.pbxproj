@@ -15,7 +15,6 @@
 		3B55414817E24CED008B4F40 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B55414617E24CED008B4F40 /* ResultsViewController.m */; };
 		3B55414B17E25870008B4F40 /* OffCResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B55414A17E25870008B4F40 /* OffCResultsCell.xib */; };
 		3B55414E17E267AE008B4F40 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B55414D17E267AE008B4F40 /* ProfileViewController.m */; };
-		3B55415117E26B62008B4F40 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B55415017E26B62008B4F40 /* Person.m */; };
 		3B55415317E26D4E008B4F40 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B55415217E26D4E008B4F40 /* MessageUI.framework */; };
 		3B55415817E27453008B4F40 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B55415717E27453008B4F40 /* ProfileCell.xib */; };
 		3B59474217E93FC80001A61E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B59474117E93FC80001A61E /* SystemConfiguration.framework */; };
@@ -45,6 +44,8 @@
 		FAE06BE61C85308700C74794 /* GADTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BE41C85308700C74794 /* GADTextFieldTableViewCell.swift */; };
 		FAE06BE81C8530AA00C74794 /* GADSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BE71C8530AA00C74794 /* GADSelectionTableViewCell.swift */; };
 		FAE06BE91C8530AA00C74794 /* GADSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BE71C8530AA00C74794 /* GADSelectionTableViewCell.swift */; };
+		FAE06BEB1C85661F00C74794 /* GADDirectoryPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BEA1C85661F00C74794 /* GADDirectoryPerson.swift */; };
+		FAE06BEC1C85661F00C74794 /* GADDirectoryPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BEA1C85661F00C74794 /* GADDirectoryPerson.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,8 +73,6 @@
 		3B55414A17E25870008B4F40 /* OffCResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OffCResultsCell.xib; sourceTree = "<group>"; };
 		3B55414C17E267AE008B4F40 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		3B55414D17E267AE008B4F40 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
-		3B55414F17E26B62008B4F40 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
-		3B55415017E26B62008B4F40 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		3B55415217E26D4E008B4F40 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3B55415717E27453008B4F40 /* ProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
 		3B59474117E93FC80001A61E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -103,6 +102,7 @@
 		FAE06BE11C852EDF00C74794 /* FormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		FAE06BE41C85308700C74794 /* GADTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADTextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		FAE06BE71C8530AA00C74794 /* GADSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		FAE06BEA1C85661F00C74794 /* GADDirectoryPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADDirectoryPerson.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,8 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				FAE06BD51C8529A900C74794 /* GADDirectoryField.swift */,
-				3B55414F17E26B62008B4F40 /* Person.h */,
-				3B55415017E26B62008B4F40 /* Person.m */,
+				FAE06BEA1C85661F00C74794 /* GADDirectoryPerson.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -480,9 +479,9 @@
 				FA5199EA1C8044AD00BDF482 /* ResultsViewController.swift in Sources */,
 				3B55414817E24CED008B4F40 /* ResultsViewController.m in Sources */,
 				3B55414E17E267AE008B4F40 /* ProfileViewController.m in Sources */,
+				FAE06BEB1C85661F00C74794 /* GADDirectoryPerson.swift in Sources */,
 				FAE06BD61C8529A900C74794 /* GADDirectoryField.swift in Sources */,
 				FAD455851C8115EF00023814 /* AppDelegate.swift in Sources */,
-				3B55415117E26B62008B4F40 /* Person.m in Sources */,
 				FAE06BE21C852EDF00C74794 /* FormViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -493,6 +492,7 @@
 			files = (
 				FAE06BE31C852EDF00C74794 /* FormViewController.swift in Sources */,
 				FA9E0F361C68404900699465 /* GADIconTest.swift in Sources */,
+				FAE06BEC1C85661F00C74794 /* GADDirectoryPerson.swift in Sources */,
 				FAE06BD41C85120F00C74794 /* GADFieldTableViewCell.swift in Sources */,
 				FA5199EB1C8044AD00BDF482 /* ResultsViewController.swift in Sources */,
 				FAE06BD71C8529A900C74794 /* GADDirectoryField.swift in Sources */,
