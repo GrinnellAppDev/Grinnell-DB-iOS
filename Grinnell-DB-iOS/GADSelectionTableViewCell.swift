@@ -13,4 +13,8 @@ class GADSelectionTableViewCell: GADFieldTableViewCell {
     layer.shadowOpacity = 0.5
     layer.shadowRadius = 4
   }
+
+  override func tap() {
+    print("expand children")
+  }
 }

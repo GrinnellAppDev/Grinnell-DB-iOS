@@ -6,6 +6,11 @@ class GADTextFieldTableViewCell: GADFieldTableViewCell {
     didSet {
       textField.text = field.textValue
       textField.placeholder = field.placeholderText
+      textField.autocapitalizationType =  field.autocapitalizationType
     }
+  }
+
+  override func tap() {
+    textField.becomeFirstResponder()
   }
 }

@@ -1,7 +1,8 @@
-#import "ResultsViewController.h"
-#import "ProfileViewController.h"
 #import <Reachability.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+
+#import "ProfileViewController.h"
+#import "ResultsViewController.h"
 
 @implementation BADResultsViewController
 
@@ -20,8 +21,8 @@
   }
 }
 
-- (Person *)personForIndexPath:(NSIndexPath *)indexPath {
-  Person *selected = [searchDetails objectAtIndex:indexPath.row];
+- (GADDirectoryPerson *)personForIndexPath:(NSIndexPath *)indexPath {
+  GADDirectoryPerson *selected = [searchDetails objectAtIndex:indexPath.row];
   NSUInteger index = [selected.attributes indexOfObject:@"profileURL"];
   if ((!selected.complete) && (index != NSNotFound)) {
     [self parseProfilePage:[selected.attributeVals objectAtIndex:index] forPerson:selected];
@@ -81,7 +82,7 @@
   UILabel *classLbl = (UILabel *)[cell viewWithTag:1006];
   UIImageView *userImageView = (UIImageView *) [cell viewWithTag:1007];
 
-  Person *tempPerson = [searchDetails objectAtIndex:indexPath.row];
+  GADDirectoryPerson *tempPerson = [searchDetails objectAtIndex:indexPath.row];
   
   NSString *first = tempPerson.firstName;
   NSString *last = tempPerson.lastName;
@@ -176,7 +177,7 @@
   [error show];
 }
 
-- (void)parseProfilePage:(NSString *)urlString forPerson:(Person *)selected {
+- (void)parseProfilePage:(NSString *)urlString forPerson:(GADDirectoryPerson *)selected {
   @try {
     NSString *post =[[NSString alloc] initWithFormat:@""];
 

@@ -1,34 +1,13 @@
-//
-//  ProfileViewController.m
-//  Grinnell-DB-iOS
-//
-//  Created by Colin Tremblay on 9/12/13.
-//  Copyright (c) 2013 AppDev. All rights reserved.
-//
+#import <SDWebImage/UIImageView+WebCache.h>
 
 #import "ProfileViewController.h"
 #import "ProfileImageViewController.h"
-#import <SDWebImage/UIImageView+WebCache.h>
-
-@interface ProfileViewController ()
-
-@end
 
 @implementation ProfileViewController
 
-@synthesize selectedPerson, cellIdentifier;
-
-- (id)initWithStyle:(UITableViewStyle)style {
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    cellIdentifier = @"ProfileCell";
+    _cellIdentifier = @"ProfileCell";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dismissImage) name:@"DismissImage" object:nil];
 }
 
@@ -40,12 +19,12 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 100)];
     
     // Get image (from the cache) if it's there
-    NSUInteger index = [selectedPerson.attributes indexOfObject:@"picURL"];
+    NSUInteger index = [_selectedPerson.attributes indexOfObject:@"picURL"];
     if (NSNotFound != index) {
         label.frame = CGRectMake(100, 35, 210, 40);
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 90, 90)];
         imageView.contentMode = UIViewContentModeScaleAspectFit;
-        NSString *userImageString = [selectedPerson.attributeVals objectAtIndex:index];
+        NSString *userImageString = [_selectedPerson.attributeVals objectAtIndex:index];
         [imageView sd_setImageWithURL:[NSURL URLWithString:userImageString] placeholderImage:nil];
         UITapGestureRecognizer *imageTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageTapped:)];
         
@@ -59,7 +38,7 @@
     label.textColor = [UIColor blackColor];
     label.font = [UIFont boldSystemFontOfSize:20];
     label.adjustsFontSizeToFitWidth = YES;
-    NSString *name = [NSString stringWithFormat:@"%@ %@", selectedPerson.firstName, selectedPerson.lastName];
+    NSString *name = [NSString stringWithFormat:@"%@ %@", selectedPerson.firstName, _selectedPerson.lastName];
     label.text = name;
     
     [view addSubview:label];
@@ -78,30 +57,30 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Repress status and picURL from tableView
     int sub = 0;
-    if (NSNotFound != [selectedPerson.attributes indexOfObject:@"picURL"]) {
+    if (NSNotFound != [_selectedPerson.attributes indexOfObject:@"picURL"]) {
         sub++;
     }
-    if (NSNotFound != [selectedPerson.attributes indexOfObject:@"Status"]) {
+    if (NSNotFound != [_selectedPerson.attributes indexOfObject:@"Status"]) {
         sub++;
     }
-    if (NSNotFound != [selectedPerson.attributes indexOfObject:@"profileURL"]) {
+    if (NSNotFound != [_selectedPerson.attributes indexOfObject:@"profileURL"]) {
         sub++;
     }
-    return selectedPerson.attributes.count - sub;
+    return _selectedPerson.attributes.count - sub;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Register the NIB cell object for our custom cell
-    [tableView registerNib:[UINib nibWithNibName:@"ProfileCell" bundle:nil] forCellReuseIdentifier:cellIdentifier];
+    [tableView registerNib:[UINib nibWithNibName:@"ProfileCell" bundle:nil] forCellReuseIdentifier:_cellIdentifier];
     
-    UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    UITableViewCell *cell = (UITableViewCell*)[tableView dequeueReusableCellWithIdentifier:_cellIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:_cellIdentifier];
     }
     
     // Configure the cell...
-    cell.textLabel.text = [selectedPerson.attributeVals objectAtIndex:indexPath.row];
-    cell.detailTextLabel.text = [selectedPerson.attributes objectAtIndex:indexPath.row];
+    cell.textLabel.text = [_selectedPerson.attributeVals objectAtIndex:indexPath.row];
+    cell.detailTextLabel.text = [_selectedPerson.attributes objectAtIndex:indexPath.row];
     
     UIDevice *device = [UIDevice currentDevice];
     if ([[device model] isEqualToString:@"iPhone"] && [cell.detailTextLabel.text isEqualToString:@"Campus Phone"]) {
@@ -119,19 +98,19 @@
 
 #pragma mark - Table view delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (0 == indexPath.section && [[selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Username"]) {
+    if (0 == indexPath.section && [[_selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Username"]) {
         if([MFMailComposeViewController canSendMail]) {
             MFMailComposeViewController *mailViewController = [[MFMailComposeViewController alloc] init];
             mailViewController.mailComposeDelegate = self;
             
             mailViewController.modalPresentationStyle = UIModalPresentationFormSheet;
-            NSString *recipient = [selectedPerson.attributeVals objectAtIndex:indexPath.row];
+            NSString *recipient = [_selectedPerson.attributeVals objectAtIndex:indexPath.row];
             recipient = [recipient stringByAppendingString:@"@grinnell.edu"];
             [mailViewController setToRecipients:[NSArray arrayWithObject:recipient]];
             [self presentViewController:mailViewController animated:YES completion:nil];
         }
-    } else if (0 == indexPath.section && ([[selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Campus Phone"] || [[selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Home Phone"])) {
-        NSString *phoneNum = [selectedPerson.attributeVals objectAtIndex:indexPath.row];
+    } else if (0 == indexPath.section && ([[_selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Campus Phone"] || [[_selectedPerson.attributes objectAtIndex:indexPath.row] isEqualToString:@"Home Phone"])) {
+        NSString *phoneNum = [_selectedPerson.attributeVals objectAtIndex:indexPath.row];
         NSString *url = @"telprompt://";
         if (phoneNum.length >= 10) {
             url = [url stringByAppendingString:phoneNum];
@@ -157,8 +136,8 @@
     popoverController = [[WYPopoverController alloc] initWithContentViewController:controller];
     popoverController.delegate = self;
     [popoverController setPopoverContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height)];
-    NSUInteger index = [selectedPerson.attributes indexOfObject:@"picURL"];
-    NSString *userImageString = [selectedPerson.attributeVals objectAtIndex:index];
+    NSUInteger index = [_selectedPerson.attributes indexOfObject:@"picURL"];
+    NSString *userImageString = [_selectedPerson.attributeVals objectAtIndex:index];
     controller.picURL = [NSURL URLWithString:userImageString];
     [popoverController presentPopoverFromRect:self.tableView.tableHeaderView.frame inView:self.view permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
 }

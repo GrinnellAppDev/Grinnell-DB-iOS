@@ -20,4 +20,8 @@ class GADFieldTableViewCell: UITableViewCell {
     image = image!.imageWithRenderingMode(.AlwaysTemplate)
   }
 
+  func tap() {
+
+  }
+
 }

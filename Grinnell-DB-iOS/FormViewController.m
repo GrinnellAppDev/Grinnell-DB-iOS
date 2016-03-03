@@ -4,7 +4,6 @@
 #import "FormViewController.h"
 #import "Grinnell_DB_iOS-Swift.h"
 #import "OptionViewController.h"
-#import "Person.h"
 #import "ResultsViewController.h"
 
 @implementation BADFormViewController
@@ -546,7 +545,7 @@
     
     // Loop through the people
     while (NSNotFound != testRange.location) {
-        Person *tmpPerson = [[Person alloc] init];
+        GADDirectoryPerson *tmpPerson = [[GADDirectoryPerson alloc] init];
         tmpPerson.attributes = [[NSMutableArray alloc] init];
         tmpPerson.attributeVals = [[NSMutableArray alloc] init];
         NSRange startRange;
@@ -754,7 +753,7 @@
     // Loop through the people
     NSRange replaceRange;
     while (NSNotFound != testRange.location) {
-        Person *tmpPerson = [[Person alloc] init];
+        GADDirectoryPerson *tmpPerson = [[GADDirectoryPerson alloc] init];
         tmpPerson.attributes = [[NSMutableArray alloc] init];
         tmpPerson.attributeVals = [[NSMutableArray alloc] init];
         

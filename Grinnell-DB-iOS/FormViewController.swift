@@ -31,6 +31,13 @@ extension FormViewController: UITableViewDataSource {
 
     return UITableViewCell()
   }
+
+  func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    if tableView == self.tableView {
+      let cell = self.tableView(tableView, cellForRowAtIndexPath: indexPath) as! GADFieldTableViewCell
+      cell.tap()
+    }
+  }
 }
 
   extension FormViewController: UITableViewDelegate {
