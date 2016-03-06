@@ -25,8 +25,21 @@
 		E1E336BB180F3D8700145508 /* OptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E336B9180F3D8700145508 /* OptionViewController.m */; };
 		E1E336BC180F3D8700145508 /* OptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E336BA180F3D8700145508 /* OptionViewController.xib */; };
 		E1F2257D18049FEF00063B18 /* OnCResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */; };
+		FA130ADE1C8BB2E600563A0E /* GADDirectoryPersonStringProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA130ADA1C8BAE8700563A0E /* GADDirectoryPersonStringProperty.swift */; };
 		FA5199EA1C8044AD00BDF482 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5199E91C8044AD00BDF482 /* ResultsViewController.swift */; };
 		FA5199EB1C8044AD00BDF482 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5199E91C8044AD00BDF482 /* ResultsViewController.swift */; };
+		FA5834981C87E45300306F19 /* GADChildTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5834971C87E45300306F19 /* GADChildTableViewCell.swift */; };
+		FA7A1AB81C8BA96D00DAB59B /* GADDirectory.h in Headers */ = {isa = PBXBuildFile; fileRef = FA7A1AB71C8BA96D00DAB59B /* GADDirectory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FA7A1ABF1C8BA96D00DAB59B /* GADDirectory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7A1AB51C8BA96D00DAB59B /* GADDirectory.framework */; };
+		FA7A1AC61C8BA96D00DAB59B /* GADDirectoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A1AC51C8BA96D00DAB59B /* GADDirectoryTests.swift */; };
+		FA7A1ACA1C8BA96D00DAB59B /* GADDirectory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7A1AB51C8BA96D00DAB59B /* GADDirectory.framework */; };
+		FA7A1ACB1C8BA96D00DAB59B /* GADDirectory.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = FA7A1AB51C8BA96D00DAB59B /* GADDirectory.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		FA7A1AD41C8BA9D300DAB59B /* GADDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A1AD31C8BA9D300DAB59B /* GADDirectory.swift */; };
+		FA7A1AD51C8BA9D300DAB59B /* GADDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA7A1AD31C8BA9D300DAB59B /* GADDirectory.swift */; };
+		FA7A1AD61C8BAA1B00DAB59B /* GADDirectoryPersonProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BD51C8529A900C74794 /* GADDirectoryPersonProperty.swift */; };
+		FA7A1AD71C8BAA1B00DAB59B /* GADDirectoryPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BEA1C85661F00C74794 /* GADDirectoryPerson.swift */; };
+		FA7A1AD81C8BAA1C00DAB59B /* GADDirectoryPersonProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BD51C8529A900C74794 /* GADDirectoryPersonProperty.swift */; };
+		FA7A1AD91C8BAA1C00DAB59B /* GADDirectoryPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BEA1C85661F00C74794 /* GADDirectoryPerson.swift */; };
 		FA9E0F231C683DCC00699465 /* LaunchImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9E0F221C683DCC00699465 /* LaunchImage.xib */; };
 		FA9E0F361C68404900699465 /* GADIconTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9E0F251C683FE200699465 /* GADIconTest.swift */; };
 		FAD455831C81144700023814 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FAD455821C81144700023814 /* Settings.bundle */; };
@@ -34,21 +47,36 @@
 		FAE06BD01C84F86E00C74794 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAE06BCE1C84F86E00C74794 /* Storyboard.storyboard */; };
 		FAE06BD31C85120F00C74794 /* GADFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BD21C85120F00C74794 /* GADFieldTableViewCell.swift */; };
 		FAE06BD41C85120F00C74794 /* GADFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BD21C85120F00C74794 /* GADFieldTableViewCell.swift */; };
-		FAE06BD61C8529A900C74794 /* GADDirectoryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BD51C8529A900C74794 /* GADDirectoryField.swift */; };
-		FAE06BD71C8529A900C74794 /* GADDirectoryField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BD51C8529A900C74794 /* GADDirectoryField.swift */; };
-		FAE06BD91C852C8000C74794 /* GADFieldTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BD81C852C8000C74794 /* GADFieldTextField.swift */; };
-		FAE06BDA1C852C8000C74794 /* GADFieldTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BD81C852C8000C74794 /* GADFieldTextField.swift */; };
 		FAE06BE21C852EDF00C74794 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BE11C852EDF00C74794 /* FormViewController.swift */; };
 		FAE06BE31C852EDF00C74794 /* FormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BE11C852EDF00C74794 /* FormViewController.swift */; };
 		FAE06BE51C85308700C74794 /* GADTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BE41C85308700C74794 /* GADTextFieldTableViewCell.swift */; };
 		FAE06BE61C85308700C74794 /* GADTextFieldTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BE41C85308700C74794 /* GADTextFieldTableViewCell.swift */; };
 		FAE06BE81C8530AA00C74794 /* GADSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BE71C8530AA00C74794 /* GADSelectionTableViewCell.swift */; };
 		FAE06BE91C8530AA00C74794 /* GADSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BE71C8530AA00C74794 /* GADSelectionTableViewCell.swift */; };
-		FAE06BEB1C85661F00C74794 /* GADDirectoryPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BEA1C85661F00C74794 /* GADDirectoryPerson.swift */; };
-		FAE06BEC1C85661F00C74794 /* GADDirectoryPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE06BEA1C85661F00C74794 /* GADDirectoryPerson.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		FA7A1AC01C8BA96D00DAB59B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36363CB917E11EAC00B01E34 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA7A1AB41C8BA96D00DAB59B;
+			remoteInfo = GADDirectory;
+		};
+		FA7A1AC21C8BA96D00DAB59B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36363CB917E11EAC00B01E34 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 36363CC117E11EAC00B01E34;
+			remoteInfo = "Grinnell-DB-iOS";
+		};
+		FA7A1AC81C8BA96D00DAB59B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 36363CB917E11EAC00B01E34 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA7A1AB41C8BA96D00DAB59B;
+			remoteInfo = GADDirectory;
+		};
 		FA9E0F301C68403A00699465 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 36363CB917E11EAC00B01E34 /* Project object */;
@@ -57,6 +85,20 @@
 			remoteInfo = "Grinnell-DB-iOS";
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FA7A1AD11C8BA96D00DAB59B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FA7A1ACB1C8BA96D00DAB59B /* GADDirectory.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		36363CC217E11EAC00B01E34 /* Grinnell-DB-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Grinnell-DB-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,7 +129,16 @@
 		E1E336B9180F3D8700145508 /* OptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionViewController.m; sourceTree = "<group>"; };
 		E1E336BA180F3D8700145508 /* OptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionViewController.xib; sourceTree = "<group>"; };
 		E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnCResultsCell.xib; sourceTree = "<group>"; };
+		FA130ADA1C8BAE8700563A0E /* GADDirectoryPersonStringProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADDirectoryPersonStringProperty.swift; sourceTree = "<group>"; };
 		FA5199E91C8044AD00BDF482 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		FA5834971C87E45300306F19 /* GADChildTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADChildTableViewCell.swift; sourceTree = "<group>"; };
+		FA7A1AB51C8BA96D00DAB59B /* GADDirectory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GADDirectory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA7A1AB71C8BA96D00DAB59B /* GADDirectory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GADDirectory.h; sourceTree = "<group>"; };
+		FA7A1AB91C8BA96D00DAB59B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA7A1ABE1C8BA96D00DAB59B /* GADDirectoryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GADDirectoryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FA7A1AC51C8BA96D00DAB59B /* GADDirectoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GADDirectoryTests.swift; sourceTree = "<group>"; };
+		FA7A1AC71C8BA96D00DAB59B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA7A1AD31C8BA9D300DAB59B /* GADDirectory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADDirectory.swift; sourceTree = "<group>"; };
 		FA9E0F221C683DCC00699465 /* LaunchImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchImage.xib; path = ../LaunchImage.xib; sourceTree = "<group>"; };
 		FA9E0F241C683FE200699465 /* Grinnell-DB-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grinnell-DB-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		FA9E0F251C683FE200699465 /* GADIconTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GADIconTest.swift; path = "../Grinnell-DB-iOS/Tests/GADIconTest.swift"; sourceTree = "<group>"; };
@@ -97,8 +148,7 @@
 		FAD455841C8115EF00023814 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FAE06BCF1C84F86E00C74794 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Storyboard.storyboard; sourceTree = "<group>"; };
 		FAE06BD21C85120F00C74794 /* GADFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADFieldTableViewCell.swift; sourceTree = "<group>"; };
-		FAE06BD51C8529A900C74794 /* GADDirectoryField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADDirectoryField.swift; sourceTree = "<group>"; };
-		FAE06BD81C852C8000C74794 /* GADFieldTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADFieldTextField.swift; sourceTree = "<group>"; };
+		FAE06BD51C8529A900C74794 /* GADDirectoryPersonProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADDirectoryPersonProperty.swift; sourceTree = "<group>"; };
 		FAE06BE11C852EDF00C74794 /* FormViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormViewController.swift; sourceTree = "<group>"; };
 		FAE06BE41C85308700C74794 /* GADTextFieldTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADTextFieldTableViewCell.swift; sourceTree = "<group>"; };
 		FAE06BE71C8530AA00C74794 /* GADSelectionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADSelectionTableViewCell.swift; sourceTree = "<group>"; };
@@ -111,11 +161,27 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B59474217E93FC80001A61E /* SystemConfiguration.framework in Frameworks */,
+				FA7A1ACA1C8BA96D00DAB59B /* GADDirectory.framework in Frameworks */,
 				3B55415317E26D4E008B4F40 /* MessageUI.framework in Frameworks */,
 				36363CC717E11EAC00B01E34 /* UIKit.framework in Frameworks */,
 				36363CC917E11EAC00B01E34 /* Foundation.framework in Frameworks */,
 				36363CCB17E11EAC00B01E34 /* CoreGraphics.framework in Frameworks */,
 				C385D7DB02A24090A6353E4B /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7A1AB11C8BA96D00DAB59B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7A1ABB1C8BA96D00DAB59B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7A1ABF1C8BA96D00DAB59B /* GADDirectory.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -133,7 +199,9 @@
 			isa = PBXGroup;
 			children = (
 				36363CCC17E11EAC00B01E34 /* Grinnell-DB-iOS */,
+				FA7A1AB61C8BA96D00DAB59B /* GADDirectory */,
 				FA9E0F2C1C68403A00699465 /* GADDBTests */,
+				FA7A1AC41C8BA96D00DAB59B /* GADDirectoryTests */,
 				36363CC517E11EAC00B01E34 /* Frameworks */,
 				36363CC317E11EAC00B01E34 /* Products */,
 				FC1DD3E095F626D6D96B70E3 /* Pods */,
@@ -145,6 +213,8 @@
 			children = (
 				36363CC217E11EAC00B01E34 /* Grinnell-DB-iOS.app */,
 				FA9E0F2B1C68403A00699465 /* GADDBTests.xctest */,
+				FA7A1AB51C8BA96D00DAB59B /* GADDirectory.framework */,
+				FA7A1ABE1C8BA96D00DAB59B /* GADDirectoryTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -165,8 +235,6 @@
 		36363CCC17E11EAC00B01E34 /* Grinnell-DB-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				FAE06BDC1C852C9700C74794 /* Models */,
-				FAE06BDB1C852C8600C74794 /* TextFields */,
 				FAE06BD11C8511C100C74794 /* Cells */,
 				FAE06BDE1C852CB900C74794 /* View Controllers */,
 				FAE06BDD1C852CA800C74794 /* Storyboards */,
@@ -189,6 +257,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		FA7A1AB61C8BA96D00DAB59B /* GADDirectory */ = {
+			isa = PBXGroup;
+			children = (
+				FA7A1AD31C8BA9D300DAB59B /* GADDirectory.swift */,
+				FAE06BDC1C852C9700C74794 /* Models */,
+				FA7A1AB71C8BA96D00DAB59B /* GADDirectory.h */,
+				FA7A1AB91C8BA96D00DAB59B /* Info.plist */,
+			);
+			path = GADDirectory;
+			sourceTree = "<group>";
+		};
+		FA7A1AC41C8BA96D00DAB59B /* GADDirectoryTests */ = {
+			isa = PBXGroup;
+			children = (
+				FA7A1AC51C8BA96D00DAB59B /* GADDirectoryTests.swift */,
+				FA7A1AC71C8BA96D00DAB59B /* Info.plist */,
+			);
+			path = GADDirectoryTests;
+			sourceTree = "<group>";
+		};
 		FA9E0F2C1C68403A00699465 /* GADDBTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,26 +292,21 @@
 				FAE06BD21C85120F00C74794 /* GADFieldTableViewCell.swift */,
 				FAE06BE41C85308700C74794 /* GADTextFieldTableViewCell.swift */,
 				FAE06BE71C8530AA00C74794 /* GADSelectionTableViewCell.swift */,
+				FA5834971C87E45300306F19 /* GADChildTableViewCell.swift */,
 				FAE06BDF1C852CF300C74794 /* .xibs */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
 		};
-		FAE06BDB1C852C8600C74794 /* TextFields */ = {
-			isa = PBXGroup;
-			children = (
-				FAE06BD81C852C8000C74794 /* GADFieldTextField.swift */,
-			);
-			name = TextFields;
-			sourceTree = "<group>";
-		};
 		FAE06BDC1C852C9700C74794 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				FAE06BD51C8529A900C74794 /* GADDirectoryField.swift */,
+				FAE06BD51C8529A900C74794 /* GADDirectoryPersonProperty.swift */,
+				FA130ADA1C8BAE8700563A0E /* GADDirectoryPersonStringProperty.swift */,
 				FAE06BEA1C85661F00C74794 /* GADDirectoryPerson.swift */,
 			);
 			name = Models;
+			path = "../Grinnell-DB-iOS";
 			sourceTree = "<group>";
 		};
 		FAE06BDD1C852CA800C74794 /* Storyboards */ = {
@@ -285,6 +368,17 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		FA7A1AB21C8BA96D00DAB59B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7A1AB81C8BA96D00DAB59B /* GADDirectory.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		36363CC117E11EAC00B01E34 /* Grinnell-DB-iOS */ = {
 			isa = PBXNativeTarget;
@@ -298,15 +392,54 @@
 				E1904C8518AD65E100B50E29 /* ShellScript */,
 				39C3606B47F982B3D0E09894 /* Embed Pods Frameworks */,
 				FA708A071C699BBC0005789A /* ShellScript */,
+				FA7A1AD11C8BA96D00DAB59B /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				FA7A1AC91C8BA96D00DAB59B /* PBXTargetDependency */,
 			);
 			name = "Grinnell-DB-iOS";
 			productName = "Grinnell-DB-iOS";
 			productReference = 36363CC217E11EAC00B01E34 /* Grinnell-DB-iOS.app */;
 			productType = "com.apple.product-type.application";
+		};
+		FA7A1AB41C8BA96D00DAB59B /* GADDirectory */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA7A1AD01C8BA96D00DAB59B /* Build configuration list for PBXNativeTarget "GADDirectory" */;
+			buildPhases = (
+				FA7A1AB01C8BA96D00DAB59B /* Sources */,
+				FA7A1AB11C8BA96D00DAB59B /* Frameworks */,
+				FA7A1AB21C8BA96D00DAB59B /* Headers */,
+				FA7A1AB31C8BA96D00DAB59B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GADDirectory;
+			productName = GADDirectory;
+			productReference = FA7A1AB51C8BA96D00DAB59B /* GADDirectory.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		FA7A1ABD1C8BA96D00DAB59B /* GADDirectoryTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FA7A1AD21C8BA96D00DAB59B /* Build configuration list for PBXNativeTarget "GADDirectoryTests" */;
+			buildPhases = (
+				FA7A1ABA1C8BA96D00DAB59B /* Sources */,
+				FA7A1ABB1C8BA96D00DAB59B /* Frameworks */,
+				FA7A1ABC1C8BA96D00DAB59B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FA7A1AC11C8BA96D00DAB59B /* PBXTargetDependency */,
+				FA7A1AC31C8BA96D00DAB59B /* PBXTargetDependency */,
+			);
+			name = GADDirectoryTests;
+			productName = GADDirectoryTests;
+			productReference = FA7A1ABE1C8BA96D00DAB59B /* GADDirectoryTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		FA9E0F2A1C68403A00699465 /* GADDBTests */ = {
 			isa = PBXNativeTarget;
@@ -339,6 +472,14 @@
 					36363CC117E11EAC00B01E34 = {
 						DevelopmentTeam = H69TS4DPUJ;
 					};
+					FA7A1AB41C8BA96D00DAB59B = {
+						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = H69TS4DPUJ;
+					};
+					FA7A1ABD1C8BA96D00DAB59B = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 36363CC117E11EAC00B01E34;
+					};
 					FA9E0F2A1C68403A00699465 = {
 						CreatedOnToolsVersion = 7.2.1;
 						TestTargetID = 36363CC117E11EAC00B01E34;
@@ -359,6 +500,8 @@
 			targets = (
 				36363CC117E11EAC00B01E34 /* Grinnell-DB-iOS */,
 				FA9E0F2A1C68403A00699465 /* GADDBTests */,
+				FA7A1AB41C8BA96D00DAB59B /* GADDirectory */,
+				FA7A1ABD1C8BA96D00DAB59B /* GADDirectoryTests */,
 			);
 		};
 /* End PBXProject section */
@@ -377,6 +520,20 @@
 				FA9E0F231C683DCC00699465 /* LaunchImage.xib in Resources */,
 				3B55414B17E25870008B4F40 /* OffCResultsCell.xib in Resources */,
 				3B55415817E27453008B4F40 /* ProfileCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7A1AB31C8BA96D00DAB59B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7A1ABC1C8BA96D00DAB59B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,17 +629,37 @@
 				E1E336BB180F3D8700145508 /* OptionViewController.m in Sources */,
 				E10CF00E1811D6C90053AF44 /* ProfileImageViewController.m in Sources */,
 				FAE06BE81C8530AA00C74794 /* GADSelectionTableViewCell.swift in Sources */,
-				FAE06BD91C852C8000C74794 /* GADFieldTextField.swift in Sources */,
 				FAE06BD31C85120F00C74794 /* GADFieldTableViewCell.swift in Sources */,
 				36363CE617E11EAC00B01E34 /* FormViewController.m in Sources */,
 				FAE06BE51C85308700C74794 /* GADTextFieldTableViewCell.swift in Sources */,
 				FA5199EA1C8044AD00BDF482 /* ResultsViewController.swift in Sources */,
+				FA5834981C87E45300306F19 /* GADChildTableViewCell.swift in Sources */,
 				3B55414817E24CED008B4F40 /* ResultsViewController.m in Sources */,
 				3B55414E17E267AE008B4F40 /* ProfileViewController.m in Sources */,
-				FAE06BEB1C85661F00C74794 /* GADDirectoryPerson.swift in Sources */,
-				FAE06BD61C8529A900C74794 /* GADDirectoryField.swift in Sources */,
 				FAD455851C8115EF00023814 /* AppDelegate.swift in Sources */,
 				FAE06BE21C852EDF00C74794 /* FormViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7A1AB01C8BA96D00DAB59B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7A1AD41C8BA9D300DAB59B /* GADDirectory.swift in Sources */,
+				FA130ADE1C8BB2E600563A0E /* GADDirectoryPersonStringProperty.swift in Sources */,
+				FA7A1AD61C8BAA1B00DAB59B /* GADDirectoryPersonProperty.swift in Sources */,
+				FA7A1AD71C8BAA1B00DAB59B /* GADDirectoryPerson.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FA7A1ABA1C8BA96D00DAB59B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA7A1AD81C8BAA1C00DAB59B /* GADDirectoryPersonProperty.swift in Sources */,
+				FA7A1AD51C8BA9D300DAB59B /* GADDirectory.swift in Sources */,
+				FA7A1AC61C8BA96D00DAB59B /* GADDirectoryTests.swift in Sources */,
+				FA7A1AD91C8BAA1C00DAB59B /* GADDirectoryPerson.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,11 +669,8 @@
 			files = (
 				FAE06BE31C852EDF00C74794 /* FormViewController.swift in Sources */,
 				FA9E0F361C68404900699465 /* GADIconTest.swift in Sources */,
-				FAE06BEC1C85661F00C74794 /* GADDirectoryPerson.swift in Sources */,
 				FAE06BD41C85120F00C74794 /* GADFieldTableViewCell.swift in Sources */,
 				FA5199EB1C8044AD00BDF482 /* ResultsViewController.swift in Sources */,
-				FAE06BD71C8529A900C74794 /* GADDirectoryField.swift in Sources */,
-				FAE06BDA1C852C8000C74794 /* GADFieldTextField.swift in Sources */,
 				FAE06BE61C85308700C74794 /* GADTextFieldTableViewCell.swift in Sources */,
 				FAE06BE91C8530AA00C74794 /* GADSelectionTableViewCell.swift in Sources */,
 			);
@@ -505,6 +679,21 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		FA7A1AC11C8BA96D00DAB59B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA7A1AB41C8BA96D00DAB59B /* GADDirectory */;
+			targetProxy = FA7A1AC01C8BA96D00DAB59B /* PBXContainerItemProxy */;
+		};
+		FA7A1AC31C8BA96D00DAB59B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 36363CC117E11EAC00B01E34 /* Grinnell-DB-iOS */;
+			targetProxy = FA7A1AC21C8BA96D00DAB59B /* PBXContainerItemProxy */;
+		};
+		FA7A1AC91C8BA96D00DAB59B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA7A1AB41C8BA96D00DAB59B /* GADDirectory */;
+			targetProxy = FA7A1AC81C8BA96D00DAB59B /* PBXContainerItemProxy */;
+		};
 		FA9E0F311C68403A00699465 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 36363CC117E11EAC00B01E34 /* Grinnell-DB-iOS */;
@@ -588,6 +777,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Grinnell-DB-iOS/Grinnell-DB-iOS-Prefix.pch";
@@ -612,6 +802,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEFINES_MODULE = YES;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Grinnell-DB-iOS/Grinnell-DB-iOS-Prefix.pch";
@@ -623,6 +814,148 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Grinnell-DB-iOS/Grinnell-DB-iOS-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		FA7A1ACC1C8BA96D00DAB59B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = GADDirectory/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.GADDirectory;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		FA7A1ACD1C8BA96D00DAB59B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = GADDirectory/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.GADDirectory;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		FA7A1ACE1C8BA96D00DAB59B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = GADDirectoryTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.GADDirectoryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Grinnell-DB-iOS.app/Grinnell-DB-iOS";
+			};
+			name = Debug;
+		};
+		FA7A1ACF1C8BA96D00DAB59B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = GADDirectoryTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = edu.grinnell.appdev.GADDirectoryTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Grinnell-DB-iOS.app/Grinnell-DB-iOS";
 			};
 			name = Release;
 		};
@@ -709,6 +1042,24 @@
 			buildConfigurations = (
 				36363CEA17E11EAC00B01E34 /* Debug */,
 				36363CEB17E11EAC00B01E34 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA7A1AD01C8BA96D00DAB59B /* Build configuration list for PBXNativeTarget "GADDirectory" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA7A1ACC1C8BA96D00DAB59B /* Debug */,
+				FA7A1ACD1C8BA96D00DAB59B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA7A1AD21C8BA96D00DAB59B /* Build configuration list for PBXNativeTarget "GADDirectoryTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FA7A1ACE1C8BA96D00DAB59B /* Debug */,
+				FA7A1ACF1C8BA96D00DAB59B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

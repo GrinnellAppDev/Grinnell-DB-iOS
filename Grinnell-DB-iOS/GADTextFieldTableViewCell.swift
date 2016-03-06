@@ -1,12 +1,13 @@
+import GADDirectory
 import UIKit
 
 class GADTextFieldTableViewCell: GADFieldTableViewCell {
-  @IBOutlet weak var textField: GADFieldTextField!
-  var field: GADDirectoryField! {
+  @IBOutlet weak var textField: UITextField!
+  var property: GADDirectoryPersonStringProperty! {
     didSet {
-      textField.text = field.textValue
-      textField.placeholder = field.placeholderText
-      textField.autocapitalizationType =  field.autocapitalizationType
+      textField.text = property.textValue
+      textField.placeholder = property.placeholderText
+      textField.autocapitalizationType =  property.autocapitalizationType
     }
   }
 

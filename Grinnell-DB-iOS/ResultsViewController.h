@@ -1,7 +1,6 @@
-#import <UIKit/UIKit.h>
+#import <GADDirectory/GADDirectory.h>
 
-// Forward declare class to register from Swift (only needed for .h)
-@class GADDirectoryPerson;
+#import <UIKit/UIKit.h>
 
 @interface BADResultsViewController : UITableViewController <UISplitViewControllerDelegate>
 

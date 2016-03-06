@@ -21,7 +21,7 @@ class GADFieldTableViewCell: UITableViewCell {
   }
 
   func tap() {
-
+    becomeFirstResponder()
   }
 
 }
