@@ -1,2 +1,6 @@
 language: objective-c
 osx_image: xcode7.3
+
+
+script:
+  - xctool -workspace Grinnell-DB-iOS.xcworkspace -scheme Grinnell-DB-iOS -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO

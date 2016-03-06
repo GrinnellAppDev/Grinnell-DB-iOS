@@ -1,21 +1,9 @@
-//
-//  ResultsViewController.m
-//  Grinnell-DB-iOS
-//
-//  Created by Colin Tremblay on 9/12/13.
-//  Copyright (c) 2013 AppDev. All rights reserved.
-//
-
 #import "ResultsViewController.h"
 #import "ProfileViewController.h"
 #import <Reachability.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 
-@interface ResultsViewController ()
-
-@end
-
-@implementation ResultsViewController
+@implementation BADResultsViewController
 
 @synthesize cellIdentifier, searchDetails, onCampusBool;
 
@@ -25,12 +13,6 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-  if ([self.traitCollection
-       respondsToSelector:@selector(forceTouchCapability)] &&
-      (self.traitCollection.forceTouchCapability ==
-       UIForceTouchCapabilityAvailable)) {
-        [self registerForPreviewingWithDelegate:self sourceView:self.view];
-      }
   if (onCampusBool) {
     cellIdentifier = @"OnCResultsCell";
   } else {
@@ -99,8 +81,7 @@
   UILabel *classLbl = (UILabel *)[cell viewWithTag:1006];
   UIImageView *userImageView = (UIImageView *) [cell viewWithTag:1007];
 
-  Person *tempPerson = [[Person alloc] init];
-  tempPerson = [searchDetails objectAtIndex:indexPath.row];
+  Person *tempPerson = [searchDetails objectAtIndex:indexPath.row];
 
   NSString *first = tempPerson.firstName;
   NSString *last = tempPerson.lastName;

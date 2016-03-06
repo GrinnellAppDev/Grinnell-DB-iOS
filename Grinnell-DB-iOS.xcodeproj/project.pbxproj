@@ -11,9 +11,7 @@
 		36363CC917E11EAC00B01E34 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36363CC817E11EAC00B01E34 /* Foundation.framework */; };
 		36363CCB17E11EAC00B01E34 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36363CCA17E11EAC00B01E34 /* CoreGraphics.framework */; };
 		36363CD317E11EAC00B01E34 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 36363CD217E11EAC00B01E34 /* main.m */; };
-		36363CD717E11EAC00B01E34 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36363CD617E11EAC00B01E34 /* AppDelegate.m */; };
 		36363CE017E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36363CDE17E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard */; };
-		36363CE317E11EAC00B01E34 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36363CE117E11EAC00B01E34 /* MainStoryboard_iPad.storyboard */; };
 		36363CE617E11EAC00B01E34 /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36363CE517E11EAC00B01E34 /* FormViewController.m */; };
 		3B55414817E24CED008B4F40 /* ResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3B55414617E24CED008B4F40 /* ResultsViewController.m */; };
 		3B55414B17E25870008B4F40 /* OffCResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B55414A17E25870008B4F40 /* OffCResultsCell.xib */; };
@@ -29,9 +27,12 @@
 		E1E336BB180F3D8700145508 /* OptionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E1E336B9180F3D8700145508 /* OptionViewController.m */; };
 		E1E336BC180F3D8700145508 /* OptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E336BA180F3D8700145508 /* OptionViewController.xib */; };
 		E1F2257D18049FEF00063B18 /* OnCResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */; };
-		FA28CB261C6AFF2600608A03 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA28CB251C6AFF2600608A03 /* ResultsViewController.swift */; };
+		FA5199EA1C8044AD00BDF482 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5199E91C8044AD00BDF482 /* ResultsViewController.swift */; };
+		FA5199EB1C8044AD00BDF482 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5199E91C8044AD00BDF482 /* ResultsViewController.swift */; };
 		FA9E0F231C683DCC00699465 /* LaunchImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA9E0F221C683DCC00699465 /* LaunchImage.xib */; };
 		FA9E0F361C68404900699465 /* GADIconTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9E0F251C683FE200699465 /* GADIconTest.swift */; };
+		FAD455831C81144700023814 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FAD455821C81144700023814 /* Settings.bundle */; };
+		FAD455851C8115EF00023814 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD455841C8115EF00023814 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,10 +53,7 @@
 		36363CCE17E11EAC00B01E34 /* Grinnell-DB-iOS-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Grinnell-DB-iOS-Info.plist"; sourceTree = "<group>"; };
 		36363CD217E11EAC00B01E34 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		36363CD417E11EAC00B01E34 /* Grinnell-DB-iOS-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grinnell-DB-iOS-Prefix.pch"; sourceTree = "<group>"; };
-		36363CD517E11EAC00B01E34 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		36363CD617E11EAC00B01E34 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		36363CDF17E11EAC00B01E34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
-		36363CE217E11EAC00B01E34 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		36363CE417E11EAC00B01E34 /* FormViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormViewController.h; sourceTree = "<group>"; };
 		36363CE517E11EAC00B01E34 /* FormViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FormViewController.m; sourceTree = "<group>"; };
 		3B55414517E24CED008B4F40 /* ResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultsViewController.h; sourceTree = "<group>"; };
@@ -79,12 +77,14 @@
 		E1E336B9180F3D8700145508 /* OptionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionViewController.m; sourceTree = "<group>"; };
 		E1E336BA180F3D8700145508 /* OptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionViewController.xib; sourceTree = "<group>"; };
 		E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnCResultsCell.xib; sourceTree = "<group>"; };
-		FA28CB251C6AFF2600608A03 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		FA5199E91C8044AD00BDF482 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		FA9E0F221C683DCC00699465 /* LaunchImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LaunchImage.xib; path = ../LaunchImage.xib; sourceTree = "<group>"; };
 		FA9E0F241C683FE200699465 /* Grinnell-DB-iOS-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Grinnell-DB-iOS-Bridging-Header.h"; sourceTree = "<group>"; };
 		FA9E0F251C683FE200699465 /* GADIconTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GADIconTest.swift; path = "../Grinnell-DB-iOS/Tests/GADIconTest.swift"; sourceTree = "<group>"; };
 		FA9E0F2B1C68403A00699465 /* GADDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GADDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA9E0F2F1C68403A00699465 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAD455821C81144700023814 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		FAD455841C8115EF00023814 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,15 +148,14 @@
 			isa = PBXGroup;
 			children = (
 				3B55415917E27A03008B4F40 /* Helper Classes */,
-				36363CD517E11EAC00B01E34 /* AppDelegate.h */,
-				36363CD617E11EAC00B01E34 /* AppDelegate.m */,
+				FAD455841C8115EF00023814 /* AppDelegate.swift */,
 				36363CDE17E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard */,
-				36363CE117E11EAC00B01E34 /* MainStoryboard_iPad.storyboard */,
+				FAD455821C81144700023814 /* Settings.bundle */,
 				36363CE417E11EAC00B01E34 /* FormViewController.h */,
 				36363CE517E11EAC00B01E34 /* FormViewController.m */,
 				3B55414517E24CED008B4F40 /* ResultsViewController.h */,
+				FA5199E91C8044AD00BDF482 /* ResultsViewController.swift */,
 				3B55414617E24CED008B4F40 /* ResultsViewController.m */,
-				FA28CB251C6AFF2600608A03 /* ResultsViewController.swift */,
 				3B55414A17E25870008B4F40 /* OffCResultsCell.xib */,
 				E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */,
 				3B55414C17E267AE008B4F40 /* ProfileViewController.h */,
@@ -307,7 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				36363CE017E11EAC00B01E34 /* MainStoryboard_iPhone.storyboard in Resources */,
-				36363CE317E11EAC00B01E34 /* MainStoryboard_iPad.storyboard in Resources */,
+				FAD455831C81144700023814 /* Settings.bundle in Resources */,
 				E10CF00F1811D6C90053AF44 /* ProfileImageViewController.xib in Resources */,
 				E1E336BC180F3D8700145508 /* OptionViewController.xib in Resources */,
 				E1F2257D18049FEF00063B18 /* OnCResultsCell.xib in Resources */,
@@ -409,11 +408,11 @@
 				36363CD317E11EAC00B01E34 /* main.m in Sources */,
 				E1E336BB180F3D8700145508 /* OptionViewController.m in Sources */,
 				E10CF00E1811D6C90053AF44 /* ProfileImageViewController.m in Sources */,
-				36363CD717E11EAC00B01E34 /* AppDelegate.m in Sources */,
 				36363CE617E11EAC00B01E34 /* FormViewController.m in Sources */,
+				FA5199EA1C8044AD00BDF482 /* ResultsViewController.swift in Sources */,
 				3B55414817E24CED008B4F40 /* ResultsViewController.m in Sources */,
-				FA28CB261C6AFF2600608A03 /* ResultsViewController.swift in Sources */,
 				3B55414E17E267AE008B4F40 /* ProfileViewController.m in Sources */,
+				FAD455851C8115EF00023814 /* AppDelegate.swift in Sources */,
 				3B55415117E26B62008B4F40 /* Person.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA9E0F361C68404900699465 /* GADIconTest.swift in Sources */,
+				FA5199EB1C8044AD00BDF482 /* ResultsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,14 +443,6 @@
 				36363CDF17E11EAC00B01E34 /* en */,
 			);
 			name = MainStoryboard_iPhone.storyboard;
-			sourceTree = "<group>";
-		};
-		36363CE117E11EAC00B01E34 /* MainStoryboard_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				36363CE217E11EAC00B01E34 /* en */,
-			);
-			name = MainStoryboard_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -519,6 +511,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Grinnell-DB-iOS/Grinnell-DB-iOS-Prefix.pch";
@@ -542,6 +535,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Grinnell-DB-iOS/Grinnell-DB-iOS-Prefix.pch";

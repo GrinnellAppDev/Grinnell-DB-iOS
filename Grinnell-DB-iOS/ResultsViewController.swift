@@ -1,5 +1,24 @@
 import UIKit
 
+public class ResultsViewController: BADResultsViewController {
+  override public func viewDidLoad() {
+    super.viewDidLoad()
+    if #available(iOS 9.0, *) {
+      if traitCollection.forceTouchCapability == UIForceTouchCapability.Available {
+        registerForPreviewingWithDelegate(self, sourceView: view)
+      }
+    }
+    setResultTitleWithResultCount(resultCount:searchDetails.count)
+  }
+
+  private func setResultTitleWithResultCount(resultCount count: Int) {
+    let label = count == 1 ? "Result" : "Results"
+    title = "\(count) \(label)"
+
+  }
+
+}
+
 
 extension ResultsViewController: UIViewControllerPreviewingDelegate {
 

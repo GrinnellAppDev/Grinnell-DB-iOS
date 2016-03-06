@@ -1,18 +1,10 @@
-//
-//  FormViewController.h
-//  Grinnell-DB-iOS
-//
-//  Created by Colin Tremblay on 1/28/13.
-//  Copyright (c) 2013 Grinnell AppDev. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
-#import <BSKeyboardControls/BSKeyboardControls.h>
+
 #import <WYPopoverController.h>
 
-@interface FormViewController : UITableViewController <UITextFieldDelegate, UIPickerViewDelegate, BSKeyboardControlsDelegate, UITableViewDataSource, UITableViewDelegate, WYPopoverControllerDelegate> {
-    NSMutableArray *fields;
-    WYPopoverController *popoverController;
+@interface FormViewController : UITableViewController <UITextFieldDelegate, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, WYPopoverControllerDelegate> {
+  NSMutableArray *fields;
+  WYPopoverController *popoverController;
 }
 
 - (BOOL)networkCheck;
@@ -22,12 +14,11 @@
 - (NSString *)cutString:(NSString *)str fromStartToEndOfRange:(NSRange)startRange;
 - (void)load;
 - (void)searchHelper;
-- (void)clear:(id)sender;
+- (void)clear;
 - (void)searchUsingURL:(NSURL *)url forPage:(int)pageNum;
 - (void)parseResults:(NSString *)dataString;
 - (void)parseResultsOffCampus:(NSString *)dataString;
 - (void)parseHTML:(NSRange)startRange :(NSRange)endRange :(NSMutableArray *)array :(NSString *)responseData;
-- (void)iPadSearch:(id)sender;
 
 @property (nonatomic, strong) NSMutableArray *majorsArray;
 @property (nonatomic, strong) NSMutableArray *concentrationArray;
@@ -50,7 +41,6 @@
 @property (nonatomic, weak) IBOutlet UITextField *hiatusField;
 @property (nonatomic, weak) IBOutlet UITextField *classField;
 @property (nonatomic, weak) IBOutlet UITextField *facStaffField;
-@property (nonatomic, strong) BSKeyboardControls *keyboardControls;
 @property (nonatomic, assign) int textFieldIdentifier;
 @property (nonatomic, assign) BOOL onCampusBool;
 @property (nonatomic, assign) BOOL notFirstRun;
