@@ -3,8 +3,8 @@
 #import <WYPopoverController.h>
 
 @interface FormViewController : UITableViewController <UITextFieldDelegate, UIPickerViewDelegate, UITableViewDataSource, UITableViewDelegate, WYPopoverControllerDelegate> {
-    NSMutableArray *fields;
-    WYPopoverController *popoverController;
+  NSMutableArray *fields;
+  WYPopoverController *popoverController;
 }
 
 - (BOOL)networkCheck;

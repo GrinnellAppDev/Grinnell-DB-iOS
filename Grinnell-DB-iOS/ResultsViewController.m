@@ -82,7 +82,7 @@
   UIImageView *userImageView = (UIImageView *) [cell viewWithTag:1007];
 
   Person *tempPerson = [searchDetails objectAtIndex:indexPath.row];
-  
+
   NSString *first = tempPerson.firstName;
   NSString *last = tempPerson.lastName;
   NSString *status = [tempPerson.attributeVals objectAtIndex:[tempPerson.attributes indexOfObject:@"Status"]];
