@@ -18,6 +18,8 @@ extension GADDirectory {
                                autocapitalizationType: .Words,
                                          keyboardType: .ASCIICapable)
 
-    return [firstName, lastName]
+    let classYear = GADDirectoryPersonSelectionProperty(display: "Class Year", options: ["2016", "2017", "2018", "2019"])
+
+    return [firstName, lastName, classYear]
   }
 }

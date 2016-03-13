@@ -7,11 +7,12 @@ class GADTextFieldTableViewCell: GADFieldTableViewCell {
     didSet {
       textField.text = property.textValue
       textField.placeholder = property.placeholderText
+      textField.autocorrectionType = property.autocorrectionType
       textField.autocapitalizationType =  property.autocapitalizationType
     }
   }
 
-  override func tap() {
+  override func tap(tableView: UITableView, indexPath: NSIndexPath) {
     textField.becomeFirstResponder()
   }
 }

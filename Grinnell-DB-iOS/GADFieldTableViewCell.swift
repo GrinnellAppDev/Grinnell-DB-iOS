@@ -20,7 +20,7 @@ class GADFieldTableViewCell: UITableViewCell {
     image = image!.imageWithRenderingMode(.AlwaysTemplate)
   }
 
-  func tap() {
+  func tap(tableView: UITableView, indexPath: NSIndexPath) {
     becomeFirstResponder()
   }
 
