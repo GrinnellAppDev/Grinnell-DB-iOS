@@ -18,7 +18,7 @@
 		3B55415317E26D4E008B4F40 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B55415217E26D4E008B4F40 /* MessageUI.framework */; };
 		3B55415817E27453008B4F40 /* ProfileCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3B55415717E27453008B4F40 /* ProfileCell.xib */; };
 		3B59474217E93FC80001A61E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B59474117E93FC80001A61E /* SystemConfiguration.framework */; };
-		C385D7DB02A24090A6353E4B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 766E41B0CCF9458DBEAB7986 /* libPods.a */; };
+		51C747E85AEF58CB582BFF0D /* libPods-Grinnell-DB-iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D28891F21920A5A1F88F6C1F /* libPods-Grinnell-DB-iOS.a */; };
 		D0826FCA19B0BC4D00FF9C67 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0826FC919B0BC4D00FF9C67 /* Images.xcassets */; };
 		E10CF00E1811D6C90053AF44 /* ProfileImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E10CF00C1811D6C90053AF44 /* ProfileImageViewController.m */; };
 		E10CF00F1811D6C90053AF44 /* ProfileImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E10CF00D1811D6C90053AF44 /* ProfileImageViewController.xib */; };
@@ -26,6 +26,10 @@
 		E1E336BC180F3D8700145508 /* OptionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1E336BA180F3D8700145508 /* OptionViewController.xib */; };
 		E1F2257D18049FEF00063B18 /* OnCResultsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */; };
 		FA130ADE1C8BB2E600563A0E /* GADDirectoryPersonStringProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA130ADA1C8BAE8700563A0E /* GADDirectoryPersonStringProperty.swift */; };
+		FA34FD461D287E8100606DF7 /* ADKerningLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA34FD451D287E8100606DF7 /* ADKerningLabel.swift */; };
+		FA34FD471D28A2FE00606DF7 /* GADDirectoryPersonStringProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA130ADA1C8BAE8700563A0E /* GADDirectoryPersonStringProperty.swift */; };
+		FA34FD481D28A30100606DF7 /* GADDirectoryPersonSelectionProperty.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8268FD1C94D11C00E646C8 /* GADDirectoryPersonSelectionProperty.swift */; };
+		FA34FD491D28A3F700606DF7 /* GADChildTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5834971C87E45300306F19 /* GADChildTableViewCell.swift */; };
 		FA5199EA1C8044AD00BDF482 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5199E91C8044AD00BDF482 /* ResultsViewController.swift */; };
 		FA5199EB1C8044AD00BDF482 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5199E91C8044AD00BDF482 /* ResultsViewController.swift */; };
 		FA5834981C87E45300306F19 /* GADChildTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5834971C87E45300306F19 /* GADChildTableViewCell.swift */; };
@@ -119,10 +123,10 @@
 		3B55415217E26D4E008B4F40 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3B55415717E27453008B4F40 /* ProfileCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileCell.xib; sourceTree = "<group>"; };
 		3B59474117E93FC80001A61E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		766E41B0CCF9458DBEAB7986 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		BBC4E8BF605E9288E0910F9B /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		BEAF4F470AA20D09E8F57634 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		3D78F6621C5A74D7A7EB5F0E /* Pods-Grinnell-DB-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grinnell-DB-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-Grinnell-DB-iOS/Pods-Grinnell-DB-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		BE4BF4EEB8B154C946F7493C /* Pods-Grinnell-DB-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grinnell-DB-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Grinnell-DB-iOS/Pods-Grinnell-DB-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		D0826FC919B0BC4D00FF9C67 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D28891F21920A5A1F88F6C1F /* libPods-Grinnell-DB-iOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Grinnell-DB-iOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E10CF00B1811D6C90053AF44 /* ProfileImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileImageViewController.h; sourceTree = "<group>"; };
 		E10CF00C1811D6C90053AF44 /* ProfileImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileImageViewController.m; sourceTree = "<group>"; };
 		E10CF00D1811D6C90053AF44 /* ProfileImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileImageViewController.xib; sourceTree = "<group>"; };
@@ -131,6 +135,7 @@
 		E1E336BA180F3D8700145508 /* OptionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OptionViewController.xib; sourceTree = "<group>"; };
 		E1F2257C18049FEF00063B18 /* OnCResultsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OnCResultsCell.xib; sourceTree = "<group>"; };
 		FA130ADA1C8BAE8700563A0E /* GADDirectoryPersonStringProperty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADDirectoryPersonStringProperty.swift; sourceTree = "<group>"; };
+		FA34FD451D287E8100606DF7 /* ADKerningLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ADKerningLabel.swift; sourceTree = "<group>"; };
 		FA5199E91C8044AD00BDF482 /* ResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		FA5834971C87E45300306F19 /* GADChildTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GADChildTableViewCell.swift; sourceTree = "<group>"; };
 		FA7A1AB51C8BA96D00DAB59B /* GADDirectory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GADDirectory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,7 +173,7 @@
 				36363CC717E11EAC00B01E34 /* UIKit.framework in Frameworks */,
 				36363CC917E11EAC00B01E34 /* Foundation.framework in Frameworks */,
 				36363CCB17E11EAC00B01E34 /* CoreGraphics.framework in Frameworks */,
-				C385D7DB02A24090A6353E4B /* libPods.a in Frameworks */,
+				51C747E85AEF58CB582BFF0D /* libPods-Grinnell-DB-iOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +202,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		003A05BBA8ACC1F437400E37 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BE4BF4EEB8B154C946F7493C /* Pods-Grinnell-DB-iOS.debug.xcconfig */,
+				3D78F6621C5A74D7A7EB5F0E /* Pods-Grinnell-DB-iOS.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		36363CB717E11EAC00B01E34 = {
 			isa = PBXGroup;
 			children = (
@@ -206,7 +220,7 @@
 				FA7A1AC41C8BA96D00DAB59B /* GADDirectoryTests */,
 				36363CC517E11EAC00B01E34 /* Frameworks */,
 				36363CC317E11EAC00B01E34 /* Products */,
-				FC1DD3E095F626D6D96B70E3 /* Pods */,
+				003A05BBA8ACC1F437400E37 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,7 +243,7 @@
 				36363CC617E11EAC00B01E34 /* UIKit.framework */,
 				36363CC817E11EAC00B01E34 /* Foundation.framework */,
 				36363CCA17E11EAC00B01E34 /* CoreGraphics.framework */,
-				766E41B0CCF9458DBEAB7986 /* libPods.a */,
+				D28891F21920A5A1F88F6C1F /* libPods-Grinnell-DB-iOS.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -317,6 +331,7 @@
 			children = (
 				FAE06BCE1C84F86E00C74794 /* Storyboard.storyboard */,
 				FA9E0F221C683DCC00699465 /* LaunchImage.xib */,
+				FA34FD451D287E8100606DF7 /* ADKerningLabel.swift */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -360,15 +375,6 @@
 			name = .xibs;
 			sourceTree = "<group>";
 		};
-		FC1DD3E095F626D6D96B70E3 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				BBC4E8BF605E9288E0910F9B /* Pods.debug.xcconfig */,
-				BEAF4F470AA20D09E8F57634 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -387,15 +393,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36363CE917E11EAC00B01E34 /* Build configuration list for PBXNativeTarget "Grinnell-DB-iOS" */;
 			buildPhases = (
-				72B5AAD7AAAD4EFBB8ABC0C7 /* Check Pods Manifest.lock */,
+				96EDF336E5A080ABADD5A12C /* [CP] Check Pods Manifest.lock */,
 				36363CBE17E11EAC00B01E34 /* Sources */,
 				36363CBF17E11EAC00B01E34 /* Frameworks */,
 				36363CC017E11EAC00B01E34 /* Resources */,
-				36CE9F08DCF94146B2EAC1CA /* Copy Pods Resources */,
 				E1904C8518AD65E100B50E29 /* ShellScript */,
-				39C3606B47F982B3D0E09894 /* Embed Pods Frameworks */,
 				FA708A071C699BBC0005789A /* ShellScript */,
 				FA7A1AD11C8BA96D00DAB59B /* Embed Frameworks */,
+				FCE41129490B8B52B2A05773 /* [CP] Embed Pods Frameworks */,
+				73AF8F7367737FBC25E2CBA7 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -550,44 +556,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		36CE9F08DCF94146B2EAC1CA /* Copy Pods Resources */ = {
+		73AF8F7367737FBC25E2CBA7 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Grinnell-DB-iOS/Pods-Grinnell-DB-iOS-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		39C3606B47F982B3D0E09894 /* Embed Pods Frameworks */ = {
+		96EDF336E5A080ABADD5A12C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		72B5AAD7AAAD4EFBB8ABC0C7 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,6 +612,21 @@
 			shellPath = /bin/sh;
 			shellScript = "#Update build number with number of git commits\nbuildNumber=$(git rev-list HEAD | wc -l | tr -d ' ')\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};
+		FCE41129490B8B52B2A05773 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Grinnell-DB-iOS/Pods-Grinnell-DB-iOS-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -628,6 +634,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA34FD461D287E8100606DF7 /* ADKerningLabel.swift in Sources */,
 				36363CD317E11EAC00B01E34 /* main.m in Sources */,
 				E1E336BB180F3D8700145508 /* OptionViewController.m in Sources */,
 				E10CF00E1811D6C90053AF44 /* ProfileImageViewController.m in Sources */,
@@ -664,6 +671,8 @@
 				FA7A1AD51C8BA9D300DAB59B /* GADDirectory.swift in Sources */,
 				FA7A1AC61C8BA96D00DAB59B /* GADDirectoryTests.swift in Sources */,
 				FA7A1AD91C8BAA1C00DAB59B /* GADDirectoryPerson.swift in Sources */,
+				FA34FD471D28A2FE00606DF7 /* GADDirectoryPersonStringProperty.swift in Sources */,
+				FA34FD481D28A30100606DF7 /* GADDirectoryPersonSelectionProperty.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -673,6 +682,7 @@
 			files = (
 				FAE06BE31C852EDF00C74794 /* FormViewController.swift in Sources */,
 				FA9E0F361C68404900699465 /* GADIconTest.swift in Sources */,
+				FA34FD491D28A3F700606DF7 /* GADChildTableViewCell.swift in Sources */,
 				FAE06BD41C85120F00C74794 /* GADFieldTableViewCell.swift in Sources */,
 				FA5199EB1C8044AD00BDF482 /* ResultsViewController.swift in Sources */,
 				FAE06BE61C85308700C74794 /* GADTextFieldTableViewCell.swift in Sources */,
@@ -774,7 +784,7 @@
 		};
 		36363CEA17E11EAC00B01E34 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BBC4E8BF605E9288E0910F9B /* Pods.debug.xcconfig */;
+			baseConfigurationReference = BE4BF4EEB8B154C946F7493C /* Pods-Grinnell-DB-iOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -799,7 +809,7 @@
 		};
 		36363CEB17E11EAC00B01E34 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BEAF4F470AA20D09E8F57634 /* Pods.release.xcconfig */;
+			baseConfigurationReference = 3D78F6621C5A74D7A7EB5F0E /* Pods-Grinnell-DB-iOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

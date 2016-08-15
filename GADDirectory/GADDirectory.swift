@@ -7,18 +7,18 @@ public class GADDirectory: NSObject {
 }
 
 extension GADDirectory {
-  class func defaultProperties() -> [GADDirectoryPersonProperty] {
-    let firstName = GADDirectoryPersonStringProperty(placeholderText: "First Name",
+  public class func defaultProperties() -> [GADDirectoryPersonProperty] {
+    let firstName = GADDirectoryPersonStringProperty(friendlyText: "First Name",
                                    autocorrectionType: .No,
                                autocapitalizationType: .Words,
                                          keyboardType: .ASCIICapable)
 
-    let lastName = GADDirectoryPersonStringProperty(placeholderText: "Last Name",
+    let lastName = GADDirectoryPersonStringProperty(friendlyText: "Last Name",
                                    autocorrectionType: .No,
                                autocapitalizationType: .Words,
                                          keyboardType: .ASCIICapable)
 
-    let classYear = GADDirectoryPersonSelectionProperty(display: "Class Year", options: ["2016", "2017", "2018", "2019"])
+    let classYear = GADDirectoryPersonSelectionProperty(friendlyText: "Class Year", options: ["2016", "2017", "2018", "2019"])
 
     return [firstName, lastName, classYear]
   }

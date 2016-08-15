@@ -6,7 +6,7 @@ class GADTextFieldTableViewCell: GADFieldTableViewCell {
   var property: GADDirectoryPersonStringProperty! {
     didSet {
       textField.text = property.textValue
-      textField.placeholder = property.placeholderText
+      textField.placeholder = property.friendlyText
       textField.autocorrectionType = property.autocorrectionType
       textField.autocapitalizationType =  property.autocapitalizationType
     }

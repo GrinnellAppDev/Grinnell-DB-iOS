@@ -1,3 +1,4 @@
+import GADDirectory
 import UIKit
 
 class GADSelectionTableViewCell: GADFieldTableViewCell {
@@ -7,7 +8,7 @@ class GADSelectionTableViewCell: GADFieldTableViewCell {
   var expanded = false
   var property: GADDirectoryPersonSelectionProperty! {
     didSet {
-      displayLabel.text = property.display
+      displayLabel.text = property.friendlyText
     }
   }
   
@@ -19,7 +20,7 @@ class GADSelectionTableViewCell: GADFieldTableViewCell {
   override func tap(tableView: UITableView, indexPath: NSIndexPath) {
     if expanded {
       var indexPathsToRemove = [NSIndexPath]()
-      for (var i = 1; i <= property.options.count; i++) {
+      for i in 1...property.options.count {
         let indexPath = NSIndexPath(forRow: i, inSection: indexPath.section)
         indexPathsToRemove.append(indexPath)
       }
@@ -33,7 +34,7 @@ class GADSelectionTableViewCell: GADFieldTableViewCell {
     } else {
       addDropShadow()
       var indexPathsToAdd = [NSIndexPath]()
-      for (var i = 1; i <= property.options.count; i++) {
+      for i in 1...property.options.count {
         let indexPath = NSIndexPath(forRow: i, inSection: indexPath.section)
         indexPathsToAdd.append(indexPath)
       }

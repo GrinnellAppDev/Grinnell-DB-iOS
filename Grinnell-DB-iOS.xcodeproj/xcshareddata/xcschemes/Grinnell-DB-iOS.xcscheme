@@ -38,6 +38,16 @@
                ReferencedContainer = "container:Grinnell-DB-iOS.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FA9E0F2A1C68403A00699465"
+               BuildableName = "GADDBTests.xctest"
+               BlueprintName = "GADDBTests"
+               ReferencedContainer = "container:Grinnell-DB-iOS.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
