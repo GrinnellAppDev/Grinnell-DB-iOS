@@ -372,7 +372,7 @@
 
     if([response statusCode] >= 200 && [response statusCode] < 300){
       NSString *responseData = [[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
-
+      NSLog(@"%@", responseData);
       NSRange startRange = [responseData rangeOfString:@"<select name=\"Department\">"];
       NSRange endRange = [responseData rangeOfString:@"Student Major"];
       if (NSNotFound != endRange.location) {

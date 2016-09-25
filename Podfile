@@ -1,7 +1,9 @@
 platform :ios, '8.0'
 
-pod 'SDWebImage'
-pod 'Reachability'
-pod 'WYPopoverController'
-pod 'Crashlytics'
-pod 'Fabric'
+target 'Grinnell-DB-iOS' do
+  pod 'SDWebImage'
+  pod 'Reachability'
+  pod 'WYPopoverController'
+  pod 'Crashlytics'
+  pod 'Fabric'
+end
